@@ -9,6 +9,9 @@ app.use(cors())
 app.use(cookieParser());
 app.use(express.json());
 
+const routes = require('./routes/routes.js');
+app.use('/api', routes);
+
 app.use('/', (req, res) => {
   res.send('Olá mundo');
 })
