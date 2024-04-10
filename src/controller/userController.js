@@ -24,33 +24,33 @@ const createUser = async (req, res) => {
         const { username, user_type, name, email, password, cpf_cnpj, phone } = req.body;
 
         if (!username) {
-            throw { error: 'O username é obrigatório' };
+            throw new Error ( "O username é obrigatório" );
         }
 
         if (!name) {
-            throw { error: 'O nome é obrigatório' };
+            throw new Error ( "O nome é obrigatório" );
         }
 
         if (!email) {
-            throw { error: 'O e-mail é obrigatório' };
+            throw new Error ( "O e-mail é obrigatório" );
         }
 
         if (!password) {
-            throw { error: 'A senha é obrigatória' };
+            throw new Error ( "A senha é obrigatória" );
         }
 
         if (!cpf_cnpj) {
-            throw { error: 'O cpf é obrigatório' };
+            throw new Error ( "O cpf é obrigatório" );
         }
 
         if (!phone) {
-            throw { error: 'O telefone é obrigatório' };
+            throw new Error ( "O telefone é obrigatório" );
         }
 
         const user = await userServices.createUser(username, user_type, name, email, password, cpf_cnpj, phone);
         return res.status(200).json({ success: true, message: 'Usuário criado com sucesso', data: user });
-    } catch{
-        return res.status(500).json({ error: 'Erro ao inserir dados' });
+    } catch (error){
+        return res.status(500).json({ error: error.message });
     }
 }
 
@@ -60,27 +60,27 @@ const updateUser = async (req, res) => {
 
     try {
         if (!username) {
-            throw { error: 'O username é obrigatório' };
+            throw new Error ( "O username é obrigatório" );
         }
 
         if (!name) {
-            throw { error: 'O nome é obrigatório' };
+            throw new Error ( "O nome é obrigatório" );
         }
 
         if (!email) {
-            throw { error: 'O e-mail é obrigatório' };
+            throw new Error ( "O e-mail é obrigatório" );
         }
 
         if (!password) {
-            throw { error: 'A senha é obrigatória' };
+            throw new Error ( "A senha é obrigatória" );
         }
 
         if (!cpf_cnpj) {
-            throw { error: 'O cpf é obrigatório' };
+            throw new Error ( "O cpf é obrigatório" );
         }
 
         if (!phone) {
-            throw { error: 'O telefone é obrigatorio' };
+            throw new Error ( "O telefone é obrigatório" );
         }
 
         const user = await userServices.getUser(id);
