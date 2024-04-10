@@ -40,7 +40,7 @@ const createUser = async (req, res) => {
         }
 
         if (!cpf_cnpj) {
-            throw new Error ( "O cpf é obrigatório" );
+            throw new Error ( "O cpf/cnpj é obrigatório" );
         }
 
         if (!phone) {
@@ -76,7 +76,7 @@ const updateUser = async (req, res) => {
         }
 
         if (!cpf_cnpj) {
-            throw new Error ( "O cpf é obrigatório" );
+            throw new Error ( "O cpf/cnpj é obrigatório" );
         }
 
         if (!phone) {
