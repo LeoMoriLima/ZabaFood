@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controller/userController.js");
+const permissionVerify = require('../middleware/permissionVerify.js');
 
-router.get("/", userController.getAllUsers);
-router.get("/:id", userController.getUser);
+router.get("/", permissionVerify, userController.getAllUsers);
+router.get("/:id", permissionVerify, userController.getUser);
 router.post("/", userController.createUser);
-router.put("/:id", userController.updateUser);
-router.delete("/:id", userController.deleteUser);
+router.put("/:id", permissionVerify, userController.updateUser);
+router.delete("/:id", permissionVerify, userController.deleteUser);
 
 module.exports = router;
