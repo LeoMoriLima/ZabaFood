@@ -1,3 +1,12 @@
+import about from "../pages/about.js";
+import contact from "../pages/contact.js";
+import home from "../pages/home.js";
+import login from "../pages/login.js";
+import notFound from "../pages/notFound.js";
+import register from "../pages/register.js";
+
+
+
 const urlPageTitle = "ZabaFood";
 
 // Cria um escutador de evento de clique e verifica os links de navegação
@@ -10,35 +19,35 @@ document.addEventListener("click", (e) => {
 	urlRoute();
 });
 
-// Cria um objeto para mapear a url para o template, titulo e descrição
+// Cria um objeto para mapear a url para o page, titulo e descrição
 const urlRoutes = {
-	404: {
-		template: "/pages/404.html",
-		title: "404 | " + urlPageTitle,
+	notFound: {
+		page: notFound,
+		title: "Not Found | " + urlPageTitle,
 		description: "Page not found",
 	},
 	"/": {
-		template: "/pages/home.html",
+		page: home,
 		title: "Home | " + urlPageTitle,
 		description: "This is the home page",
 	},
 	"/about": {
-		template: "/pages/about.html",
+		page: about,
 		title: "Quem Somos | " + urlPageTitle,
 		description: "This is the about page",
 	},
 	"/contact": {
-		template: "/pages/contact.html",
+		page: contact,
 		title: "Contato | " + urlPageTitle,
 		description: "This is the contact page",
 	},
 	"/login": {
-		template: "/pages/login.html",
+		page: login,
 		title: "Login | " + urlPageTitle,
 		description: "This is the login page",
 	},
 	"/register": {
-		template: "/pages/register.html",
+		page: register,
 		title: "Register | " + urlPageTitle,
 		description: "This is the register page",
 	},
@@ -54,16 +63,19 @@ const urlRoute = (event) => {
 };
 
 // Cria uma função para lidar com a localização da url
-const urlLocationHandler = async () => {
+const urlLocationHandler = () => {
 	const location = window.location.pathname;
 
 	if (location.length == 0) {
 		location = "/";
 	}
 
-	const route = urlRoutes[location] || urlRoutes["404"];
-	const html = await fetch(route.template).then((response) => response.text());
-	document.getElementById("root").innerHTML = html;
+	const route = urlRoutes[location] || urlRoutes["notFound"];
+
+	const root = document.getElementById("root")
+
+	root.innerHTML = ""
+	root.appendChild(route.page());
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')
