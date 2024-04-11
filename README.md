@@ -44,7 +44,7 @@ Administração de Produtos: Recursos de administração para gerenciar produtos
 <h1>English Version</h1>
 <h1>ZabaFood</h1>
 <h2>Description</h2>
-<p>ZabaFood is an e-commerce application for artisanal foods, developed as part of a project. This application allows users to browse products, place orders, manage their accounts, and more.</p>
+<p>ZabaFood is an e-commerce application for artisanal foods, developed as part of a project to conclude the web development course offered by Alpha ed/tech. This application allows users to browse products, place orders, manage their accounts, and more.</p>
 <h2>Features</h2>
 <p>User Registration: Users can register on the platform by providing basic information.
 Authentication: Secure login system with password encryption.
