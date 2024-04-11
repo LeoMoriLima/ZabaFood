@@ -1,0 +1,130 @@
+:root {
+    --color-primary: #8AB661;
+    --color-secundary: #475F30;
+    --color-emphasis: #A21360;
+    --color-light-gray: #CCCCCC;
+    --color-dark-gray: #333333;
+    --color-white: #F3F3F3;
+    --color-yellow: #FFB74D;
+    --color-brown: #A3742F;
+    --font-title: "Montserrat";
+    --font-text: "Roboto", sans-serif;
+  }
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.header-login{
+    width: 100%;
+    height: 10.9375rem;
+    padding: 0 9rem;
+    
+}
+
+
+.nav-header-login {        
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10rem;
+}
+
+.back-btn {
+    color: var(--color-secundary);
+    font: var(--font-title);
+    text-decoration: none;
+    margin-top: 4.36rem
+}
+
+.arrow-left-img{
+    width: 2.29rem;
+    height: 1.27rem;
+}
+
+.span-back{
+    font-size: 1.75rem;
+    margin-left: 1.18rem;    
+}
+
+.logo-btn {
+    margin-top: 1.57rem;
+}
+
+.logo-img{
+    width: 10.7rem;
+    height: 8.5rem;    
+}
+
+.main-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.div-background{
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3.9375rem;
+    background-image: url(../assets/images/login-background.svg);
+    background-repeat: no-repeat;
+    width: 104.9375rem;
+
+}
+
+.entry-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 46rem;
+    gap: 2rem;
+    border-radius: 3.93rem;
+    height: 50.93rem;
+    box-shadow: 5px 0px 2px hsla(0, 0%, 0%, 0.45);
+    background-color: rgba(138, 182, 97, 0.70);
+}
+
+.div-input{
+    border-bottom: 0.1rem solid var(--color-white);
+    width: 31.25rem;
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+
+}
+
+.input-entry{
+    border: none;
+    height: 4rem;
+    background-color: transparent;
+}
+
+.input-entry::placeholder{
+    color: var(--color-white);
+    font-family: var(--font-text);
+    font-size: 1.5625rem;
+
+}
+
+.button-entry{
+    padding: 0.7rem 4.9rem;
+    border: none;
+    font-size: 1.875rem;
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-style: normal;
+    border-radius: 1.875rem;
+}
