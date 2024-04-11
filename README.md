@@ -1,7 +1,7 @@
 <h1>ZabaFood</h1>
 
 <h2>Descrição</h2>
-<p>ZabaFood é uma aplicação de e-commerce para alimentos artesanais, desenvolvida como parte de um projeto. Esta aplicação permite aos usuários navegar por produtos, fazer pedidos, gerenciar suas contas e muito mais.</p>
+<p>ZabaFood é uma aplicação de e-commerce para alimentos artesanais, desenvolvida como parte de um projeto de conclusão de ciclo do curso de desenvolvimento web oferecido pela Alpha ed/tech. Esta aplicação permite aos usuários navegar por produtos, fazer pedidos, gerenciar suas contas e muito mais.</p>
 
 <h2>Funcionalidades</h2>
 <p>Cadastro de Usuários: Os usuários podem se cadastrar na plataforma fornecendo informações básicas.
