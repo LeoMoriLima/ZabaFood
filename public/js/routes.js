@@ -5,8 +5,6 @@ import login from "../pages/login.js";
 import notFound from "../pages/notFound.js";
 import register from "../pages/register.js";
 
-
-
 const urlPageTitle = "ZabaFood";
 
 // Cria um escutador de evento de clique e verifica os links de navegação
@@ -58,12 +56,14 @@ const urlRoute = (event) => {
 	event = event || window.event;
 	event.preventDefault();
 
+	console.log(event.target.href);
+
 	window.history.pushState({}, "", event.target.href);
 	urlLocationHandler();
 };
 
 // Cria uma função para lidar com a localização da url
-const urlLocationHandler = () => {
+const urlLocationHandler = async () => {
 	const location = window.location.pathname;
 
 	if (location.length == 0) {
@@ -72,10 +72,10 @@ const urlLocationHandler = () => {
 
 	const route = urlRoutes[location] || urlRoutes["notFound"];
 
-	const root = document.getElementById("root")
+	const root = document.getElementById("root");
 
-	root.innerHTML = ""
-	root.appendChild(route.page());
+	root.innerHTML = "";
+	root.appendChild(await route.page());
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')
