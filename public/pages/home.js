@@ -1,9 +1,11 @@
+import FooterMain from "../components/FooterMain.js";
+import HeaderMain from "../components/HeaderMain.js";
+
 export default () => {
     const page = document.createElement("div");
 
-    const p = document.createElement("p");
-    p.innerText = "Página Home";
-    page.appendChild(p);
+    page.appendChild(HeaderMain());
+    page.appendChild(FooterMain());
 
     return page;
 }
