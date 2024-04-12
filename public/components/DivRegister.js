@@ -1,7 +1,6 @@
 import inputEntry from "./inputEntry.js";
-import buttonGray from "./buttonGray.js";
+import buttonGray from "./ButtonComponent.js";
 import textA from "./text-a.js";
-
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -19,7 +18,7 @@ export default () => {
     entryCard.appendChild(inputEntry("CPF", "text", "cpf-input", "cpf-icon"));
     entryCard.appendChild(inputEntry("Telefone", "text", "phone-input", "phone-icon"));
 
-    entryCard.appendChild(buttonGray("Registrar-se", "button-register", async () => {
+    entryCard.appendChild(buttonGray("Registrar-se", "button-entry", async () => {
         const userInput = document.getElementById("user-input").value;
         const passwordInput = document.getElementById("password-input").value;
         const nameInput = document.getElementById("name-input").value;

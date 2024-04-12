@@ -1,8 +1,7 @@
-export default (text, id, onClick) => {
+export default (text, className, onClick) => {
     const buttonEntry = document.createElement("button");
     buttonEntry.innerText = text;
-    buttonEntry.id = id;
-    buttonEntry.classList.add("button-entry");
+    buttonEntry.classList.add(className);
 
     buttonEntry.onclick = () => onClick();
 

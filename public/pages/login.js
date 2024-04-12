@@ -1,6 +1,6 @@
 import HeaderLoginRegister from "../components/HeaderLoginRegister.js";
 import MainLoginRegister from "../components/MainLogin.js";
-import buttonGray from "../components/buttonGray.js";
+import buttonGray from "../components/ButtonComponent.js";
 import divInput from "../components/inputEntry.js";
 
 export default () => {

@@ -4,12 +4,13 @@
     --color-emphasis: #A21360;
     --color-light-gray: #CCCCCC;
     --color-dark-gray: #333333;
-    --color-white: #F3F3F3;
+    --color-light-white: #F3F3F3;
+    --color-white: #FFFFFF
     --color-yellow: #FFB74D;
     --color-brown: #A3742F;
-    --font-title: "Montserrat";
+    --font-title: "Montserrat Alternates", sans-serif;
     --font-text: "Roboto", sans-serif;
-  }
+}
 
 
 .roboto-regular {
@@ -17,7 +18,6 @@
     font-weight: 400;
     font-style: normal;
 }
-  
 
 *{
     margin: 0;
@@ -154,8 +154,141 @@
     margin: -3rem
 }
 
-
 .logo-img-header{
     width: 10.6875rem;
     height: 8.5rem;
+}
+
+/* ProductCard.js */
+
+.product-card {
+    align-items: center;
+    background-color: var(--color-white);
+    border: none;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    justify-content: space-evenly;
+    padding: 1rem;
+    width: 18.75rem;
+}
+
+.like-div {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.product-img {
+    margin-bottom: 1rem;
+    height: 12.56rem;
+    width: 10.56rem;
+}
+
+.product-title-div {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.6rem;
+    width: 100%;
+}
+
+.product-title {
+    color: var(--color-emphasis);
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.quantity-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.unit-btn {
+    background-color: var(--color-primary);
+    border: 0.1rem solid var(--color-secundary);
+    border-radius: 1.875rem;
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    height: 3.25rem;
+    width: 7.5rem;
+}
+
+.buy-3-btn {
+    background-color: #F3F3F3;
+    border: 0.1rem solid var(--color-secundary);
+    border-radius: 1.875rem;
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 1rem;
+    height: 3.25rem;
+    width: 7.5rem;
+}
+
+.price-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.unit-price-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.unit-price {
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.buy-3-price-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.buy-3-full-price {
+    color: var(--color-light-gray);
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.buy-3-discount-price {
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.add-btn-div {
+    background-color: var(--color-primary);
+    border: 0.1rem solid var(--color-secundary);
+    border-radius: 1.875rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    width: 16.45rem;
+}
+
+.add-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--color-light-white); 
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    height: 3.25rem;
 }
