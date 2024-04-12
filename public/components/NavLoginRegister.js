@@ -8,13 +8,13 @@ export default () => {
     navHeaderLogin.appendChild(backBtn);
 
     const arrowLeftImg = document.createElement("img");
-    arrowLeftImg.src = "../assets/images/arrow-left.svg"
-    arrowLeftImg.classList.add('arrow-left-img')
+    arrowLeftImg.src = "../assets/images/arrow-left.svg";
+    arrowLeftImg.classList.add('arrow-left-img');
     backBtn.appendChild(arrowLeftImg);
 
     const spanBack = document.createElement("span");
     spanBack.innerText = "Voltar";
-    spanBack.classList.add("span-back")
+    spanBack.classList.add("span-back");
     backBtn.appendChild(spanBack); 
 
 

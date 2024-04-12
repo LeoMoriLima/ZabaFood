@@ -1,4 +1,4 @@
-export default (placeholder, type, id, imgName) =>{
+export default (placeholder, type, id, imgName) => {
 
     const divInput = document.createElement("div");
     divInput.classList.add("div-input");

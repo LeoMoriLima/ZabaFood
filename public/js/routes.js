@@ -5,8 +5,6 @@ import login from "../pages/login.js";
 import notFound from "../pages/notFound.js";
 import register from "../pages/register.js";
 
-
-
 const urlPageTitle = "ZabaFood";
 
 // Cria um escutador de evento de clique e verifica os links de navegação
@@ -58,6 +56,8 @@ const urlRoute = (event) => {
 	event = event || window.event;
 	event.preventDefault();
 
+	console.log(event.target.href);
+
 	window.history.pushState({}, "", event.target.href);
 	urlLocationHandler();
 };
@@ -72,9 +72,9 @@ const urlLocationHandler = () => {
 
 	const route = urlRoutes[location] || urlRoutes["notFound"];
 
-	const root = document.getElementById("root")
+	const root = document.getElementById("root");
 
-	root.innerHTML = ""
+	root.innerHTML = "";
 	root.appendChild(route.page());
 	document.title = route.title;
 	document
