@@ -1,5 +1,7 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./buttonGray.js";
+import textA from "./text-a.js";
+
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -52,6 +54,6 @@ export default () => {
             console.error("Erro ao efetuar registro:", error);
         }
     }))
-
+    entryCard.appendChild(textA("Já tem uma conta?", "text-1-login", "text-class", "/login"));
     return divBackground;
 }

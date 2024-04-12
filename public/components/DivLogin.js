@@ -1,5 +1,7 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./buttonGray.js";
+import text from "./text.js";
+import textA from "./text-a.js";
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -38,6 +40,10 @@ export default () => {
             console.error("Erro ao fazer login:", error);
         }
     }))
+
+    
+    entryCard.appendChild(text("Novo por aqui?", "text-1-register", "text-class"));
+    entryCard.appendChild(textA("Clique aqui e crie sua conta!", "text-2-register", "text-class", "/register"));
 
     return divBackground;
 }
