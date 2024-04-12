@@ -19,10 +19,6 @@ app.get('*', (req, res) => {
 const routes = require('./routes/routes.js');
 app.use('/api', routes);
 
-app.use('/', (req, res) => {
-  res.send('Olá mundo');
-})
-
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
