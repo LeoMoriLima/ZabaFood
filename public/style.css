@@ -154,6 +154,11 @@
     margin: -3rem
 }
 
+.logo-img-header{
+    width: 10.6875rem;
+    height: 8.5rem;
+}
+
 /* ProductCard.js */
 
 .product-card {
