@@ -11,6 +11,7 @@
     --font-text: "Roboto", sans-serif;
   }
 
+
 .roboto-regular {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -72,13 +73,20 @@
     justify-content: center;
 }
 
+.entry-icon{
+    width: 2rem;
+    margin: 0.3rem;
+}
+
 .div-background{
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 3.9375rem;
     background-image: url(../assets/images/login-background.svg);
     background-repeat: no-repeat;
-    width: 104.9375rem;
-
+    background-size: 105%;
+    width: 80rem;
+    height: 40rem;
+    margin-bottom: 2rem;
 }
 
 .entry-card{
@@ -86,10 +94,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 46rem;
+    width: 38rem;
+    height: 40rem;
     gap: 2rem;
     border-radius: 3.93rem;
-    height: 50.93rem;
     box-shadow: 5px 0px 2px hsla(0, 0%, 0%, 0.45);
     background-color: rgba(138, 182, 97, 0.70);
 }
@@ -107,26 +115,42 @@
 
 .input-entry{
     border: none;
-    height: 4rem;
+    height: 2rem;
     width: 75%;
     background-color: transparent;
+    color: var(--color-white);
+    font-family: var(--font-text);
+    font-size: 1.3rem;
 }
 
 .input-entry::placeholder{
     color: var(--color-white);
     font-family: var(--font-text);
-    font-size: 1.5625rem;
+    font-size: 1.3rem;
 
 }
 
 .button-entry{
     padding: 0.7rem 4.9rem;
     border: none;
-    font-size: 1.875rem;
+    font-size: 1.3rem;
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
     font-style: normal;
     border-radius: 1.875rem;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
+
+.text-class{
+    color: var(--color-white);
+    font-family: var(--font-text);
+    margin: -0.7rem;
+    font-size: 1.2rem;
+}
+
+#text-1-login{
+    margin: -3rem
+}
+
