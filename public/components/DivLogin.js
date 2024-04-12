@@ -1,5 +1,5 @@
 import inputEntry from "./inputEntry.js";
-import buttonGray from "./buttonGray.js";
+import buttonGray from "./ButtonComponent.js";
 import text from "./text.js";
 import textA from "./text-a.js";
 
@@ -14,9 +14,10 @@ export default () => {
     entryCard.appendChild(inputEntry("Usuário", "text", "user-input", "user-icon"));
     entryCard.appendChild(inputEntry("Senha", "password", "password-input", "password-icon"));
 
-    entryCard.appendChild(buttonGray("Entrar", "button-login", async () => {
+    entryCard.appendChild(buttonGray("Entrar", "button-entry", async () => {
         const userInput = document.getElementById("user-input").value;
         const passwordInput = document.getElementById("password-input").value;
+
         try {
             const response = await fetch("http://108.61.49.221:3000/api/login/", {
                 method: "POST",
@@ -40,7 +41,6 @@ export default () => {
             console.error("Erro ao fazer login:", error);
         }
     }))
-
     
     entryCard.appendChild(text("Novo por aqui?", "text-1-register", "text-class"));
     entryCard.appendChild(textA("Clique aqui e crie sua conta!", "text-2-register", "text-class", "/register"));
