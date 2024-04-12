@@ -1,9 +1,11 @@
+import HeaderLoginRegister from "../components/HeaderLoginRegister.js";
+import MainRegister from "../components/MainRegister.js";
+
 export default () => {
     const page = document.createElement("div");
-
-    const p = document.createElement("p");
-    p.innerText = "Página Registro";
-    page.appendChild(p);
+    
+    page.appendChild(HeaderLoginRegister());
+    page.appendChild(MainRegister());
 
     return page;
 }

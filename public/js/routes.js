@@ -56,8 +56,6 @@ const urlRoute = (event) => {
 	event = event || window.event;
 	event.preventDefault();
 
-	console.log(event.target.href);
-
 	window.history.pushState({}, "", event.target.href);
 	urlLocationHandler();
 };
@@ -75,7 +73,9 @@ const urlLocationHandler = async () => {
 	const root = document.getElementById("root");
 
 	root.innerHTML = "";
+
 	root.appendChild(await route.page());
+
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')
