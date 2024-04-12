@@ -56,14 +56,12 @@ const urlRoute = (event) => {
 	event = event || window.event;
 	event.preventDefault();
 
-	console.log(event.target.href);
-
 	window.history.pushState({}, "", event.target.href);
 	urlLocationHandler();
 };
 
 // Cria uma função para lidar com a localização da url
-const urlLocationHandler = () => {
+const urlLocationHandler = async () => {
 	const location = window.location.pathname;
 
 	if (location.length == 0) {
@@ -75,7 +73,9 @@ const urlLocationHandler = () => {
 	const root = document.getElementById("root");
 
 	root.innerHTML = "";
-	root.appendChild(route.page());
+
+	root.appendChild(await route.page());
+
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')
