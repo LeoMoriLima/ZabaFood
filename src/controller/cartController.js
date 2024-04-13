@@ -34,13 +34,13 @@ const updateCartStatus = async (req, res) => {
     const { status } = req.body;
     try {
         if (status === "approved") {
-            cartServices.updateCartApproved(id)
+            cartServices.updateCartApproved(id);
         }else if (status === "sended") {
             cartServices.updateCartSended(id)
         } else if (status === "delivered") {
-            cartServices.updateCartDelivered(id)
+            cartServices.updateCartDelivered(id);
         } else{
-            throw new Error("Status invalido")
+            throw new Error("Status invalido");
         }
         const cart = await cartServices.updateCartStatus(status, id);
         return res.status(200).json({ success: true, message: 'Status do carrinho atualizado com sucesso!'});
@@ -50,21 +50,9 @@ const updateCartStatus = async (req, res) => {
     }
 };
 
-
-// const deletecart = async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         await cartServices.deletecart(id);
-//         return res.status(200).json({ success: true });
-//     } catch {
-//         return res.status(500).json({ error: 'Erro ao deletar dados' });
-//     }
-// }
-
 module.exports = {
     getAllCarts,
     getCart,
     createCart,
     updateCartStatus,
-    // deletecart,
 }

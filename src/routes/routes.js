@@ -8,7 +8,7 @@ const router = Router();
 
 router.use("/users", userRoutes);
 router.use("/login", loginRoutes);
-router.use("/product", productRoutes)
-router.use("/cart", cartRoutes)
+router.use("/product", productRoutes);
+router.use("/cart", cartRoutes);
 
 module.exports = router;
