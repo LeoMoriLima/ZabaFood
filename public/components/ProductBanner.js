@@ -2,7 +2,7 @@ import btn from "./ButtonComponent.js"
 
 export default async (id) => {
 	try {
-		const response = await fetch(`http://localhost:3000/api/product/${id}`, {
+		const response = await fetch(`http://108.61.49.221:3000/api/product/${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
@@ -41,6 +41,6 @@ export default async (id) => {
 		return mainDiv;
 
 	} catch (error) {
-		console.error("Erro ao fazer login:", error);
+		console.error("Erro ao buscar o produto:", error);
 	}
 }

@@ -345,3 +345,62 @@
     border-radius: 8rem;
     height: 80%;
 }
+
+/* CartModal.js */
+
+.modal-cart-main-div {
+    align-items: center;
+    background-color: var(--color-secundary);
+    border-radius: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.56rem;
+    width: 35.56rem;
+}
+
+.item-product-div {
+    border-bottom: 0.1rem solid var(--color-primary);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.product-img {
+    border-radius: 1rem;
+    margin-right: 2rem;
+}
+
+.text-div-modal-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.modal-cart-product-title {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-product-value {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-checkout-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 1.875rem;
+    color: var(--color-light-white);
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 400;
+    height: 4.125rem;
+    margin-top: 1.5rem;
+    width: 24rem;
+}
