@@ -4,6 +4,7 @@ import home from "../pages/home.js";
 import login from "../pages/login.js";
 import notFound from "../pages/notFound.js";
 import register from "../pages/register.js";
+import product from "../pages/product.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -48,6 +49,11 @@ const urlRoutes = {
 		page: register,
 		title: "Register | " + urlPageTitle,
 		description: "This is the register page",
+	},
+	"/product": {
+		page: product,
+		title: "Produto | " + urlPageTitle,
+		description: "This is the product page",
 	},
 };
 
