@@ -8,18 +8,30 @@ export default () =>{
 
     const aTerm = document.createElement("a");
     aTerm.href="/terms";
+    aTerm.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/terms" } });
+    }
     aTerm.innerText = "Termos e condições";
     aTerm.classList.add("left-footer-a");
     leftFooterDiv.appendChild(aTerm)
 
     const aPolicy = document.createElement("a");
     aPolicy.href="/policy";
+    aPolicy.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/policy" } });
+    }
     aPolicy.innerText="Política de privacidade";
     aPolicy.classList.add("left-footer-a");
     leftFooterDiv.appendChild(aPolicy);
 
     const sellYourProducts = document.createElement("a");
     sellYourProducts.href = "/producer";
+    sellYourProducts.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/producer" } });
+    }
     sellYourProducts.innerText = "Venda seus produtos";
     sellYourProducts.classList.add("left-footer-a");
     leftFooterDiv.appendChild(sellYourProducts);
@@ -82,6 +94,10 @@ export default () =>{
 
     const aRightLogo = document.createElement("a");
     aRightLogo.href = "/";
+    aRightLogo.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }
     aRightLogo.classList.add("a-right-logo");
     rightDivFooter.appendChild(aRightLogo);
 
