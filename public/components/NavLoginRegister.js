@@ -4,6 +4,10 @@ export default () => {
 
     const backBtn = document.createElement("a");
     backBtn.href = '/';
+    backBtn.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }
     backBtn.classList.add('back-btn');
     navHeaderLogin.appendChild(backBtn);
 
@@ -20,6 +24,10 @@ export default () => {
 
     const logoBtn = document.createElement("a");
     logoBtn.href = '/';
+    logoBtn.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }
     logoBtn.classList.add('logo-btn');
     navHeaderLogin.appendChild(logoBtn);
     

@@ -24,11 +24,20 @@ export default () => {
     const headerDivLeft = document.createElement("div");
     headerDivLeft.classList.add("header-div-left");
     navDivCenter.appendChild(headerDivLeft);
+
+    const aLogoImg = document.createElement("a");
+    aLogoImg.classList.add("a-logo-img");
+    aLogoImg.href = "/";
+    aLogoImg.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }
+    headerDivLeft.appendChild(aLogoImg);
     
     const logoImg = document.createElement("img");
     logoImg.src = "../assets/images/logo-zabafood.svg";
     logoImg.classList.add("logo-img-header");
-    headerDivLeft.appendChild(logoImg);
+    aLogoImg.appendChild(logoImg);
 
     const divInputHeader = document.createElement("div");
     divInputHeader.classList.add("div-input-header");
@@ -58,6 +67,10 @@ export default () => {
     const aPhoneIcon = document.createElement("a");
     aPhoneIcon.classList.add("a-phone-icon");
     aPhoneIcon.href = "/contact"
+    aPhoneIcon.onclick = (e) => {
+    e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/contact" } });
+    }
     contactDiv.appendChild(aPhoneIcon);
 
     const phoneIcon = document.createElement("img");
@@ -68,6 +81,10 @@ export default () => {
     aContact.classList.add("a-contact");
     aContact.innerText = "Atendimento";
     aContact.href = "/contact";
+    aContact.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/contact" } });
+    }
     contactDiv.appendChild(aContact);
 
     const accountDiv = document.createElement("div");
@@ -77,6 +94,10 @@ export default () => {
     const aAccountIcon = document.createElement("a");
     aAccountIcon.classList.add("a-account-icon");
     aAccountIcon.href= "/myaccount"
+    aAccountIcon.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/myaccount" } });
+    }
     accountDiv.appendChild(aAccountIcon);
 
     const accountIcon = document.createElement("img");
@@ -88,6 +109,10 @@ export default () => {
     aAccount.classList.add("a-account");
     aAccount.innerText = "Minha Conta";
     aAccount.href = "/myaccount";
+    aAccount.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/myaccount" } });
+    }
     accountDiv.appendChild(aAccount);
 
     const cartDiv = document.createElement("div");
@@ -97,6 +122,11 @@ export default () => {
     const aCartIcon = document.createElement("a");
     aCartIcon.classList.add("a-cart-icon");
     aCartIcon.href = "/cart";
+    aCartIcon.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }
+    cartDiv.appendChild(aCartIcon);
     
     const cartIcon = document.createElement("img");
     cartIcon.src = "../assets/images/cart-icon.svg";
@@ -110,9 +140,14 @@ export default () => {
     productsMenuDiv.classList.add("products-menu-a");
     navBarDiv.appendChild(productsMenuDiv);
 
-    const productsMenu = document.createElement("p");
+    const productsMenu = document.createElement("a");
     productsMenu.classList.add("products-menu");
     productsMenu.innerText = "PRODUTOS";
+    productsMenu.href = "/products";
+    productsMenu.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/products" } });
+    }
     productsMenuDiv.appendChild(productsMenu);
 
     const productsMenuArrow = document.createElement("img");
@@ -131,12 +166,20 @@ export default () => {
     const sellYourProducts = document.createElement("a");
     sellYourProducts.classList.add("sell-your-products");
     sellYourProducts.href = "/producer"
+    sellYourProducts.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/producer" } });
+    }
     sellYourProducts.innerText = "VENDA SEUS PRODUTOS";
     rightSideNavbarDiv.appendChild(sellYourProducts);
 
     const about = document.createElement("a");
     about.classList.add("sell-your-products");
     about.href = "/about"
+    about.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/about" } });
+    }
     about.innerText = "QUEM SOMOS";
     rightSideNavbarDiv.appendChild(about);
 
