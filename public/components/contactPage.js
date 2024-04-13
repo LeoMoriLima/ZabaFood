@@ -60,6 +60,10 @@ export default () => {
     const buttonContactPage = document.createElement("button");
     buttonContactPage.classList.add("button-contact-page");
     buttonContactPage.innerText = "Voltar ao ínicio";
+    buttonContactPage.onclick = (e) => {
+        e.preventDefault();
+        window.route({ preventDefault: () => {}, target: { href: "/" } })
+    }
     contactPageDiv.appendChild(buttonContactPage);
 
     return contactPageDiv;
