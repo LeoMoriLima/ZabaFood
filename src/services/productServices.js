@@ -21,6 +21,18 @@ const getProduct = async (id) => {
     }
 }
 
+const getProductByName = async (name) =>{
+    try {
+        const products = await productRepository.getProductByName(name); 
+        if (!products.length) {
+            throw new Error("Produto não encontrado")
+        }
+        return products;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const createProduct = async (producer_id, name, value, url_img, stock, type_id, description) => {
     try {
         const result = await productRepository.insertNewProduct(producer_id, name, value, url_img, stock, type_id, description);
@@ -47,7 +59,6 @@ const updateProduct = async (id, name, value, url_img, stock, type_id, descripti
 const deleteProduct = async (id) => {
     try {
         const product = await productRepository.getProduct(id);
-
         if (!product) {
             throw new Error("Produto não encontrado")
         }
@@ -61,6 +72,7 @@ const deleteProduct = async (id) => {
 module.exports = {
     getAllProduct,
     getProduct,
+    getProductByName,
     createProduct,
     updateProduct,
     deleteProduct,
