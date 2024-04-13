@@ -13,6 +13,9 @@ const getAllUsers = async () => {
 const getUser = async (id) => {
     try {
         const user = await userRepository.getUser(id);
+        if(!user){
+            throw new Error("Usuário não existente");
+        }
         return user;
     } catch (error) {
         throw error;
@@ -31,6 +34,10 @@ const createUser = async (username, user_type, name, email, password, cpf_cnpj, 
 
 const updateUser = async (id, username, name, email, password, cpf_cnpj, phone) => {
     try {
+        const user = await userRepository.getUser(id);
+        if(!user){
+            throw new Error("Usuário não existente");
+        }
         const hashedPassword = await hashPassword(password);
         await userRepository.updateUser(id, username, name, email, hashedPassword, cpf_cnpj, phone);
     } catch (error) {
@@ -41,6 +48,10 @@ const updateUser = async (id, username, name, email, password, cpf_cnpj, phone) 
 
 const deleteUser = async (id) => {
     try {
+        const user = await userRepository.getUser(id);
+        if(!user){
+            throw new Error("Usuário não existente");
+        }
         await userRepository.deleteUser(id);
         return { success: true };
     } catch (error) {

@@ -83,11 +83,6 @@ const updateUser = async (req, res) => {
             throw new Error ( "O telefone é obrigatório" );
         }
 
-        const user = await userServices.getUser(id);
-        if(!user){
-            throw new Error("Usuário não existente");
-        }
-
         const result = await userServices.updateUser( id, username, name, email, password, cpf_cnpj, phone);
         return res.status(200).json({ success: true, message: 'Usuário atualizado com sucesso!'});
     } catch (error) {
@@ -99,10 +94,6 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) =>{
     const { id } = req.params;
     try{
-        const user = await userServices.getUser(id);
-        if(!user){
-            throw new Error("Usuário não existente");
-        }
         await userServices.deleteUser(id);
         return res.status(200).json({ success: true, message: 'Usuário deletado com sucesso!'});
     } catch(error){
