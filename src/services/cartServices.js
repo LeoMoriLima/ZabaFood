@@ -26,7 +26,7 @@ const createCart = async (user_id) => {
         const cart = await cartRepository.createNewCart(user_id);
         return cart;
     } catch (error) {
-        throw error
+        throw error;
     }
 }
 
@@ -74,15 +74,6 @@ const updateCartDelivered = async (id) => {
 };
 
 
-// const deletecart = async (id) => {
-//     try {
-//         await cartRepository.deletecart(id);
-//         return { success: true };
-//     } catch (error) {
-//         throw error;
-//     }
-// }
-
 module.exports = {
     getAllCarts,
     getCart,
@@ -91,5 +82,4 @@ module.exports = {
     updateCartApproved,
     updateCartDelivered,
     updateCartSended,
-    // deletecart,
 }

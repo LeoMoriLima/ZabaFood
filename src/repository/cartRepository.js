@@ -10,7 +10,7 @@ async function createNewCart(user_id){
         console.log('Erro ao criar carrinho:', error);
         throw error;
     } finally{
-        client.end()
+        client.end();
     }
 }
 
@@ -35,7 +35,7 @@ async function getAllCarts(){
         const result = await client.query(query);
         return result.rows;
     } catch (error){
-        console.log('Erro ao encontrar os carrinhos', error)
+        console.log('Erro ao encontrar os carrinhos', error);
         throw error;
     } finally {
         client.end();
@@ -52,7 +52,7 @@ async function updateCartStatus(status, id){
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally{
-        client.end
+        client.end();
     }
 }
 
@@ -66,7 +66,7 @@ async function updateCartApproved(id){
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally{
-        client.end
+        client.end();
     }
 }
 
@@ -80,7 +80,7 @@ async function updateCartSended(id){
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally{
-        client.end
+        client.end();
     }
 }
 
@@ -94,24 +94,10 @@ async function updateCartDelivered(id){
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally{
-        client.end
+        client.end();
     }
 }
 
-// async function deleteCart(id){
-//     const client = await connectToDatabase();
-//     const query = 'DELETE FROM cart WHERE id = $1';
-
-//     try{
-//         await client.query(query, [id]);
-//         console.log('Carrinho excluído com sucesso');
-//     } catch(error){
-//         console.log('Erro ao deletar carrinho:', error);
-//         throw error;
-//     } finally{
-//         client.end();
-//     }
-// }
 
 module.exports = {
     createNewCart,
