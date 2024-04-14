@@ -360,3 +360,48 @@
     border-radius: 8rem;
     height: 80%;
 }
+
+/* Confirmation Page */
+
+.main-div-confirmation-page {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card-text-div {
+    align-items: center;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    height: 29.25rem;
+    justify-content: space-around;
+    padding: 2rem;
+    width: 45rem;
+}
+
+.order-confirmation-text {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 3rem;
+}
+
+.status-order-text {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 2rem;
+}
+
+.back-to-main-page-btn {
+    background-color: var(--color-secundary);
+    border: none;
+    border-radius: 1.25rem;
+    color: var(--color-light-white);
+    font-family: var(--font-text);
+    font-size: 1.25rem;
+    font-weight: 500;
+    height: 4rem;
+    width: 20rem;
+}
