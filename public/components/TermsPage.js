@@ -1,3 +1,5 @@
+import ButtonComponent from "./ButtonComponent.js";
+
 export default () => {
     const termPageDiv = document.createElement("div");
     termPageDiv.classList.add("term-page-div");
@@ -59,14 +61,9 @@ export default () => {
         termsList.appendChild(termText);
     });
     
-    const buttonTermPage = document.createElement("button");
-    buttonTermPage.innerText = "Voltar ao ínicio";
-    buttonTermPage.classList.add("button-term-page");
-    buttonTermPage.onclick = (e) => {
-        e.preventDefault();
+    termPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "button-term-page", () => {
         window.route({ preventDefault: () => {}, target: { href: "/" } });
-    }
-    termPageDiv.appendChild(buttonTermPage);
+    }));
 
     return termPageDiv;
 }
