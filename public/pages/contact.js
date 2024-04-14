@@ -1,6 +1,6 @@
 import FooterMain from "../components/FooterMain.js";
 import HeaderMain from "../components/HeaderMain.js";
-import contactPage from "../components/contactPage.js";
+import contactPage from "../components/ContactPage.js";
 
 export default () => {
     const page = document.createElement("div");

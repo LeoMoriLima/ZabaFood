@@ -157,6 +157,19 @@
     height: 8.5rem;
 }
 
+.green-button{
+    background-color: var(--color-secundary);
+    border: none;
+    border-radius: 1.25rem;
+    color: var(--color-light-white);
+    cursor: pointer;
+    font-family: var(--font-text);
+    font-size: 1.25rem;
+    font-weight: 500;
+    height: 4rem;
+    width: 20rem;
+}
+
 /* ProductCard.js */
 
 .product-card {
@@ -392,16 +405,4 @@
     color: var(--color-secundary);
     font-family: var(--font-text);
     font-size: 2rem;
-}
-
-.back-to-main-page-btn {
-    background-color: var(--color-secundary);
-    border: none;
-    border-radius: 1.25rem;
-    color: var(--color-light-white);
-    font-family: var(--font-text);
-    font-size: 1.25rem;
-    font-weight: 500;
-    height: 4rem;
-    width: 20rem;
 }

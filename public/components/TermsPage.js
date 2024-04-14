@@ -61,7 +61,7 @@ export default () => {
         termsList.appendChild(termText);
     });
     
-    termPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "button-term-page", () => {
+    termPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
         window.route({ preventDefault: () => {}, target: { href: "/" } });
     }));
 
