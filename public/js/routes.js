@@ -7,6 +7,7 @@ import register from "../pages/register.js";
 import product from "../pages/product.js";
 import terms from "../pages/terms.js";
 import confirmation from "../pages/confirmation.js";
+import policy from "../pages/policy.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -61,10 +62,16 @@ const urlRoutes = {
 		page: terms,
 		title: "Termos e condições | " + urlPageTitle,
 		description: "This is the terms and services page",
+	},
 	"/confirmation": {
 		page: confirmation,
 		title: "Pedido concluído | " + urlPageTitle,
 		description: "This is the order confirmation page",
+	},
+	"/policy": {
+		page: policy,
+		title: "Política de Privacidade | " + urlPageTitle,
+		description: "This is the terms and policy and privacy",
 	},
 };
 
