@@ -5,6 +5,7 @@ import login from "../pages/login.js";
 import notFound from "../pages/notFound.js";
 import register from "../pages/register.js";
 import product from "../pages/product.js";
+import confirmation from "../pages/confirmation.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -54,6 +55,11 @@ const urlRoutes = {
 		page: product,
 		title: "Produto | " + urlPageTitle,
 		description: "This is the product page",
+	},
+	"/confirmation": {
+		page: confirmation,
+		title: "Pedido concluído | " + urlPageTitle,
+		description: "This is the order confirmation page",
 	},
 };
 
