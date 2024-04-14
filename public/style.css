@@ -293,6 +293,21 @@
 
 /* ProductBanner.js */
 
+.banner-product-card-main-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+    margin-top: 7rem;
+}
+
+.main-div-text {
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
 .banner-product-card {
     align-items: center;
     background: var(--color-primary);

@@ -12,11 +12,20 @@ export default async (id) => {
 		const data = await response.json();
 
 		const mainDiv = document.createElement("div");
-		mainDiv.classList.add("banner-product-card");
+		mainDiv.classList.add("banner-product-card-main-div");
+
+		const mainDivText = document.createElement("p");
+		mainDivText.classList.add("main-div-text");
+		mainDivText.innerText = "CONFIRA O MAIS NOVO PRODUTO";
+		mainDiv.appendChild(mainDivText);
+
+		const productDiv = document.createElement("div");
+		productDiv.classList.add("banner-product-card");
+		mainDiv.appendChild(productDiv);
 
 		const textDiv = document.createElement("div");
 		textDiv.classList.add("banners-product-text-div");
-		mainDiv.appendChild(textDiv);
+		productDiv.appendChild(textDiv);
 
 		const productTitle = document.createElement("p");
 		productTitle.classList.add("banner-product-title");
@@ -36,7 +45,7 @@ export default async (id) => {
 		const imgDiv = document.createElement("img");
 		imgDiv.src = data.url_img;
 		imgDiv.classList.add("banner-product-img");
-		mainDiv.appendChild(imgDiv);
+		productDiv.appendChild(imgDiv);
 
 		return mainDiv;
 
