@@ -1,6 +1,6 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
-import textA from "./text-a.js";
+import textA from "./Text-a.js";
 
 export default () => {
     const divBackground = document.createElement("div");

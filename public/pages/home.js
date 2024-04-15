@@ -9,7 +9,7 @@ export default async () => {
 
     page.appendChild(HeaderMain());
     page.appendChild(mainBanner());
-    page.appendChild(await ProductBanner(productId));
+    // page.appendChild(await ProductBanner(productId));
     page.appendChild(FooterMain());
 
     return page;

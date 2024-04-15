@@ -9,6 +9,7 @@ const path = require('path');
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+console.log("ERRO AQUI CONTROLLER");
 
 const routes = require('./routes/routes.js');
 app.use('/api', routes);
