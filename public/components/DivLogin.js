@@ -11,7 +11,7 @@ export default () => {
     entryCard.classList.add("entry-card");
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
-    entryCard.appendChild(inputEntry("Usuário", "text", "user-input", "user-icon"));
+    entryCard.appendChild(inputEntry("Usuário", "text", "user-input", "white-user-icon"));
     entryCard.appendChild(inputEntry("Senha", "password", "password-input", "password-icon"));
 
     entryCard.appendChild(buttonGray("Entrar", "button-entry", async () => {
