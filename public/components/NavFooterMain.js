@@ -1,6 +1,15 @@
 export default () =>{
+    const footerMain = document.createElement("footer");
+    footerMain.classList.add("footer-main");
+
+    const footerImageLine = document.createElement("img");
+    footerImageLine.src = "../assets/images/lines-footer-page.svg";
+    footerImageLine.classList.add("footer-image-line");
+    footerMain.appendChild(footerImageLine);
+    
     const divFooterMain = document.createElement("div");
     divFooterMain.classList.add("div-footer-main");
+    footerMain.appendChild(divFooterMain);
 
     const leftFooterDiv = document.createElement("div");
     leftFooterDiv.classList.add("left-footer-div");
@@ -53,15 +62,20 @@ export default () =>{
     const rightCenterFooterDiv = document.createElement("div");
     rightCenterFooterDiv.classList.add("right-center-footer-div");
     divFooterMain.appendChild(rightCenterFooterDiv);
-
+    
     const socialText = document.createElement("p");
     socialText.innerText = "Redes Sociais";
     rightCenterFooterDiv.appendChild(socialText);
 
+    const rightCenterSocialDiv = document.createElement("div");
+    rightCenterSocialDiv.classList.add("right-center-social-div")
+    rightCenterFooterDiv.appendChild(rightCenterSocialDiv);
+
+
     const aInstagram = document.createElement("a");
     aInstagram.classList.add("a-instagram");
     aInstagram.href = "https://www.instagram.com/zabafoodbr/";
-    rightCenterFooterDiv.appendChild(aInstagram);
+    rightCenterSocialDiv.appendChild(aInstagram);
 
     const instagramIcon = document.createElement("img");
     instagramIcon.classList.add("instagram-icon");
@@ -71,7 +85,7 @@ export default () =>{
     const aFacebook = document.createElement("a");
     aFacebook.classList.add("a-facebook");
     aFacebook.href = "https://www.facebook.com/profile.php?id=61558397242215&locale=pt_BR";
-    rightCenterFooterDiv.appendChild(aFacebook);
+    rightCenterSocialDiv.appendChild(aFacebook);
 
     const facebookIcon = document.createElement("img");
     facebookIcon.classList.add("facebook-icon")
@@ -81,7 +95,7 @@ export default () =>{
     const aTikTok = document.createElement("a");
     aTikTok.classList.add("a-tiktok");
     aTikTok.href = "https://www.tiktok.com/@zabafoodbr";
-    rightCenterFooterDiv.appendChild(aTikTok);
+    rightCenterSocialDiv.appendChild(aTikTok);
 
     const tikTokIcon = document.createElement("img");
     tikTokIcon.classList.add("tiktok-icon")
@@ -106,5 +120,5 @@ export default () =>{
     rightLogo.classList.add("rigth-logo-footer");
     aRightLogo.appendChild(rightLogo);
 
-    return divFooterMain;
+    return footerMain;
 }

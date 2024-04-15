@@ -128,6 +128,10 @@
 
 }
 
+.input-entry:focus{
+    background-color: transparent;
+}
+
 .button-entry {
     padding: 0.7rem 4.9rem;
     border: none;
@@ -413,44 +417,42 @@
 .header-div-left {
     display: flex;
     align-items: center;
-    margin-left: 10rem;
 }
 
 .nav-div-center {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 0;
-    height: 20dvh;
+    justify-content: space-between;
+    padding: 0 15rem;
+    width: 100%;
+    height: 9.37rem;
 }
 
 .header-div-right {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: -1rem;
+    gap: 2rem;
+}
+
+.cart-div{
+    margin-left: 1rem;
 }
 
 .contact-div {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-left: 5rem;
-}
-
-.a-phone-icon {
-    margin: 1rem;
-}
-
-.cart-div {
-    margin-left: 2rem;
+    gap: 0.5rem;
 }
 
 .div-input-header {
     background-color: var(--color-light-white);
-    width: 25rem;
+    width: 30rem;
+    padding: 0.3rem;
     display: flex;
     flex-direction: row;
-    padding: 0.5rem;
     border-radius: 1rem;
 }
 
@@ -500,12 +502,10 @@ input:focus {
 
 .account-div {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-left: 3rem;
-}
-
-.a-account-icon img {
-    margin: 1rem;
+    gap: 0.5rem;
+    justify-content: space-around;
 }
 
 .nav-bar-div {
@@ -514,18 +514,22 @@ input:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 15rem;
+    width: 100%;
 }
 
 .right-side-navbar-div {
     display: flex;
-    margin-left: 45rem;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
 }
 
 .div-light-green {
     display: flex;
     justify-content: center;
-    height: 6dvh;
+    height: 2.5rem;
     align-items: center;
     background-color: var(--color-primary);
 }
@@ -536,7 +540,7 @@ input:focus {
     font-family: var(--font-title);
     font-weight: 600;
     font-size: 0.9rem;
-    margin-right: 1dvw;
+    padding-left: 2rem;
 }
 
 #sell-your-products {
@@ -553,12 +557,12 @@ input:focus {
     font-family: var(--font-title);
     font-weight: 600;
     font-size: 0.9rem;
-    margin-left: 3dvw;
 }
 
 .products-menu-div {
     display: flex;
-
+    flex-direction: row;
+    gap: 0.5rem;
 }
 
 #discount-text {
@@ -574,4 +578,76 @@ input:focus {
 
 .img-category {
     width: 10dvw;
+}
+
+/* Footer Main */
+
+.footer-main{
+    margin: 0;
+}
+
+.footer-image-line{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.div-footer-main{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-primary);
+    justify-content: space-around;
+    font-family: var(--font-footer);
+    font-size: 1.2rem;
+    height: 8rem;
+    width: 100%
+}
+
+.left-footer-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem
+}
+
+.left-footer-a{
+    text-decoration: none;
+    color: var(--color-light-white);
+}
+
+.left-center-footer-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.payment-text{
+    color: var(--color-light-white);
+}
+
+.right-center-footer-div{
+    display: flex;
+    color: var(--color-light-white);
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem
+}
+
+.right-center-social-div{
+    display: flex;
+    flex-direction: row;
+    gap: 1.125rem;
+
+}
+
+.right-div-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Main Banner */
+
+.banner-img{
+    width: 100%;
 }
