@@ -34,7 +34,7 @@ export default async () => {
 		mainDiv.classList.add("checkout-page-main-div");
 
 		const infoDiv = document.createElement("div");
-		infoDiv.classList.add("info-div");
+		infoDiv.classList.add("info-div-checkout");
 		mainDiv.appendChild(infoDiv);
 
 		const addressInfoDiv = document.createElement("div");
