@@ -2,7 +2,7 @@ import btn from "./ButtonComponent.js"
 
 export default async () => {
 	try {
-		const userResponse = await fetch('http://108.61.49.221:3000/api/login', {
+		const userResponse = await fetch('/api/login', {
 			method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -12,7 +12,7 @@ export default async () => {
 		
 		const userId = userData.user.id;
 
-		const cartResponse = await fetch(`http://108.61.49.221:3000/api/cart/user/${userId}`, {
+		const cartResponse = await fetch(`/api/cart/user/${userId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
@@ -21,7 +21,7 @@ export default async () => {
 
 		const cart = await cartResponse.json();
 
-		const addressResponse = await fetch(`http://108.61.49.221:3000/api/address/user/${userId}`, {
+		const addressResponse = await fetch(`/api/address/user/${userId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
