@@ -1,19 +1,30 @@
 const cartServices = require('../services/cartServices');
 
-const getAllCarts = async (req, res) => {
+const getCart = async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
     try {
-        const carts = await cartServices.getAllCarts();
-        return res.status(200).json(carts);
+        const cart = await cartServices.getCart(id);
+        return res.status(200).json(cart);
     } catch {
         return res.status(500).json({ error: 'Erro ao buscar dados' });
     }
 }
 
-const getCart = async (req, res) => {
-    const { id } = req.params;
+const getCartByUserID = async (req, res) => {
+    const { userId } = req.params;
     try {
-        const cart = await cartServices.getCart(id);
+        const cart = await cartServices.getCartByUserID(userId);
         return res.status(200).json(cart);
+    } catch (error){
+        return res.status(500).json({ error: "Erro ao buscar dados" });
+    }
+}
+
+const getAllCarts = async (req, res) => {
+    try {
+        const carts = await cartServices.getAllCarts();
+        return res.status(200).json(carts);
     } catch {
         return res.status(500).json({ error: 'Erro ao buscar dados' });
     }
@@ -51,8 +62,9 @@ const updateCartStatus = async (req, res) => {
 };
 
 module.exports = {
-    getAllCarts,
     getCart,
+    getCartByUserID,
+    getAllCarts,
     createCart,
     updateCartStatus,
 }
