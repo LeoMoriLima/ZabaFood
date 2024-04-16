@@ -38,7 +38,6 @@ const createProduct = async (producer_id, name, value, url_img, stock, type_id, 
         const result = await productRepository.insertNewProduct(producer_id, name, value, url_img, stock, type_id, description);
         return result;
     } catch (error) {
-        console.log("Deu erro no service");
         throw error;
     }
 }

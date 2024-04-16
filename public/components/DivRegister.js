@@ -1,7 +1,6 @@
 import inputEntry from "./inputEntry.js";
-import buttonGray from "./buttonGray.js";
-import textA from "./text-a.js";
-
+import buttonGray from "./ButtonComponent.js";
+import textA from "./Text-a.js";
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -12,14 +11,14 @@ export default () => {
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
 
-    entryCard.appendChild(inputEntry("Nome de Usuário", "text", "user-input", "user-icon"));
-    entryCard.appendChild(inputEntry("Nome Completo", "text", "name-input", "user-icon"));
+    entryCard.appendChild(inputEntry("Nome de Usuário", "text", "user-input", "white-user-icon"));
+    entryCard.appendChild(inputEntry("Nome Completo", "text", "name-input", "white-user-icon"));
     entryCard.appendChild(inputEntry("Email", "text", "email-input", "email-icon"));
     entryCard.appendChild(inputEntry("Senha", "password", "password-input", "password-icon"));
     entryCard.appendChild(inputEntry("CPF", "text", "cpf-input", "cpf-icon"));
-    entryCard.appendChild(inputEntry("Telefone", "text", "phone-input", "phone-icon"));
+    entryCard.appendChild(inputEntry("Telefone", "text", "phone-input", "white-phone-icon"));
 
-    entryCard.appendChild(buttonGray("Registrar-se", "button-register", async () => {
+    entryCard.appendChild(buttonGray("Registrar-se", "button-entry", async () => {
         const userInput = document.getElementById("user-input").value;
         const passwordInput = document.getElementById("password-input").value;
         const nameInput = document.getElementById("name-input").value;

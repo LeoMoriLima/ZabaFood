@@ -1,9 +1,13 @@
-export default () => {
-    const page = document.createElement("div");
+import AboutPage from "../components/AboutPage.js";
+import FooterMain from "../components/FooterMain.js";
+import HeaderMain from "../components/HeaderMain.js";
 
-    const p = document.createElement("p");
-    p.innerText = "Página Sobre";
-    page.appendChild(p);
+export default async () => {
+    const page = document.createElement("div");
+    
+    page.appendChild(await HeaderMain());
+    page.appendChild(AboutPage());
+    page.appendChild(FooterMain());
 
     return page;
 }

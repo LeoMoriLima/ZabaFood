@@ -1,13 +1,11 @@
 import HeaderLoginRegister from "../components/HeaderLoginRegister.js";
-import MainLoginRegister from "../components/MainLogin.js";
-import buttonGray from "../components/buttonGray.js";
-import divInput from "../components/inputEntry.js";
+import MainLogin from "../components/MainLogin.js";
 
 export default () => {
     const page = document.createElement("div");
     
     page.appendChild(HeaderLoginRegister());
-    page.appendChild(MainLoginRegister());
+    page.appendChild(MainLogin());
 
     return page;
 }

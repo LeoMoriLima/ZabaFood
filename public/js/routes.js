@@ -4,6 +4,11 @@ import home from "../pages/home.js";
 import login from "../pages/login.js";
 import notFound from "../pages/notFound.js";
 import register from "../pages/register.js";
+import product from "../pages/product.js";
+import terms from "../pages/terms.js";
+import confirmation from "../pages/confirmation.js";
+import policy from "../pages/policy.js";
+import checkout from "../pages/checkout.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -49,6 +54,31 @@ const urlRoutes = {
 		title: "Register | " + urlPageTitle,
 		description: "This is the register page",
 	},
+	"/product": {
+		page: product,
+		title: "Produto | " + urlPageTitle,
+		description: "This is the product page",
+	},
+	"/checkout": {
+		page: checkout,
+		title: "Tela de checkout | " + urlPageTitle,
+		description: "This is the checkout page",
+	},
+	"/terms": {
+		page: terms,
+		title: "Termos e condições | " + urlPageTitle,
+		description: "This is the terms and services page",
+	},
+	"/confirmation": {
+		page: confirmation,
+		title: "Pedido concluído | " + urlPageTitle,
+		description: "This is the order confirmation page",
+	},
+	"/policy": {
+		page: policy,
+		title: "Política de Privacidade | " + urlPageTitle,
+		description: "This is the terms and policy and privacy",
+	},
 };
 
 // Cria uma função que verifica a url e chama o urlLocationHandler
@@ -56,14 +86,12 @@ const urlRoute = (event) => {
 	event = event || window.event;
 	event.preventDefault();
 
-	console.log(event.target.href);
-
 	window.history.pushState({}, "", event.target.href);
 	urlLocationHandler();
 };
 
 // Cria uma função para lidar com a localização da url
-const urlLocationHandler = () => {
+const urlLocationHandler = async () => {
 	const location = window.location.pathname;
 
 	if (location.length == 0) {
@@ -75,7 +103,9 @@ const urlLocationHandler = () => {
 	const root = document.getElementById("root");
 
 	root.innerHTML = "";
-	root.appendChild(route.page());
+
+	root.appendChild(await route.page());
+
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')
