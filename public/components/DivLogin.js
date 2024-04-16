@@ -19,7 +19,7 @@ export default () => {
         const passwordInput = document.getElementById("password-input").value;
 
         try {
-            const response = await fetch("http://108.61.49.221:3000/api/login/", {
+            const response = await fetch("/api/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

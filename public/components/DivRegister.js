@@ -27,7 +27,7 @@ export default () => {
         const phoneInput = document.getElementById("phone-input").value;
 
         try {
-            const response = await fetch("http://108.61.49.221:3000/api/users/", {
+            const response = await fetch("/api/users/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

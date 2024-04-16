@@ -4,7 +4,7 @@ const discount = 0.92;
 
 export default async (id) => {
 	try {
-    const response = await fetch(`http://108.61.49.221:3000/api/product/${id}`, {
+    const response = await fetch(`/api/product/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -77,7 +77,7 @@ export default async (id) => {
 
 	const addBtn = btn("Adicionar", "add-btn", async () => {
         try {
-			const cart_id_response = await fetch(`http://108.61.49.221:3000/api/cart/${user_id}`, {
+			const cart_id_response = await fetch(`/api/cart/${user_id}`, {
 				method: "GET",
 				headers: {
                     "Content-Type": "application/json"
@@ -86,7 +86,7 @@ export default async (id) => {
 			const cartData = await cart_id_response.json();
 
 
-            const response = await fetch("http://108.61.49.221:3000/api/item_product/", {
+            const response = await fetch("/api/item_product/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

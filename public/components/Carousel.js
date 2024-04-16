@@ -74,7 +74,7 @@ export default async () => {
 
 const getProducts = async (min, max) => {
     try {
-        const response = await fetch(`http://108.61.49.221:3000/api/product/interval?min=${min}&max=${max}`, {
+        const response = await fetch(`/api/product/interval?min=${min}&max=${max}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
