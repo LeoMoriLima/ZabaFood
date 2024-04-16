@@ -2,10 +2,10 @@ import FooterMain from "../components/FooterMain.js";
 import HeaderMain from "../components/HeaderMain.js";
 import TermsPage from "../components/TermsPage.js";
 
-export default () => {
+export default async () => {
     const page = document.createElement("div");
 
-    page.appendChild(HeaderMain());
+    page.appendChild(await HeaderMain());
     page.appendChild(TermsPage());
     page.appendChild(FooterMain());
 
