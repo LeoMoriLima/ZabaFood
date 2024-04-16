@@ -2,6 +2,7 @@ import FooterMain from "../components/FooterMain.js";
 import ProductBanner from "../components/ProductBanner.js";
 import HeaderMain from "../components/HeaderMain.js";
 import mainBanner from "../components/mainBanner.js";
+import Carousel from "../components/Carousel.js"
 
 export default async () => {
     const page = document.createElement("div");
@@ -9,7 +10,8 @@ export default async () => {
 
     page.appendChild(HeaderMain());
     page.appendChild(mainBanner());
-    // page.appendChild(await ProductBanner(productId));
+    page.appendChild(await Carousel())
+    page.appendChild(await ProductBanner(productId));
     page.appendChild(FooterMain());
 
     return page;
