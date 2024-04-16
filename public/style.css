@@ -227,7 +227,7 @@ body {
     width: 100%;
 }
 
-.unit-btn {
+.selected-btn {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -240,7 +240,7 @@ body {
     cursor: pointer;
 }
 
-.buy-3-btn {
+.deselected-btn {
     background-color: #F3F3F3;
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -304,6 +304,15 @@ body {
     justify-content: center;
     width: 16.45rem;
     cursor: pointer;
+}
+
+.add-btn-div:hover {
+    background-color: var(--color-secundary);
+}
+
+.add-btn-div:active {
+    background-color: var(--color-primary);
+    transition: background-color -2s;
 }
 
 .add-btn {

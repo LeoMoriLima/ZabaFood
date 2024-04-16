@@ -12,6 +12,26 @@ export default async (id) => {
     });
     const data = await response.json();
 
+	const userResponse = await fetch('/api/login', {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	const userData = await userResponse.json();
+	
+	const userId = userData.user.id;
+
+	const cartResponse = await fetch(`/api/cart/user/${userId}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+
+	const cart = await cartResponse.json();
+	const cartId = cart.id;
+
 	const mainDiv = document.createElement("div");
 	mainDiv.classList.add("product-card");
 
@@ -33,10 +53,22 @@ export default async (id) => {
 	quantityDiv.classList.add("quantity-div");
 	mainDiv.appendChild(quantityDiv);
 
-	const unitBtn = btn("Unidade", "unit-btn", async () => productQuantity = 1);
+	const unitBtn = btn("Unidade", "selected-btn", async () => {
+		// productQuantity = 1;
+		unitBtn.classList.add('selected-btn');
+		unitBtn.classList.remove('deselected-btn');
+		buy3Btn.classList.add('deselected-btn');
+		buy3Btn.classList.remove('selected-btn');
+	});
 	quantityDiv.appendChild(unitBtn);
 
-	const buy3Btn = btn("Compre 3", "buy-3-btn", async () => productQuantity = 3);
+	const buy3Btn = btn("Compre 3", "deselected-btn", async () => {
+		// productQuantity = 3;
+		buy3Btn.classList.add('selected-btn');
+		buy3Btn.classList.remove('deselected-btn');
+		unitBtn.classList.add('deselected-btn');
+		unitBtn.classList.remove('selected-btn');
+	});
 	quantityDiv.appendChild(buy3Btn);
 
 	const priceDiv = document.createElement("div");
@@ -77,35 +109,19 @@ export default async (id) => {
 
 	const addBtn = btn("Adicionar", "add-btn", async () => {
         try {
-			const cart_id_response = await fetch(`/api/cart/${user_id}`, {
-				method: "GET",
-				headers: {
-                    "Content-Type": "application/json"
-                }
-			});
-			const cartData = await cart_id_response.json();
-
-
-            const response = await fetch("/api/item_product/", {
+            const response = await fetch("/api/cart_product/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    // cart_id: ,
+                    cart_id: cartId,
                     product_id: id,
-					quantity: data.quantity,
-					price_unity: data.quantity > 2 ? (data.value * discount) : data.value,
-					total_item: quantity * price_unity
+					quantity: unitBtn.classList.contains("selected-btn") ? 1: 3,
                 })
             });
             const data = await response.json();
 
-            // if (data.success) {
-            //     window.route({ preventDefault: () => {}, target: { href: "/login" } });
-            // } else{
-            //     alert("Erro ao efetuar registro");
-            // }
         } catch (error) {
             console.error("Erro ao adicionar produtos ao carrinho:", error);
         }
