@@ -1,24 +1,37 @@
 const addressRepository = require("../repository/addressRepository.js");
 
-const getAllAddresses = async () => {
-    try {
-        const addresses = await addressRepository.getAllAddresses();
-        return addresses;
-    } catch (error) {
-        throw error;
-    }
+const getAddress = async (id) => {
+	try {
+		const address = await addressRepository.getAddress(id);
+		if(!address){
+			throw new Error("Endereço não encontrado");
+		}
+		return address;
+	} catch (error) {
+		throw error;
+	}
 }
 
-const getAddress = async (id) => {
-    try {
-        const address = await addressRepository.getAddress(id);
+const getAddressByUserID = async (userId) => {
+	try {
+        const address = await addressRepository.getAddressByUserID(userId);
         if(!address){
             throw new Error("Endereço não encontrado");
         }
         return address;
-    } catch (error) {
+	} catch (error) {
+		console.log("erro no service")
         throw error;
-    }
+	}
+}
+
+const getAllAddresses = async () => {
+	try {
+		const addresses = await addressRepository.getAllAddresses();
+		return addresses;
+	} catch (error) {
+		throw error;
+	}
 }
 
 const createNewAddress = async (user_id, postal_code, state, city, street, number, complement) => {
@@ -26,7 +39,7 @@ const createNewAddress = async (user_id, postal_code, state, city, street, numbe
         const address = await addressRepository.createNewAddress(user_id, postal_code, state, city, street, number, complement);
         return address;
     } catch (error) {
-        throw error;
+		throw error;
     }
 }
 
@@ -56,8 +69,9 @@ const deleteAddress = async (id) => {
 }
 
 module.exports = {
-    getAllAddresses,
 	getAddress,
+	getAddressByUserID,
+	getAllAddresses,
 	createNewAddress,
 	updateAddress,
 	deleteAddress,
