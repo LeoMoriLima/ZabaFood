@@ -1,13 +1,6 @@
-const cartProductRepository = require('../repository/cartProductRepository');
-
-const getAllCartProduct = async () => {
-    try {
-        const cartProducts = await cartProductRepository.getAllCartProduct();
-        return cartProducts;
-    } catch (error) {
-        throw error;
-    }
-}
+const cartProductRepository = require("../repository/cartProductRepository");
+const cartRepository = require("../repository/cartRepository");
+const productRepository = require("../repository/productRepository");
 
 const getCartProduct = async (id) => {
     try {
@@ -16,6 +9,37 @@ const getCartProduct = async (id) => {
             throw new Error("Item não encontrado");
         }
         return cartProduct;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getCartProductsByUserId = async (userId) => {
+	try {
+        const cart = await cartRepository.getCartByUserID(userId);
+        const cartId = cart.id;
+        if(!cartId){
+            throw new Error("Carrinho não encontrado");
+        }
+
+        const cartProducts = await cartProductRepository.getCartProductsByCartId(cartId);
+        const cartProductsId = cartProducts.map(product => product.product_id);
+
+        const productsInfo = await Promise.all(cartProductsId.map(async (productId) => {
+            const infos = await productRepository.getProduct(productId);
+            return infos;
+        }));
+
+        return productsInfo;
+	} catch (error) {
+        throw error;
+	}
+}
+
+const getAllCartProduct = async () => {
+    try {
+        const cartProducts = await cartProductRepository.getAllCartProduct();
+        return cartProducts;
     } catch (error) {
         throw error;
     }
@@ -66,8 +90,9 @@ const testCartProductTransaction = async (cart_id, product_id, quantity) => {
 }
 
 module.exports = {
-    getAllCartProduct,
     getCartProduct,
+    getCartProductsByUserId,
+    getAllCartProduct,
     createCartProduct,
     updateCartProduct,
     deleteCartProduct,
