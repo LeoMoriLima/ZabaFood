@@ -19,6 +19,16 @@ const getProduct = async (req, res) => {
     }
 }
 
+const getProductByName = async (req, res) => {
+    const { name } = req.params
+    try {
+        const products = await productServices.getProductByName(name);
+        return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 const createProduct = async (req, res) => {
     const { producer_id, name, value, url_img, stock, type_id, description } = req.body;
     try {
@@ -50,10 +60,22 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+const getProductByInterval = async (req, res) => {
+    const { min, max } = req.query;
+    try {
+        const products = await productServices.getProductByInterval(min, max);
+        return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getProduct,
     getAllproduct,
+    getProductByName,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductByInterval
 }

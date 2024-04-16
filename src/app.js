@@ -3,6 +3,7 @@ const express = require('express');
 const config = require('./config');
 const app = express();
 const port = config.PORT;
+const hostname = config.HOSTNAME
 const cors = require("cors");
 const path = require('path');
 
@@ -20,5 +21,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on http://${hostname}:${port}`);
 });
+
