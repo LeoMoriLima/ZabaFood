@@ -582,17 +582,17 @@ input:focus {
 
 /* Footer Main */
 
-.footer-main{
+.footer-main {
     margin: 0;
 }
 
-.footer-image-line{
+.footer-image-line {
     margin: 0;
     width: 100%;
     height: 100%;
 }
 
-.div-footer-main{
+.div-footer-main {
     display: flex;
     flex-direction: row;
     background-color: var(--color-primary);
@@ -603,29 +603,29 @@ input:focus {
     width: 100%
 }
 
-.left-footer-div{
+.left-footer-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem
 }
 
-.left-footer-a{
+.left-footer-a {
     text-decoration: none;
     color: var(--color-light-white);
 }
 
-.left-center-footer-div{
+.left-center-footer-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.payment-text{
+.payment-text {
     color: var(--color-light-white);
 }
 
-.right-center-footer-div{
+.right-center-footer-div {
     display: flex;
     color: var(--color-light-white);
     flex-direction: column;
@@ -633,14 +633,13 @@ input:focus {
     gap: 0.5rem
 }
 
-.right-center-social-div{
+.right-center-social-div {
     display: flex;
     flex-direction: row;
     gap: 1.125rem;
-
 }
 
-.right-div-footer{
+.right-div-footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -648,6 +647,164 @@ input:focus {
 
 /* Main Banner */
 
-.banner-img{
+.banner-img {
     width: 100%;
+}
+
+/* Checkout Page */
+
+.checkout-page-main-div {
+    align-items: flex-start;
+    display: flex;
+    flex: row;
+    gap: 3.0625rem;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.info-div {
+    align-items: center;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 70%;
+    justify-content: flex-start;
+    padding: 2rem 4rem;
+    width: 60%;
+}
+
+.address-info-div, .credit-info-div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.address-div-text, .credit-div-text {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 2rem;
+}
+
+.address-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.address-left-div {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.street-text, .city-state-text, .cep-text, .user-credit-balance, .user-credit-final {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 1.2rem;
+}
+
+.address-right-div {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.line {
+    color: var(--color-secundary);
+    width: 90%;
+}
+
+.credit-info-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.creditDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.right-div {
+    display: flex;
+    flex-direction: column;
+    gap: 3.0625rem;
+}
+
+.value-div {
+    align-items: flex-start;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    width: 31.25rem;
+}
+
+.order-resume-text {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.freight-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.freight-div-text, .total-div-text, .freight-div-value, .total-div-value {
+    color: var(--color-emphasis);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.freight-div-value, .total-div-value {
+    color: var(--color-secundary);
+}
+
+.pay-now-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 1.875rem;
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 500;
+    height: 3.5625rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: 24.375rem;
+}
+
+.total-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.payment-methods-div {
+    align-items: flex-start;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    height: 12.5rem;
+    justify-content: flex-start;
+    padding: 2rem;
+    width: 31.25rem;
+}
+
+.payment-methods-text {
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 1.5rem;
 }

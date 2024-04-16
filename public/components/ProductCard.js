@@ -4,7 +4,7 @@ const discount = 0.92;
 
 export default async (id) => {
 	try {
-    const response = await fetch(`http://localhost:3000/api/product/${id}`, {
+    const response = await fetch(`http://108.61.49.221:3000/api/product/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
