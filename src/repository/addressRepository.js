@@ -21,7 +21,6 @@ async function getAddressByUserID(userId) {
         const result = await client.query(query, [userId]);
         return result.rows[0];
     } catch (error) {
-        console.log("erro no repository")
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
