@@ -3,7 +3,7 @@ import text from "./Text.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 
-export default () => {
+export default async () => {
     const divNavMain = document.createElement("div");
     divNavMain.classList.add("div-nav-main");
 
@@ -107,24 +107,53 @@ export default () => {
 
     const aAccountIcon = document.createElement("a");
     aAccountIcon.classList.add("a-account-icon");
-    aAccountIcon.href = "/myaccount"
-    aAccountIcon.onclick = (e) => {
-        e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
-    }
-    accountDiv.appendChild(aAccountIcon);
 
     const accountIcon = document.createElement("img");
     accountIcon.src = "../assets/images/user-icon.svg";
     accountIcon.classList.add("a-account-icon");
     aAccountIcon.appendChild(accountIcon);
 
-    const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
-    aAccount.onclick = (e) => {
-        e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
+    try {
+        const response = await fetch('http://108.61.49.221:3000/api/login', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
+    
+        if (data.error) {
+            const aAccount = textA("ENTRAR", "a-account", "none", "/login");
+            aAccount.onclick = (e) => {
+                e.preventDefault();
+                window.route({ preventDefault: () => { }, target: { href: "/login" } });
+            }
+            accountDiv.appendChild(aAccountIcon);
+            accountDiv.appendChild(aAccount);
+    
+            aAccountIcon.href = "/login"
+            aAccountIcon.onclick = (e) => {
+                e.preventDefault();
+                window.route({ preventDefault: () => { }, target: { href: "/login" } });
+            }
+        } else {
+            const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
+            aAccount.onclick = (e) => {
+                e.preventDefault();
+                window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
+            }
+            accountDiv.appendChild(aAccountIcon);
+            accountDiv.appendChild(aAccount);
+    
+            aAccountIcon.href = "/myaccount"
+            aAccountIcon.onclick = (e) => {
+                e.preventDefault();
+                window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
+            }
+        }
+    } catch (error) {
+        console.log(error);
     }
-    accountDiv.appendChild(aAccount);
 
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");

@@ -8,6 +8,7 @@ import product from "../pages/product.js";
 import terms from "../pages/terms.js";
 import confirmation from "../pages/confirmation.js";
 import policy from "../pages/policy.js";
+import checkout from "../pages/checkout.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -57,6 +58,11 @@ const urlRoutes = {
 		page: product,
 		title: "Produto | " + urlPageTitle,
 		description: "This is the product page",
+	},
+	"/checkout": {
+		page: checkout,
+		title: "Tela de checkout | " + urlPageTitle,
+		description: "This is the checkout page",
 	},
 	"/terms": {
 		page: terms,
