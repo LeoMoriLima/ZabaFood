@@ -1,19 +1,5 @@
 const addressService = require("../services/addressService.js");
 
-const getAllAddresses = async (req, res) => {
-	try {
-		const admin = req.user.user_type.includes("admin");
-		if(!admin) {
-			return res.status(403).json({error: "Usuário sem permissão"});
-		}
-
-        const address = await addressService.getAllAddresses();
-        return res.status(200).json(address);
-    } catch (error) {
-        return res.status(500).json({ error: "Erro ao buscar dados" });
-    }
-}
-
 const getAddress = async (req, res) => {
     const { id } = req.params;
     try {
@@ -25,6 +11,32 @@ const getAddress = async (req, res) => {
         const address = await addressService.getAddress(id);
         return res.status(200).json(address);
     } catch (error){
+        return res.status(500).json({ error: "Erro ao buscar dados" });
+    }
+}
+
+const getAddressByUserID = async (req, res) => {
+    const { userId } = req.params;
+    console.log(userId)
+    try {
+        const address = await addressService.getAddressByUserID(userId);
+        return res.status(200).json(address);
+    } catch (error){
+        console.log("erro no controller")
+        return res.status(500).json({ error: "Erro ao buscar dados" });
+    }
+}
+
+const getAllAddresses = async (req, res) => {
+	try {
+		const admin = req.user.user_type.includes("admin");
+		if(!admin) {
+			return res.status(403).json({error: "Usuário sem permissão"});
+		}
+
+        const address = await addressService.getAllAddresses();
+        return res.status(200).json(address);
+    } catch (error) {
         return res.status(500).json({ error: "Erro ao buscar dados" });
     }
 }
@@ -62,6 +74,7 @@ const deleteAddress = async (req, res) => {
 
 module.exports = {
 	getAddress,
+    getAddressByUserID,
 	getAllAddresses,
 	createNewAddress,
 	updateAddress,

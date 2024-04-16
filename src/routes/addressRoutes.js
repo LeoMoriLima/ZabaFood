@@ -5,8 +5,9 @@ const permissionVerify = require('../middleware/permissionVerify.js');
 
 router.use(permissionVerify);
 
-router.get("/", addressController.getAllAddresses);
 router.get("/:id", addressController.getAddress);
+router.get("/user/:userId", addressController.getAddressByUserID);
+router.get("/", addressController.getAllAddresses);
 router.post("/", addressController.createNewAddress);
 router.put("/:id", addressController.updateAddress);
 router.delete("/:id", addressController.deleteAddress);
