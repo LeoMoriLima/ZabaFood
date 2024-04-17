@@ -1220,7 +1220,7 @@ input:focus {
 
 /* Terms page */
 
-.term-page-div {
+.common-page-div {
     align-items: center;
     align-self: center;
     background-color: var(--color-light-white);
@@ -1232,16 +1232,17 @@ input:focus {
     padding: 3%;
 }
 
-.term-icon-div {
+.common-icon-div {
     align-self:flex-end;
 }
 
-.term-page-text {
+.common-page-text {
     font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1vh;
 }
 
-.term-text-div {
+.common-text-div {
     color: var(--color-secundary);
     font-family: var(--font-text);
     font-size: 1.25rem;

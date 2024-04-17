@@ -2,10 +2,10 @@ import ButtonComponent from "./ButtonComponent.js";
 
 export default () => {
     const policyPageDiv = document.createElement("div");
-    policyPageDiv.classList.add("policy-page-div");
+    policyPageDiv.classList.add("common-page-div");
 
     const policyIconDiv = document.createElement("div");
-    policyIconDiv.classList.add("policy-icon-div");
+    policyIconDiv.classList.add("common-icon-div");
     policyPageDiv.appendChild(policyIconDiv);
 
     const policyIcon = document.createElement("img");
@@ -14,12 +14,12 @@ export default () => {
     policyIconDiv.appendChild(policyIcon);
 
     const policyTextDiv = document.createElement("div");
-    policyTextDiv.classList.add("policy-text-div");
+    policyTextDiv.classList.add("common-text-div");
     policyPageDiv.appendChild(policyTextDiv);
 
     const policyH1 = document.createElement("h1");
     policyH1.innerText = "Política de privacidade.";
-    policyH1.classList.add("policy-h1");
+    policyH1.classList.add("common-page-text");
     policyTextDiv.appendChild(policyH1)
 
     const policyPageText = document.createElement("p");
