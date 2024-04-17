@@ -27,14 +27,14 @@ export default () => {
     termTextDiv.appendChild(termsList);
 
     const termsAndConditionsTitles = [
-        "Descrição do Serviço",
-        "Cadastro e Conta do Usuário",
-        "Produtos e Transações",
-        "Pagamentos e Taxas",
-        "Direitos Autorais e Propriedade Intelectual",
-        "Comportamento do Usuário",
-        "Alterações nos Termos",
-        "Contato",
+        "Descrição do Serviço:",
+        "Cadastro e Conta do Usuário:",
+        "Produtos e Transações:",
+        "Pagamentos e Taxas:",
+        "Direitos Autorais e Propriedade Intelectual:",
+        "Comportamento do Usuário:",
+        "Alterações nos Termos:",
+        "Contato:",
     ]
 
     const termsAndConditions = [
