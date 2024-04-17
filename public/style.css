@@ -43,6 +43,10 @@ body {
     background-color: var(--color-light-white);
 }
 
+.page-checkout-div {
+    background-color: var(--color-white);
+}
+
 .header-login {
     width: 100%;
     height: 10.9375rem;
@@ -754,7 +758,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    height: 70%;
+    height: 26.5rem;
     justify-content: flex-start;
     padding: 2rem 4rem;
     width: 60%;
@@ -832,6 +836,7 @@ input:focus {
     border-radius: 2.8125rem;
     display: flex;
     flex-direction: column;
+    height: 15rem;
     padding: 2rem 3rem;
     width: 31.25rem;
 }
@@ -892,7 +897,7 @@ input:focus {
     border-radius: 2.8125rem;
     display: flex;
     flex-direction: column;
-    height: 12.5rem;
+    height: 8.5rem;
     justify-content: flex-start;
     padding: 2rem;
     width: 31.25rem;
