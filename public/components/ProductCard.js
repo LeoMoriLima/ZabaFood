@@ -37,7 +37,7 @@ export default async (id) => {
 
 	const imgDiv = document.createElement("img");
 	imgDiv.src = data.url_img;
-	imgDiv.classList.add("product-img");
+	imgDiv.classList.add("card-product-img");
 	mainDiv.appendChild(imgDiv);
 
 	const productTitleDiv = document.createElement("div");

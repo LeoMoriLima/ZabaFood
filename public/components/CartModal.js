@@ -2,7 +2,7 @@ import btn from "./ButtonComponent.js";
 
 export default async () => {
 	try {
-		const userResponse = await fetch('http://localhost:3000/api/login', {
+		const userResponse = await fetch('/api/login', {
 			method: "GET",
             headers: {
 				"Content-Type": "application/json"
@@ -11,7 +11,7 @@ export default async () => {
         const userData = await userResponse.json();
 		const userId = userData.user.id;
 
-		const cartResponse = await fetch(`http://localhost:3000/api/cart_product/cart/${userId}`, {
+		const cartResponse = await fetch(`/api/cart_product/cart/${userId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
@@ -25,13 +25,14 @@ export default async () => {
 
 		if (cartProductsInfos.length !== 0) {
 			cartProductsInfos.map(itemProduct => {
+				const {product , quantity} = itemProduct
 				const itemProductDiv = document.createElement("div");
 				itemProductDiv.classList.add("item-product-div");
 				mainDiv.appendChild(itemProductDiv);
 
 				const productImg = document.createElement("img");
-				productImg.classList.add("product-img");
-				productImg.src = itemProduct.url_img;
+				productImg.classList.add("cart-modal-product-img");
+				productImg.src = product.url_img;
 				itemProductDiv.appendChild(productImg);
 
 				const textDiv = document.createElement("div");
@@ -40,12 +41,12 @@ export default async () => {
 
 				const productTitle = document.createElement("p");
 				productTitle.classList.add("modal-cart-product-title");
-				productTitle.innerText = itemProduct.name;
+				productTitle.innerText = product.name;
 				textDiv.appendChild(productTitle);
 
 				const productValue = document.createElement("p");
 				productValue.classList.add("modal-cart-product-value");
-				productValue.innerText = `1x R$${itemProduct.value}`;
+				productValue.innerText = `${quantity}x R$${product.value}`;
 				textDiv.appendChild(productValue);
 			});
 
