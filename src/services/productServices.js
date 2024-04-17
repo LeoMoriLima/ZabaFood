@@ -33,9 +33,9 @@ const getProductByName = async (name) =>{
     }
 }
 
-const createProduct = async (producer_id, name, value, url_img, stock, type_id, description) => {
+const createProduct = async (name, value, url_img, stock, type_id, description) => {
     try {
-        const result = await productRepository.insertNewProduct(producer_id, name, value, url_img, stock, type_id, description);
+        const result = await productRepository.insertNewProduct(name, value, url_img, stock, type_id, description);
         return result;
     } catch (error) {
         throw error;
