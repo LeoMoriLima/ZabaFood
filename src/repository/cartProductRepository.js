@@ -1,6 +1,6 @@
 const { connectToDatabase } = require('../db/postgresql');
 
-async function getCartProductByID(id) {
+const getCartProductByID = async (id) => {
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart_product WHERE id = $1';
     try {
@@ -14,7 +14,7 @@ async function getCartProductByID(id) {
     }
 }
 
-async function getCartProductsByCartId(cartId) {
+const getCartProductsByCartId = async (cartId) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM cart_product WHERE cart_id = $1;";
     try {
@@ -28,7 +28,7 @@ async function getCartProductsByCartId(cartId) {
     }
 }
 
-async function getAllCartProduct() {
+const getAllCartProduct = async () => {
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart_product';
     try {
@@ -42,7 +42,7 @@ async function getAllCartProduct() {
     }
 }
 
-async function deleteCartProduct(id) {
+const deleteCartProduct = async (id) => {
     const client = await connectToDatabase();
     const query = 'DELETE FROM cart_product WHERE id = $1';
     try {
@@ -56,7 +56,7 @@ async function deleteCartProduct(id) {
     }
 }
 
-async function updateCartProduct(id, quantity) {
+const updateCartProduct = async (id, quantity) => {
     const client = await connectToDatabase();
     const query = 'UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3';
     try {
@@ -72,7 +72,7 @@ async function updateCartProduct(id, quantity) {
     }
 }
 
-async function createNewCartProduct(cart_id, product_id, quantity) {
+const createNewCartProduct = async (cart_id, product_id, quantity) => {
     const client = await connectToDatabase();
     try {
         const product = await client.query('SELECT * FROM product WHERE id = $1', [product_id]);
@@ -90,7 +90,7 @@ async function createNewCartProduct(cart_id, product_id, quantity) {
     }
 }
 
-async function cartProductTransaction(cart_id, product_id, quantity) {
+const cartProductTransaction = async (cart_id, product_id, quantity) => {
     const client = await connectToDatabase();
     try {
         await client.query('BEGIN');
