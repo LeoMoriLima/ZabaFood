@@ -36,7 +36,7 @@ export default () => {
     contactPageBodyDiv.appendChild(emailContactPageDiv);
 
     const emailContactIcon = document.createElement("img");
-    emailContactIcon.src = "../assets/images/email-icon.svg";
+    emailContactIcon.src = "../assets/images/email-icon-green.svg";
     emailContactIcon.classList.add ("email-contact-icon");
     emailContactPageDiv.appendChild(emailContactIcon);
 
@@ -50,7 +50,7 @@ export default () => {
     contactPageBodyDiv.appendChild(instagramContactPageDiv);
 
     const instagramContactIcon = document.createElement("img");
-    instagramContactIcon.src = "../assets/images/instagram-icon.svg";
+    instagramContactIcon.src = "../assets/images/insta-icon-green.svg";
     instagramContactIcon.classList.add ("instagram-contact-icon");
     instagramContactPageDiv.appendChild(instagramContactIcon);
 
