@@ -15,25 +15,21 @@ const getCartProduct = async (id) => {
 }
 
 const getCartProductsByUserId = async (userId) => {
-	try {
+    try {
         const cart = await cartRepository.getCartByUserID(userId);
         const cartId = cart.id;
-        if(!cartId){
+        if (!cartId) {
             throw new Error("Carrinho não encontrado");
         }
-
         const cartProducts = await cartProductRepository.getCartProductsByCartId(cartId);
-        const cartProductsId = cartProducts.map(product => product.product_id);
-
-        const productsInfo = await Promise.all(cartProductsId.map(async (productId) => {
-            const infos = await productRepository.getProduct(productId);
-            return infos;
+        const cartProductInfos = await Promise.all(cartProducts.map(async (cartProduct) =>{
+            const productInfo = await productRepository.getProduct(cartProduct.product_id);
+            return {product: productInfo, quantity: cartProduct.quantity };
         }));
-
-        return productsInfo;
-	} catch (error) {
+        return cartProductInfos;
+    } catch (error) {
         throw error;
-	}
+    }
 }
 
 const getAllCartProduct = async () => {
