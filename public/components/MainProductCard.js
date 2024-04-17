@@ -3,13 +3,12 @@ import QuantityInput from "./QuantityInput.js";
 
 export default async (product) => {
     try {
+        const userData = await getUser();
         const product_type = await getType(product.type_id)
-
-        console.log(product_type);
 
         const mainProductCard = document.createElement("div");
         mainProductCard.classList.add("product-main-card");
-        
+
         // Image
         const productImgDiv = document.createElement("div");
         productImgDiv.classList.add("product-div-img");
@@ -80,33 +79,123 @@ export default async (product) => {
         productButtonDiv.classList.add("product-button-div");
         productInfoDiv.appendChild(productButtonDiv);
 
-        productButtonDiv.appendChild(Button("Comprar", "light-green-button", () => {
-            const quantity = document.getElementById("product-quantity-input").value;
-            navigateTo("checkout");
+        productButtonDiv.appendChild(Button("Comprar", "light-green-button", async () => {
+            if (userData.error) {
+                navigateTo("login");
+                return
+            }
+            try {
+                const quantity = document.getElementById("product-quantity-input").value;
+                const cart = await getCart(userData.user.id);
+                const cartAdded = await addToCart(cart.id, product.id, quantity);
+
+                if (cartAdded.error) {
+                    throw cartAdded.error;
+                }
+
+                navigateTo("checkout");
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao adicionar no carrinho");
+                return
+            }
         }));
 
-        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "green-button", () => {
-            const quantity = document.getElementById("product-quantity-input").value;
-            navigateTo("cart");
+        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "green-button", async () => {
+            if (userData.error) {
+                navigateTo("login");
+                return
+            }
+            try {
+                const quantity = document.getElementById("product-quantity-input").value;
+                const cart = await getCart(userData.user.id);
+                const cartAdded = await addToCart(cart.id, product.id, quantity);
+
+                if (cartAdded.error) {
+                    throw cartAdded.error;
+                }
+
+                alert("Produto adicionado ao carrinho!")
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao adicionar no carrinho");
+                return
+            }
         }));
 
         return mainProductCard;
 
     } catch (error) {
-        console.error("Erro ao fazer login:", error);
+        console.error("Error:", error);
     }
 }
 
 const getType = async (typeId) => {
-    const response = await fetch(`/api/product_type/${typeId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    const data = await response.json();
+    try {
+        const response = await fetch(`/api/product_type/${typeId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
 
-    return data.type;
+        return data.type;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getCart = async (userId) => {
+    try {
+        const response = await fetch(`/api/cart/user/${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getUser = async () => {
+    try {
+        const userResponse = await fetch('/api/login', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await userResponse.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const addToCart = async (cartId, productId, quantity) => {
+    try {
+        const response = await fetch("/api/cart_product/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cart_id: cartId,
+                product_id: productId,
+                quantity: quantity,
+            })
+        });
+
+        const data = await response.json();
+        return data
+    } catch (error) {
+        throw error;
+    }
 }
 
 const navigateTo = (endpoint) => {

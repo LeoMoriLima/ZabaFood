@@ -9,7 +9,6 @@ export default async () => {
   
     main.appendChild(await MainProductCard(product));
 
-    
     const descriptionDiv = document.createElement("div")
     descriptionDiv.classList.add("product-main-description")
     main.appendChild(descriptionDiv)
