@@ -25,11 +25,18 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--color-light-white);
+}
+
+.page-checkout-div {
+    background-color: var(--color-white);
+}
+
 .header-login {
     width: 100%;
     height: 10.9375rem;
     padding: 0 9rem;
-
 }
 
 .nav-header-login {
@@ -128,7 +135,7 @@
 
 }
 
-.input-entry:focus{
+.input-entry:focus {
     background-color: transparent;
 }
 
@@ -224,7 +231,7 @@
     width: 100%;
 }
 
-.unit-btn {
+.selected-btn {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -234,9 +241,10 @@
     font-weight: 500;
     height: 3.25rem;
     width: 7.5rem;
+    cursor: pointer;
 }
 
-.buy-3-btn {
+.deselected-btn {
     background-color: #F3F3F3;
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -245,6 +253,7 @@
     font-size: 1rem;
     height: 3.25rem;
     width: 7.5rem;
+    cursor: pointer;
 }
 
 .price-div {
@@ -298,6 +307,16 @@
     gap: 1rem;
     justify-content: center;
     width: 16.45rem;
+    cursor: pointer;
+}
+
+.add-btn-div:hover {
+    background-color: var(--color-secundary);
+}
+
+.add-btn-div:active {
+    background-color: var(--color-primary);
+    transition: background-color -2s;
 }
 
 .add-btn {
@@ -307,6 +326,7 @@
     font-family: var(--font-title);
     font-size: 1.3rem;
     height: 3.25rem;
+    cursor: pointer;
 }
 
 /* ProductBanner.js */
@@ -436,7 +456,7 @@
     gap: 2rem;
 }
 
-.cart-div{
+.cart-div {
     margin-left: 1rem;
 }
 
@@ -651,6 +671,46 @@ input:focus {
     width: 100%;
 }
 
+/* Carousel */
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+}
+
+.carousel-product-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+    flex: 80%;
+}
+
+.arrow-buttons {
+    background-color: transparent;
+    border: none;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    flex: 10%;
+}
+
+.arrow-buttons:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    width: 100%;
+}
+
 /* Checkout Page */
 
 .checkout-page-main-div {
@@ -669,7 +729,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    height: 70%;
+    height: 26.5rem;
     justify-content: flex-start;
     padding: 2rem 4rem;
     width: 60%;
@@ -741,6 +801,7 @@ input:focus {
     border-radius: 2.8125rem;
     display: flex;
     flex-direction: column;
+    height: 15rem;
     padding: 2rem 3rem;
     width: 31.25rem;
 }
@@ -797,7 +858,7 @@ input:focus {
     border-radius: 2.8125rem;
     display: flex;
     flex-direction: column;
-    height: 12.5rem;
+    height: 8.5rem;
     justify-content: flex-start;
     padding: 2rem;
     width: 31.25rem;
@@ -874,4 +935,70 @@ input:focus {
     align-items: center;
     text-align: center;
     width: 9rem;
+}
+
+/* CartModal.js */
+
+.modal-cart-main-div {
+    align-items: center;
+    background-color: var(--color-secundary);
+    border-radius: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.56rem;
+    width: 35.56rem;
+}
+
+.item-product-div {
+    border-bottom: 0.1rem solid var(--color-primary);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.product-img {
+    border-radius: 1rem;
+    height: 10rem;
+    margin: 1rem 2rem 1rem 0;
+}
+
+.text-div-modal-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.modal-cart-product-title {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-product-value {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-checkout-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 1.875rem;
+    color: var(--color-light-white);
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 400;
+    height: 4.125rem;
+    margin-top: 1.5rem;
+    width: 24rem;
+}
+
+.empty-cart-text {
+    color: var(--color-light-white);
+    font-family: var(--font-text);
+    font-size: 2rem;
 }
