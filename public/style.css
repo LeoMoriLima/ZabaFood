@@ -1408,7 +1408,8 @@ input:focus {
     display: flex;
     flex-direction: row;
     justify-content: center;
-=======
+}
+
 /* About page */
 
 .about-page-div {
