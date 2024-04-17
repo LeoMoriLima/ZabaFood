@@ -4,6 +4,7 @@ import FooterMain from "../components/FooterMain.js";
 
 export default async () => {
     const page = document.createElement("div");
+    page.classList.add("page-checkout-div");
     
     page.appendChild(await HeaderMain());
     page.appendChild(await CheckoutPage());

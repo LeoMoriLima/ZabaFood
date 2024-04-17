@@ -2,10 +2,10 @@ import ButtonComponent from "./ButtonComponent.js";
 
 export default () => {
     const termPageDiv = document.createElement("div");
-    termPageDiv.classList.add("term-page-div");
+    termPageDiv.classList.add("common-page-div");
 
     const termIconDiv = document.createElement("div");
-    termIconDiv.classList.add("term-icon-div");
+    termIconDiv.classList.add("common-icon-div");
     termPageDiv.appendChild(termIconDiv);
 
     const termIcon = document.createElement("img");
@@ -14,12 +14,12 @@ export default () => {
     termIconDiv.appendChild(termIcon);
 
     const termTextDiv = document.createElement("div");
-    termTextDiv.classList.add("term-text-div");
+    termTextDiv.classList.add("common-text-div");
     termPageDiv.appendChild(termTextDiv);
 
     const termPageText = document.createElement("p");
     termPageText.innerText = "Termos e Condições da ZabaFood";
-    termPageText.classList.add("term-page-text");
+    termPageText.classList.add("common-page-text");
     termTextDiv.appendChild(termPageText);
     
     const termsList = document.createElement("dl");
@@ -27,14 +27,14 @@ export default () => {
     termTextDiv.appendChild(termsList);
 
     const termsAndConditionsTitles = [
-        "Descrição do Serviço",
-        "Cadastro e Conta do Usuário",
-        "Produtos e Transações",
-        "Pagamentos e Taxas",
-        "Direitos Autorais e Propriedade Intelectual",
-        "Comportamento do Usuário",
-        "Alterações nos Termos",
-        "Contato",
+        "Descrição do Serviço:",
+        "Cadastro e Conta do Usuário:",
+        "Produtos e Transações:",
+        "Pagamentos e Taxas:",
+        "Direitos Autorais e Propriedade Intelectual:",
+        "Comportamento do Usuário:",
+        "Alterações nos Termos:",
+        "Contato:",
     ]
 
     const termsAndConditions = [

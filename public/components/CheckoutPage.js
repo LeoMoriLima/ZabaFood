@@ -1,16 +1,26 @@
 import btn from "./ButtonComponent.js"
 
 export default async () => {
+	const freight = 10;
+	
 	try {
-		const userResponse = await fetch('/api/login', {
+		const response = await fetch('/api/login', {
 			method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
         });
-        const userData = await userResponse.json();
-		
+        const userData = await response.json();
 		const userId = userData.user.id;
+
+		const userResponse = await fetch(`api/users/${userId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		const user = await userResponse.json();
 
 		const cartResponse = await fetch(`/api/cart/user/${userId}`, {
 			method: "GET",
@@ -116,13 +126,13 @@ export default async () => {
 		const userCreditBalance = document.createElement("p");
 		userCreditBalance.classList.add("user-credit-balance");
 		// userCreditBalance.innerText = `Seu saldo de créditos é de: ${credits.balance}`;
-		userCreditBalance.innerText = `Seu saldo de créditos é de:`;
+		userCreditBalance.innerText = `Seu saldo de créditos é de: R$ ${(user.credit_balance).replace('.', ',')}`;
 		creditDiv.appendChild(userCreditBalance);
 
 		const userCreditFinal = document.createElement("p");
 		userCreditFinal.classList.add("user-credit-final");
 		// userCreditFinal.innerText = `Seu saldo após a compra dos produtos será de: ${credits.balance}`;
-		userCreditFinal.innerText = `Seu saldo após a compra dos produtos será de: `;
+		userCreditFinal.innerText = `Seu saldo após a compra dos produtos será de: R$ ${(user.credit_balance - cart.total - freight).toFixed(2).replace('.', ',')}`;
 		creditDiv.appendChild(userCreditFinal);
 
 		const rightDiv = document.createElement("div");
@@ -149,7 +159,7 @@ export default async () => {
 
 		const freightDivValue = document.createElement("p");
 		freightDivValue.classList.add("freight-div-value");
-		freightDivValue.innerText = "R$ 10,00";
+		freightDivValue.innerText = `R$ ${freight},00`;
 		freightDiv.appendChild(freightDivValue);
 
 		const totalDiv = document.createElement("div");
@@ -163,7 +173,7 @@ export default async () => {
 
 		const totalDivValue = document.createElement("p");
 		totalDivValue.classList.add("total-div-value");
-		totalDivValue.innerText = `R$ ${cart.total}`;
+		totalDivValue.innerText = `R$ ${(cart.total).replace('.', ',')}`;
 		totalDiv.appendChild(totalDivValue);
 
 		const payNowBtn = btn("Pagar agora", "pay-now-btn", async () => {

@@ -7,6 +7,7 @@ import ImageLine from "../components/ImageLine.js";
 
 export default async () => {
     const page = document.createElement("div");
+    page.classList.add("home");
     const productId = "4c3e47b0-dce2-48c8-9b79-21709abd12bb"; // Produto: Cúrcuma com Pimenta
 
     page.appendChild(await HeaderMain());
