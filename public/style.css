@@ -466,14 +466,14 @@ body {
 }
 
 .nav-div-center {
+    align-items: center;
+    background-color: var(--color-white);
     display: flex;
     flex-direction: row;
-    align-items: center;
+    height: 9.37rem;
     justify-content: space-between;
     padding: 0 15rem;
     width: 100%;
-    height: 9.37rem;
-    background-color: var(--color-white);
 }
 
 .header-div-right {
@@ -484,7 +484,23 @@ body {
 }
 
 .cart-div {
-    margin-left: 1rem;
+    position: relative;
+}
+
+.cart-quantity-div {
+    position: absolute;
+    right: -10px;
+    top: -10px
+}
+
+.cart-quantity-text {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    font-weight: 500;
+    position: absolute;
+    right: 0.1vw;
+    top: 0.1vw;
 }
 
 .contact-div {
@@ -607,6 +623,7 @@ input:focus {
 }
 
 .products-menu-div {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     gap: 0.5rem;

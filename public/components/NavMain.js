@@ -67,12 +67,6 @@ export default async () => {
         }
     });
 
-
-    // buttonSearch.addEventListener("click", async () =>{
-    //     const inputSearch = document.getElementById("search-input");
-
-    // })
-
     const headerDivRight = document.createElement("div");
     headerDivRight.classList.add("header-div-right");
     navDivCenter.appendChild(headerDivRight);
@@ -164,13 +158,54 @@ export default async () => {
     aCartIcon.href = "/cart";
     aCartIcon.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/" } });
+        window.route({ preventDefault: () => { }, target: { href: "/cart" } });
     }
     cartDiv.appendChild(aCartIcon);
 
     const cartIcon = document.createElement("img");
     cartIcon.src = "../assets/images/cart-icon.svg";
     aCartIcon.appendChild(cartIcon);
+
+    const cartQuantityDiv = document.createElement("div");
+    cartQuantityDiv.classList.add("cart-quantity-div");
+    cartDiv.appendChild(cartQuantityDiv);
+
+    try {
+        const userResponse = await fetch('/api/login', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const userData = await userResponse.json();
+        
+        const userId = userData.user.id;
+    
+        const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    
+        const cartProducts = await cartProductsResponse.json();
+
+        const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
+
+        const greenQuantityIcon = document.createElement("img");
+        greenQuantityIcon.classList.add("green-quantity-icon");
+        greenQuantityIcon.src = "../assets/images/green-ball.svg";
+        if (totalQuantity !== 0) {
+            cartQuantityDiv.appendChild(greenQuantityIcon);
+        }
+
+        const cartQuantityText = document.createElement("p");
+        cartQuantityText.classList.add("cart-quantity-text");
+        cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
+        cartQuantityDiv.appendChild(cartQuantityText);
+    } catch (error) {
+        console.log(error);
+    }
 
     const navBarDiv = document.createElement("div");
     navBarDiv.classList.add("nav-bar-div");
@@ -191,18 +226,9 @@ export default async () => {
     productsMenuArrow.src = "../assets/images/arrow-down.svg";
     productsMenuDiv.appendChild(productsMenuArrow);
 
-    // const dialogMenuModal = document.createElement("dialog");
-
     const rightSideNavbarDiv = document.createElement("div");
     rightSideNavbarDiv.classList.add("right-side-navbar-div");
     navBarDiv.appendChild(rightSideNavbarDiv);
-
-    const sellYourProducts = textA("VENDA SEUS PRODUTOS", "sell-your-products", "none", "/producer");
-    sellYourProducts.onclick = (e) => {
-        e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/producer" } });
-    }
-    rightSideNavbarDiv.appendChild(sellYourProducts);
 
     const about = textA("QUEM SOMOS", "about-nav", "none", "/about");
     about.onclick = (e) => {
