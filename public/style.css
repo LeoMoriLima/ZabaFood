@@ -254,7 +254,7 @@ body {
     width: 100%;
 }
 
-.unit-btn {
+.selected-btn {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -267,7 +267,7 @@ body {
     cursor: pointer;
 }
 
-.buy-3-btn {
+.deselected-btn {
     background-color: #F3F3F3;
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -331,6 +331,15 @@ body {
     justify-content: center;
     width: 16.45rem;
     cursor: pointer;
+}
+
+.add-btn-div:hover {
+    background-color: var(--color-secundary);
+}
+
+.add-btn-div:active {
+    background-color: var(--color-primary);
+    transition: background-color -2s;
 }
 
 .add-btn {
@@ -1108,4 +1117,70 @@ input:focus {
     white-space: pre-wrap; /* preserva espaços em branco e quebras de linha */
     word-wrap: break-word;/* quebra de palavra em palavras longas */
     font-size: 1.2rem;
+}
+
+/* CartModal.js */
+
+.modal-cart-main-div {
+    align-items: center;
+    background-color: var(--color-secundary);
+    border-radius: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.56rem;
+    width: 35.56rem;
+}
+
+.item-product-div {
+    border-bottom: 0.1rem solid var(--color-primary);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.product-img {
+    border-radius: 1rem;
+    height: 10rem;
+    margin: 1rem 2rem 1rem 0;
+}
+
+.text-div-modal-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.modal-cart-product-title {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-product-value {
+    color: var(--color-yellow);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-cart-checkout-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 1.875rem;
+    color: var(--color-light-white);
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 400;
+    height: 4.125rem;
+    margin-top: 1.5rem;
+    width: 24rem;
+}
+
+.empty-cart-text {
+    color: var(--color-light-white);
+    font-family: var(--font-text);
+    font-size: 2rem;
 }

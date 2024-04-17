@@ -17,12 +17,10 @@ const getAddress = async (req, res) => {
 
 const getAddressByUserID = async (req, res) => {
     const { userId } = req.params;
-    console.log(userId)
     try {
         const address = await addressService.getAddressByUserID(userId);
         return res.status(200).json(address);
     } catch (error){
-        console.log("erro no controller")
         return res.status(500).json({ error: "Erro ao buscar dados" });
     }
 }

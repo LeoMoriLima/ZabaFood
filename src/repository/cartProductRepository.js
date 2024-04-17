@@ -14,6 +14,20 @@ async function getCartProductByID(id) {
     }
 }
 
+async function getCartProductsByCartId(cartId) {
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM cart_product WHERE cart_id = $1;";
+    try {
+        const result = await client.query(query, [cartId]);
+        return result.rows;
+    } catch (error) {
+        console.log("Erro ao selecionar dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
+}
+
 async function getAllCartProduct() {
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart_product';
@@ -110,6 +124,7 @@ async function cartProductTransaction(cart_id, product_id, quantity) {
 module.exports = {
     createNewCartProduct,
     getCartProductByID,
+    getCartProductsByCartId,
     getAllCartProduct,
     updateCartProduct,
     deleteCartProduct,

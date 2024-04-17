@@ -20,7 +20,6 @@ const getAddressByUserID = async (userId) => {
         }
         return address;
 	} catch (error) {
-		console.log("erro no service")
         throw error;
 	}
 }
