@@ -38,7 +38,6 @@ const createProduct = async (producer_id, name, value, url_img, stock, type_id, 
         const result = await productRepository.insertNewProduct(producer_id, name, value, url_img, stock, type_id, description);
         return result;
     } catch (error) {
-        console.log("Deu erro no service");
         throw error;
     }
 }
@@ -69,6 +68,15 @@ const deleteProduct = async (id) => {
     }
 }
 
+const getProductByInterval = async (min, max) => {
+    try {
+        const products = await productRepository.getProductByInterval(min, max);
+        return products;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllProduct,
     getProduct,
@@ -76,4 +84,5 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
+    getProductByInterval
 }

@@ -1,3 +1,5 @@
+import ButtonComponent from "./ButtonComponent.js";
+
 export default () => {
     const aboutPageDiv = document.createElement("div");
     aboutPageDiv.classList.add("about-page-div");
@@ -20,14 +22,9 @@ export default () => {
     aboutPageText.classList.add("about-page-text");
     aboutTextDiv.appendChild(aboutPageText);
 
-    const buttonAboutPage = document.createElement("button");
-    buttonAboutPage.innerText = "Voltar ao ínicio";
-    buttonAboutPage.classList.add("button-about-page");
-    buttonAboutPage.onclick = (e) => {
-        e.preventDefault();
+    aboutPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
         window.route({ preventDefault: () => {}, target: { href: "/" } });
-    }
-    aboutPageDiv.appendChild(buttonAboutPage);
+    }));
 
     return aboutPageDiv;
 }

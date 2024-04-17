@@ -1,13 +1,6 @@
-const cartProductRepository = require('../repository/cartProductRepository');
-
-const getAllCartProduct = async () => {
-    try {
-        const cartProducts = await cartProductRepository.getAllCartProduct();
-        return cartProducts;
-    } catch (error) {
-        throw error;
-    }
-}
+const cartProductRepository = require("../repository/cartProductRepository");
+const cartRepository = require("../repository/cartRepository");
+const productRepository = require("../repository/productRepository");
 
 const getCartProduct = async (id) => {
     try {
@@ -39,6 +32,14 @@ const getCartProductsByUserId = async (userId) => {
     }
 }
 
+const getAllCartProduct = async () => {
+    try {
+        const cartProducts = await cartProductRepository.getAllCartProduct();
+        return cartProducts;
+    } catch (error) {
+        throw error;
+    }
+}
 
 const createCartProduct = async (cart_id, product_id, quantity) => {
     try {
@@ -85,9 +86,9 @@ const testCartProductTransaction = async (cart_id, product_id, quantity) => {
 }
 
 module.exports = {
-    getAllCartProduct,
     getCartProduct,
     getCartProductsByUserId,
+    getAllCartProduct,
     createCartProduct,
     updateCartProduct,
     deleteCartProduct,

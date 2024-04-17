@@ -1,10 +1,10 @@
 import NavMain from "./NavMain.js";
 
-export default () => {
+export default async () => {
     const headerMain = document.createElement("header");
     headerMain.classList.add("header-main");
 
-    headerMain.appendChild(NavMain())
+    headerMain.appendChild(await NavMain())
 
     return headerMain;
 }

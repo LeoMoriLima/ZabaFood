@@ -1,7 +1,7 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
-import text from "./text.js";
-import textA from "./text-a.js";
+import text from "./Text.js";
+import textA from "./Text-a.js";
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -11,7 +11,7 @@ export default () => {
     entryCard.classList.add("entry-card");
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
-    entryCard.appendChild(inputEntry("Usuário", "text", "user-input", "user-icon"));
+    entryCard.appendChild(inputEntry("Usuário", "text", "user-input", "white-user-icon"));
     entryCard.appendChild(inputEntry("Senha", "password", "password-input", "password-icon"));
 
     entryCard.appendChild(buttonGray("Entrar", "button-entry", async () => {
@@ -19,7 +19,7 @@ export default () => {
         const passwordInput = document.getElementById("password-input").value;
 
         try {
-            const response = await fetch("http://108.61.49.221:3000/api/login/", {
+            const response = await fetch("/api/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

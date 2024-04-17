@@ -2,7 +2,7 @@ import btn from "./ButtonComponent.js"
 
 export default async (id) => {
 	try {
-		const response = await fetch(`http://localhost:3000/api/product/${id}`, {
+		const response = await fetch(`/api/product/${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"

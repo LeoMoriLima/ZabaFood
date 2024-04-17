@@ -18,7 +18,7 @@ export default () => {
 	statusText.innerText = "Status: Processando.";
 	cardTextDiv.appendChild(statusText);
 
-	const backToMainPageBtn = ButtonComponent("Voltar ao início", "back-to-main-page-btn", () => {
+	const backToMainPageBtn = ButtonComponent("Voltar ao início", "green-button", () => {
 		window.route({ preventDefault: () => {}, target: { href: "/" } });
 	})
 	cardTextDiv.appendChild(backToMainPageBtn);

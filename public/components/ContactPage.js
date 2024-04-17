@@ -1,3 +1,5 @@
+import ButtonComponent from "./ButtonComponent.js";
+
 export default () => {
     const contactPageDiv = document.createElement("div");
     contactPageDiv.classList.add("contact-page-div");
@@ -57,14 +59,9 @@ export default () => {
     instagramContactText.classList.add("contact-page-text");
     instagramContactPageDiv.appendChild(instagramContactText);
 
-    const buttonContactPage = document.createElement("button");
-    buttonContactPage.classList.add("button-contact-page");
-    buttonContactPage.innerText = "Voltar ao ínicio";
-    buttonContactPage.onclick = (e) => {
-        e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/" } })
-    }
-    contactPageDiv.appendChild(buttonContactPage);
+    contactPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
+        window.route({ preventDefault: () => {}, target: { href: "/" } });
+    }));
 
     return contactPageDiv;
 }
