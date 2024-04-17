@@ -1,19 +1,5 @@
 const { connectToDatabase } = require('../db/postgresql');
 
-async function createNewCart(user_id){
-    const client = await connectToDatabase();
-    const query = 'INSERT INTO cart (user_id, total) VALUES ($1, 0)';
-    try{
-        await client.query(query,[user_id]);
-        console.log('Carrinho criado com sucesso');
-    } catch(error){
-        console.log('Erro ao criar carrinho:', error);
-        throw error;
-    } finally{
-        client.end();
-    }
-}
-
 async function getCartById(id){
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart WHERE id = $1';
@@ -28,6 +14,20 @@ async function getCartById(id){
     }
 }
 
+async function getCartByUserID(userId) {
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1;";
+    try {
+        const result = await client.query(query, [userId]);
+        return result.rows[0];
+    } catch (error) {
+        console.log("Erro ao selecionar dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
+}
+
 async function getAllCarts(){
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart';
@@ -38,6 +38,20 @@ async function getAllCarts(){
         console.log('Erro ao encontrar os carrinhos', error);
         throw error;
     } finally {
+        client.end();
+    }
+}
+
+async function createNewCart(user_id){
+    const client = await connectToDatabase();
+    const query = 'INSERT INTO cart (user_id, total) VALUES ($1, 0)';
+    try{
+        await client.query(query,[user_id]);
+        console.log('Carrinho criado com sucesso');
+    } catch(error){
+        console.log('Erro ao criar carrinho:', error);
+        throw error;
+    } finally{
         client.end();
     }
 }
@@ -100,9 +114,10 @@ async function updateCartDelivered(id){
 
 
 module.exports = {
-    createNewCart,
-    getAllCarts,
     getCartById,
+    getCartByUserID,
+    getAllCarts,
+    createNewCart,
     updateCartStatus,
     updateCartApproved,
     updateCartSended,

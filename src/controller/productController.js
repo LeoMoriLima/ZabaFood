@@ -60,11 +60,22 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+const getProductByInterval = async (req, res) => {
+    const { min, max } = req.query;
+    try {
+        const products = await productServices.getProductByInterval(min, max);
+        return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getProduct,
     getAllproduct,
     getProductByName,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductByInterval
 }

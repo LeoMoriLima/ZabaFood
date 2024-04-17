@@ -114,7 +114,7 @@ export default async () => {
     aAccountIcon.appendChild(accountIcon);
 
     try {
-        const response = await fetch('http://108.61.49.221:3000/api/login', {
+        const response = await fetch('/api/login', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

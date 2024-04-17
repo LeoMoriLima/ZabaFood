@@ -9,6 +9,7 @@ import terms from "../pages/terms.js";
 import confirmation from "../pages/confirmation.js";
 import policy from "../pages/policy.js";
 import checkout from "../pages/checkout.js";
+import cart from "../pages/cart.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -78,6 +79,11 @@ const urlRoutes = {
 		page: policy,
 		title: "Política de Privacidade | " + urlPageTitle,
 		description: "This is the terms and policy and privacy",
+	},
+	"/cart": {
+		page: cart,
+		title: "Carrinho | " + urlPageTitle,
+		description: "This is the cart page",
 	},
 };
 

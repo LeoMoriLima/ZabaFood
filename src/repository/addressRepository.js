@@ -14,6 +14,20 @@ async function getAddress(id) {
     }
 }
 
+async function getAddressByUserID(userId) {
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY updated_at DESC LIMIT 1;";
+    try {
+        const result = await client.query(query, [userId]);
+        return result.rows[0];
+    } catch (error) {
+        console.log("Erro ao selecionar dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
+}
+
 async function getAllAddresses() {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address";
@@ -44,7 +58,7 @@ async function createNewAddress(user_id, postal_code, state, city, street, numbe
 
 async function updateAddress(id, postal_code, state, city, street, number, complement) {
     const client = await connectToDatabase();
-    const query = "UPDATE address SET postal_code = $1, state = $2, city = $3, street = $4, number = $5, complement = $6  WHERE id = $7";
+    const query = "UPDATE address SET postal_code = $1, state = $2, city = $3, street = $4, number = $5, complement = $6, updated_at = NOW()  WHERE id = $7";
     try {
         await client.query(query, [postal_code, state, city, street, number, complement, id]);
         console.log("Dados atualizados com sucesso");
@@ -72,6 +86,7 @@ async function deleteAddress(id) {
 
 module.exports = {
 	getAddress,
+    getAddressByUserID,
     getAllAddresses,
     createNewAddress,
     updateAddress,

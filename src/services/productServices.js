@@ -68,6 +68,15 @@ const deleteProduct = async (id) => {
     }
 }
 
+const getProductByInterval = async (min, max) => {
+    try {
+        const products = await productRepository.getProductByInterval(min, max);
+        return products;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllProduct,
     getProduct,
@@ -75,4 +84,5 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
+    getProductByInterval
 }
