@@ -1,6 +1,6 @@
 const { connectToDatabase } = require("../db/postgresql");
 
-async function getCreditTransactionById(id) {
+const getCreditTransactionById = async (id) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM credit_transaction WHERE id = $1";
     try {
@@ -14,7 +14,7 @@ async function getCreditTransactionById(id) {
     }
 }
 
-async function getAllCreditTransactions() {
+const getAllCreditTransactions = async () => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM credit_transaction";
     try {
@@ -25,13 +25,13 @@ async function getAllCreditTransactions() {
         throw error;
     } finally {
         client.end();
-	}
+    }
 }
 
-async function createCreditTransaction(user_id, transaction_type, transaction_value) {
-	const client = await connectToDatabase();
+const createCreditTransaction = async (user_id, transaction_type, transaction_value) => {
+    const client = await connectToDatabase();
 
-	try {
+    try {
         await client.query('BEGIN');
 
         // Cria a transação de crédito
@@ -42,14 +42,14 @@ async function createCreditTransaction(user_id, transaction_type, transaction_va
 
         await client.query('COMMIT');
 
-		console.log("Dados inseridos com sucesso");
-	} catch (error) {
+        console.log("Dados inseridos com sucesso");
+    } catch (error) {
         await client.query('ROLLBACK');
-		console.log("Erro ao inserir dados:", error);
-		throw error;
-	} finally {
-		client.end();
-	}
+        console.log("Erro ao inserir dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
 }
 
 module.exports = {

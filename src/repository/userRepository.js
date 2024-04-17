@@ -1,6 +1,6 @@
 const { connectToDatabase } = require('../db/postgresql.js');
 
-async function insertNewUser(username, user_type, name, email, password, cpf_cnpj, phone) {
+const insertNewUser = async (username, user_type, name, email, password, cpf_cnpj, phone) => {
     const query = 'INSERT INTO users (username, user_type, name, email, password, cpf_cnpj, phone) VALUES ($1, $2, $3, $4, $5, $6, $7)';
     const client = await connectToDatabase();
     try {
@@ -15,7 +15,7 @@ async function insertNewUser(username, user_type, name, email, password, cpf_cnp
     }
 }
 
-async function getAllUsers() {
+const getAllUsers = async () => {
     const query = 'SELECT * FROM users';
     const client = await connectToDatabase();
     try {
@@ -29,7 +29,7 @@ async function getAllUsers() {
     }
 }
 
-async function getUser(id) {
+const getUser = async (id) => {
     const query = 'SELECT * FROM users WHERE id = $1';
     const client = await connectToDatabase();
     try {
@@ -37,13 +37,13 @@ async function getUser(id) {
         return result.rows[0];
     } catch (error) {
         console.log('Erro ao buscar usuário.', error)
-        throw {error: "Erro ao buscar usuário." }
+        throw { error: "Erro ao buscar usuário." }
     } finally {
         client.end()
     }
 }
 
-async function updateUser(id, username, name, email, password, cpf_cnpj, phone) {
+const updateUser = async (id, username, name, email, password, cpf_cnpj, phone) => {
     const query = 'UPDATE users SET username = $1, name = $2, email = $3, password = $4, cpf_cnpj = $5, phone = $6 WHERE id = $7'
     const client = await connectToDatabase();
     try {
@@ -57,7 +57,7 @@ async function updateUser(id, username, name, email, password, cpf_cnpj, phone) 
     }
 }
 
-async function deleteUser(id) {
+const deleteUser = async (id) => {
     const query = 'DELETE FROM users WHERE id = $1';
     const client = await connectToDatabase();
     try {

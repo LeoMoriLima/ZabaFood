@@ -1,6 +1,6 @@
 const { connectToDatabase } = require("../db/postgresql.js");
 
-async function getAddress(id) {
+const getAddress = async (id) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address WHERE id = $1";
     try {
@@ -14,7 +14,7 @@ async function getAddress(id) {
     }
 }
 
-async function getAddressByUserID(userId) {
+const getAddressByUserID = async (userId) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY updated_at DESC LIMIT 1;";
     try {
@@ -28,13 +28,13 @@ async function getAddressByUserID(userId) {
     }
 }
 
-async function getAllAddresses() {
+const getAllAddresses = async () => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address";
     try {
         const result = await client.query(query);
         return result.rows;
-    } catch (error){
+    } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
@@ -42,7 +42,7 @@ async function getAllAddresses() {
     }
 }
 
-async function createNewAddress(user_id, postal_code, state, city, street, number, complement) {
+const createNewAddress = async (user_id, postal_code, state, city, street, number, complement) => {
     const client = await connectToDatabase();
     const query = "INSERT INTO address (user_id, postal_code, state, city, street, number, complement) VALUES ($1, $2, $3, $4, $5, $6, $7)";
     try {
@@ -56,7 +56,7 @@ async function createNewAddress(user_id, postal_code, state, city, street, numbe
     }
 }
 
-async function updateAddress(id, postal_code, state, city, street, number, complement) {
+const updateAddress = async (id, postal_code, state, city, street, number, complement) => {
     const client = await connectToDatabase();
     const query = "UPDATE address SET postal_code = $1, state = $2, city = $3, street = $4, number = $5, complement = $6, updated_at = NOW()  WHERE id = $7";
     try {
@@ -70,22 +70,22 @@ async function updateAddress(id, postal_code, state, city, street, number, compl
     }
 }
 
-async function deleteAddress(id) {
-	const client = await connectToDatabase();
-	const query = "DELETE FROM address WHERE id = $1";
-	try {
-		await client.query(query, [id]);
-		console.log("Dados deletados com sucesso");
-	} catch (error) {
-		console.log("Erro ao deletar dados:", error);
-		throw error;
-	} finally {
-		client.end();
-	}
+const deleteAddress = async (id) => {
+    const client = await connectToDatabase();
+    const query = "DELETE FROM address WHERE id = $1";
+    try {
+        await client.query(query, [id]);
+        console.log("Dados deletados com sucesso");
+    } catch (error) {
+        console.log("Erro ao deletar dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
 }
 
 module.exports = {
-	getAddress,
+    getAddress,
     getAddressByUserID,
     getAllAddresses,
     createNewAddress,

@@ -1,6 +1,6 @@
 const { connectToDatabase } = require("../db/postgresql");
 
-async function getAllProductType() {
+const getAllProductType = async () => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM product_type";
     try {
@@ -11,10 +11,10 @@ async function getAllProductType() {
         throw error;
     } finally {
         client.end();
-	}
+    }
 }
 
-async function getProductType(id) {
+const getProductType = async (id) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM product_type WHERE id = $1";
     try {
@@ -28,22 +28,22 @@ async function getProductType(id) {
     }
 }
 
-async function createProductType(type) {
-	const client = await connectToDatabase();
-	const query = "INSERT INTO product_type (type) VALUES ($1)";
+const createProductType = async (type) => {
+    const client = await connectToDatabase();
+    const query = "INSERT INTO product_type (type) VALUES ($1)";
 
-	try {
-		await client.query(query, [type]);
-		console.log("Dados inseridos com sucesso");
-	} catch (error) {
-		console.log("Erro ao inserir dados:", error);
-		throw error;
-	} finally {
-		client.end();
-	}
+    try {
+        await client.query(query, [type]);
+        console.log("Dados inseridos com sucesso");
+    } catch (error) {
+        console.log("Erro ao inserir dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
 }
 
-async function updateProductType(id, type) {
+const updateProductType = async (id, type) => {
     const client = await connectToDatabase();
     const query = "UPDATE product_type SET type = $1 WHERE id = $2";
     try {
@@ -57,13 +57,13 @@ async function updateProductType(id, type) {
     }
 }
 
-async function deleteProductType (id){
+const deleteProductType = async (id) => {
     const client = await connectToDatabase();
     const query = "DELETE FROM product_type WHERE id = $1";
     try {
         await client.query(query, [id]);
         console.log("Dados deletados com sucesso");
-    } catch(error) {
+    } catch (error) {
         console.log("Erro ao deletar dados:", error);
         throw error;
     } finally {
