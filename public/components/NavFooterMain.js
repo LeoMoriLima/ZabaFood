@@ -1,11 +1,6 @@
 export default () =>{
     const footerMain = document.createElement("footer");
     footerMain.classList.add("footer-main");
-
-    const footerImageLine = document.createElement("img");
-    footerImageLine.src = "../assets/images/lines-footer-page.svg";
-    footerImageLine.classList.add("footer-image-line");
-    footerMain.appendChild(footerImageLine);
     
     const divFooterMain = document.createElement("div");
     divFooterMain.classList.add("div-footer-main");

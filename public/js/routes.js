@@ -10,6 +10,7 @@ import confirmation from "../pages/confirmation.js";
 import policy from "../pages/policy.js";
 import checkout from "../pages/checkout.js";
 import cart from "../pages/cart.js";
+import myaccount from "../pages/myaccount.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -84,6 +85,11 @@ const urlRoutes = {
 		page: cart,
 		title: "Carrinho | " + urlPageTitle,
 		description: "This is the cart page",
+	},
+	"/myaccount": {
+		page: myaccount,
+		title: "Minha conta | " + urlPageTitle,
+		description: "This is the user/admin account page",
 	},
 };
 
