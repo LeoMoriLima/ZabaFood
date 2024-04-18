@@ -53,7 +53,7 @@ const createCartProduct = async (cart_id, product_id, quantity) => {
 const updateCartProduct = async (id, quantity) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
-        if (!cartProduct) {
+        if (!cartProduct.length) {
             throw new Error("Item não encontrado");
         }
         await cartProductRepository.updateCartProduct(id, quantity);
@@ -66,7 +66,8 @@ const updateCartProduct = async (id, quantity) => {
 const deleteCartProduct = async (id) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
-        if (!cartProduct) {
+
+        if (!cartProduct.length) {
             throw new Error("Item não encontrado");
         }
         await cartProductRepository.deleteCartProduct(id);
