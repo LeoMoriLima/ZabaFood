@@ -75,14 +75,28 @@ const updateCartProduct = async (id, quantity) => {
 const createNewCartProduct = async (cart_id, product_id, quantity) => {
     const client = await connectToDatabase();
     try {
+        await client.query('BEGIN');
+
+        // Busca o valor do produto de acordo com o product_id
         const product = await client.query('SELECT * FROM product WHERE id = $1', [product_id]);
         const productValue = product.rows[0].value;
 
+        // Cria o registro na tabela cart_product
         await client.query(
             'INSERT INTO cart_product (cart_id, product_id, quantity, price_unity, total_item) VALUES ($1, $2, $3, $4, $5)',
             [cart_id, product_id, quantity, productValue, quantity * productValue]
         );
+
+        // Adiciona o valor total do produto ao carrinho do usuário
+        await client.query(
+            'UPDATE cart SET total = total + $1 WHERE id = $2',
+            [quantity * productValue, cart_id]);
+
+        await client.query('COMMIT');
+
+        console.log("Dados inseridos com sucesso");
     } catch (error) {
+        await client.query('ROLLBACK');
         console.log('Erro ao inserir dados:', error);
         throw error;
     } finally {
