@@ -1,11 +1,20 @@
 const loginServices = require('../services/loginServices');
+const { isUUID, isInt, isEmpty } = require('validator');
 
 const authenticate = async (req, res) => {
     const { username, password } = req.body;
     try {
+        if(isEmpty(username)){
+            return res.status(400).json({ error: "O usuário é obrigatório!" })
+        }
+
+        if(isEmpty(password)){
+            return res.status(400).json({ error: "A senha é obrigatória!" })
+        }
+
         const user = await loginServices.getUser(username);
         if (!user) {
-            return res.status(400).json({ error: 'Usuário não encontrado' });
+            return res.status(400).json({ error: 'Usuário e/ou senha inválidos!' });
         }
         const { auth, token } = await loginServices.authenticateUser(username, password);
 

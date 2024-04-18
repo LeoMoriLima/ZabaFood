@@ -1,10 +1,10 @@
 const { connectToDatabase } = require('../db/postgresql');
 
-const insertNewProduct = async (producer_id, name, value, url_img, stock, type_id, description) => {
-    const query = 'INSERT INTO product (producer_id, name, value, url_img, stock, type_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+const insertNewProduct = async (name, value, url_img, stock, type_id, description) => {
+    const query = 'INSERT INTO product (name, value, url_img, stock, type_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7)';
     const client = await connectToDatabase();
     try {
-        await client.query(query, [producer_id, name, value, url_img, stock, type_id, description]);
+        await client.query(query, [name, value, url_img, stock, type_id, description]);
         console.log('Dados inseridos com sucesso');
     } catch (error) {
         console.log('Erro ao inserir dados:', error);

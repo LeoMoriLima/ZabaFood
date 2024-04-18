@@ -1,8 +1,18 @@
 const cartServices = require('../services/cartServices');
+const { isUUID } = require('validator');
 
 const getCart = async (req, res) => {
     const { id } = req.params;
     try {
+        const admin = req.user.user_type.includes("admin");
+		if(!admin) {
+			return res.status(403).json({error: "Usuário sem permissão"});
+		};
+
+        if(!isUUID(id)){
+            return res.status(400).json({ error: "ID inválido!" });
+        };
+
         const cart = await cartServices.getCart(id);
         return res.status(200).json(cart);
     } catch {
@@ -13,6 +23,15 @@ const getCart = async (req, res) => {
 const getCartByUserID = async (req, res) => {
     const { userId } = req.params;
     try {
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        }
+
+        if(!isUUID(userId)){
+            return res.status(400).json({ error: "ID inválido!" });
+        };
+
         const cart = await cartServices.getCartByUserID(userId);
         return res.status(200).json(cart);
     } catch (error){
@@ -22,6 +41,10 @@ const getCartByUserID = async (req, res) => {
 
 const getAllCarts = async (req, res) => {
     try {
+        const admin = req.user.user_type.includes("admin");
+		if(!admin) {
+			return res.status(403).json({error: "Usuário sem permissão"});
+		}
         const carts = await cartServices.getAllCarts();
         return res.status(200).json(carts);
     } catch {
@@ -30,10 +53,20 @@ const getAllCarts = async (req, res) => {
 }
 
 const createCart = async (req, res) => {
+    const { user_id } = req.body;
+
     try {
-        const { user_id } = req.body;
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        }
+
+        if(!isUUID(user_id)){
+            return res.status(400).json({ error: "UserID inválido!" })
+        }
+
         const cart = await cartServices.createCart(user_id);
-        return res.status(200).json({ success: true, message: 'Carrinho criado com sucesso!'});
+        return res.status(201).json({ success: true, message: 'Carrinho criado com sucesso!'});
     } catch {
         return res.status(500).json({ error: 'Erro ao inserir dados' });
     }
@@ -43,6 +76,15 @@ const updateCartStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     try {
+        if(!isUUID(id)){
+            return res.status(400).json({ error: "ID inválido!" })
+        }
+
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        }
+
         if (status === "approved") {
             cartServices.updateCartApproved(id);
         }else if (status === "sended") {

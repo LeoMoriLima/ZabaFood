@@ -1,7 +1,14 @@
+const { isUUID, isLength } = require('validator');
 const userServices = require('../services/userServices');
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const getAllUsers = async (req, res) =>{
     try{
+        const admin = req.user.user_type.includes("admin");
+		if(!admin) {
+			return res.status(403).json({error: "Usuário sem permissão"});
+		};
+
         const users = await userServices.getAllUsers();
         return res.status(200).json(users);
     } catch {
@@ -12,6 +19,11 @@ const getAllUsers = async (req, res) =>{
 const getUser = async (req, res) =>{
     const { id } = req.params;
     try{
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
         const user = await userServices.getUser(id);
         return res.status(200).json(user);
     } catch{
@@ -25,26 +37,54 @@ const createUser = async (req, res) => {
 
         if (!username) {
             throw new Error ( "O username é obrigatório" );
+        };
+
+        if (!isLength(username, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "O nome do usuário deve conter entre 4 a 30 caracteres!" })
         }
+
+        if (!user_type){
+            throw new Error ("O tipo de usuário é obrigatório");
+        };
 
         if (!name) {
             throw new Error ( "O nome é obrigatório" );
+        };
+
+        if (!isLength(name, { min:4 , max: 50 })){
+            return res.status(400).json({ error: "O nome deve conter entre 4 a 50 caracteres!" })
         }
 
         if (!email) {
             throw new Error ( "O e-mail é obrigatório" );
+        };
+
+        if (!emailRegex.test(email)){
+            return res.status(400).json({ error: "Email inválido!" })
         }
 
         if (!password) {
             throw new Error ( "A senha é obrigatória" );
+        };
+
+        if (!isLength(password, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "A senha deve conter entre 4 a 30 caracteres!" })
         }
 
         if (!cpf_cnpj) {
             throw new Error ( "O cpf/cnpj é obrigatório" );
+        };
+
+        if (!isLength(cpf_cnpj, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 18 caracteres!" })
         }
 
         if (!phone) {
             throw new Error ( "O telefone é obrigatório" );
+        };
+
+        if (!isLength(phone, { min:10 , max: 11 })){
+            return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
         }
 
         const user = await userServices.createUser(username, user_type, name, email, password, cpf_cnpj, phone);
@@ -59,28 +99,57 @@ const updateUser = async (req, res) => {
     const { username, name, email, password, cpf_cnpj, phone } = req.body;
 
     try {
+        if(!isUUID(id)){
+            return res.status(400).json({ error: "ID inválido!" })
+        }
+
         if (!username) {
             throw new Error ( "O username é obrigatório" );
+        }
+
+        if (!isLength(username, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "O nome do usuário deve ser conter 4 a 30 caracteres!" })
         }
 
         if (!name) {
             throw new Error ( "O nome é obrigatório" );
         }
 
+        if (!isLength(name, { min:4 , max: 50 })){
+            return res.status(400).json({ error: "O nome deve conter entre 4 a 50 caracteres!" })
+        }
+
+
         if (!email) {
             throw new Error ( "O e-mail é obrigatório" );
+        }
+
+        if (!emailRegex.test(email)){
+            return res.status(400).json({ error: "Email inválido!" })
         }
 
         if (!password) {
             throw new Error ( "A senha é obrigatória" );
         }
 
+        if (!isLength(password, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "A senha deve conter entre 4 a 30 caracteres!" })
+        }
+
         if (!cpf_cnpj) {
             throw new Error ( "O cpf/cnpj é obrigatório" );
         }
 
+        if (!isLength(cpf_cnpj, { min:4 , max: 30 })){
+            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 18 caracteres!" })
+        }
+
         if (!phone) {
             throw new Error ( "O telefone é obrigatório" );
+        }
+
+        if (!isLength(phone, { min:10 , max: 11 })){
+            return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
         }
 
         const result = await userServices.updateUser( id, username, name, email, password, cpf_cnpj, phone);
@@ -94,6 +163,15 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) =>{
     const { id } = req.params;
     try{
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
+        if (!isUUID(id)){
+            return res.status(400).json({ error: "ID inválido" })
+        }
+
         await userServices.deleteUser(id);
         return res.status(200).json({ success: true, message: 'Usuário deletado com sucesso!'});
     } catch(error){

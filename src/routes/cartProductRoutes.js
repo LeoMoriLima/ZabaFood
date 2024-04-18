@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const cartProductController = require("../controller/cartProductController.js");
+const permissionVerify = require("../middleware/permissionVerify.js");
+
+router.use(permissionVerify);
 
 router.get("/:id", cartProductController.getCartProduct);
 router.get("/cart/:userId", cartProductController.getCartProductsByUserId);

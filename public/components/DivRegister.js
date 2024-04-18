@@ -1,6 +1,7 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -25,6 +26,36 @@ export default () => {
         const emailInput = document.getElementById("email-input").value;
         const cpfInput = document.getElementById("cpf-input").value;
         const phoneInput = document.getElementById("phone-input").value;
+
+        if(userInput.length < 4 || userInput.length > 50){
+            alert("O nome de usuário deve conter entre 4 e 50 caracteres!");
+            return;
+        }
+
+        if(passwordInput.length < 4 || passwordInput.length > 30){
+            alert("A senha deve conter entre 4 e 30 caracteres!");
+            return;
+        }
+
+        if(nameInput.length < 4 || nameInput.length > 50){
+            alert("Nome inválido!");
+            return;
+        }
+
+        if(!emailRegex.test(emailInput)){
+            alert("Email inválido!");
+            return;
+        }
+
+        if(cpfInput.length < 11 || cpfInput.length > 18){
+            alert("CPF inválido!");
+            return;
+        }
+
+        if(phoneInput.length < 10 || phoneInput.length > 11){
+            alert("Número de telefone inválido!")
+            return;
+        }
 
         try {
             const response = await fetch("/api/users/", {

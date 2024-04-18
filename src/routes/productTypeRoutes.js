@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const productTypeController = require("../controller/productTypeController.js");
+const permissionVerify = require("../middleware/permissionVerify.js");
 
 router.get("/:id", productTypeController.getProductType);
 router.get("/", productTypeController.getAllProductTypes);
-router.post("/", productTypeController.createProductType);
-router.put("/:id", productTypeController.updateProductType);
-router.delete("/:id", productTypeController.deleteProductType);
+router.post("/",permissionVerify, productTypeController.createProductType);
+router.put("/:id",permissionVerify, productTypeController.updateProductType);
+router.delete("/:id",permissionVerify, productTypeController.deleteProductType);
 
 module.exports = router;
