@@ -39,7 +39,7 @@ const createUser = async (req, res) => {
             throw new Error ( "O username é obrigatório" );
         };
 
-        if (isLength(username, { min:4 , max: 30 })){
+        if (!isLength(username, { min:4 , max: 30 })){
             return res.status(400).json({ error: "O nome do usuário deve conter entre 4 a 30 caracteres!" })
         }
 
@@ -51,7 +51,7 @@ const createUser = async (req, res) => {
             throw new Error ( "O nome é obrigatório" );
         };
 
-        if (isLength(name, { min:4 , max: 50 })){
+        if (!isLength(name, { min:4 , max: 50 })){
             return res.status(400).json({ error: "O nome deve conter entre 4 a 50 caracteres!" })
         }
 
@@ -107,7 +107,7 @@ const updateUser = async (req, res) => {
             throw new Error ( "O username é obrigatório" );
         }
 
-        if (isLength(username, { min:4 , max: 30 })){
+        if (!isLength(username, { min:4 , max: 30 })){
             return res.status(400).json({ error: "O nome do usuário deve ser conter 4 a 30 caracteres!" })
         }
 
@@ -115,7 +115,7 @@ const updateUser = async (req, res) => {
             throw new Error ( "O nome é obrigatório" );
         }
 
-        if (isLength(name, { min:4 , max: 50 })){
+        if (!isLength(name, { min:4 , max: 50 })){
             return res.status(400).json({ error: "O nome deve conter entre 4 a 50 caracteres!" })
         }
 
