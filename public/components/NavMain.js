@@ -11,13 +11,6 @@ export default async () => {
     divLightGreen.classList.add("div-light-green");
     divNavMain.appendChild(divLightGreen);
 
-    const discountIcon = document.createElement("img");
-    discountIcon.src = "../assets/images/discount-icon.svg";
-    discountIcon.classList.add("discount-icon");
-    divLightGreen.appendChild(discountIcon);
-
-    divLightGreen.appendChild(text("Primeira compra? Use o cupom BOASVINDAS e ganhe 8% Off!", "discount-text", "text-class"));
-
     const navDivCenter = document.createElement("div");
     navDivCenter.classList.add("nav-div-center");
     divNavMain.appendChild(navDivCenter);
@@ -208,11 +201,10 @@ export default async () => {
 
     const productsMenuDiv = document.createElement("div");
     productsMenuDiv.classList.add("products-menu-div");
-    productsMenuDiv.appendChild(textA("PRODUTOS", "products-menu", "none", "/myaccount"));
+    productsMenuDiv.appendChild(textA("PRODUTOS", "products-menu", "none", "/products"));
     navBarDiv.appendChild(productsMenuDiv);
     productsMenuDiv.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/products" } });
     }
     navBarDiv.appendChild(productsMenuDiv);
 

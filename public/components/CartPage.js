@@ -42,8 +42,6 @@ export default async () => {
         cartDivTitle.innerText = "Carrinhos de compras";
         cartDiv.appendChild(cartDivTitle);
 
-        console.log(cartProductsInfo)
-
         if (cartProductsInfo.length) {
             cartProductsInfo.map(itemProduct => {
                 const {product , quantity} = itemProduct
