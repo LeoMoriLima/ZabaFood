@@ -176,7 +176,6 @@ export default async () =>{
                 body: formData,
             });
             const image = await response.json();
-            console.log(image);
             try{
                 const response = await fetch('/api/product', {
                     method: "POST",
@@ -194,7 +193,6 @@ export default async () =>{
                 });
 
                 const data = await response.json();
-                console.log(data);
             } catch(error){
                 console.error("Erro ao fazer a requisição". error.message);
                 throw new Error ("Erro ao fazer a requisição!", error.message);

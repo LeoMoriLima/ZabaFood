@@ -595,7 +595,7 @@ input:focus {
 .div-light-green {
     display: flex;
     justify-content: center;
-    height: 2.5rem;
+    height: 1.5rem;
     align-items: center;
     background-color: var(--color-primary);
 }

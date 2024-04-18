@@ -30,16 +30,6 @@ export default () =>{
     aPolicy.classList.add("left-footer-a");
     leftFooterDiv.appendChild(aPolicy);
 
-    const sellYourProducts = document.createElement("a");
-    sellYourProducts.href = "/producer";
-    sellYourProducts.onclick = (e) => {
-        e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/producer" } });
-    }
-    sellYourProducts.innerText = "Venda seus produtos";
-    sellYourProducts.classList.add("left-footer-a");
-    leftFooterDiv.appendChild(sellYourProducts);
-
     const leftCenterFooterDiv = document.createElement("div");
     leftCenterFooterDiv.classList.add("left-center-footer-div");
     divFooterMain.appendChild(leftCenterFooterDiv);
@@ -70,6 +60,7 @@ export default () =>{
     const aInstagram = document.createElement("a");
     aInstagram.classList.add("a-instagram");
     aInstagram.href = "https://www.instagram.com/zabafoodbr/";
+    aInstagram.target = "_blank";
     rightCenterSocialDiv.appendChild(aInstagram);
 
     const instagramIcon = document.createElement("img");
@@ -80,6 +71,7 @@ export default () =>{
     const aFacebook = document.createElement("a");
     aFacebook.classList.add("a-facebook");
     aFacebook.href = "https://www.facebook.com/profile.php?id=61558397242215&locale=pt_BR";
+    aFacebook.target = "_blank";
     rightCenterSocialDiv.appendChild(aFacebook);
 
     const facebookIcon = document.createElement("img");
@@ -90,6 +82,7 @@ export default () =>{
     const aTikTok = document.createElement("a");
     aTikTok.classList.add("a-tiktok");
     aTikTok.href = "https://www.tiktok.com/@zabafoodbr";
+    aTikTok.target = "_blank";
     rightCenterSocialDiv.appendChild(aTikTok);
 
     const tikTokIcon = document.createElement("img");
