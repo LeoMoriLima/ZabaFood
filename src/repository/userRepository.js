@@ -1,19 +1,31 @@
 const { connectToDatabase } = require('../db/postgresql.js');
 
 const insertNewUser = async (username, user_type, name, email, password, cpf_cnpj, phone) => {
-    const query = 'INSERT INTO users (username, user_type, name, email, password, cpf_cnpj, phone) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+    const userQuery = 'INSERT INTO users (username, user_type, name, email, password, cpf_cnpj, phone) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+    const cartQuery = 'INSERT INTO cart (user_id, total) VALUES ($1, 0)';
     const client = await connectToDatabase();
     try {
-        await client.query(query, [username, user_type, name, email, password, cpf_cnpj, phone]);
+        await client.query('BEGIN');
+
+        const userResult = await client.query(userQuery, [username, user_type, name, email, password, cpf_cnpj, phone]);
+        const userId = userResult.rows[0].id;
+
+        await client.query(cartQuery, [userId]);
+
+        await client.query('COMMIT');
+
         console.log('Dados inseridos com sucesso');
-        return { username, user_type, name, email, password, cpf_cnpj, phone };
+
+        return userResult.rows[0];
     } catch (error) {
+        await client.query('ROLLBACK');
         console.log('Erro ao inserir dados:', error);
         throw error;
     } finally {
-        client.end()
+        client.end();
     }
 }
+
 
 const getAllUsers = async () => {
     const query = 'SELECT * FROM users';
