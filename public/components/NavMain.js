@@ -166,10 +166,6 @@ export default async () => {
     cartIcon.src = "../assets/images/cart-icon.svg";
     aCartIcon.appendChild(cartIcon);
 
-    const cartQuantityDiv = document.createElement("div");
-    cartQuantityDiv.classList.add("cart-quantity-div");
-    cartDiv.appendChild(cartQuantityDiv);
-
     try {
         const userResponse = await fetch('/api/login', {
             method: "GET",
@@ -192,11 +188,10 @@ export default async () => {
 
         const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
 
-        const greenQuantityIcon = document.createElement("img");
-        greenQuantityIcon.classList.add("green-quantity-icon");
-        greenQuantityIcon.src = "../assets/images/green-ball.svg";
+        const cartQuantityDiv = document.createElement("div");
+        cartQuantityDiv.classList.add("cart-quantity-div");
         if (totalQuantity !== 0) {
-            cartQuantityDiv.appendChild(greenQuantityIcon);
+            cartDiv.appendChild(cartQuantityDiv);
         }
 
         const cartQuantityText = document.createElement("p");
