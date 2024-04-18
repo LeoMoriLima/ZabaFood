@@ -25,13 +25,13 @@
     box-sizing: border-box;
 }
 
-input[type=number]::-webkit-inner-spin-button { 
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
-input[type=number] { 
-   -moz-appearance: textfield;
-   appearance: textfield;
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 body {
@@ -1033,19 +1033,19 @@ input:focus {
     font-family: var(--font-title);
 }
 
-.product-info-general{
+.product-info-general {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
 }
 
-.product-info-general h2:first-child{
+.product-info-general h2:first-child {
     font-size: 3rem;
     color: var(--color-secundary);
 }
 
-.product-type-info{
+.product-type-info {
     background-color: var(--color-emphasis);
     color: var(--color-light-white);
     font-size: 1.5rem;
@@ -1127,7 +1127,7 @@ input:focus {
 
 /* Product main description */
 
-.product-main-description{
+.product-main-description {
     flex-direction: column;
     font-family: var(--font-title);
 }
@@ -1138,8 +1138,10 @@ input:focus {
 }
 
 .product-main-description p {
-    white-space: pre-wrap; /* preserva espaços em branco e quebras de linha */
-    word-wrap: break-word;/* quebra de palavra em palavras longas */
+    white-space: pre-wrap;
+    /* preserva espaços em branco e quebras de linha */
+    word-wrap: break-word;
+    /* quebra de palavra em palavras longas */
     font-size: 1.2rem;
 }
 
@@ -1213,12 +1215,12 @@ input:focus {
 
 /* Admin My Account Page */
 
-.admin-page-div{
+.admin-page-div {
     display: flex;
     flex-direction: row;
 }
 
-.left-menu-admin-page{
+.left-menu-admin-page {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -1228,12 +1230,12 @@ input:focus {
     height: 34.7rem;
 }
 
-.nav-menu-admin-page{
+.nav-menu-admin-page {
     display: flex;
     flex-direction: column;
 }
 
-.exit-button{
+.exit-button {
     background-color: var(--color-primary);
     font-family: var(--font-title);
     color: var(--color-secundary);
@@ -1246,13 +1248,13 @@ input:focus {
     cursor: pointer;
 }
 
-.exit-button:hover{
+.exit-button:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 0.07rem solid var(--color-primary);
 }
 
-.add-product-div{
+.add-product-div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -1262,25 +1264,25 @@ input:focus {
     background-color: var(--color-white);
 }
 
-.left-admin-product-div{
+.left-admin-product-div {
     display: flex;
     flex-direction: column;
     width: 25rem;
     margin-left: 1rem;
 }
 
-.title-admin-product-div{
+.title-admin-product-div {
     text-align: left;
     width: 25rem;
     padding-top: 2rem;
 }
 
-.title-add-product{
+.title-add-product {
     font-family: var(--font-text);
     color: var(--color-secundary);
 }
 
-.image-preview{
+.image-preview {
     border: 1px solid var(--color-secundary);
     border-radius: 0.8rem;
     height: 7.5rem;
@@ -1288,7 +1290,7 @@ input:focus {
     overflow: hidden;
 }
 
-.div-image-file{
+.div-image-file {
     padding-top: 2rem;
     width: 24rem;
     display: flex;
@@ -1296,20 +1298,20 @@ input:focus {
     gap: 1rem;
 }
 
-.div-image-text{
+.div-image-text {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
 }
 
-.p-file-admin{
+.p-file-admin {
     color: var(--color-secundary);
     font-family: var(--font-text);
     font-size: 1rem;
 }
 
-.label-file{
+.label-file {
     text-align: center;
     width: 15.1rem;
     font-family: var(--font-title);
@@ -1322,12 +1324,12 @@ input:focus {
     cursor: pointer;
 }
 
-.label-file:hover{
+.label-file:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
 }
 
-.form-add-product-div{
+.form-add-product-div {
     padding-top: 1rem;
     display: flex;
     flex-direction: column;
@@ -1337,23 +1339,23 @@ input:focus {
     height: 16rem;
 }
 
-#input-admin-file{
+#input-admin-file {
     display: none;
 }
 
-#input-admin-name{
+#input-admin-name {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-admin-name::placeholder{
+#input-admin-name::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.select-product-type{
+.select-product-type {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     width: 21.9375rem;
@@ -1365,31 +1367,31 @@ input:focus {
     font-family: var(--font-text);
 }
 
-#input-admin-stock{
+#input-admin-stock {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-admin-stock::placeholder{
+#input-admin-stock::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-#input-admin-value{
+#input-admin-value {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-admin-value::placeholder{
+#input-admin-value::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.description-text-area{
+.description-text-area {
     width: 30.5rem;
     height: 11rem;
     border-radius: 0.87rem;
@@ -1399,13 +1401,13 @@ input:focus {
     color: var(--color-secundary);
 }
 
-.description-text-area::placeholder{
+.description-text-area::placeholder {
     font-size: 1rem;
     font-family: var(--font-text);
     color: var(--color-secundary);
 }
 
-.button-admin-send{
+.button-admin-send {
     background-color: var(--color-primary);
     border: none;
     border-radius: 0.5rem;
@@ -1419,12 +1421,12 @@ input:focus {
     cursor: pointer;
 }
 
-.button-admin-send:hover{
+.button-admin-send:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
 }
 
-.button-admin-page-div{
+.button-admin-page-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1445,7 +1447,7 @@ input:focus {
 }
 
 .about-icon-div {
-    align-self:flex-end;
+    align-self: flex-end;
 }
 
 .about-text-div {
@@ -1473,7 +1475,7 @@ input:focus {
 }
 
 .common-icon-div {
-    align-self:flex-end;
+    align-self: flex-end;
 }
 
 .common-page-text {
@@ -1523,12 +1525,15 @@ input:focus {
     margin: 3vh;
 }
 
-.phone-contact-page-div, .email-contact-page-div, .instagram-contact-page-div {
+.phone-contact-page-div,
+.email-contact-page-div,
+.instagram-contact-page-div {
     display: flex;
     flex-direction: row;
 }
 
-.phone-contact-icon, .instagram-contact-icon {
+.phone-contact-icon,
+.instagram-contact-icon {
     margin: 0 0.5vw;
 }
 
@@ -1540,4 +1545,53 @@ input:focus {
 
 .email-contact-icon {
     transform: scale(0.8);
+}
+
+
+/* products page */
+
+.products-page {
+    background-color: var(--color-light-white);
+}
+
+.products-main {
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    margin-bottom: 7rem;
+    min-height: 80vh;
+}
+
+.products-list {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products-list>div {
+    background-color: var(--color-white);
+    border: none;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+    width: calc(25% - 4rem);
+    margin: 1rem;
+}
+
+.button-load-more {
+    padding: 0.7rem 4.9rem;
+    border: none;
+    font-size: 1.3rem;
+    font-family: var(--font-title);
+    border:0.1rem solid var(--color-secundary);
+    color: var(--color-light-white);
+    font-style: normal;
+    border-radius: 1.875rem;
+    cursor: pointer;
+    background-color: var(--color-primary);
 }

@@ -11,6 +11,7 @@ import policy from "../pages/policy.js";
 import checkout from "../pages/checkout.js";
 import cart from "../pages/cart.js";
 import myaccount from "../pages/myaccount.js";
+import products from "../pages/products.js";
 
 const urlPageTitle = "ZabaFood";
 
@@ -91,6 +92,11 @@ const urlRoutes = {
 		title: "Minha conta | " + urlPageTitle,
 		description: "This is the user/admin account page",
 	},
+	"/products":{
+		page: products,
+		title: "Produtos | " + urlPageTitle,
+		description: "This is the products page",
+	}
 };
 
 // Cria uma função que verifica a url e chama o urlLocationHandler
