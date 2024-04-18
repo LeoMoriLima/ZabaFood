@@ -51,7 +51,7 @@ export default async () => {
 			});
 
 			const checkoutBtn = btn("Finalizar compra", "modal-cart-checkout-btn", async () => {
-				window.route({ preventDefault: () => {}, target: { href: `/checkout` } });
+				window.route({ preventDefault: () => {}, target: { href: `/cart` } });
 			})
 			checkoutBtn.classList.add("modal-cart-checkout-btn")
 			mainDiv.appendChild(checkoutBtn);
