@@ -12,26 +12,6 @@ export default async (id) => {
     });
     const data = await response.json();
 
-	const userResponse = await fetch('/api/login', {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
-	});
-	const userData = await userResponse.json();
-	
-	const userId = userData.user.id;
-
-	const cartResponse = await fetch(`/api/cart/user/${userId}`, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
-	});
-
-	const cart = await cartResponse.json();
-	const cartId = cart.id;
-
 	const mainDiv = document.createElement("div");
 	mainDiv.classList.add("product-card");
 
@@ -109,6 +89,26 @@ export default async (id) => {
 
 	const addBtn = btn("Adicionar", "add-btn", async () => {
         try {
+			const userResponse = await fetch('/api/login', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+			const userData = await userResponse.json();
+			
+			const userId = userData.user.id;
+		
+			const cartResponse = await fetch(`/api/cart/user/${userId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+		
+			const cart = await cartResponse.json();
+			const cartId = cart.id;
+		
             const response = await fetch("/api/cart_product/", {
                 method: "POST",
                 headers: {
