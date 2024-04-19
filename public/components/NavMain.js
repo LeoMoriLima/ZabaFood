@@ -2,6 +2,7 @@ import inputEntry from "./inputEntry.js";
 import text from "./Text.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
+import CartModal from "./CartModal.js";
 
 export default async () => {
     const divNavMain = document.createElement("div");
@@ -142,8 +143,23 @@ export default async () => {
         console.log(error);
     }
 
+    const cartModalDiv = document.createElement("div");
+    cartModalDiv.classList.add("cart-modal-div");
+    navDivCenter.appendChild(cartModalDiv);
+
+    const cartModal = await CartModal("flex");
+
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");
+    cartDiv.addEventListener("mouseover", async () => {
+        cartModal.style.display = "flex";
+        cartModalDiv.appendChild(cartModal);
+    });
+    cartDiv.addEventListener("mouseleave", async () => {
+        setTimeout(() => {
+            cartModalDiv.removeChild(cartModal);
+        }, 2000)
+    });
     headerDivRight.appendChild(cartDiv);
 
     const aCartIcon = document.createElement("a");
