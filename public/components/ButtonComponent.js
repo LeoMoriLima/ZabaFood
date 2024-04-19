@@ -1,9 +1,9 @@
 export default (text, className, onClick) => {
-    const buttonEntry = document.createElement("button");
-    buttonEntry.innerText = text;
-    buttonEntry.classList.add(className);
+    const button = document.createElement("button");
+    button.innerText = text;
+    button.classList.add(className);
 
-    buttonEntry.onclick = () => onClick();
+    button.onclick = () => onClick(button);
 
-    return buttonEntry;
+    return button;
 }
