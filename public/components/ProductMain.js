@@ -1,4 +1,5 @@
 import MainProductCard from "./MainProductCard.js";
+import ProductCardRecommended from "./ProductCardRecommended.js";
 
 export default async () => {
     const main = document.createElement("main");
@@ -8,6 +9,16 @@ export default async () => {
     const product = await getProduct(productId)
   
     main.appendChild(await MainProductCard(product));
+    
+    const recomendedH2 = document.createElement("h2")
+    recomendedH2.innerText = "Quem viu esse, também levou esses :)"
+    recomendedH2.classList.add("recommended-h2")
+    main.appendChild(recomendedH2)
+
+    const recommendedProductsDiv = document.createElement("div")
+    recommendedProductsDiv.classList.add("product-card-recommended-div")
+    main.appendChild(recommendedProductsDiv)
+    await generateRecommended(recommendedProductsDiv)
 
     const descriptionDiv = document.createElement("div")
     descriptionDiv.classList.add("product-main-description")
@@ -18,7 +29,7 @@ export default async () => {
     descriptionDiv.appendChild(descriptionH1)
 
     const descriptionContent = document.createElement("p")
-    // descriptionContent.textContent = `${product.description}`
+
     descriptionContent.textContent = `
 🌿 Descubra o Poder da Natureza com nossa Dupla Dinâmica: Cúrcuma com Pimenta Preta! 🌶️
 
@@ -51,4 +62,30 @@ const getProduct = async (id) => {
     });
     const data = await response.json();
     return data;
+}
+
+const getRecommended= async (min, max) => {
+    try {
+        const response = await fetch(`/api/product/interval?min=${min}&max=${max}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const generateRecommended = async (element) => {
+    const products = await getRecommended(1, 5);
+    const productCards = await Promise.all(products.map(async (product) => {
+        return await ProductCardRecommended(product.id);
+    }));
+
+    productCards.forEach((card) => {
+        element.appendChild(card);
+    });
 }

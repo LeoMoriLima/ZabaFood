@@ -24,13 +24,8 @@ const getProductType = async (id) => {
 
 const createProductType = async (type) => {
     try {
-        if (!type) {
-            throw { error: "O tipo é obrigatório" };
-        }
-
         const productType = await productTypeRepository.createProductType(type);
         return productType;
-
     } catch (error) {
         throw error;
     }

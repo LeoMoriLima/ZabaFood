@@ -3,6 +3,7 @@ import text from "./Text.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import CategoryModal from "../components/CategoryModal.js";
+import CartModal from "./CartModal.js";
 
 export default async () => {
     const divNavMain = document.createElement("div");
@@ -11,13 +12,6 @@ export default async () => {
     const divLightGreen = document.createElement("div");
     divLightGreen.classList.add("div-light-green");
     divNavMain.appendChild(divLightGreen);
-
-    const discountIcon = document.createElement("img");
-    discountIcon.src = "../assets/images/discount-icon.svg";
-    discountIcon.classList.add("discount-icon");
-    divLightGreen.appendChild(discountIcon);
-
-    divLightGreen.appendChild(text("Primeira compra? Use o cupom BOASVINDAS e ganhe 8% Off!", "discount-text", "text-class"));
 
     const navDivCenter = document.createElement("div");
     navDivCenter.classList.add("nav-div-center");
@@ -150,8 +144,23 @@ export default async () => {
         console.log(error);
     }
 
+    const cartModalDiv = document.createElement("div");
+    cartModalDiv.classList.add("cart-modal-div");
+    navDivCenter.appendChild(cartModalDiv);
+
+    const cartModal = await CartModal("flex");
+
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");
+    cartDiv.addEventListener("mouseover", async () => {
+        cartModal.style.display = "flex";
+        cartModalDiv.appendChild(cartModal);
+    });
+    cartDiv.addEventListener("mouseleave", async () => {
+        setTimeout(() => {
+            cartModalDiv.removeChild(cartModal);
+        }, 2000)
+    });
     headerDivRight.appendChild(cartDiv);
 
     const aCartIcon = document.createElement("a");
@@ -166,10 +175,6 @@ export default async () => {
     const cartIcon = document.createElement("img");
     cartIcon.src = "../assets/images/cart-icon.svg";
     aCartIcon.appendChild(cartIcon);
-
-    const cartQuantityDiv = document.createElement("div");
-    cartQuantityDiv.classList.add("cart-quantity-div");
-    cartDiv.appendChild(cartQuantityDiv);
 
     try {
         const userResponse = await fetch('/api/login', {
@@ -193,11 +198,10 @@ export default async () => {
 
         const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
 
-        const greenQuantityIcon = document.createElement("img");
-        greenQuantityIcon.classList.add("green-quantity-icon");
-        greenQuantityIcon.src = "../assets/images/green-ball.svg";
+        const cartQuantityDiv = document.createElement("div");
+        cartQuantityDiv.classList.add("cart-quantity-div");
         if (totalQuantity !== 0) {
-            cartQuantityDiv.appendChild(greenQuantityIcon);
+            cartDiv.appendChild(cartQuantityDiv);
         }
 
         const cartQuantityText = document.createElement("p");
@@ -214,11 +218,10 @@ export default async () => {
 
     const productsMenuDiv = document.createElement("div");
     productsMenuDiv.classList.add("products-menu-div");
-    productsMenuDiv.appendChild(textA("PRODUTOS", "products-menu", "none", "/myaccount"));
+    productsMenuDiv.appendChild(textA("PRODUTOS", "products-menu", "none", "/products"));
     navBarDiv.appendChild(productsMenuDiv);
     productsMenuDiv.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/products" } });
     }
     navBarDiv.appendChild(productsMenuDiv);
 
