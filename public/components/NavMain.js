@@ -179,41 +179,49 @@ export default async () => {
     cartIcon.src = "../assets/images/cart-icon.svg";
     aCartIcon.appendChild(cartIcon);
 
-    try {
-        const userResponse = await fetch('/api/login', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const userData = await userResponse.json();
+    const getProductsQuantity = async () => {
+        try {
+            const userResponse = await fetch('/api/login', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const userData = await userResponse.json();
+            
+            const userId = userData.user.id;
         
-        const userId = userData.user.id;
+            const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        
+            const cartProducts = await cartProductsResponse.json();
     
-        const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+            const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
+    
+            const cartQuantityDiv = document.createElement("div");
+            cartQuantityDiv.classList.add("cart-quantity-div");
+            if (totalQuantity !== 0) {
+                cartDiv.appendChild(cartQuantityDiv);
             }
-        });
     
-        const cartProducts = await cartProductsResponse.json();
-
-        const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-
-        const cartQuantityDiv = document.createElement("div");
-        cartQuantityDiv.classList.add("cart-quantity-div");
-        if (totalQuantity !== 0) {
-            cartDiv.appendChild(cartQuantityDiv);
+            const cartQuantityText = document.createElement("p");
+            cartQuantityText.classList.add("cart-quantity-text");
+            cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
+            cartQuantityDiv.appendChild(cartQuantityText);
+        } catch (error) {
+            console.log(error);
         }
-
-        const cartQuantityText = document.createElement("p");
-        cartQuantityText.classList.add("cart-quantity-text");
-        cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
-        cartQuantityDiv.appendChild(cartQuantityText);
-    } catch (error) {
-        console.log(error);
     }
+    
+    getProductsQuantity();
+    
+    window.addEventListener("productAdded", async () => {
+        getProductsQuantity();
+    })
 
     const navBarDiv = document.createElement("div");
     navBarDiv.classList.add("nav-bar-div");
