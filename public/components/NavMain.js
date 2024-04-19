@@ -2,6 +2,7 @@ import inputEntry from "./inputEntry.js";
 import text from "./Text.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
+import CategoryModal from "../components/CategoryModal.js";
 import CartModal from "./CartModal.js";
 
 export default async () => {
@@ -54,8 +55,8 @@ export default async () => {
         event.preventDefault();
         const searchTerm = document.getElementById("search-input").value.trim();
         try {
-            const searchURL = `/products/search/${encodeURIComponent(searchTerm)}`;
-            window.route({ preventDefault: () => { }, target: { href: searchURL } });
+            const searchURL = `/products/search/${encodeURIComponent(searchTerm)}`;            
+            window.location.href = searchURL;
         } catch (error) {
             console.error("Erro ao buscar produtos:", error.message);
         }
@@ -228,6 +229,24 @@ export default async () => {
     productsMenuArrow.classList.add("products-menu-arrow");
     productsMenuArrow.src = "../assets/images/arrow-down.svg";
     productsMenuDiv.appendChild(productsMenuArrow);
+    const modalCategory = await CategoryModal();
+    modalCategory.style.display = "none";
+    divNavMain.appendChild(modalCategory);
+    
+
+    productsMenuDiv.addEventListener("mouseover", async() => {
+        modalCategory.style.display = "flex";
+    })
+    productsMenuDiv.addEventListener("mouseleave", async() => {
+        modalCategory.style.display = "none";
+    })
+    modalCategory.addEventListener("mouseover", async() => {
+        modalCategory.style.display = "flex";
+    })
+    modalCategory.addEventListener("mouseleave", async() => {
+        modalCategory.style.display = "none";
+    })
+
 
     const rightSideNavbarDiv = document.createElement("div");
     rightSideNavbarDiv.classList.add("right-side-navbar-div");
