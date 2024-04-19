@@ -1606,7 +1606,7 @@ input:focus {
     width: 8rem;
 }
 
-.cp-product-info-div { 
+.cp-product-info-div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -1668,7 +1668,8 @@ input:focus {
     width: 100%;
 }
 
-.cp-subtotal-text-div-left, .cp-subtotal-text-div-right {
+.cp-subtotal-text-div-left,
+.cp-subtotal-text-div-right {
     color: var(--color-secundary);
     font-family: var(--font-text);
     font-size: 2rem;
@@ -1773,10 +1774,79 @@ input:focus {
     border: none;
     font-size: 1.3rem;
     font-family: var(--font-title);
-    border:0.1rem solid var(--color-secundary);
+    border: 0.1rem solid var(--color-secundary);
     color: var(--color-light-white);
     font-style: normal;
     border-radius: 1.875rem;
     cursor: pointer;
     background-color: var(--color-primary);
+}
+
+/* Product Card Recommended */
+
+.recommended-h2{
+    font-size: 3rem;
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+}
+
+.product-card-recommended-div{
+    display: flex;
+    gap: 2rem;
+}
+
+.product-card-recommended {
+    background-color: var(--color-light-white);
+    align-items: center;
+    border: none;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 22rem;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+    width: 18rem;
+    cursor: pointer;
+}
+
+.card-product-img-recommended {
+    border-radius: 1.25rem;
+    margin-bottom: 1rem;
+    height: 13rem;
+    width: 13rem;
+}
+
+.product-title-div-recommended {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.product-title-recommended {
+    color: var(--color-emphasis);
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.price-div-recommended {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+}
+
+.unit-price-div-recommended {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.unit-price-recommended {
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 800;
 }
