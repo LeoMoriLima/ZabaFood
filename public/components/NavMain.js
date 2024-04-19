@@ -144,24 +144,27 @@ export default async () => {
         console.log(error);
     }
 
-    const cartModalDiv = document.createElement("div");
-    cartModalDiv.classList.add("cart-modal-div");
-    navDivCenter.appendChild(cartModalDiv);
-
     const cartModal = await CartModal("flex");
+    cartModal.style.display = "none";
+    navDivCenter.appendChild(cartModal);
 
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");
-    cartDiv.addEventListener("mouseover", async () => {
-        cartModal.style.display = "flex";
-        cartModalDiv.appendChild(cartModal);
-    });
-    cartDiv.addEventListener("mouseleave", async () => {
-        setTimeout(() => {
-            cartModalDiv.removeChild(cartModal);
-        }, 2000)
-    });
     headerDivRight.appendChild(cartDiv);
+
+    cartDiv.addEventListener("mouseover", async() => {
+        console.log("entrou")
+        cartModal.style.display = "flex";
+    })
+    cartDiv.addEventListener("mouseleave", async() => {
+        cartModal.style.display = "none";
+    })
+    cartModal.addEventListener("mouseover", async() => {
+        cartModal.style.display = "flex";
+    })
+    cartModal.addEventListener("mouseleave", async() => {
+        cartModal.style.display = "none";
+    })
 
     const aCartIcon = document.createElement("a");
     aCartIcon.classList.add("a-cart-icon");

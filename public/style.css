@@ -738,12 +738,6 @@ input:focus {
     width: 10rem;
 }
 
-.cart-modal-div {
-    right:25rem;
-    position: relative;
-    top: 1rem;
-}
-
 /* Footer Main */
 
 .footer-main {
@@ -1275,7 +1269,6 @@ input:focus {
     }
 }
 
-
 .modal-cart-main-div {
     align-items: center;
     background-color: var(--color-secundary);
@@ -1289,6 +1282,8 @@ input:focus {
     position: absolute;
     width: 25.56rem;
     z-index: 2;
+    right: 13.5rem;
+    top: 7.1rem;
 }
 
 .item-product-div {
@@ -1300,9 +1295,9 @@ input:focus {
 
 .cart-modal-product-img {
     border-radius: 1rem;
-    height: 8rem;
+    height: 6rem;
     margin: 1rem 2rem 1rem 2rem;
-    width: 8rem;
+    width: 6rem;
 }
 
 .text-div-modal-cart {
@@ -1326,10 +1321,10 @@ input:focus {
     color: var(--color-light-white);
     cursor: pointer;
     font-family: var(--font-title);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 400;
     height: 4.125rem;
-    padding: 0.5rem 3rem;
+    padding: 0rem 2.5rem;
     margin-top: 1.5rem;
 }
 
