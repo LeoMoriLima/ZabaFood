@@ -144,24 +144,27 @@ export default async () => {
         console.log(error);
     }
 
-    const cartModalDiv = document.createElement("div");
-    cartModalDiv.classList.add("cart-modal-div");
-    navDivCenter.appendChild(cartModalDiv);
-
     const cartModal = await CartModal("flex");
+    cartModal.style.display = "none";
+    navDivCenter.appendChild(cartModal);
 
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");
-    cartDiv.addEventListener("mouseover", async () => {
-        cartModal.style.display = "flex";
-        cartModalDiv.appendChild(cartModal);
-    });
-    cartDiv.addEventListener("mouseleave", async () => {
-        setTimeout(() => {
-            cartModalDiv.removeChild(cartModal);
-        }, 2000)
-    });
     headerDivRight.appendChild(cartDiv);
+
+    cartDiv.addEventListener("mouseover", async() => {
+        console.log("entrou")
+        cartModal.style.display = "flex";
+    })
+    cartDiv.addEventListener("mouseleave", async() => {
+        cartModal.style.display = "none";
+    })
+    cartModal.addEventListener("mouseover", async() => {
+        cartModal.style.display = "flex";
+    })
+    cartModal.addEventListener("mouseleave", async() => {
+        cartModal.style.display = "none";
+    })
 
     const aCartIcon = document.createElement("a");
     aCartIcon.classList.add("a-cart-icon");
@@ -176,41 +179,49 @@ export default async () => {
     cartIcon.src = "../assets/images/cart-icon.svg";
     aCartIcon.appendChild(cartIcon);
 
-    try {
-        const userResponse = await fetch('/api/login', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const userData = await userResponse.json();
+    const getProductsQuantity = async () => {
+        try {
+            const userResponse = await fetch('/api/login', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const userData = await userResponse.json();
+            
+            const userId = userData.user.id;
         
-        const userId = userData.user.id;
+            const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        
+            const cartProducts = await cartProductsResponse.json();
     
-        const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+            const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
+    
+            const cartQuantityDiv = document.createElement("div");
+            cartQuantityDiv.classList.add("cart-quantity-div");
+            if (totalQuantity !== 0) {
+                cartDiv.appendChild(cartQuantityDiv);
             }
-        });
     
-        const cartProducts = await cartProductsResponse.json();
-
-        const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-
-        const cartQuantityDiv = document.createElement("div");
-        cartQuantityDiv.classList.add("cart-quantity-div");
-        if (totalQuantity !== 0) {
-            cartDiv.appendChild(cartQuantityDiv);
+            const cartQuantityText = document.createElement("p");
+            cartQuantityText.classList.add("cart-quantity-text");
+            cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
+            cartQuantityDiv.appendChild(cartQuantityText);
+        } catch (error) {
+            console.log(error);
         }
-
-        const cartQuantityText = document.createElement("p");
-        cartQuantityText.classList.add("cart-quantity-text");
-        cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
-        cartQuantityDiv.appendChild(cartQuantityText);
-    } catch (error) {
-        console.log(error);
     }
+    
+    getProductsQuantity();
+    
+    window.addEventListener("productAdded", async () => {
+        getProductsQuantity();
+    })
 
     const navBarDiv = document.createElement("div");
     navBarDiv.classList.add("nav-bar-div");

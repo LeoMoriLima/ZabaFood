@@ -129,6 +129,9 @@ export default async (id) => {
 				});
 				const data = await response.json();
 
+				const event = new CustomEvent("productAdded");
+				window.dispatchEvent(event);
+
 			} catch (error) {
 				console.error("Erro ao adicionar produtos ao carrinho:", error);
 			}
