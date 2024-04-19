@@ -6,7 +6,8 @@ const getAllProductTypes = async (req, res) => {
     try {
         const productTypes = await productTypeService.getAllProductType();
         return res.status(200).json(productTypes);
-    } catch {
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: "Erro ao buscar dados" });
     }
 }
@@ -14,33 +15,35 @@ const getAllProductTypes = async (req, res) => {
 const getProductType = async (req, res) => {
     const { id } = req.params;
     try {
-        if(!isUUID(id)){
+        if (!isUUID(id)) {
             return res.status(400).json({ error: "ID inválido!" });
         };
 
         const productType = await productTypeService.getProductType(id);
         return res.status(200).json(productType);
-    } catch {
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: "Erro ao buscar dados" });
     }
 }
 
 const createProductType = async (req, res) => {
     const { type } = req.body;
-	try {
+    try {
         const admin = req.user.user_type.includes("admin");
-		if(!admin) {
-			return res.status(403).json({error: "Usuário sem permissão"});
-		};
+        if (!admin) {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
 
-        if(isEmpty(type)){
+        if (isEmpty(type)) {
             return res.status(400).json({ error: "O tipo de produto é obrigatório!" });
         };
-		
+
         const newProductType = await productTypeService.createProductType(type);
         return res.status(201).json({ message: 'Novo tipo de produto adicionado com sucesso', product: newProductType });
-    } catch {
-        return res.status(500).json({ error: "Erro ao inserir dados" });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: `Erro ao inserir dados: ${error.message}` });
     }
 }
 
@@ -50,23 +53,23 @@ const updateProductType = async (req, res) => {
 
     try {
         const admin = req.user.user_type.includes("admin");
-		if(!admin) {
-			return res.status(403).json({error: "Usuário sem permissão"});
-		};
+        if (!admin) {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
 
-        if(!isUUID(id)){
+        if (!isUUID(id)) {
             return res.status(400).json({ error: "ID inválido!" });
         };
 
-        if(isEmpty(type)){
+        if (isEmpty(type)) {
             return res.status(400).json({ error: "O tipo de produto é obrigatório" });
         };
 
-        const updatedProductType = await productTypeService.updateProductType(id , type);
+        const updatedProductType = await productTypeService.updateProductType(id, type);
         return res.status(200).json({ message: 'Tipo de roduto atualizado com sucesso', product: updatedProductType });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: "Erro ao atualizar dados" });
+        return res.status(500).json({ error: `Erro ao atualizar dados: ${error.message}` });
     }
 };
 
@@ -75,17 +78,18 @@ const deleteProductType = async (req, res) => {
     const { id } = req.params;
     try {
         const admin = req.user.user_type.includes("admin");
-		if(!admin) {
-			return res.status(403).json({error: "Usuário sem permissão"});
-		};
+        if (!admin) {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
 
-        if(!isUUID(id)){
+        if (!isUUID(id)) {
             return res.status(400).json({ error: "ID inválido!" });
         };
 
         await productTypeService.deleteProductType(id);
         return res.status(200).json({ success: true });
-    } catch {
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: "Erro ao deletar dados" });
     }
 }
@@ -94,6 +98,6 @@ module.exports = {
     getAllProductTypes,
     getProductType,
     createProductType,
-	updateProductType,
-	deleteProductType,
+    updateProductType,
+    deleteProductType,
 }

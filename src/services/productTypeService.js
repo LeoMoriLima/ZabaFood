@@ -13,7 +13,7 @@ const getAllProductType = async () => {
 const getProductType = async (id) => {
     try {
         const productType = await productTypeRepository.getProductType(id);
-		if (!productType) {
+        if (!productType) {
             throw new Error("Tipo de produto não encontrado")
         }
         return productType;
@@ -24,6 +24,10 @@ const getProductType = async (id) => {
 
 const createProductType = async (type) => {
     try {
+        const productTypeExists = await productTypeRepository.getProductTypeByType(type);
+        if (productTypeExists) {
+            throw new Error("Esse tipo de produto já existe.");
+        }
         const productType = await productTypeRepository.createProductType(type);
         return productType;
     } catch (error) {
@@ -34,23 +38,27 @@ const createProductType = async (type) => {
 const updateProductType = async (id, type) => {
     try {
         const productType = await productTypeRepository.getProductType(id);
-		if (!productType) {
-			throw new Error("Tipo de produto não encontrado");
-		}
-		await productTypeRepository.updateProductType(id, type);
+        if (!productType) {
+            throw new Error("Tipo de produto não encontrado");
+        }
+        const productTypeExists = await productTypeRepository.getProductTypeByType(type);
+        if (productTypeExists) {
+            throw new Error("Esse tipo de produto já existe.");
+        }
+        await productTypeRepository.updateProductType(id, type);
     } catch (error) {
         console.log(error);
         throw error;
-	}
+    }
 };
 
 
 const deleteProductType = async (id) => {
     try {
-		const productType = await productTypeRepository.getProductType(id);
-		if (!productType) {
-			throw new Error("Tipo de produto não encontrado");
-		}
+        const productType = await productTypeRepository.getProductType(id);
+        if (!productType) {
+            throw new Error("Tipo de produto não encontrado");
+        }
         await productTypeRepository.deleteProductType(id);
         return { success: true };
     } catch (error) {
