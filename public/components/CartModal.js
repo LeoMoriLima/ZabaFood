@@ -1,6 +1,6 @@
 import btn from "./ButtonComponent.js";
 
-export default async () => {
+export default async (displayconfig) => {
 	try {
 		const userResponse = await fetch('/api/login', {
 			method: "GET",
@@ -22,6 +22,7 @@ export default async () => {
 
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("modal-cart-main-div");
+		mainDiv.style.display = displayconfig;
 
 		if (cartProductsInfos.length !== 0) {
 			cartProductsInfos.map(itemProduct => {
