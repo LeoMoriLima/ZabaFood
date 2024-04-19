@@ -28,6 +28,20 @@ const getProductType = async (id) => {
     }
 }
 
+const getProductTypeByType = async (type) => {
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM product_type WHERE type = $1";
+    try {
+        const result = await client.query(query, [type]);
+        return result.rows[0];
+    } catch (error) {
+        console.log("Erro ao encontrar o tipo de produto:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
+}
+
 const createProductType = async (type) => {
     const client = await connectToDatabase();
     const query = "INSERT INTO product_type (type) VALUES ($1)";
@@ -75,6 +89,7 @@ module.exports = {
     createProductType,
     getAllProductType,
     getProductType,
+    getProductTypeByType,
     updateProductType,
     deleteProductType,
 }
