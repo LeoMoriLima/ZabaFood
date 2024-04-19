@@ -1,7 +1,7 @@
 const { connectToDatabase } = require('../db/postgresql');
 
 const insertNewProduct = async (name, value, url_img, stock, type_id, description) => {
-    const query = 'INSERT INTO product (name, value, url_img, stock, type_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+    const query = 'INSERT INTO product (name, value, url_img, stock, type_id, description) VALUES ($1, $2, $3, $4, $5, $6)';
     const client = await connectToDatabase();
     try {
         await client.query(query, [name, value, url_img, stock, type_id, description]);

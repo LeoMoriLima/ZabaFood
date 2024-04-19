@@ -20,6 +20,25 @@ const getCart = async (req, res) => {
     }
 }
 
+const getAllCartByUserID = async (req, res) =>{
+    const userId = req.user.id
+    try{        
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
+        if(!isUUID(userId)){
+            return res.status(400).json({ error: "ID inválido!" });
+        };
+
+        const cart = await cartServices.getAllCartByUserID(userId);
+        return res.status(200).json(cart);
+    } catch (error){
+        return res.status(500).json({ error: "Erro ao buscar os dados" });
+    };
+}
+
 const getCartByUserID = async (req, res) => {
     const { userId } = req.params;
     try {
@@ -104,6 +123,7 @@ const updateCartStatus = async (req, res) => {
 
 module.exports = {
     getCart,
+    getAllCartByUserID,
     getCartByUserID,
     getAllCarts,
     createCart,
