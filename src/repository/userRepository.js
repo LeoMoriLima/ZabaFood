@@ -1,13 +1,13 @@
 const { connectToDatabase } = require('../db/postgresql.js');
 
-const insertNewUser = async (username, user_type, name, email, password, cpf_cnpj, phone) => {
-    const userQuery = 'INSERT INTO users (username, user_type, name, email, password, cpf_cnpj, phone) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+const insertNewUser = async (username, user_type, name, email, password, cpf, phone) => {
+    const userQuery = 'INSERT INTO users (username, user_type, name, email, password, cpf, phone) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
     const cartQuery = 'INSERT INTO cart (user_id, total) VALUES ($1, 0)';
     const client = await connectToDatabase();
     try {
         await client.query('BEGIN');
 
-        const userResult = await client.query(userQuery, [username, user_type, name, email, password, cpf_cnpj, phone]);
+        const userResult = await client.query(userQuery, [username, user_type, name, email, password, cpf, phone]);
         const userId = userResult.rows[0].id;
 
         await client.query(cartQuery, [userId]);

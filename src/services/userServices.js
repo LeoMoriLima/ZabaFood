@@ -22,10 +22,10 @@ const getUser = async (id) => {
     }
 }
 
-const createUser = async (username, user_type, name, email, password, cpf_cnpj, phone) => {
+const createUser = async (username, user_type, name, email, password, cpf, phone) => {
     try {
         const hashedPassword = await hashPassword(password);
-        const result = await userRepository.insertNewUser(username, user_type, name, email, hashedPassword, cpf_cnpj, phone);
+        const result = await userRepository.insertNewUser(username, user_type, name, email, hashedPassword, cpf, phone);
         return result;
     } catch (error) {
         throw error

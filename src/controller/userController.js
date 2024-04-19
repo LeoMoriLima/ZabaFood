@@ -33,7 +33,7 @@ const getUser = async (req, res) =>{
 
 const createUser = async (req, res) => {
     try{
-        const { username, user_type, name, email, password, cpf_cnpj, phone } = req.body;
+        const { username, user_type, name, email, password, cpf, phone } = req.body;
 
         if (!username) {
             throw new Error ( "O username é obrigatório" );
@@ -71,12 +71,12 @@ const createUser = async (req, res) => {
             return res.status(400).json({ error: "A senha deve conter entre 4 a 30 caracteres!" })
         }
 
-        if (!cpf_cnpj) {
-            throw new Error ( "O cpf/cnpj é obrigatório" );
+        if (!cpf) {
+            throw new Error ( "O cpf é obrigatório" );
         };
 
-        if (!isLength(cpf_cnpj, { min:4 , max: 30 })){
-            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 18 caracteres!" })
+        if (!isLength(cpf, { min:11 , max: 14 })){
+            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 14 caracteres!" })
         }
 
         if (!phone) {
@@ -87,16 +87,16 @@ const createUser = async (req, res) => {
             return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
         }
 
-        const user = await userServices.createUser(username, user_type, name, email, password, cpf_cnpj, phone);
-        return res.status(200).json({ success: true, message: 'Usuário criado com sucesso', data: user });
+        const user = await userServices.createUser(username, user_type, name, email, password, cpf, phone);
+        return res.status(201).json({ success: true, message: 'Usuário criado com sucesso', data: user });
     } catch (error){
         return res.status(500).json({ error: error.message });
     }
 }
 
 const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const { username, name, email, password, cpf_cnpj, phone } = req.body;
+    const id = req.user.id;
+    const { username, name, email, password, cpf, phone } = req.body;
 
     try {
         if(!isUUID(id)){
@@ -136,11 +136,11 @@ const updateUser = async (req, res) => {
             return res.status(400).json({ error: "A senha deve conter entre 4 a 30 caracteres!" })
         }
 
-        if (!cpf_cnpj) {
-            throw new Error ( "O cpf/cnpj é obrigatório" );
+        if (!cpf) {
+            throw new Error ( "O cpf é obrigatório" );
         }
 
-        if (!isLength(cpf_cnpj, { min:4 , max: 30 })){
+        if (!isLength(cpf, { min:4 , max: 30 })){
             return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 18 caracteres!" })
         }
 
@@ -152,7 +152,7 @@ const updateUser = async (req, res) => {
             return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
         }
 
-        const result = await userServices.updateUser( id, username, name, email, password, cpf_cnpj, phone);
+        const result = await userServices.updateUser( id, username, name, email, password, cpf, phone);
         return res.status(200).json({ success: true, message: 'Usuário atualizado com sucesso!'});
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -161,7 +161,7 @@ const updateUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) =>{
-    const { id } = req.params;
+    const id = req.user.id;
     try{
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {

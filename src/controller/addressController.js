@@ -55,7 +55,8 @@ const getAllAddresses = async (req, res) => {
 }
 
 const createNewAddress = async (req, res) => {
-    const { user_id, postal_code, state, city, street, number, complement } = req.body;
+    const user_id = req.user.id
+    const {  postal_code, state, city, street, number, complement } = req.body;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
@@ -114,7 +115,7 @@ const createNewAddress = async (req, res) => {
 
 const updateAddress = async (req, res) => {
     const { postal_code, state, city, street, number, complement } = req.body;
-    const { id } = req.params;
+    const id = req.user.id;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
@@ -172,7 +173,7 @@ const updateAddress = async (req, res) => {
 }
 
 const deleteAddress = async (req, res) => {
-    const { id } = req.params;
+    const id = req.user.id;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
