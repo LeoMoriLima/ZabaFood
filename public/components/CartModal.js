@@ -9,6 +9,11 @@ export default async (displayconfig) => {
             }
         });
         const userData = await userResponse.json();
+
+		if (userData.error) {
+			return
+		}
+
 		const userId = userData.user.id;
 
 		const cartResponse = await fetch(`/api/cart_product/cart/${userId}`, {

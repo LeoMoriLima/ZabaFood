@@ -55,7 +55,7 @@ export default async () => {
         event.preventDefault();
         const searchTerm = document.getElementById("search-input").value.trim();
         try {
-            const searchURL = `/products/search/${encodeURIComponent(searchTerm)}`;            
+            const searchURL = `/products/search/${encodeURIComponent(searchTerm)}`;
             window.location.href = searchURL;
         } catch (error) {
             console.error("Erro ao buscar produtos:", error.message);
@@ -110,7 +110,7 @@ export default async () => {
             }
         });
         const data = await response.json();
-    
+
         if (data.error) {
             const aAccount = textA("ENTRAR", "a-account", "none", "/login");
             aAccount.onclick = (e) => {
@@ -119,7 +119,7 @@ export default async () => {
             }
             accountDiv.appendChild(aAccountIcon);
             accountDiv.appendChild(aAccount);
-    
+
             aAccountIcon.href = "/login"
             aAccountIcon.onclick = (e) => {
                 e.preventDefault();
@@ -133,7 +133,7 @@ export default async () => {
             }
             accountDiv.appendChild(aAccountIcon);
             accountDiv.appendChild(aAccount);
-    
+
             aAccountIcon.href = "/myaccount"
             aAccountIcon.onclick = (e) => {
                 e.preventDefault();
@@ -144,34 +144,36 @@ export default async () => {
         console.log(error);
     }
 
-    const cartModal = await CartModal("flex");
-    cartModal.style.display = "none";
-    navDivCenter.appendChild(cartModal);
-
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-div");
     headerDivRight.appendChild(cartDiv);
 
-    cartDiv.addEventListener("mouseover", async() => {
-        console.log("entrou")
-        cartModal.style.display = "flex";
-    })
-    cartDiv.addEventListener("mouseleave", async() => {
+    const cartModal = await CartModal("flex");
+
+    if (cartModal) {
         cartModal.style.display = "none";
-    })
-    cartModal.addEventListener("mouseover", async() => {
-        cartModal.style.display = "flex";
-    })
-    cartModal.addEventListener("mouseleave", async() => {
-        cartModal.style.display = "none";
-    })
+        navDivCenter.appendChild(cartModal);
+
+        cartDiv.addEventListener("mouseover", async () => {
+            cartModal.style.display = "flex";
+        })
+        cartDiv.addEventListener("mouseleave", async () => {
+            cartModal.style.display = "none";
+        })
+        cartModal.addEventListener("mouseover", async () => {
+            cartModal.style.display = "flex";
+        })
+        cartModal.addEventListener("mouseleave", async () => {
+            cartModal.style.display = "none";
+        })
+    }
 
     const aCartIcon = document.createElement("a");
     aCartIcon.classList.add("a-cart-icon");
-    aCartIcon.href = "/cart";
+    aCartIcon.href = cartModal ? "/cart" : "/login";
     aCartIcon.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/cart" } });
+        window.route({ preventDefault: () => { }, target: { href: aCartIcon.href } });
     }
     cartDiv.appendChild(aCartIcon);
 
@@ -188,26 +190,26 @@ export default async () => {
                 }
             });
             const userData = await userResponse.json();
-            
+
             const userId = userData.user.id;
-        
+
             const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
-        
+
             const cartProducts = await cartProductsResponse.json();
-    
+
             const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-    
+
             const cartQuantityDiv = document.createElement("div");
             cartQuantityDiv.classList.add("cart-quantity-div");
             if (totalQuantity !== 0) {
                 cartDiv.appendChild(cartQuantityDiv);
             }
-    
+
             const cartQuantityText = document.createElement("p");
             cartQuantityText.classList.add("cart-quantity-text");
             cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
@@ -216,9 +218,9 @@ export default async () => {
             console.log(error);
         }
     }
-    
+
     getProductsQuantity();
-    
+
     window.addEventListener("productAdded", async () => {
         getProductsQuantity();
     })
@@ -243,18 +245,18 @@ export default async () => {
     const modalCategory = await CategoryModal();
     modalCategory.style.display = "none";
     divNavMain.appendChild(modalCategory);
-    
 
-    productsMenuDiv.addEventListener("mouseover", async() => {
+
+    productsMenuDiv.addEventListener("mouseover", async () => {
         modalCategory.style.display = "flex";
     })
-    productsMenuDiv.addEventListener("mouseleave", async() => {
+    productsMenuDiv.addEventListener("mouseleave", async () => {
         modalCategory.style.display = "none";
     })
-    modalCategory.addEventListener("mouseover", async() => {
+    modalCategory.addEventListener("mouseover", async () => {
         modalCategory.style.display = "flex";
     })
-    modalCategory.addEventListener("mouseleave", async() => {
+    modalCategory.addEventListener("mouseleave", async () => {
         modalCategory.style.display = "none";
     })
 
