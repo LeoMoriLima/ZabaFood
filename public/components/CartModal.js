@@ -1,4 +1,5 @@
 import btn from "./ButtonComponent.js";
+import router from "../js/routes.js";
 
 export default async (displayconfig) => {
 	try {
@@ -57,7 +58,7 @@ export default async (displayconfig) => {
 			});
 
 			const checkoutBtn = btn("Finalizar compra", "modal-cart-checkout-btn", async () => {
-				window.route({ preventDefault: () => {}, target: { href: `/cart` } });
+				router.navigate("/cart")
 			})
 			checkoutBtn.classList.add("modal-cart-checkout-btn")
 			mainDiv.appendChild(checkoutBtn);

@@ -1,4 +1,5 @@
 import ButtonComponent from "./ButtonComponent.js";
+import router from "../js/routes.js";
 
 export default () => {
 	const mainDiv = document.createElement("div");
@@ -19,7 +20,7 @@ export default () => {
 	cardTextDiv.appendChild(statusText);
 
 	const backToMainPageBtn = ButtonComponent("Voltar ao início", "green-button", () => {
-		window.route({ preventDefault: () => {}, target: { href: "/" } });
+		router.navigate("/")
 	})
 	cardTextDiv.appendChild(backToMainPageBtn);
 

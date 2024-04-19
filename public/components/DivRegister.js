@@ -1,6 +1,7 @@
 import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
+import router from "../js/routes.js";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default () => {
@@ -76,7 +77,7 @@ export default () => {
             const data = await response.json();
 
             if (data.success) {
-                window.route({ preventDefault: () => {}, target: { href: "/login" } });
+                router.navigate("/login")
             } else{
                 alert("Erro ao efetuar registro");
             }

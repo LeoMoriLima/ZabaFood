@@ -1,3 +1,5 @@
+import router from "../js/routes.js";
+
 export default async (id) => {
 	try {
 		const response = await fetch(`/api/product/${id}`, {
@@ -12,7 +14,7 @@ export default async (id) => {
 		mainDiv.classList.add("product-card-recommended");
 
 		mainDiv.addEventListener("click", () => {
-			window.route({ preventDefault: () => { }, target: { href: `/product/${id}` } });
+			router.navigate(`/product/${id}`)
 		})
 
 		const imgDiv = document.createElement("img");

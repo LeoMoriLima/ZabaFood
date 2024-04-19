@@ -1,4 +1,5 @@
 import btn from "./ButtonComponent.js"
+import router from "../js/routes.js";
 
 export default async (id) => {
 	try {
@@ -38,7 +39,7 @@ export default async (id) => {
 		textDiv.appendChild(productValue);
 
 		const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
-			window.route({ preventDefault: () => {}, target: { href: `/product/${id}` } });
+			router.navigate(`/product/${id}`)
 		})
 		textDiv.appendChild(accessHereBtn);
 

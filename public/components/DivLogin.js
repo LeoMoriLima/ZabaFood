@@ -2,6 +2,7 @@ import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import text from "./Text.js";
 import textA from "./Text-a.js";
+import router from "../js/routes.js";
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -32,7 +33,7 @@ export default () => {
             const data = await response.json();
 
             if (data.auth) {
-                window.route({ preventDefault: () => {}, target: { href: "/" } });
+                router.navigate("/")
             } else{
                 alert(data.error);
             }
