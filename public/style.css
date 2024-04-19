@@ -1644,6 +1644,232 @@ input:focus {
     transform: scale(0.8);
 }
 
+/* Account Page */
+
+.user-page-div{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-menu-user-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 17.5rem;
+    align-items: center;
+    height: 50.7rem;
+    background-color: var(--color-secundary);
+}
+
+.nav-menu-user-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.a-orders{
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.order-page-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 102.5rem;
+    margin-left: 3rem;
+    background-color: var(--color-white);
+}
+
+.order-page-title-div{
+    text-align: left;
+    width: 25rem;
+    padding-top: 2rem;
+}
+
+.order-page-title{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+}
+
+.order-div{
+    background-color: var(--color-light-white);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.625rem;
+    width: 86rem;
+    height: 9.1rem;
+}
+
+.order-img-div{
+    width: 80rem;
+    height: 6rem;
+    border-radius: 1rem;
+    gap: 30px;
+    display: flex;
+    border: 0.07rem solid var(--color-secundary);
+    flex-direction: row;
+}
+
+.circle-img-div{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.order-img{
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+
+.order-div-left{
+    display: flex;
+    flex-direction: row;
+    width: 17rem;
+    justify-content: space-between;
+}
+
+.div-order-id{
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-emphasis);
+}
+
+.div-order-date{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-dark-gray);
+}
+
+.order-div-infos{
+    width: 10rem;
+}
+
+.info-order-price-label{
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-emphasis);
+    font-size: 1rem;
+}
+
+.info-order-price{
+    font-family: var(--font-title);
+    font-weight: 500;
+    color: var(--color-dark-gray);
+    font-size: 1rem;
+}
+
+.info-order-label-status{
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-emphasis);
+    font-size: 1rem;
+}
+
+.info-order-status{
+    font-family: var(--font-title);
+    font-weight: 500;
+    color: var(--color-dark-gray);
+    font-size: 1rem;
+}
+
+.action-order-div{
+    text-align: center;
+}
+
+.action-title{
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-dark-gray);
+}
+
+.track-shipping{
+    position: relative;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.order-arrow-down{
+    padding-left: 0.5rem;
+}
+
+.div-track{
+    position: absolute;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    border-radius: 1rem;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--color-light-white);
+    width: 22.5rem;
+    height: 10.75rem;
+    z-index: 1;
+}
+
+.status-circle-div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.track-status{
+    color: var(--color-secundary);
+}
+
+.status-text-track{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-dark-gray);
+    font-size: 1rem;
+}
+
+.div-drop-arrow{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.div-order-products {
+    background-color: var(--color-white);
+    flex-direction: column;
+    gap: 5px;
+    width: 100%; /* ou auto */
+    max-height: 300px; /* Altura máxima para rolar */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    z-index: 1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.drop-arrow-img{
+    width: 13px;
+    height: 9px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.drop-arrow-img.rotate {
+    transform: rotate(180deg); /* Aplica a rotação de 180 graus quando a classe 'rotate' é adicionada */
+}
+
+.order-product-name{
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-emphasis);
+    font-size: 0.75rem;
+}
+
 /* CartPage.js */
 
 .cp-main-div {

@@ -32,6 +32,15 @@ const getCartProductsByUserId = async (userId) => {
     }
 }
 
+const getCartByCartId = async (cartId) =>{
+    try{
+        const cart = await cartProductRepository.getCartProductsByCartId(cartId);
+        return cart;
+    } catch(error) {
+        throw error;
+    }
+}
+
 const getAllCartProduct = async () => {
     try {
         const cartProducts = await cartProductRepository.getAllCartProduct();
@@ -89,6 +98,7 @@ const testCartProductTransaction = async (cart_id, product_id, quantity) => {
 module.exports = {
     getCartProduct,
     getCartProductsByUserId,
+    getCartByCartId,
     getAllCartProduct,
     createCartProduct,
     updateCartProduct,

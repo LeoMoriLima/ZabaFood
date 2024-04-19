@@ -14,6 +14,20 @@ const getCartById = async (id) => {
     }
 }
 
+const getAllCartByUserID = async (userId) => {
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC"
+    try{
+        const result = await client.query(query, [userId]);
+        return result.rows;
+    } catch (error){
+        console.log("Erro ao selecionar dados:", error);
+        throw error;
+    } finally {
+        client.end();
+    }
+}
+
 const getCartByUserID = async (userId) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1;";
@@ -115,6 +129,7 @@ const updateCartDelivered = async (id) => {
 
 module.exports = {
     getCartById,
+    getAllCartByUserID,
     getCartByUserID,
     getAllCarts,
     createNewCart,
