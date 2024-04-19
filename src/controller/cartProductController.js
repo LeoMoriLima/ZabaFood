@@ -4,10 +4,10 @@ const { isUUID, isInt } = require('validator');
 const getCartProduct = async (req, res) => {
     const { id } = req.params;
     try {
-        const admin = req.user.user_type.includes("admin");
-		if(!admin) {
-			return res.status(403).json({error: "Usuário sem permissão"});
-		};
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
 
         if(!isUUID(id)){
             return res.status(400).json({ error: "ID inválido!" });
@@ -20,8 +20,28 @@ const getCartProduct = async (req, res) => {
     }
 }
 
+const getCartByCartId = async (req, res) =>{
+    const { cartId } = req.params;
+    console.log(cartId);
+    try{
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
+        if(!isUUID(cartId)){
+            return res.status(400).json({ error: "UserID inválido!" });
+        };
+
+        const cartProducts = await cartProductServices.getCartByCartId(cartId);
+        return res.status(200).json(cartProducts);
+    } catch (error){
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 const getCartProductsByUserId = async (req, res) => {
-    const { userId } = req.params;
+    const userId = req.user.id;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
@@ -152,6 +172,7 @@ const testCartProductTransaction = async (req, res) => {
 module.exports = {
     getCartProduct,
     getCartProductsByUserId,
+    getCartByCartId,
     getAllCartProduct,
     createCartProduct,
     updateCartProduct,

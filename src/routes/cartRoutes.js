@@ -5,6 +5,7 @@ const permissionVerify = require("../middleware/permissionVerify.js");
 
 router.use(permissionVerify);
 
+router.get("/all", cartController.getAllCartByUserID);
 router.get("/:id", cartController.getCart);
 router.get("/user/:userId", cartController.getCartByUserID);
 router.get("/", cartController.getAllCarts);
