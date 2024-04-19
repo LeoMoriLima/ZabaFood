@@ -65,7 +65,6 @@ class Router {
 }
 
 const switchPage = async (page, params) => {
-	console.log("Params", params);
 	const root = document.getElementById("root");
 	root.innerHTML = "";
 	if (params) {
