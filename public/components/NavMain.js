@@ -3,7 +3,6 @@ import text from "./Text.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import CategoryModal from "../components/CategoryModal.js";
-import SearchProduct from "./SearchProduct.js";
 
 export default async () => {
     const divNavMain = document.createElement("div");
