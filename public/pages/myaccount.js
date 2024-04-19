@@ -8,7 +8,7 @@ export default async () =>{
     page.appendChild(await HeaderMain());
     const userType = await getUserType();
     if (userType === "admin"){
-        page.appendChild(await userAccountPage());
+        page.appendChild(await AdminAccountPage());
     } else if (userType === "user"){
      page.appendChild(await userAccountPage())
     }
