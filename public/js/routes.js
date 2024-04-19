@@ -13,123 +13,87 @@ import cart from "../pages/cart.js";
 import myaccount from "../pages/myaccount.js";
 import products from "../pages/products.js";
 
-const urlPageTitle = "ZabaFood";
-
-// Cria um escutador de evento de clique e verifica os links de navegação
-document.addEventListener("click", (e) => {
-	const { target } = e;
-	if (!target.matches("nav a")) {
-		return;
-	}
-	e.preventDefault();
-	urlRoute();
-});
-
-// Cria um objeto para mapear a url para o page, titulo e descrição
-const urlRoutes = {
-	notFound: {
-		page: notFound,
-		title: "Not Found | " + urlPageTitle,
-		description: "Page not found",
-	},
-	"/": {
-		page: home,
-		title: "Home | " + urlPageTitle,
-		description: "This is the home page",
-	},
-	"/about": {
-		page: about,
-		title: "Quem Somos | " + urlPageTitle,
-		description: "This is the about page",
-	},
-	"/contact": {
-		page: contact,
-		title: "Contato | " + urlPageTitle,
-		description: "This is the contact page",
-	},
-	"/login": {
-		page: login,
-		title: "Login | " + urlPageTitle,
-		description: "This is the login page",
-	},
-	"/register": {
-		page: register,
-		title: "Register | " + urlPageTitle,
-		description: "This is the register page",
-	},
-	"/product": {
-		page: product,
-		title: "Produto | " + urlPageTitle,
-		description: "This is the product page",
-	},
-	"/checkout": {
-		page: checkout,
-		title: "Tela de checkout | " + urlPageTitle,
-		description: "This is the checkout page",
-	},
-	"/terms": {
-		page: terms,
-		title: "Termos e condições | " + urlPageTitle,
-		description: "This is the terms and services page",
-	},
-	"/confirmation": {
-		page: confirmation,
-		title: "Pedido concluído | " + urlPageTitle,
-		description: "This is the order confirmation page",
-	},
-	"/policy": {
-		page: policy,
-		title: "Política de Privacidade | " + urlPageTitle,
-		description: "This is the terms and policy and privacy",
-	},
-	"/cart": {
-		page: cart,
-		title: "Carrinho | " + urlPageTitle,
-		description: "This is the cart page",
-	},
-	"/myaccount": {
-		page: myaccount,
-		title: "Minha conta | " + urlPageTitle,
-		description: "This is the user/admin account page",
-	},
-	"/products":{
-		page: products,
-		title: "Produtos | " + urlPageTitle,
-		description: "This is the products page",
-	}
-};
-
-// Cria uma função que verifica a url e chama o urlLocationHandler
-const urlRoute = (event) => {
-	event = event || window.event;
-	event.preventDefault();
-
-	window.history.pushState({}, "", event.target.href);
-	urlLocationHandler();
-};
-
-// Cria uma função para lidar com a localização da url
-const urlLocationHandler = async () => {
-	const location = window.location.pathname;
-
-	if (location.length == 0) {
-		location = "/";
+class Router {
+	constructor() {
+		this.routes = {};
+		this.routeParamsRegex = /\/\:([\w]+)/g;
 	}
 
-	const route = urlRoutes[location] || urlRoutes["notFound"];
+	// Adiciona uma rota estática ou dinâmica com um manipulador
+	addRoute(path, handler) {
+		// Converta a rota para uma RegExp para poder reconhecer segmentos dinâmicos
+		const regexPath = this._routeToRegex(path);
+		this.routes[regexPath] = {
+			handler,
+			path,
+			regex: new RegExp(`^${regexPath}$`) // Use ^ e $ para corresponder ao início e fim da string
+		};
+	}
 
+	// Converte a rota com segmentos dinâmicos para uma expressão regular
+	_routeToRegex(path) {
+		return path.replace(this.routeParamsRegex, '/([^/]*)');
+	}
+
+	// Processa a mudança de rota
+	navigate(path) {
+		for (const [regexPath, routeInfo] of Object.entries(this.routes)) {
+			const match = path.match(routeInfo.regex);
+			if (match) {
+				window.history.pushState({}, "", match[0]);
+				const params = this._extractParams(routeInfo.path, match);
+				routeInfo.handler(params);
+				return;
+			}
+		}
+
+		this.navigate("/not-found")
+	}
+
+	// Extrai os parâmetros de uma rota dinâmica com base nos segmentos capturados pelo regex
+	_extractParams(route, match) {
+		const params = {};
+		const paramNames = route.match(this.routeParamsRegex);
+		if (paramNames) {
+			for (const [index, paramName] of paramNames.entries()) {
+				const paramNameWithoutColon = paramName.slice(2); // remove "/:"
+				params[paramNameWithoutColon] = match[index + 1];
+			}
+		}
+		return params;
+	}
+}
+
+const switchPage = async (page, params) => {
 	const root = document.getElementById("root");
-
 	root.innerHTML = "";
+	if (params) {
+		root.appendChild(await page(params));
+		return
+	}
+	root.appendChild(await page(params));
+}
 
-	root.appendChild(await route.page());
+const router = new Router();
 
-	document.title = route.title;
-	document
-		.querySelector('meta[name="description"]')
-		.setAttribute("content", route.description);
-};
+router.addRoute("/", async () => switchPage(home));
+router.addRoute("/about", async () => switchPage(about));
+router.addRoute("/cart", async () => switchPage(cart));
+router.addRoute("/checkout", async () => switchPage(checkout));
+router.addRoute("/confirmation", async () => switchPage(confirmation));
+router.addRoute("/contact", async () => switchPage(contact));
+router.addRoute("/login", async () => switchPage(login));
+router.addRoute("/myaccount", async () => switchPage(myaccount));
+router.addRoute("/not-found", async () => switchPage(notFound));
+router.addRoute("/policy", async () => switchPage(policy));
+router.addRoute("/product/:id", async (params) => {
+	const id = params.id;
+	switchPage(product, id);
+});
+router.addRoute("/products", async () => switchPage(products));
+router.addRoute("/register", async () => switchPage(register));
+router.addRoute("/terms", async () => switchPage(terms));
 
-window.onpopstate = urlLocationHandler;
-window.route = urlRoute;
-urlLocationHandler();
+router.navigate(window.location.pathname)
+
+export default router
