@@ -589,9 +589,10 @@ input:focus {
 }
 
 .img-category{
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    
 }
 
 .div-category{
@@ -599,6 +600,8 @@ input:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    width: 100%;
 }
 
 .element-list-category{
@@ -706,6 +709,33 @@ input:focus {
 
 .img-category {
     width: 10dvw;
+}
+
+.circle-category-template{
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--color-light-white);
+    position: absolute;
+    top: 0.8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-category-div{
+    width: 10dvw;
+    height: 10dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.line-category-template{
+    object-fit: unset;
+    width: 10rem;
 }
 
 .cart-modal-div {
