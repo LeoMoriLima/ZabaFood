@@ -83,8 +83,8 @@ const createUser = async (req, res) => {
             throw new Error ( "O telefone é obrigatório" );
         };
 
-        if (!isLength(phone, { min:10 , max: 11 })){
-            return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
+        if (!isLength(phone, { min:11 , max: 17 })){
+            return res.status(400).json({ error: "O número de telefone deve conter entre 11 a 17 números!" })
         }
 
         const user = await userServices.createUser(username, user_type, name, email, password, cpf, phone);
@@ -140,16 +140,16 @@ const updateUser = async (req, res) => {
             throw new Error ( "O cpf é obrigatório" );
         }
 
-        if (!isLength(cpf, { min:4 , max: 30 })){
-            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 18 caracteres!" })
+        if (!isLength(cpf, { min:11 , max: 14 })){
+            return res.status(400).json({ error: "O cpf deve conter entre 11 a 14 caracteres!" })
         }
 
         if (!phone) {
             throw new Error ( "O telefone é obrigatório" );
         }
 
-        if (!isLength(phone, { min:10 , max: 11 })){
-            return res.status(400).json({ error: "O número de telefone deve conter entre 10 a 11 números!" })
+        if (!isLength(phone, { min:11 , max: 17 })){
+            return res.status(400).json({ error: "O número de telefone deve conter entre 11 a 17 números!" })
         }
 
         const result = await userServices.updateUser( id, username, name, email, password, cpf, phone);
