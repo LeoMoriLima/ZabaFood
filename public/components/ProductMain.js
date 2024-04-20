@@ -1,12 +1,11 @@
 import MainProductCard from "./MainProductCard.js";
 import ProductCardRecommended from "./ProductCardRecommended.js";
 
-export default async () => {
+export default async (id) => {
     const main = document.createElement("main");
     main.classList.add("product-main")
     
-    const productId = "4c3e47b0-dce2-48c8-9b79-21709abd12bb"; // Produto: Cúrcuma com Pimenta
-    const product = await getProduct(productId)
+    const product = await getProduct(id)
   
     main.appendChild(await MainProductCard(product));
     

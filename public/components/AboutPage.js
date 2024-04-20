@@ -1,4 +1,6 @@
 import ButtonComponent from "./ButtonComponent.js";
+import router from "../js/routes.js";
+
 
 export default () => {
     const aboutPageDiv = document.createElement("div");
@@ -23,7 +25,7 @@ export default () => {
     aboutTextDiv.appendChild(aboutPageText);
 
     aboutPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
-        window.route({ preventDefault: () => {}, target: { href: "/" } });
+        router.navigate("/")
     }));
 
     return aboutPageDiv;

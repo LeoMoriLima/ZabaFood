@@ -1,4 +1,5 @@
 import btn from "./ButtonComponent.js"
+import router from "../js/routes.js";
 
 const discount = 0.92;
 
@@ -20,7 +21,7 @@ export default async (id) => {
 		imgDiv.classList.add("card-product-img");
 		mainDiv.appendChild(imgDiv);
 		imgDiv.addEventListener("click", () => {
-			window.route({ preventDefault: () => { }, target: { href: `/product/${id}` } });
+			router.navigate(`/product/${id}`)
 		})
 
 		const productTitleDiv = document.createElement("div");
@@ -28,7 +29,7 @@ export default async (id) => {
 		mainDiv.appendChild(productTitleDiv);
 
 		productTitleDiv.addEventListener("click", () => {
-			window.route({ preventDefault: () => { }, target: { href: `/product/${id}` } });
+			router.navigate(`/product/${id}`)
 		})
 
 		const productTitle = document.createElement("p");

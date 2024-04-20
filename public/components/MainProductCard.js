@@ -1,5 +1,6 @@
 import Button from "./ButtonComponent.js";
 import QuantityInput from "./QuantityInput.js";
+import router from "../js/routes.js";
 
 export default async (product) => {
     try {
@@ -199,6 +200,6 @@ const addToCart = async (cartId, productId, quantity) => {
 }
 
 const navigateTo = (endpoint) => {
-    window.route({ preventDefault: () => { }, target: { href: `/${endpoint}` } });
+    router.navigate(`/${endpoint}`)
 }
 

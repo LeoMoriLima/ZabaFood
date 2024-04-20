@@ -1,4 +1,5 @@
 import btn from "./ButtonComponent.js"
+import router from "../js/routes.js";
 
 export default async () => {
 	const freight = 10;
@@ -183,7 +184,7 @@ export default async () => {
 		totalDiv.appendChild(totalDivValue);
 
 		const payNowBtn = btn("Pagar agora", "pay-now-btn", async () => {
-			window.route({ preventDefault: () => {}, target: { href: `/confirmation` } });
+			router.navigate("/confirmation")
 		});
 		valueDiv.appendChild(payNowBtn);
 

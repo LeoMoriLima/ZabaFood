@@ -20,9 +20,9 @@ export default async () => {
     const orderContent = await orderPageDiv();
 
     const aOrders = document.createElement("a");
-    const aOrdersIcon = document.createElement("img")
-    aOrdersIcon.src = "../assets/images/bag-icon.svg"
-    aOrders.appendChild(aOrdersIcon)
+    const aOrdersIcon = document.createElement("img");
+    aOrdersIcon.src = "../assets/images/bag-icon.svg";
+    aOrders.appendChild(aOrdersIcon);
 
     const ordersText = document.createElement("span");
     ordersText.innerText = "Meus pedidos";
@@ -65,8 +65,8 @@ export default async () => {
         aOrders.classList.add("nav-menu-user-page-selected");
         aSettings.classList.remove("nav-menu-user-page-selected");
         aAddress.classList.remove("nav-menu-user-page-selected");
-        addressContent.style.display = "none"
-        orderContent.style.display = "flex"
+        addressContent.style.display = "none";
+        orderContent.style.display = "flex";
     })
 
     aSettings.addEventListener("click", () => { 
@@ -90,7 +90,7 @@ export default async () => {
             console.error("Erro ao fazer a requisição");
             throw new error("Erro ao fazer a requisição!");
         } finally {
-            router.navigate("/")
+            router.navigate("/");
         };
     }))
 

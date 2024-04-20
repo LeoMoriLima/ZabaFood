@@ -1,3 +1,5 @@
+import router from "../js/routes.js";
+
 export default () => {
     const navHeaderLogin = document.createElement("nav");
     navHeaderLogin.classList.add('nav-header-login', 'roboto-regular');
@@ -6,7 +8,7 @@ export default () => {
     backBtn.href = '/';
     backBtn.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/" } });
+        router.navigate("/")
     }
     backBtn.classList.add('back-btn');
     navHeaderLogin.appendChild(backBtn);
@@ -26,7 +28,7 @@ export default () => {
     logoBtn.href = '/';
     logoBtn.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/" } });
+        router.navigate("/")
     }
     logoBtn.classList.add('logo-btn');
     navHeaderLogin.appendChild(logoBtn);
