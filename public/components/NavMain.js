@@ -174,7 +174,8 @@ export default async () => {
     aCartIcon.href = cartModal ? "/cart" : "/login";
     aCartIcon.onclick = (e) => {
         e.preventDefault();
-        router.navigate(aCartIcon.href);
+        const CartIconHref = aCartIcon.href.substring(aCartIcon.href.lastIndexOf("/"));
+        router.navigate(CartIconHref);
     }
     cartDiv.appendChild(aCartIcon);
 

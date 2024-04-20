@@ -598,7 +598,7 @@ input:focus {
     border: 1px solid black;
 } */
 
-.img-category{
+.img-category {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
@@ -725,7 +725,7 @@ input:focus {
     right: 25rem;
 } */
 
-.circle-category-template{
+.circle-category-template {
     width: 7.5rem;
     height: 7.5rem;
     border-radius: 50%;
@@ -737,7 +737,7 @@ input:focus {
     justify-content: center;
 }
 
-.img-category-div{
+.img-category-div {
     width: 10dvw;
     height: 10dvh;
     display: flex;
@@ -747,7 +747,7 @@ input:focus {
     position: relative;
 }
 
-.line-category-template{
+.line-category-template {
     object-fit: unset;
     width: 10rem;
 }
@@ -874,6 +874,7 @@ input:focus {
     gap: 3.0625rem;
     justify-content: center;
     padding: 3rem;
+    min-height: 75vh;
 }
 
 .info-div-checkout {
@@ -1355,6 +1356,7 @@ input:focus {
 .admin-page-div {
     display: flex;
     flex-direction: row;
+    min-height: 75vh;
 }
 
 .left-menu-admin-page {
@@ -1364,12 +1366,30 @@ input:focus {
     width: 17.5rem;
     align-items: center;
     background-color: var(--color-secundary);
-    height: 34.7rem;
 }
 
 .nav-menu-admin-page {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.a-add-product,
+.a-all-product {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    font-family: var(--font-title);
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.nav-menu-admin-page-selected {
+    background-color: var(--color-emphasis);
 }
 
 .exit-button {
@@ -1704,13 +1724,25 @@ input:focus {
 .nav-menu-user-page {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.a-orders {
+.a-orders,
+.a-settings {
     color: var(--color-white);
+    background-color: var(--color-primary);
     font-family: var(--font-title);
-    font-weight: 700;
-    font-size: 1rem;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.nav-menu-user-page-selected {
+    background-color: var(--color-emphasis);
 }
 
 .order-page-div {
@@ -1764,13 +1796,13 @@ input:focus {
     padding: 3rem;
 }
 
-.order-product-name-div{
+.order-product-name-div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.order-img-div p{
+.order-img-div p {
     text-align: left;
 }
 
@@ -2108,6 +2140,7 @@ input:focus {
     font-size: 1.5rem;
     height: 3.5625rem;
     width: 20.375rem;
+    cursor: pointer;
 }
 
 .cp-product-offer-div {
@@ -2278,9 +2311,9 @@ input:focus {
 
 /* PaymentPage.js */
 
-body {
+/* body {
     overflow-y: hidden;
-}
+} */
 
 .pp-main-div {
     align-items: flex-start;
@@ -2291,7 +2324,7 @@ body {
     gap: 3rem;
     justify-content: center;
     margin: 3rem;
-    min-height: 50vh;
+    min-height: 60vh;
 }
 
 .pp-left-div {
@@ -2312,14 +2345,17 @@ body {
     width: 100%;
 }
 
-.pp-methods-div-title, .pp-total-div-title {
+.pp-methods-div-title,
+.pp-total-div-title {
     font-size: 2rem;
     font-weight: 400;
     padding-bottom: 1rem;
     margin-bottom: 0.3rem;
 }
 
-.pp-credit-card-div, .pp-pix-div, .pp-payment-slip-div  {
+.pp-credit-card-div,
+.pp-pix-div,
+.pp-payment-slip-div {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
@@ -2328,12 +2364,16 @@ body {
     margin-bottom: 1rem;
 }
 
-.pp-credit-card-title, .pp-pix-title, .pp-payment-slip-title {
+.pp-credit-card-title,
+.pp-pix-title,
+.pp-payment-slip-title {
     border-bottom: 1px solid var(--color-secundary);
     font-weight: 300;
 }
 
-.pp-credit-card-desc-div, .pp-pix-desc-div, .pp-payment-slip-desc-div {
+.pp-credit-card-desc-div,
+.pp-pix-desc-div,
+.pp-payment-slip-desc-div {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -2341,7 +2381,9 @@ body {
     justify-content: flex-start;
 }
 
-.pp-credit-card-checkbox, .pp-pix-checkbox, .pp-payment-slip-checkbox {
+.pp-credit-card-checkbox,
+.pp-pix-checkbox,
+.pp-payment-slip-checkbox {
     border: 0.2rem solid;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -2418,7 +2460,7 @@ body {
     flex-direction: row;
     justify-content: center;
     margin: 3rem;
-    min-height: 50vh;
+    min-height: 60vh;
 }
 
 .pc-card-text-div {
