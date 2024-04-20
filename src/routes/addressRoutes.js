@@ -5,6 +5,7 @@ const permissionVerify = require('../middleware/permissionVerify.js');
 
 router.use(permissionVerify);
 
+router.get("/all/", addressController.getAllUserAddress);
 router.get("/:id", addressController.getAddress);
 router.get("/user/:userId", addressController.getAddressByUserID);
 router.get("/", addressController.getAllAddresses);

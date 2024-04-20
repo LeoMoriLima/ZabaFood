@@ -24,6 +24,18 @@ const getAddressByUserID = async (userId) => {
 	}
 }
 
+const getAllUserAddress = async (userId) =>{
+	try{
+		const address = await addressRepository.getAllUserAddress(userId);
+		if(!address){
+			throw new Error("Endereço não encontrado")
+		}
+		return address;
+	} catch(error){
+		throw error;
+	}
+}
+
 const getAllAddresses = async () => {
 	try {
 		const addresses = await addressRepository.getAllAddresses();
@@ -58,7 +70,7 @@ const deleteAddress = async (id) => {
 	try {
 		const address = await addressRepository.getAddress(id);
 		if (!address) {
-			throw new Error("Produto não encontrado")
+			throw new Error("Endereço não encontrado")
 		}
 		await addressRepository.deleteAddress(id);
 		return { success: true };
@@ -70,6 +82,7 @@ const deleteAddress = async (id) => {
 module.exports = {
 	getAddress,
 	getAddressByUserID,
+	getAllUserAddress,
 	getAllAddresses,
 	createNewAddress,
 	updateAddress,

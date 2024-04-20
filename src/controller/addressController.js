@@ -40,6 +40,25 @@ const getAddressByUserID = async (req, res) => {
     }
 }
 
+const getAllUserAddress = async (req, res) => {
+    const userId = req.user.id;
+    try{
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        }
+
+        if(!isUUID(userId)){
+            return res.status(400).json({ error: "ID Inválido!" })
+        }
+
+        const address = await addressService.getAllUserAddress(userId);
+        return res.status(200).json(address);
+    } catch(error){
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const getAllAddresses = async (req, res) => {
 	try {
 		const admin = req.user.user_type.includes("admin");
@@ -99,10 +118,6 @@ const createNewAddress = async (req, res) => {
             return res.status(400).json({ error: "A rua deve ter entre 2 e 50 caracteres" })
         }
         
-        if (!isInt(number)) {
-            return res.status(400).json({ error: "O número deve ser inteiro!" });
-        }
-        
         if (isEmpty(complement)) {
             return res.status(400).json({ error: "O complemento é obrigatório!" });
         }
@@ -115,7 +130,7 @@ const createNewAddress = async (req, res) => {
 
 const updateAddress = async (req, res) => {
     const { postal_code, state, city, street, number, complement } = req.body;
-    const id = req.user.id;
+    const { id } = req.params;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
@@ -173,7 +188,7 @@ const updateAddress = async (req, res) => {
 }
 
 const deleteAddress = async (req, res) => {
-    const id = req.user.id;
+    const { id } = req.params;
     try {
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {
@@ -193,6 +208,7 @@ const deleteAddress = async (req, res) => {
 module.exports = {
 	getAddress,
     getAddressByUserID,
+    getAllUserAddress,
 	getAllAddresses,
 	createNewAddress,
 	updateAddress,
