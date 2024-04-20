@@ -1,6 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
 import userAddressContent from "./userAddressContent.js";
 import orderPageDiv from "./userOrdersContent.js";
+import router from "../js/routes.js";
 
 export default async () => {
     const userPageDiv = document.createElement("div");
@@ -14,63 +15,84 @@ export default async () => {
     navMenuUserPage.classList.add("nav-menu-user-page");
     leftMenuUserPage.appendChild(navMenuUserPage);
     
+    const addressContent = await userAddressContent();
+    addressContent.style.display = "none";
+    const orderContent = await orderPageDiv();
+
+    const aOrders = document.createElement("a");
+    const aOrdersIcon = document.createElement("img")
+    aOrdersIcon.src = "../assets/images/bag-icon.svg"
+    aOrders.appendChild(aOrdersIcon)
+
+    const ordersText = document.createElement("span");
+    ordersText.innerText = "Meus pedidos";
+    aOrders.appendChild(ordersText);
+    aOrders.classList.add("a-orders");
+    aOrders.classList.add("nav-menu-user-page-selected");
+    navMenuUserPage.appendChild(aOrders);
+
     const aAddress = document.createElement("a");
-    aAddress.innerText = "Meus endereços";
+    const aAddressIcon = document.createElement("img");
+    aAddressIcon.src = "../assets/images/address-icon.svg";
+    aAddress.appendChild(aAddressIcon);
+
+    const addressText = document.createElement("span");
+    addressText.innerText = "Meus endereços";
+    aAddress.appendChild(addressText);
     aAddress.classList.add("a-address");
     navMenuUserPage.appendChild(aAddress);
 
-    aAddress.addEventListener("click", async () => {
-        handleSelected(aAddress)
-        aAddress.classList.add("selected-option");
-        userPageDiv.querySelectorAll(".content-container").forEach((element) => {
-            element.remove();
-        });
+    const aSettings = document.createElement("a");
+    const aSettingsIcon = document.createElement("img");
+    aSettingsIcon.src = "../assets/images/settings-icon.svg";
+    aSettings.appendChild(aSettingsIcon);
+  
+    const settingsText = document.createElement("span");
+    settingsText.innerText = "Configurações";
+    aSettings.appendChild(settingsText);
+    aSettings.classList.add("a-settings");
+    navMenuUserPage.appendChild(aSettings);
 
-        const addressContent = await userAddressContent();
-        addressContent.classList.add("content-container");
-        userPageDiv.appendChild(addressContent);
-    });
+    aAddress.addEventListener("click", () =>{
+        aAddress.classList.add("nav-menu-user-page-selected");
+        aOrders.classList.remove("nav-menu-user-page-selected");
+        aSettings.classList.remove("nav-menu-user-page-selected");
+        addressContent.style.display = "flex";
+        orderContent.style.display = "none";
+    })
 
-    const aOrders = document.createElement("a");
-    aOrders.innerText = "Meus pedidos";
-    aOrders.classList.add("a-orders");
-    navMenuUserPage.appendChild(aOrders);
+    aOrders.addEventListener("click", () => {
+        aOrders.classList.add("nav-menu-user-page-selected");
+        aSettings.classList.remove("nav-menu-user-page-selected");
+        aAddress.classList.remove("nav-menu-user-page-selected");
+        addressContent.style.display = "none"
+        orderContent.style.display = "flex"
+    })
 
-    
-    aOrders.addEventListener("click", async () => {
-        handleSelected(aOrders);
-        userPageDiv.querySelectorAll(".content-container").forEach((element) => {
-            element.remove();
-        });
+    aSettings.addEventListener("click", () => { 
+        aSettings.classList.add("nav-menu-user-page-selected");
+        aOrders.classList.remove("nav-menu-user-page-selected");
+        aAddress.classList.remove("nav-menu-user-page-selected");
+    })
 
-        const orderContent = await orderPageDiv();
-        orderContent.classList.add("content-container");
-        userPageDiv.appendChild(orderContent);
-    });
+    userPageDiv.appendChild(orderContent);
+    userPageDiv.appendChild(addressContent);
 
     leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
-        try{
+        try {
             const response = await fetch('/logout', {
                 method: "GET",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 }
             });
-        } catch(error){
+        } catch (error) {
             console.error("Erro ao fazer a requisição");
-            throw new error ("Erro ao fazer a requisição!");
+            throw new error("Erro ao fazer a requisição!");
         } finally {
-            window.route({ preventDefault: () => {}, target: { href: "/" } });
+            router.navigate("/")
         };
     }))
 
     return userPageDiv;
-}
-
-function handleSelected(element) {
-    const allLinks = document.querySelectorAll(".nav-menu-user-page a");
-    allLinks.forEach((link) => {
-        link.classList.remove("selected-a");
-    });
-    element.classList.add("selected-a");
 }
