@@ -24,8 +24,7 @@ export default async () =>{
     leftDiv.appendChild(registerAddress);
 
     const userAddress = await getUserAddress();
-    console.log(userAddress);
-
+    
     const divPostalCode = document.createElement("div");
     divPostalCode.classList.add("div-postal-code");
     leftDiv.appendChild(divPostalCode);
