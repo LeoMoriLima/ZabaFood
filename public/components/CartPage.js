@@ -1,5 +1,6 @@
 import cart from "../pages/cart.js";
 import btn from "./ButtonComponent.js";
+import router from "../js/routes.js";
 
 export default async () => {
 	try {
@@ -105,7 +106,7 @@ export default async () => {
             keepBuyingCartText.classList.add("cp-keep-buying-cart-text");
             keepBuyingCartText.innerText = "continue comprando."
             keepBuyingCartText.addEventListener("click", () => {
-                window.route({ preventDefault: () => {}, target: { href: `/` } });
+                router.navigate("/")
             })
             messageDiv.appendChild(keepBuyingCartText);
         }
@@ -133,7 +134,7 @@ export default async () => {
         subtotalTextDiv.appendChild(subtotalTextDivRight);
 
         const closeCartBtn = btn("Fechar pedido", "cp-close-cart-btn", async () => {
-            window.route({ preventDefault: () => {}, target: { href: `/checkout` } });
+            router.navigate("/checkout")
         });
         subtotalDiv.appendChild(closeCartBtn);
 

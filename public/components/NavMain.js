@@ -4,6 +4,7 @@ import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import CategoryModal from "../components/CategoryModal.js";
 import CartModal from "./CartModal.js";
+import router from "../js/routes.js";
 
 export default async () => {
     const divNavMain = document.createElement("div");
@@ -26,7 +27,7 @@ export default async () => {
     aLogoImg.href = "/";
     aLogoImg.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/" } });
+        router.navigate("/")
     }
     headerDivLeft.appendChild(aLogoImg);
 
@@ -75,7 +76,7 @@ export default async () => {
     aPhoneIcon.href = "/contact"
     aPhoneIcon.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/contact" } });
+        router.navigate("/contact")
     }
     contactDiv.appendChild(aPhoneIcon);
 
@@ -86,7 +87,7 @@ export default async () => {
     const aContact = textA("ATENDIMENTO", "a-contact", "none", "/contact");
     aContact.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/contact" } });
+        router.navigate("/contact")
     }
     contactDiv.appendChild(aContact);
 
@@ -115,7 +116,7 @@ export default async () => {
             const aAccount = textA("ENTRAR", "a-account", "none", "/login");
             aAccount.onclick = (e) => {
                 e.preventDefault();
-                window.route({ preventDefault: () => { }, target: { href: "/login" } });
+                router.navigate("/login")
             }
             accountDiv.appendChild(aAccountIcon);
             accountDiv.appendChild(aAccount);
@@ -123,13 +124,13 @@ export default async () => {
             aAccountIcon.href = "/login"
             aAccountIcon.onclick = (e) => {
                 e.preventDefault();
-                window.route({ preventDefault: () => { }, target: { href: "/login" } });
+                router.navigate("/login")
             }
         } else {
             const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
             aAccount.onclick = (e) => {
                 e.preventDefault();
-                window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
+                router.navigate("/myaccount")
             }
             accountDiv.appendChild(aAccountIcon);
             accountDiv.appendChild(aAccount);
@@ -137,7 +138,7 @@ export default async () => {
             aAccountIcon.href = "/myaccount"
             aAccountIcon.onclick = (e) => {
                 e.preventDefault();
-                window.route({ preventDefault: () => { }, target: { href: "/myaccount" } });
+                router.navigate("/myaccount")
             }
         }
     } catch (error) {
@@ -173,7 +174,7 @@ export default async () => {
     aCartIcon.href = cartModal ? "/cart" : "/login";
     aCartIcon.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: aCartIcon.href } });
+        router.navigate(aCartIcon.href);
     }
     cartDiv.appendChild(aCartIcon);
 
@@ -268,7 +269,7 @@ export default async () => {
     const about = textA("QUEM SOMOS", "about-nav", "none", "/about");
     about.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => { }, target: { href: "/about" } });
+        router.navigate("/about")
     }
     rightSideNavbarDiv.appendChild(about);
 

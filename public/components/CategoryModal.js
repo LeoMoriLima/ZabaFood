@@ -1,4 +1,4 @@
-
+import router from "../js/routes.js";
 import TextA from "./Text-a.js";
 
 export default async () => {
@@ -61,7 +61,7 @@ export default async () => {
         listCategory.appendChild(elementListCategory);
         divCategory.onclick = (e) => {
             e.preventDefault();
-            window.route({ preventDefault: () => { }, target: { href: `/products/${type.type}` } });
+            router.navigate(`/products/${type.type}`)
         }
 
     });

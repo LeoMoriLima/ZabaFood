@@ -1,5 +1,6 @@
 import ButtonComponent from "./ButtonComponent.js";
 import orderPageDiv from "./userOrdersContent.js";
+import router from "../js/routes.js";
 
 export default async () => {
     const userPageDiv = document.createElement("div");
@@ -32,7 +33,7 @@ export default async () => {
             console.error("Erro ao fazer a requisição");
             throw new error ("Erro ao fazer a requisição!");
         } finally {
-            window.route({ preventDefault: () => {}, target: { href: "/" } });
+            router.navigate("/")
         };
     }))
 

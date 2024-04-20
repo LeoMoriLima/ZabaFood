@@ -1,5 +1,6 @@
 import AdminAddProductPage from "./AdminAddProductPage.js";
 import ButtonComponent from "./ButtonComponent.js";
+import router from "../js/routes.js";
 
 export default async () => {
     const adminPageDiv = document.createElement("div");
@@ -37,7 +38,7 @@ export default async () => {
             console.error("Erro ao fazer a requisição");
             throw new Error ("Erro ao fazer a requisição!");
         } finally {
-            window.route({ preventDefault: () => {}, target: { href: "/" } });
+            router.navigate("/")
         }
     }));
 

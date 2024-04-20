@@ -1,3 +1,5 @@
+import router from "../js/routes.js";
+
 export default () =>{
     const footerMain = document.createElement("footer");
     footerMain.classList.add("footer-main");
@@ -14,7 +16,7 @@ export default () =>{
     aTerm.href="/terms";
     aTerm.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/terms" } });
+        router.navigate("/terms")
     }
     aTerm.innerText = "Termos e condições";
     aTerm.classList.add("left-footer-a");
@@ -24,7 +26,7 @@ export default () =>{
     aPolicy.href="/policy";
     aPolicy.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/policy" } });
+        router.navigate("/policy")
     }
     aPolicy.innerText="Política de privacidade";
     aPolicy.classList.add("left-footer-a");
@@ -98,7 +100,7 @@ export default () =>{
     aRightLogo.href = "/";
     aRightLogo.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: "/" } });
+        router.navigate("/")
     }
     aRightLogo.classList.add("a-right-logo");
     rightDivFooter.appendChild(aRightLogo);

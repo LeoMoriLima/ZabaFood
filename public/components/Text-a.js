@@ -1,3 +1,5 @@
+import router from "../js/routes.js";
+
 export default (text_content, id, class_text, href) => {
     const text = document.createElement("a");
     text.innerText = text_content;
@@ -6,7 +8,7 @@ export default (text_content, id, class_text, href) => {
     text.href = href;
     text.onclick = (e) => {
         e.preventDefault();
-        window.route({ preventDefault: () => {}, target: { href: href } });
+        router.navigate(href)
     }
     return text;
 }
