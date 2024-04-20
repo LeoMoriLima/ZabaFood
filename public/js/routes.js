@@ -12,6 +12,8 @@ import checkout from "../pages/checkout.js";
 import cart from "../pages/cart.js";
 import myaccount from "../pages/myaccount.js";
 import products from "../pages/products.js";
+import payment from "../pages/payment.js";
+import payconfirmation from "../pages/payconfirmation.js";
 
 class Router {
 	constructor() {
@@ -93,6 +95,8 @@ router.addRoute("/product/:id", async (params) => {
 router.addRoute("/products", async () => switchPage(products));
 router.addRoute("/register", async () => switchPage(register));
 router.addRoute("/terms", async () => switchPage(terms));
+router.addRoute("/payment", async () => switchPage(payment));
+router.addRoute("/pay-confirmation", async () => switchPage(payconfirmation));
 
 router.navigate(window.location.pathname)
 

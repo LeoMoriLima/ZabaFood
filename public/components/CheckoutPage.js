@@ -125,15 +125,21 @@ export default async () => {
 
 		const userCreditBalance = document.createElement("p");
 		userCreditBalance.classList.add("user-credit-balance");
-		// userCreditBalance.innerText = `Seu saldo de créditos é de: ${credits.balance}`;
 		userCreditBalance.innerText = `Seu saldo de créditos é de: R$ ${(user.credit_balance).replace('.', ',')}`;
 		creditDiv.appendChild(userCreditBalance);
 
 		const userCreditFinal = document.createElement("p");
 		userCreditFinal.classList.add("user-credit-final");
-		// userCreditFinal.innerText = `Seu saldo após a compra dos produtos será de: ${credits.balance}`;
 		userCreditFinal.innerText = `Seu saldo após a compra dos produtos será de: R$ ${(user.credit_balance - cart.total - freight).toFixed(2).replace('.', ',')}`;
 		creditDiv.appendChild(userCreditFinal);
+
+		const insertCreditText = document.createElement("p");
+		insertCreditText.classList.add("insert-credit-text");
+		insertCreditText.innerText = "Deseja inserir mais créditos?";
+		insertCreditText.addEventListener("click", async () => {
+			window.route({ preventDefault: () => {}, target: { href: `/payment` } });
+		})
+		creditDiv.appendChild(insertCreditText);
 
 		const rightDiv = document.createElement("div");
 		rightDiv.classList.add("right-div");
