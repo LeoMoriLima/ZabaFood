@@ -15,28 +15,49 @@ export default async () => {
     leftMenuAdminPage.appendChild(navMenuAdminPage);
 
     const aAddProduct = document.createElement("a");
-    aAddProduct.innerText = "Adicionar Produto";
     aAddProduct.classList.add("a-add-product");
+    aAddProduct.classList.add("nav-menu-admin-page-selected")
+    const aAddProductIcon = document.createElement("img")
+    aAddProductIcon.src = "../assets/images/plus-icon.svg"
+    aAddProduct.appendChild(aAddProductIcon)
+    const addProductText = document.createElement("span")
+    addProductText.innerText = "Adicionar produto"
+    aAddProduct.appendChild(addProductText)
     navMenuAdminPage.appendChild(aAddProduct);
 
     const aAllProduct = document.createElement("a");
-    aAllProduct.innerText = "Modificar Produto";
+    const aAllProductIcon = document.createElement("img")
+    aAllProductIcon.src = "../assets/images/book-open-icon.svg"
+    aAllProduct.appendChild(aAllProductIcon)
+    const allProductText = document.createElement("span")
+    allProductText.innerText = "Produtos cadastrados"
+    aAllProduct.appendChild(allProductText)
     aAllProduct.classList.add("a-all-product");
     navMenuAdminPage.appendChild(aAllProduct);
+
+    aAddProduct.addEventListener("click", () => {
+        aAddProduct.classList.add("nav-menu-admin-page-selected")
+        aAllProduct.classList.remove("nav-menu-admin-page-selected")
+    })
+
+    aAllProduct.addEventListener("click", () => {
+        aAllProduct.classList.add("nav-menu-admin-page-selected")
+        aAddProduct.classList.remove("nav-menu-admin-page-selected")
+    })
 
     adminPageDiv.appendChild(await AdminAddProductPage());
 
     leftMenuAdminPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
-        try{
+        try {
             const response = await fetch('/logout', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
-        } catch(error){
+        } catch (error) {
             console.error("Erro ao fazer a requisição");
-            throw new Error ("Erro ao fazer a requisição!");
+            throw new Error("Erro ao fazer a requisição!");
         } finally {
             router.navigate("/")
         }
