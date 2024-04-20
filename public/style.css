@@ -438,6 +438,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 3rem;
+    min-height: 50vh;
 }
 
 .card-text-div {
@@ -2271,4 +2273,162 @@ input:focus {
     font-family: var(--font-title);
     font-size: 2rem;
     font-weight: 800;
+}
+
+
+/* PaymentPage.js */
+
+body {
+    overflow-y: hidden;
+}
+
+.pp-main-div {
+    align-items: flex-start;
+    color: var(--color-secundary);
+    display: flex;
+    flex-direction: row;
+    font-family: var(--font-text);
+    gap: 3rem;
+    justify-content: center;
+    margin: 3rem;
+    min-height: 50vh;
+}
+
+.pp-left-div {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    width: 50%;
+}
+
+.pp-methods-div {
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    width: 100%;
+}
+
+.pp-methods-div-title, .pp-total-div-title {
+    font-size: 2rem;
+    font-weight: 400;
+    padding-bottom: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.pp-credit-card-div, .pp-pix-div, .pp-payment-slip-div  {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.pp-credit-card-title, .pp-pix-title, .pp-payment-slip-title {
+    border-bottom: 1px solid var(--color-secundary);
+    font-weight: 300;
+}
+
+.pp-credit-card-desc-div, .pp-pix-desc-div, .pp-payment-slip-desc-div {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.pp-credit-card-checkbox, .pp-pix-checkbox, .pp-payment-slip-checkbox {
+    border: 0.2rem solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+}
+
+.pp-credit-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-secundary);
+    /* border-radius: 2.8125rem; */
+    color: var(--color-secundary);
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+    width: 12rem;
+}
+
+.pp-right-div {
+    align-items: center;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2.5rem;
+    width: 25%;
+}
+
+.pp-total-text-div {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.pp-total-text-div-left {
+    color: var(--color-emphasis);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.pp-total-text-div-right {
+    color: var(--color-secundary);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.pp-close-cart-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 3rem;
+    color: var(--color-light-white);
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    height: 3.5625rem;
+    width: 20.375rem;
+}
+
+.pp-close-cart-btn:hover {
+    background-color: var(--color-secundary);
+}
+
+/* PayConfirmationPage.js */
+
+.pc-main-div-confirmation-page {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3rem;
+    min-height: 50vh;
+}
+
+.pc-card-text-div {
+    align-items: center;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    height: 20.25rem;
+    justify-content: space-around;
+    padding: 2rem;
+    width: 45rem;
 }
