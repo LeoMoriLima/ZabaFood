@@ -69,6 +69,20 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
     }
 }
 
+const updateUserCreditBalance = async (id, credit_balance) => {
+    const query = 'UPDATE users SET credit_balance = $1 WHERE id = $2';
+    const client = await connectToDatabase();
+    try {
+        await client.query(query, [credit_balance, id]);
+        console.log('Dados atualizados com sucesso');
+    } catch (error) {
+        console.log('Erro ao atualizar dados:', error);
+        throw error;
+    } finally {
+        client.end()
+    }
+}
+
 const deleteUser = async (id) => {
     const query = 'DELETE FROM users WHERE id = $1';
     const client = await connectToDatabase();
@@ -88,5 +102,6 @@ module.exports = {
     insertNewUser,
     getUser,
     updateUser,
+    updateUserCreditBalance,
     deleteUser,
 }

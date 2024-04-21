@@ -58,7 +58,19 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
         console.log(error);
         throw error;
     }
-};
+}
+
+const updateUserCreditBalance = async (id, credit_balance) => {
+    try {
+        const user = await userRepository.getUser(id);
+        if(!user){
+            throw new Error("Usuário não existente");
+        }
+        await userRepository.updateUserCreditBalance(id, credit_balance);
+    } catch (error) {
+        throw error;
+    }
+}
 
 const deleteUser = async (id) => {
     try {
@@ -78,5 +90,6 @@ module.exports = {
     getUser,
     createUser,
     updateUser,
+    updateUserCreditBalance,
     deleteUser,
 }

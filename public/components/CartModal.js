@@ -17,20 +17,30 @@ export default async (displayconfig) => {
 
 		const userId = userData.user.id;
 
-		const cartResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+		const cartResponse = await fetch(`/api/cart/user/${userId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
 			}
 		});
 
-		const cartProductsInfos = await cartResponse.json();
+		const cart = await cartResponse.json();	
+		const cartStatus = cart.status;
+
+		const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		const cartProductsInfos = await cartProductsResponse.json();
 
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("modal-cart-main-div");
 		mainDiv.style.display = displayconfig;
 
-		if (cartProductsInfos.length !== 0) {
+		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
 				const {product , quantity} = itemProduct
 				const itemProductDiv = document.createElement("div");
