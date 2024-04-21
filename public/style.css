@@ -11,6 +11,9 @@
     --font-title: "Montserrat Alternates", sans-serif;
     --font-text: "Roboto", sans-serif;
     --font-banner-product-title: "Shrikhand", serif;
+    --sb-track-color: #F3F3F3;
+    --sb-thumb-color: #475f30;
+    --sb-size: 10px;
 }
 
 .roboto-regular {
@@ -1399,6 +1402,7 @@ input:focus {
     font-weight: 700;
     width: 10rem;
     padding: 1.9rem;
+    margin-bottom: 10vh;
     border: none;
     border-radius: 0.9rem;
     transition: all ease-in-out 0.3s;
@@ -1714,7 +1718,7 @@ input:focus {
 .left-menu-user-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 17.5rem;
     align-items: center;
     height: 50.7rem;
@@ -1728,6 +1732,7 @@ input:focus {
 }
 
 .a-orders,
+.a-address,
 .a-settings {
     color: var(--color-white);
     background-color: var(--color-primary);
@@ -1739,18 +1744,19 @@ input:focus {
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+.a-orders:hover,
+.a-address:hover,
+.a-settings:hover{
+    background-color: var(--color-emphasis);
 }
 
 .nav-menu-user-page-selected {
     background-color: var(--color-emphasis);
 }
 
-.a-address {
-    color: var(--color-white);
-    font-family: var(--font-title);
-    font-weight: 700;
-    font-size: 1rem;
-}
 
 .order-page-div {
     display: flex;
@@ -1760,6 +1766,21 @@ input:focus {
     width: 102.5rem;
     margin-left: 3rem;
     background-color: var(--color-white);
+    max-height: 88vh;
+    overflow-y: auto;
+}
+
+.order-page-div::-webkit-scrollbar{
+    width: var(--sb-size);
+}
+
+.order-page-div::-webkit-scrollbar-track{
+    background: var(--sb-track-color);
+}
+
+.order-page-div::-webkit-scrollbar-thumb{
+    background: var(--sb-thumb-color);
+    border-radius: 2px;
 }
 
 .order-page-title-div {
@@ -1783,6 +1804,7 @@ input:focus {
     border-radius: 0.625rem;
     width: 86rem;
     height: 9.1rem;
+    padding: 4vh 0 4vh 0;
 }
 
 .order-info-div {
@@ -2008,6 +2030,65 @@ input:focus {
     font-weight: 700;
     color: var(--color-emphasis);
     font-size: 0.75rem;
+}
+
+.div-info-user-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    border-top: 0.07rem solid var(--color-white);
+    border-bottom: 0.07rem solid var(--color-white);
+    padding: 1rem;
+}
+
+.user-page-user-info{
+    display: flex;
+    flex-direction: row;
+}
+
+.user-icon-menu-info{
+    width: 5vh;
+    height: auto;
+}
+
+.user-text-info-div{
+    margin-left: 0.5vw;
+    text-align: center;
+}
+
+.user-menu-hello-text{
+    font-family: var(--font-title);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.p-credit-text{
+    font-family: var(--font-text);
+    font-size: 0.9rem;
+    color: var(--color-white);
+}
+
+.user-page-add-credit-button{
+    background-color: var(--color-primary);
+    font-family: var(--font-title);
+    color: var(--color-secundary);
+    font-weight: 700;
+    width: 12rem;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 0.9rem;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.user-page-add-credit-button:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    border: 0.07rem solid var(--color-primary);
+    transform: scale(1.05);
 }
 
 /* CartPage.js */
@@ -2756,6 +2837,238 @@ input:focus {
     border: 1.12px solid var(--color-primary);
 }
 
+/* User Setting Page */
 
+.setting-page-div{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    align-items: center;
+    gap: 3vh;
+}
+
+.setting-h1-text-page{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 3rem;
+    width: 90%;
+    padding-top: 2vh;
+}
+
+.main-setting-page-div{
+    background-color: var(--color-light-white);
+    display: flex;
+    flex-direction: column;
+    padding: 5.3vh 3.6vw;
+    border-radius: 10px;
+    height: 59vh;
+    width: 72vw;    
+    text-align: center;
+}
+
+.left-setting-page-div{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    align-items: center;
+}
+
+.h2-title-setting-page{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 2rem;
+    width: 100%;
+}
+
+.div-user-setting-page-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 30vw;
+}
+
+.user-info-setting-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-info-text-setting-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.user-info-text-setting-page{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    font-size: 1.56rem;
+    font-weight: 500;
+}
+
+.user-info-span-setting-page{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    font-size: 1.56rem;
+    font-weight: 500;
+    margin-left: 1vw;
+}
+
+.edit-setting-page-mode{
+    background-color: var(--color-white);
+    border-radius: 5px;
+}
+
+.edit-icon-setting-page{
+    cursor: pointer;
+}
+
+.user-setting-page-notice{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    font-size: 1rem;
+}
+
+.user-setting-button-div{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.user-setting-save-button{
+    height: 4.9vh;
+    width: 6.5vw;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.user-setting-save-button-disabled{
+    background-color: var(--color-light-gray);
+    border: 1.12px solid var(--color-primary);
+    color: var(--color-secundary);
+}
+
+.user-setting-save-button:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    border: 1.12px solid var(--color-primary);
+    transform: scale(1.05)
+}
+
+.button-erase-account-setting-page{
+    height: 4.9vh;
+    width: 6.5vw;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-emphasis);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.button-erase-account-setting-page:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-white);
+    border: 1.12px solid var(--color-primary);
+    transform: scale(1.05)
+}
+
+
+.user-setting-page-modal-div{
+    height: 88.3vh;
+    width: 87.5vw;
+    background-color: #3333335d;
+    position: absolute;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.user-setting-page-modal-content-div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 32vw;
+    height: 51vh;
+    background-color: var(--color-light-white);
+    z-index: 1;
+    gap: 1vh;
+    justify-content: center;
+    padding: 1vh 6.5vw;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.setting-page-modal-h1{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-emphasis);
+    font-size: 3rem;
+    width: 90%;
+    padding-top: 2vh;
+}
+
+.text-modal-setting-page{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 2rem;
+}
+
+.action-modal-setting-page-div{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.action-button-yes-setting-page{
+    width: 11vw;
+    border: none;
+    border-radius: 12px;
+    height: 6.52vh;
+    background-color: var(--color-primary);
+    font-family: var(--font-text);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.action-button-yes-setting-page:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-white);
+    border: 1.12px solid var(--color-primary);
+    transform: scale(1.05)
+}
+
+.action-button-no-setting-page{
+    width: 11vw;
+    height: 6.52vh;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-emphasis);
+    font-family: var(--font-text);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.action-button-no-setting-page:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-white);
+    border: 1.12px solid var(--color-primary);
+    transform: scale(1.05)
+}
 
 
