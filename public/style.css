@@ -668,8 +668,8 @@ input:focus {
     border: none;
     border-radius: 50%;
     background-color: var(--color-secundary);
-    width: 2vw;
-    height: 4vh;
+    width: 2.3rem;
+    height: 2.3rem;
     margin-right: 4.5vw;
     display: flex;
     flex-direction: row;
@@ -685,6 +685,8 @@ input:focus {
 
 .header-rounded-text{
     color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .nav-bar-div {
