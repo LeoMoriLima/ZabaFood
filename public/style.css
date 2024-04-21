@@ -840,6 +840,7 @@ input:focus {
     align-items: center;
     gap: 5rem;
     width: 100%;
+    min-height: 30rem;
 }
 
 .carousel-product-div {
@@ -2756,6 +2757,17 @@ input:focus {
     border: 1.12px solid var(--color-primary);
 }
 
+/* Loading animation */
 
+.loading-animation{
+    animation: loading 1.3s ease-in-out infinite;
+}
 
-
+@keyframes loading {
+    0%{
+        rotate: 0deg;
+    }
+    100%{
+        rotate: 360deg;
+    }
+}
