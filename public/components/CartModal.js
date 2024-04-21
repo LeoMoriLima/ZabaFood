@@ -2,14 +2,29 @@ import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
 
 export default async (displayconfig) => {
+	const mainDiv = document.createElement("div");
+	mainDiv.classList.add("modal-cart-main-div");
+	mainDiv.style.display = displayconfig;
+
+	await showCartProducts(mainDiv);
+		
+	window.addEventListener("productAdded", async () => {
+        showCartProducts(mainDiv);
+    })
+
+	return mainDiv;
+}
+
+const showCartProducts = async (mainDiv) => {
+	mainDiv.innerHTML = "";
 	try {
 		const userResponse = await fetch('/api/login', {
 			method: "GET",
-            headers: {
+			headers: {
 				"Content-Type": "application/json"
-            }
-        });
-        const userData = await userResponse.json();
+			}
+		});
+		const userData = await userResponse.json();
 
 		if (userData.error) {
 			return
@@ -35,10 +50,6 @@ export default async (displayconfig) => {
 		});
 
 		const cartProductsInfos = await cartProductsResponse.json();
-
-		const mainDiv = document.createElement("div");
-		mainDiv.classList.add("modal-cart-main-div");
-		mainDiv.style.display = displayconfig;
 
 		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
@@ -78,10 +89,7 @@ export default async (displayconfig) => {
 			emptyCartText.innerText = "Seu carrinho está vazio.";
 			mainDiv.appendChild(emptyCartText);
 		}
-
-		return mainDiv;
-
 	} catch (error) {
-		console.error("Erro ao buscar o carrinho:", error);
+		console.log(error);
 	}
 }
