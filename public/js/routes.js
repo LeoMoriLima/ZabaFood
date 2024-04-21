@@ -38,11 +38,13 @@ class Router {
 	}
 
 	// Processa a mudança de rota
-	navigate(path) {
+	navigate(path, ignorePushState) {
 		for (const [regexPath, routeInfo] of Object.entries(this.routes)) {
 			const match = path.match(routeInfo.regex);
 			if (match) {
-				window.history.pushState({}, "", match[0]);
+				if (!ignorePushState) {
+					window.history.pushState({}, "", match[0]);
+				}
 				const params = this._extractParams(routeInfo.path, match);
 				routeInfo.handler(params);
 				return;
@@ -73,7 +75,7 @@ const switchPage = async (page, params) => {
 		root.appendChild(await page(params));
 		return
 	}
-	root.appendChild(await page(params));
+	root.appendChild(await page());
 }
 
 const router = new Router();
@@ -99,5 +101,9 @@ router.addRoute("/payment", async () => switchPage(payment));
 router.addRoute("/pay-confirmation", async () => switchPage(payconfirmation));
 
 router.navigate(window.location.pathname)
+
+window.addEventListener('popstate', () => {
+	router.navigate(window.location.pathname, true);
+});
 
 export default router

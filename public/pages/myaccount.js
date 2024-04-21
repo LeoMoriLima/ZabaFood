@@ -4,6 +4,8 @@ import FooterMain from "../components/FooterMain.js";
 import userAccountPage from "../components/userAccountPage.js";
 
 export default async () =>{
+    document.title = "Minha conta | ZabaFood";
+
     const page = document.createElement("div");
     page.appendChild(await HeaderMain());
     const userType = await getUserType();

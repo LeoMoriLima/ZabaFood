@@ -6,10 +6,11 @@ import Carousel from "../components/Carousel.js"
 import ImageLine from "../components/ImageLine.js";
 
 export default async () => {
+    document.title = "Home | ZabaFood";
+
     const page = document.createElement("div");
     page.classList.add("home");
     const productId = "4c3e47b0-dce2-48c8-9b79-21709abd12bb"; // Produto: Cúrcuma com Pimenta
-
     page.appendChild(await HeaderMain());
     page.appendChild(mainBanner());
     page.appendChild(await Carousel())

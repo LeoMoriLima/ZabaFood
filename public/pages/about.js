@@ -3,8 +3,9 @@ import FooterMain from "../components/FooterMain.js";
 import HeaderMain from "../components/HeaderMain.js";
 
 export default async () => {
+    document.title = "Sobre | ZabaFood";
+
     const page = document.createElement("div");
-    
     page.appendChild(await HeaderMain());
     page.appendChild(AboutPage());
     page.appendChild(FooterMain());
