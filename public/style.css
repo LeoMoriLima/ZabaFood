@@ -647,6 +647,35 @@ input:focus {
     justify-content: space-around;
 }
 
+.header-credit-balance{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    font-size: 0.9rem;
+}
+
+.header-rounded-plus-div{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-secundary);
+    width: 2vw;
+    height: 4vh;
+    margin-right: 4.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+.header-rounded-plus-div:hover{
+    background-color: var(--color-emphasis);
+}
+
+.header-rounded-text{
+    color: var(--color-white);
+}
+
 .nav-bar-div {
     background-color: var(--color-secundary);
     height: 5dvh;
