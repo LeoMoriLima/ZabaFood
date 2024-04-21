@@ -3,8 +3,9 @@ import HeaderMain from "../components/HeaderMain.js";
 import PolicyPage from "../components/PolicyPage.js";
 
 export default async () =>{
-    const page = document.createElement("div");
+    document.title = "Política de privacidade | ZabaFood";
 
+    const page = document.createElement("div");
     page.appendChild(await HeaderMain());
     page.appendChild(PolicyPage());
     page.appendChild(FooterMain())
