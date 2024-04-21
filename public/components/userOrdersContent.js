@@ -93,7 +93,7 @@ export default async () => {
             if (cart.status === "pending") {
                 infoOrderStatus.innerText = "Pendente";
             } else if (cart.status === "approved") {
-                infoOrderStatus.innerText = "Aprovador";
+                infoOrderStatus.innerText = "Aprovado";
             } else if (cart.status === "sended") {
                 infoOrderStatus.innerText = "Enviado";
             } else if (cart.status === "delivered") {
@@ -175,6 +175,9 @@ export default async () => {
             } else if (cart.status === "delivered") {
                 imgCircleDelivered.src = "../assets/images/circle-active-delivered.svg";
                 statusText.innerText = "Entregue"
+            } else if (cart.status === "approved"){
+                imgCircleProcessing.src = "../assets/images/circle-active-processing.svg";
+                statusText.innerText = "Aprovado";
             }
 
             // trackShipping.addEventListener("mouseleave", function () {

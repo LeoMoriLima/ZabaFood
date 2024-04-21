@@ -1,6 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
 import userAddressContent from "./userAddressContent.js";
 import orderPageDiv from "./userOrdersContent.js";
+import userSettingContent from "./userSettingContent.js";
 import router from "../js/routes.js";
 
 export default async () => {
@@ -11,6 +12,40 @@ export default async () => {
     leftMenuUserPage.classList.add("left-menu-user-page");
     userPageDiv.appendChild(leftMenuUserPage);
 
+    const userId = await getUserId();
+    const userData = await getUserInfo(userId);
+
+    const divInfoUserPage = document.createElement("div");
+    divInfoUserPage.classList.add("div-info-user-page");
+    leftMenuUserPage.appendChild(divInfoUserPage)
+
+    const divUserInfo = document.createElement("div");
+    divUserInfo.classList.add("user-page-user-info");
+    divInfoUserPage.appendChild(divUserInfo);
+
+    const userIcon = document.createElement("img");
+    userIcon.src = "../assets/images/menu-user-icon.svg";
+    userIcon.classList.add("user-icon-menu-info")
+    divUserInfo.appendChild(userIcon);
+
+    const divTextUserInfo = document.createElement("div");
+    divTextUserInfo.classList.add("user-text-info-div");
+    divUserInfo.appendChild(divTextUserInfo);
+
+    const helloText = document.createElement("p");
+    helloText.classList.add("user-menu-hello-text");
+    helloText.innerText = "Olá, " + userData.name;
+    divTextUserInfo.appendChild(helloText);
+
+    const creditText = document.createElement("p");
+    creditText.classList.add("p-credit-text");
+    creditText.innerText = "Saldo : " + "R$" + userData.credit_balance;
+    divTextUserInfo.appendChild(creditText);
+
+    divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () =>{
+        router.navigate("/payment");
+    }))
+
     const navMenuUserPage = document.createElement("nav");
     navMenuUserPage.classList.add("nav-menu-user-page");
     leftMenuUserPage.appendChild(navMenuUserPage);
@@ -18,6 +53,8 @@ export default async () => {
     const addressContent = await userAddressContent();
     addressContent.style.display = "none";
     const orderContent = await orderPageDiv();
+    const settingContent = await userSettingContent()
+    settingContent.style.display = "none";
 
     const aOrders = document.createElement("a");
     const aOrdersIcon = document.createElement("img");
@@ -59,24 +96,30 @@ export default async () => {
         aSettings.classList.remove("nav-menu-user-page-selected");
         addressContent.style.display = "flex";
         orderContent.style.display = "none";
+        settingContent.style.display = "none"
     })
 
     aOrders.addEventListener("click", () => {
         aOrders.classList.add("nav-menu-user-page-selected");
         aSettings.classList.remove("nav-menu-user-page-selected");
         aAddress.classList.remove("nav-menu-user-page-selected");
-        addressContent.style.display = "none";
         orderContent.style.display = "flex";
+        addressContent.style.display = "none";
+        settingContent.style.display = "none";
     })
 
     aSettings.addEventListener("click", () => { 
         aSettings.classList.add("nav-menu-user-page-selected");
         aOrders.classList.remove("nav-menu-user-page-selected");
         aAddress.classList.remove("nav-menu-user-page-selected");
+        settingContent.style.display = "flex";
+        addressContent.style.display = "none";
+        orderContent.style.display = "none";
     })
 
     userPageDiv.appendChild(orderContent);
     userPageDiv.appendChild(addressContent);
+    userPageDiv.appendChild(settingContent);
 
     leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {
@@ -95,4 +138,35 @@ export default async () => {
     }))
 
     return userPageDiv;
+}
+
+
+async function getUserId(){
+    try{
+        const response = await fetch ('/api/login', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
+        return data.user.id
+    } catch (error){
+        return;
+    }
+}
+
+async function getUserInfo(userId){
+    try{
+        const response = await fetch (`/api/users/${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const userData = await response.json();
+        return userData;
+    } catch(error){
+        return;
+    }
 }

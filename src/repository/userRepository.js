@@ -55,11 +55,11 @@ const getUser = async (id) => {
     }
 }
 
-const updateUser = async (id, username, name, email, password, cpf_cnpj, phone) => {
-    const query = 'UPDATE users SET username = $1, name = $2, email = $3, password = $4, cpf_cnpj = $5, phone = $6 WHERE id = $7'
+const updateUser = async (id, username, name, email, password, cpf, phone) => {
+    const query = 'UPDATE users SET username = $1, name = $2, email = $3, password = $4, cpf = $5, phone = $6 WHERE id = $7'
     const client = await connectToDatabase();
     try {
-        await client.query(query, [username, name, email, password, cpf_cnpj, phone, id]);
+        await client.query(query, [username, name, email, password, cpf, phone, id]);
         console.log('Dados atualizados com sucesso');
     } catch (error) {
         console.log('Erro ao atualizar dados:', error);

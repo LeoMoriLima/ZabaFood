@@ -128,14 +128,6 @@ const updateUser = async (req, res) => {
             return res.status(400).json({ error: "Email inválido!" })
         }
 
-        if (!password) {
-            throw new Error ( "A senha é obrigatória" );
-        }
-
-        if (!isLength(password, { min:4 , max: 30 })){
-            return res.status(400).json({ error: "A senha deve conter entre 4 a 30 caracteres!" })
-        }
-
         if (!cpf) {
             throw new Error ( "O cpf é obrigatório" );
         }
