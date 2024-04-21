@@ -1,4 +1,5 @@
 import btn from "./ButtonComponent.js";
+import router from "../js/routes.js";
 
 export default async () => {
 	try {
@@ -156,7 +157,7 @@ export default async () => {
             const data = await response.json();
             console.log(data)
 
-            window.route({ preventDefault: () => {}, target: { href: `/pay-confirmation` } });
+            router.navigate("/pay-confirmation")
         });
         totalDiv.appendChild(closeCartBtn);
 

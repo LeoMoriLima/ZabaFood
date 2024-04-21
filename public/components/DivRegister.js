@@ -70,7 +70,7 @@ export default () => {
                     name: nameInput,
                     email: emailInput,
                     password: passwordInput,
-                    cpf_cnpj: cpfInput,
+                    cpf: cpfInput,
                     phone: phoneInput
                 })
             });

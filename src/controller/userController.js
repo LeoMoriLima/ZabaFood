@@ -76,7 +76,7 @@ const createUser = async (req, res) => {
         };
 
         if (!isLength(cpf, { min:11 , max: 14 })){
-            return res.status(400).json({ error: "O cpf/cnpj deve conter entre 11 a 14 caracteres!" })
+            return res.status(400).json({ error: "O cpf deve conter entre 11 a 14 caracteres!" })
         }
 
         if (!phone) {
@@ -149,8 +149,22 @@ const updateUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
-};
+}
 
+const updateUserCreditBalance = async (req, res) => {
+    const id = req.params.id;
+    const { credit_balance } = req.body;
+    try {
+        if (!credit_balance) {
+            throw new Error ( "O saldo de créditos é obrigatório" );
+        }
+
+        const result = await userServices.updateUserCreditBalance(id, credit_balance);
+        return res.status(200).json({ success: true, message: "Usuário atualizado com sucesso!" });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
 
 const deleteUser = async (req, res) =>{
     const id = req.user.id;
@@ -176,5 +190,6 @@ module.exports = {
     getUser,
     createUser,
     updateUser,
+    updateUserCreditBalance,
     deleteUser,
 }

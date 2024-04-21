@@ -230,27 +230,40 @@ export default async () => {
 
             const userId = userData.user.id;
 
-            const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+            const cartResponse = await fetch(`/api/cart/user/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
+    
+            const cart = await cartResponse.json();	
+            const cartStatus = cart.status;
 
-            const cartProducts = await cartProductsResponse.json();
-
-            const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-
-            const cartQuantityDiv = document.createElement("div");
-            cartQuantityDiv.classList.add("cart-quantity-div");
-            if (totalQuantity !== 0) {
-                cartDiv.appendChild(cartQuantityDiv);
+            if (cartStatus === "pending") {
+                const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+    
+                const cartProducts = await cartProductsResponse.json();
+    
+                const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
+    
+                const cartQuantityDiv = document.createElement("div");
+                cartQuantityDiv.classList.add("cart-quantity-div");
+                if (totalQuantity !== 0) {
+                    cartDiv.appendChild(cartQuantityDiv);
+                }
+    
+                const cartQuantityText = document.createElement("p");
+                cartQuantityText.classList.add("cart-quantity-text");
+                cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
+                cartQuantityDiv.appendChild(cartQuantityText);
             }
 
-            const cartQuantityText = document.createElement("p");
-            cartQuantityText.classList.add("cart-quantity-text");
-            cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
-            cartQuantityDiv.appendChild(cartQuantityText);
         } catch (error) {
             console.log(error);
         }
