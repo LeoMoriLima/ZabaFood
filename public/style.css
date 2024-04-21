@@ -1745,6 +1745,13 @@ input:focus {
     background-color: var(--color-emphasis);
 }
 
+.a-address {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
 .order-page-div {
     display: flex;
     flex-direction: column;
@@ -2474,3 +2481,281 @@ input:focus {
     padding: 2rem;
     width: 45rem;
 }
+
+/* User Address Page */
+
+.address-page-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 3vh;
+}
+
+.address-h1-text{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 3rem;
+    width: 90%;
+    padding-top: 2vh;
+}
+
+.main-address-page-div{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-light-white);
+    padding: 5.3vh 3.6vw;
+    border-radius: 10px;
+    width: 72vw;
+    height: 59vh;
+    justify-content: space-around;
+}
+
+.left-address-page-div{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;   
+    align-items: center;
+    height: 100%;
+    border-right: 2px solid var(--color-white);
+    padding-right: 3vw;
+}
+
+.h2-title-address-page{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 2rem;
+    width: 100%;
+}
+
+.div-postal-code{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1.12px solid var(--color-white);
+    justify-content: space-between;
+    width: 100%;
+}
+
+#input-postal-code{
+    padding-left: 0.83vw;
+}
+
+#input-postal-code, #state-input, #city-input, #street-input, #number-input, #complement-input{
+    background-color: var(--color-light-white);
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    text-indent: 0.5rem;
+}
+
+#input-postal-code::placeholder, #state-input::placeholder, #city-input::placeholder, #street-input::placeholder, #number-input::placeholder, #complement-input::placeholder{
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 1rem;
+    text-indent: 0.5rem;
+}
+
+.button-search-postal-code{
+    height: 4.9vh;
+    width: 6.5vw;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.button-search-postal-code:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    border: 1.12px solid var(--color-primary);
+}
+
+.address-notice-p{
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    font-size: 1rem;
+}
+
+.button-create-address{
+    height: 4.9vh;
+    width: 6.5vw;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.button-create-address:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    border: 1.12px solid var(--color-primary);
+}
+
+.right-address-page-div{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.address-div{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border: 1px solid var(--color-secundary);
+    text-align: left;
+    width: 31.5vw;
+    height: 11vh;
+    position: relative;
+}
+
+.icon-address-img{
+    padding: 1.19vh 0.52vw;
+}
+
+.info-address-div{
+    width: 23vw;
+    padding-top: 1.19vh;
+}
+
+.street-text-info{
+    font-family: var(--font-text);
+    font-size: 1.125rem;
+    color: var(--color-secundary);
+    font-weight: 500;
+}
+
+.text-state-city-address{
+    font-family: var(--font-text);
+    font-size: 1rem;
+    color: var(--color-secundary);
+}
+
+.text-postal-complement-address{
+    font-family: var(--font-text);
+    font-size: 1rem;
+    color: var(--color-secundary);
+}
+
+.div-address-icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding-right: 1.35vw;
+    gap: 1.82vw;
+}
+
+.icon-address-action{
+    cursor: pointer;
+}
+
+.address-right-notice{
+    font-family: var(--font-text);
+    font-size: 1rem;
+    color: var(--color-white);
+}
+
+.page-modal-div{
+    height: 76vh;
+    width: 87.5vw;
+    background-color: #3333335d;
+    position: absolute;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.modal-div-address{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 32vw;
+    height: 51vh;
+    background-color: var(--color-secundary);
+    z-index: 1;
+    gap: 1vh;
+    justify-content: center;
+    padding: 1vh 6.5vw;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.h2-update-modal{
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-white);
+    font-size: 2rem;
+}
+
+.modal-div-postal-code{
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+}
+
+.close-icon-address{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2vh;
+}
+
+#modal-input-postal-code, .modal-input{
+    height: 4.9vh;
+    width: 19vw;
+    font-size: 1rem;
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    border: none;
+    border-radius: 10px;
+    text-indent: 0.5rem;
+    background-color: var(--color-light-white);
+}
+
+#modal-input-postal-code{
+    width: 12vw;
+}
+
+#modal-input-postal-code::placeholder, .modal-input::placeholder{
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 1rem;
+    text-indent: 0.5rem;
+}
+
+.modal-notice-address{
+    font-family: var(--font-text);
+    font-size: 1rem;
+    color: var(--color-white);
+}
+.button-update-address{
+    height: 4.9vh;
+    width: 6.5vw;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.button-update-address:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    border: 1.12px solid var(--color-primary);
+}
+
+
+
+

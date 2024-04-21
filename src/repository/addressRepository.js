@@ -18,11 +18,25 @@ const getAddressByUserID = async (userId) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY updated_at DESC LIMIT 1;";
     try {
+
         const result = await client.query(query, [userId]);
         return result.rows[0];
     } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
+    } finally {
+        client.end();
+    }
+}
+
+const getAllUserAddress = async (userId) =>{
+    const client = await connectToDatabase();
+    const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY created_at ASC"
+    try{
+        const result = await client.query(query, [userId]);
+        return result.rows;
+    } catch (error){
+        throw new Error("Erro ao selecionar os dados");
     } finally {
         client.end();
     }
@@ -87,6 +101,7 @@ const deleteAddress = async (id) => {
 module.exports = {
     getAddress,
     getAddressByUserID,
+    getAllUserAddress,
     getAllAddresses,
     createNewAddress,
     updateAddress,
