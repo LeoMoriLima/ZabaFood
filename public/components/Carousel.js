@@ -1,5 +1,6 @@
 import productCard from "../components/ProductCard.js";
 import ArrowButton from "./ArrowButton.js";
+import LoadingComponent from "./LoadingComponent.js";
 
 export default async () => {
     let min = 1;
@@ -9,9 +10,9 @@ export default async () => {
     carousel.classList.add("carousel");
 
     const carouselText = document.createElement("p");
-	carouselText.classList.add("main-div-text");
-	carouselText.innerText = "CONFIRA OS PRODUTOS MAIS VENDIDOS";
-	carousel.appendChild(carouselText);
+    carouselText.classList.add("main-div-text");
+    carouselText.innerText = "CONFIRA OS PRODUTOS MAIS VENDIDOS";
+    carousel.appendChild(carouselText);
 
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
@@ -88,10 +89,16 @@ const getProducts = async (min, max) => {
 }
 
 const generateCarousel = async (element, min, max) => {
+    const loadingComponent = LoadingComponent(10);
+
+    element.appendChild(loadingComponent);
+
     const products = await getProducts(min, max);
     const productCards = await Promise.all(products.map(async (product) => {
         return await productCard(product.id);
     }));
+
+    loadingComponent.remove();
 
     productCards.forEach((card) => {
         element.appendChild(card);
