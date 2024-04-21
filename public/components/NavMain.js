@@ -95,6 +95,9 @@ export default async () => {
     accountDiv.classList.add("account-div");
     headerDivRight.appendChild(accountDiv);
 
+    const accountTextDiv = document.createElement("div");
+    accountTextDiv.classList.add("account-text-div");
+
     const aAccountIcon = document.createElement("a");
     aAccountIcon.classList.add("a-account-icon");
 
@@ -133,8 +136,40 @@ export default async () => {
                 router.navigate("/myaccount")
             }
             accountDiv.appendChild(aAccountIcon);
-            accountDiv.appendChild(aAccount);
+            accountDiv.appendChild(accountTextDiv);
+            accountTextDiv.appendChild(aAccount);
 
+            try{
+                const accountData = await fetch(`/api/users/${data.user.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                const userData = await accountData.json();
+
+                const creditBalance = document.createElement("p");
+                creditBalance.classList.add("header-credit-balance");
+                creditBalance.innerText = "Saldo: " + "R$ " + userData.credit_balance;
+                accountTextDiv.appendChild(creditBalance);
+
+                const roundedDivPlus = document.createElement("Div");
+                roundedDivPlus.classList.add("header-rounded-plus-div");
+                accountDiv.appendChild(roundedDivPlus);
+
+                roundedDivPlus.addEventListener("click", () =>{
+                    router.navigate("/payment");
+                })
+
+                const roundedDivText = document.createElement("span");
+                roundedDivText.classList.add("header-rounded-text");
+                roundedDivText.innerText = "+";
+                roundedDivPlus.appendChild(roundedDivText);
+
+            } catch(error){
+                return;
+            }
+            
             aAccountIcon.href = "/myaccount"
             aAccountIcon.onclick = (e) => {
                 e.preventDefault();
