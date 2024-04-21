@@ -3,9 +3,10 @@ import CheckoutPage from "../components/CheckoutPage.js";
 import FooterMain from "../components/FooterMain.js";
 
 export default async () => {
+    document.title = "Checkout | ZabaFood";
+
     const page = document.createElement("div");
     page.classList.add("page-checkout-div");
-    
     page.appendChild(await HeaderMain());
     page.appendChild(await CheckoutPage());
     page.appendChild(FooterMain());

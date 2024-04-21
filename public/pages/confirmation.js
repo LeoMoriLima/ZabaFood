@@ -3,6 +3,8 @@ import ConfirmationPage from "../components/ConfirmationPage.js";
 import FooterMain from "../components/FooterMain.js";
 
 export default async () => {
+    document.title = "Confirmação | ZabaFood";
+
     const page = document.createElement("div");
     page.appendChild(await HeaderMain())
     page.appendChild(ConfirmationPage())
