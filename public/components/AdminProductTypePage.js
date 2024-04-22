@@ -188,7 +188,7 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
 
         const deleteIcon = document.createElement("img");
         deleteIcon.classList.add("table-product-type-icon");
-        deleteIcon.src = "../assets/images/trash-icon.svg";
+        deleteIcon.src = "../assets/images/delete-icon.svg";
         divColumnThree.appendChild(deleteIcon);
 
         deleteIcon.addEventListener("click", async() =>{
