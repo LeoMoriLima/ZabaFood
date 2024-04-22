@@ -1183,6 +1183,12 @@ input:focus {
     flex-direction: column;
 }
 
+.main-product-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 /* Product main card */
 
 .product-main-card,
@@ -1193,6 +1199,10 @@ input:focus {
     width: 90%;
     border-radius: 2.8rem;
     display: flex;
+}
+
+.product-main-card{
+    min-height: 45rem;
 }
 
 .product-div-img {
