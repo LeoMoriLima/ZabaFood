@@ -1,5 +1,7 @@
 import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
+import MessageContainer from "./MessageContainer.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
 	try {
@@ -143,21 +145,29 @@ export default async () => {
         totalTextDiv.appendChild(creditInputDivTitle);
 
         const closeCartBtn = btn("Fechar compra", "pp-close-cart-btn", async () => {
-            const response = await fetch("/api/credit_transaction/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    user_id: userId,
-                    transaction_type: "credit",
-                    transaction_value: creditInputDivTitle.value,
-                })
-            });
-            const data = await response.json();
-            console.log(data)
+            const checked = checkRadioButtons();
+            if (!checked) {
+                MessageComponent("Escolha a forma de pagamento", false);
+            } else if (checked && !creditInputDivTitle.value) {
+                MessageComponent("Defina qual a quantia de créditos a inserir!", false);
+            } else if (checked && creditInputDivTitle.value) {
+                const response = await fetch("/api/credit_transaction/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        transaction_type: "credit",
+                        transaction_value: creditInputDivTitle.value,
+                    })
+                });
+                const data = await response.json();
 
-            router.navigate("/pay-confirmation")
+                MessageComponent("Crédito inserido com sucesso!", true);
+    
+                router.navigate("/pay-confirmation");
+            }
         });
         totalDiv.appendChild(closeCartBtn);
 
@@ -170,6 +180,20 @@ export default async () => {
             } else if (!paymentSlipCheckbox.checked) {
                 paymentSlipCheckbox.checked = true;
             }
+        }
+
+        // Verifica se algum radio button está marcado
+        function checkRadioButtons() {
+            let checked = false;
+
+            const radioButtons = document.querySelectorAll('input[type="radio"][name="paymentMethod"]');
+
+            radioButtons.forEach(radioButton => {
+                if (radioButton.checked) {
+                    checked = true;
+                }
+            })
+            return checked;
         }
 
 		return mainDiv;

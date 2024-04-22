@@ -7,6 +7,7 @@ export default async () => {
     document.title = "Pagamento | ZabaFood";
     
     const page = document.createElement("div");
+    page.classList.add("payment-page");
     page.appendChild(MessageContainer());
     page.appendChild(await HeaderMain());
     page.appendChild(await PaymentPage());
