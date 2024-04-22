@@ -24,7 +24,7 @@ const getCartProductsByUserId = async (userId) => {
         const cartProducts = await cartProductRepository.getCartProductsByCartId(cartId);
         const cartProductInfos = await Promise.all(cartProducts.map(async (cartProduct) => {
             const productInfo = await productRepository.getProduct(cartProduct.product_id);
-            return {cartProductId: cartProduct.id, product: productInfo, quantity: cartProduct.quantity };
+            return { cartProductId: cartProduct.id, product: productInfo, quantity: cartProduct.quantity };
         }));
         return cartProductInfos;
     } catch (error) {
@@ -36,6 +36,15 @@ const getAllCartProduct = async () => {
     try {
         const cartProducts = await cartProductRepository.getAllCartProduct();
         return cartProducts;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getCartByCartId = async (cartId) => {
+    try {
+        const cart = await cartProductRepository.getCartProductsByCartId(cartId);
+        return cart;
     } catch (error) {
         throw error;
     }
@@ -106,6 +115,7 @@ const testCartProductTransaction = async (cart_id, product_id, quantity) => {
 module.exports = {
     getCartProduct,
     getCartProductsByUserId,
+    getCartByCartId,
     getAllCartProduct,
     createCartProduct,
     updateCartProduct,
