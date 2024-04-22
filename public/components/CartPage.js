@@ -45,7 +45,7 @@ export default async () => {
 
         if (cartProductsInfo.length) {
             cartProductsInfo.map(itemProduct => {
-                const {product , quantity} = itemProduct
+                const {cartProductId, product , quantity} = itemProduct
     
                 const itemProductDiv = document.createElement("div");
                 itemProductDiv.classList.add("cp-item-product-div");
@@ -54,6 +54,26 @@ export default async () => {
                 const itemProductLeftDiv = document.createElement("div");
                 itemProductLeftDiv.classList.add("cp-item-product-left-div");
                 itemProductDiv.appendChild(itemProductLeftDiv);
+
+                const deleteProductDiv = document.createElement("div");
+                deleteProductDiv.classList.add("cp-delete-product-div");
+                itemProductLeftDiv.appendChild(deleteProductDiv);
+
+                const deleteProductImg = document.createElement("img");
+                deleteProductImg.classList.add("cp-delete-product-img");
+                deleteProductImg.src = "../assets/images/delete-icon.svg";
+                deleteProductImg.addEventListener("click", async () => {
+                    const response = await fetch(`/api/cart_product/${cartProductId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+                    console.log(response)
+                    const data = await response.json();
+                    console.log(data)
+                })
+                deleteProductDiv.appendChild(deleteProductImg);
     
                 const productImg = document.createElement("img");
                 productImg.classList.add("cp-product-img");
@@ -80,7 +100,7 @@ export default async () => {
     
                 const productValue = document.createElement("p");
                 productValue.classList.add("cp-product-value");
-                productValue.innerText = `R$${product.value}`;
+                productValue.innerText = `R$${(product.value * quantity).toFixed(2).replace(".", ",")}`;
                 itemProductRightDiv.appendChild(productValue);
             });
         } else {
@@ -106,7 +126,7 @@ export default async () => {
             keepBuyingCartText.classList.add("cp-keep-buying-cart-text");
             keepBuyingCartText.innerText = "continue comprando."
             keepBuyingCartText.addEventListener("click", () => {
-                router.navigate("/")
+                router.navigate("/");
             })
             messageDiv.appendChild(keepBuyingCartText);
         }
@@ -130,11 +150,11 @@ export default async () => {
 
         const subtotalTextDivRight = document.createElement("p");
         subtotalTextDivRight.classList.add("cp-subtotal-text-div-right");
-        subtotalTextDivRight.innerText = `R$${cartInfo.total}`;
+        subtotalTextDivRight.innerText = `R$${(cartInfo.total).replace(".", ",")}`;
         subtotalTextDiv.appendChild(subtotalTextDivRight);
 
         const closeCartBtn = btn("Fechar pedido", "cp-close-cart-btn", async () => {
-            router.navigate("/checkout")
+            router.navigate("/checkout");
         });
         subtotalDiv.appendChild(closeCartBtn);
 

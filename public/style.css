@@ -2177,7 +2177,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     gap: 3rem;
-    min-height: 60vh;
+    min-height: 50vh;
     justify-content: center;
     margin: 5vh;
 }
@@ -2190,7 +2190,7 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
-    width: 60%;
+    width: 55%;
 }
 
 .cp-card-div-title {
@@ -2210,8 +2210,16 @@ input:focus {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 3rem;
-    margin: 1rem;
+    margin: 1rem 0;
     width: 90%;
+}
+
+.cp-delete-product-div {
+    margin-right: 2rem;
+}
+
+.cp-delete-product-img {
+    cursor: pointer;
 }
 
 .cp-item-product-left-div {
@@ -2264,11 +2272,10 @@ input:focus {
 }
 
 .cp-right-div {
-
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    width: 30%;
+    width: 25%;
 }
 
 .cp-subtotal-div {
