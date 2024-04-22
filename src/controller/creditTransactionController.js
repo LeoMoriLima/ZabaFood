@@ -46,13 +46,9 @@ const createCreditTransaction = async (req, res) => {
             return res.status(400).json({ error: "UserID inválido!" });
         };
 
-        if(isEmpty(transaction_type)){
+        if(isEmpty(transaction_type)) {
             return res.status(400).json({ error: "O tipo de transação é obrigatório!" });
         }; 
-
-        if(isInt(Number(transaction_value))){
-            return res.status(400).json({ error: "O valor da transação deve ser um número válido!" });
-        }
 
         await creditTransactionService.createCreditTransaction(user_id, transaction_type, transaction_value);
         return res.status(201).json({ message: 'Nova transação adicionada com sucesso' });

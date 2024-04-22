@@ -22,7 +22,7 @@ const getCartProduct = async (req, res) => {
 
 const getCartByCartId = async (req, res) =>{
     const { cartId } = req.params;
-    console.log(cartId);
+
     try{
         const userType = req.user.user_type;
         if (userType !== "user" && userType !== "admin") {

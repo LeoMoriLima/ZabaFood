@@ -92,7 +92,7 @@ export default async (id) => {
 		mainDiv.appendChild(addBtnDiv);
 
 		const shopIcon = document.createElement("img");
-		shopIcon.src = "../assets/images/shop-icon.svg";
+		shopIcon.src = "/assets/images/shop-icon.svg";
 		shopIcon.classList.add("shop-icon");
 		addBtnDiv.appendChild(shopIcon);
 
@@ -112,7 +112,7 @@ export default async (id) => {
 					return
 				}
 
-				shopIcon.src = "../assets/images/simple-loading.svg";
+				shopIcon.src = "/assets/images/simple-loading.svg";
 				shopIcon.classList.add("loading-animation")
 				button.disabled = true
 				button.innerText = "Adicionando"
@@ -143,11 +143,11 @@ export default async (id) => {
 				const data = await response.json();
 
 				shopIcon.classList.remove("loading-animation")
-				shopIcon.src = "../assets/images/check-icon.svg";
+				shopIcon.src = "/assets/images/check-icon.svg";
 				button.innerText = "Adiconado"
 				setTimeout(() => {
 					button.innerText = "Adicionar"
-					shopIcon.src = "../assets/images/shop-icon.svg";
+					shopIcon.src = "/assets/images/shop-icon.svg";
 					button.disabled = false
 				}, 1000);
 

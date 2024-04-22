@@ -1,5 +1,6 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
 	try {
@@ -68,7 +69,7 @@ export default async () => {
 
 		const pointIcon = document.createElement("img");
 		pointIcon.classList.add("checkout-point-icon");
-		pointIcon.src = "../assets/images/point-icon.svg";
+		pointIcon.src = "/assets/images/point-icon.svg";
 		addressLeftDiv.appendChild(pointIcon);
 
 		const addressInfo = document.createElement("div");
@@ -96,12 +97,12 @@ export default async () => {
 
 		const pencilIcon = document.createElement("img");
 		pencilIcon.classList.add("checkout-pencil-icon");
-		pencilIcon.src = "../assets/images/pencil-icon.svg";
+		pencilIcon.src = "/assets/images/pencil-icon.svg";
 		addressRightDiv.appendChild(pencilIcon);
 
 		const changeIcon = document.createElement("img");
 		changeIcon.classList.add("checkout-change-icon");
-		changeIcon.src = "../assets/images/change-icon.svg";
+		changeIcon.src = "/assets/images/change-icon.svg";
 		addressRightDiv.appendChild(changeIcon);
 
 		const paymentDiv = document.createElement("div");
@@ -204,44 +205,50 @@ export default async () => {
 		valueDiv.appendChild(payNowBtnDiv);
 
 		const payNowBtn = btn("Pagar agora", "checkout-pay-now-btn", async () => {
-			try {
-				const response = await fetch(`/api/cart/${cartId}`, {
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						status: "approved",
-					})
-				});
-	
-				const newCartResponse = await fetch("/api/cart", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						user_id: userId,
-					})
-				});
-	
-				const userResponse = await fetch(`/api/users/${userId}`, {
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						credit_balance: (user.credit_balance - freight - cart.total),
-					})
-				});
-	
-				const userData = await userResponse.json();
-				console.log(userData)
-	
-				router.navigate("/confirmation")
-			} catch (error) {
-				console.log(error)
+			if (user.credit_balance > (cartTotal + freight)) {
+				try {
+					const response = await fetch(`/api/cart/${cartId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							status: "approved",
+						})
+					});
+		
+					const newCartResponse = await fetch("/api/cart", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							user_id: userId,
+						})
+					});
+		
+					const userResponse = await fetch(`/api/users/${userId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							credit_balance: (user.credit_balance - freight - cart.total),
+						})
+					});
+		
+					const userData = await userResponse.json();
+
+					MessageComponent("Compra realizada com sucesso!", true);
+		
+					router.navigate("/confirmation")
+				} catch (error) {
+					console.log(error)
+				}
+			} else {
+				MessageComponent("Você não possui créditos suficientes para essa compra!", false);
 			}
+			
 		});
 		payNowBtnDiv.appendChild(payNowBtn);
 
@@ -256,7 +263,7 @@ export default async () => {
 
 		const paymentMethodsIcons = document.createElement("img");
 		paymentMethodsIcons.classList.add("checkout-payment-methods-icons");
-		paymentMethodsIcons.src = "../assets/images/payment-methods-icon.svg";
+		paymentMethodsIcons.src = "/assets/images/payment-methods-icon.svg";
 		paymentMethodsDiv.appendChild(paymentMethodsIcons);
 
 		return mainDiv;

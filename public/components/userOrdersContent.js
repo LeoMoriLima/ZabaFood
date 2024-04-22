@@ -118,7 +118,7 @@ export default async () => {
 
             const arrowDown = document.createElement("img");
             arrowDown.classList.add("order-arrow-down");
-            arrowDown.src = "../assets/images/arrow-down-green.svg";
+            arrowDown.src = "/assets/images/arrow-down-green.svg";
             trackShipping.appendChild(arrowDown)
 
             const divTrack = document.createElement("div");
@@ -141,7 +141,7 @@ export default async () => {
 
             const imgCircleProcessing = document.createElement("img");
             imgCircleProcessing.classList.add("img-circle-processing");
-            imgCircleProcessing.src = "../assets/images/circle-inactive-processing.svg";
+            imgCircleProcessing.src = "/assets/images/circle-inactive-processing.svg";
             divCircleProcessing.appendChild(imgCircleProcessing);
 
             const divCircleSended = document.createElement("div");
@@ -150,7 +150,7 @@ export default async () => {
 
             const imgCircleSended = document.createElement("img");
             imgCircleSended.classList.add("img-circle-sended");
-            imgCircleSended.src = "../assets/images/circle-inactive-sended.svg";
+            imgCircleSended.src = "/assets/images/circle-inactive-sended.svg";
             divCircleSended.appendChild(imgCircleSended);
 
             const divCircleDelivered = document.createElement("div");
@@ -159,7 +159,7 @@ export default async () => {
 
             const imgCircleDelivered = document.createElement("img");
             imgCircleDelivered.classList.add("img-circle-delivered");
-            imgCircleDelivered.src = "../assets/images/circle-inactive-delivered.svg";
+            imgCircleDelivered.src = "/assets/images/circle-inactive-delivered.svg";
             divCircleDelivered.appendChild(imgCircleDelivered);
 
             const statusText = document.createElement("p");
@@ -167,16 +167,16 @@ export default async () => {
             divTrack.appendChild(statusText);
 
             if (cart.status === "pending") {
-                imgCircleProcessing.src = "../assets/images/circle-active-processing.svg";
+                imgCircleProcessing.src = "/assets/images/circle-active-processing.svg";
                 statusText.innerText = "Em processamento";
             } else if (cart.status === "sended") {
-                imgCircleSended.src = "../assets/images/circle-active-sended.svg";
+                imgCircleSended.src = "/assets/images/circle-active-sended.svg";
                 statusText.innerText = "Enviado";
             } else if (cart.status === "delivered") {
-                imgCircleDelivered.src = "../assets/images/circle-active-delivered.svg";
+                imgCircleDelivered.src = "/assets/images/circle-active-delivered.svg";
                 statusText.innerText = "Entregue"
             } else if (cart.status === "approved"){
-                imgCircleProcessing.src = "../assets/images/circle-active-processing.svg";
+                imgCircleProcessing.src = "/assets/images/circle-active-processing.svg";
                 statusText.innerText = "Aprovado";
             }
 
@@ -211,7 +211,7 @@ export default async () => {
 
             const dropArrow = document.createElement("img");
             dropArrow.classList.add("drop-arrow-img")
-            dropArrow.src = "../assets/images/arrow-down-green.svg";
+            dropArrow.src = "/assets/images/arrow-down-green.svg";
             divDropArrow.appendChild(dropArrow)
 
             const productCartResponse = await fetch(`/api/cart_product/order/${cart.id}`);

@@ -22,21 +22,12 @@ const getCartProductsByUserId = async (userId) => {
             throw new Error("Carrinho não encontrado");
         }
         const cartProducts = await cartProductRepository.getCartProductsByCartId(cartId);
-        const cartProductInfos = await Promise.all(cartProducts.map(async (cartProduct) =>{
+        const cartProductInfos = await Promise.all(cartProducts.map(async (cartProduct) => {
             const productInfo = await productRepository.getProduct(cartProduct.product_id);
-            return {product: productInfo, quantity: cartProduct.quantity };
+            return {cartProductId: cartProduct.id, product: productInfo, quantity: cartProduct.quantity };
         }));
         return cartProductInfos;
     } catch (error) {
-        throw error;
-    }
-}
-
-const getCartByCartId = async (cartId) =>{
-    try{
-        const cart = await cartProductRepository.getCartProductsByCartId(cartId);
-        return cart;
-    } catch(error) {
         throw error;
     }
 }
@@ -52,9 +43,22 @@ const getAllCartProduct = async () => {
 
 const createCartProduct = async (cart_id, product_id, quantity) => {
     try {
-        const result = await cartProductRepository.createNewCartProduct(cart_id, product_id, quantity);
-        return result;
+        const cartProducts = await cartProductRepository.getCartProductsByCartId(cart_id);
+
+        const foundProduct = cartProducts.find(product => product.product_id === product_id);
+
+        if (foundProduct) {
+            const cartProductId = foundProduct.id;
+            const newQuantity = quantity + foundProduct.quantity;
+            const result = await cartProductRepository.updateCartProduct(cartProductId, newQuantity);
+            return result;
+        } else {
+            const result = await cartProductRepository.createNewCartProduct(cart_id, product_id, quantity);
+            return result;
+        }
+
     } catch (error) {
+        console.log(error)
         throw error;
     }
 }
@@ -62,7 +66,7 @@ const createCartProduct = async (cart_id, product_id, quantity) => {
 const updateCartProduct = async (id, quantity) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
-        if (!cartProduct.length) {
+        if (!cartProduct) {
             throw new Error("Item não encontrado");
         }
         await cartProductRepository.updateCartProduct(id, quantity);
@@ -75,11 +79,15 @@ const updateCartProduct = async (id, quantity) => {
 const deleteCartProduct = async (id) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
+        const cartId = cartProduct[0].cart_id;
+        const quantity = cartProduct[0].quantity;
+        const value = parseFloat(cartProduct[0].price_unity);
+        const totalProductValue = quantity * value;
 
-        if (!cartProduct.length) {
+        if (!cartProduct) {
             throw new Error("Item não encontrado");
         }
-        await cartProductRepository.deleteCartProduct(id);
+        await cartProductRepository.deleteCartProduct(id, cartId, totalProductValue);
         return { success: true };
     } catch (error) {
         throw error;
@@ -98,7 +106,6 @@ const testCartProductTransaction = async (cart_id, product_id, quantity) => {
 module.exports = {
     getCartProduct,
     getCartProductsByUserId,
-    getCartByCartId,
     getAllCartProduct,
     createCartProduct,
     updateCartProduct,

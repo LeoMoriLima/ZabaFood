@@ -10,7 +10,7 @@ export default () => {
     policyPageDiv.appendChild(policyIconDiv);
 
     const policyIcon = document.createElement("img");
-    policyIcon.src = "../assets/images/z-icon.svg";
+    policyIcon.src = "/assets/images/z-icon.svg";
     policyIcon.classList.add("policy-icon");
     policyIconDiv.appendChild(policyIcon);
 
