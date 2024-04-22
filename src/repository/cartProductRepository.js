@@ -42,13 +42,23 @@ const getAllCartProduct = async () => {
     }
 }
 
-const deleteCartProduct = async (id) => {
+const deleteCartProduct = async (id, cartId, totalProductValue) => {
     const client = await connectToDatabase();
-    const query = 'DELETE FROM cart_product WHERE id = $1';
+
     try {
-        await client.query(query, [id]);
+        await client.query('BEGIN');
+
+        // Remove o cart_product da tabela de produtos do carrinho
+        await client.query('DELETE FROM cart_product WHERE id = $1', [id]);
         console.log('Item deletado com sucesso');
+
+        // Atualiza o valor total do carrinho de compras
+        await client.query('UPDATE cart SET total = total - $1 WHERE id = $2', [totalProductValue, cartId]);
+
+        await client.query('COMMIT');
+        console.log("Carrinho atualizado com sucesso");
     } catch (error) {
+        await client.query('ROLLBACK');
         console.log('Erro ao deletar item:', error);
         throw error;
     } finally {

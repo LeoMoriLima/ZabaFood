@@ -44,10 +44,9 @@ const getAllCartProduct = async () => {
 const createCartProduct = async (cart_id, product_id, quantity) => {
     try {
         const cartProducts = await cartProductRepository.getCartProductsByCartId(cart_id);
-        console.log("cartProducts", cartProducts)
 
         const foundProduct = cartProducts.find(product => product.product_id === product_id);
-        console.log("foundProduct", foundProduct)
+
         if (foundProduct) {
             const cartProductId = foundProduct.id;
             const newQuantity = quantity + foundProduct.quantity;
@@ -80,10 +79,17 @@ const updateCartProduct = async (id, quantity) => {
 const deleteCartProduct = async (id) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
+        console.log(cartProduct)
+
+        const cartId = cartProduct[0].cart_id;
+        const quantity = cartProduct[0].quantity;
+        const value = parseFloat(cartProduct[0].price_unity);
+        const totalProductValue = quantity * value;
+
         if (!cartProduct) {
             throw new Error("Item não encontrado");
         }
-        await cartProductRepository.deleteCartProduct(id);
+        await cartProductRepository.deleteCartProduct(id, cartId, totalProductValue);
         return { success: true };
     } catch (error) {
         throw error;
