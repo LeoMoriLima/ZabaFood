@@ -80,7 +80,7 @@ export default () => {
             if (data.success) {
                 router.navigate("/login")
             } else{
-                MessageComponent("Erro ao efetuar registro");
+                MessageComponent("Erro ao efetuar registro", false);
             }
         } catch (error) {
             console.error("Erro ao efetuar registro:", error);
