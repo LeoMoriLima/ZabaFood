@@ -1,35 +1,32 @@
 import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
+import LoadingComponent from "./LoadingComponent.js";
 
-export default async (displayconfig) => {
+export default async (displayconfig, userData) => {
 	const mainDiv = document.createElement("div");
 	mainDiv.classList.add("modal-cart-main-div");
 	mainDiv.style.display = displayconfig;
 
-	await showCartProducts(mainDiv);
-		
+	setTimeout(async () => {
+		await showCartProducts(mainDiv, userData);
+	}, 0);
+
 	window.addEventListener("productAdded", async () => {
-        showCartProducts(mainDiv);
-    })
+		showCartProducts(mainDiv, userData);
+	})
 
 	return mainDiv;
 }
 
-const showCartProducts = async (mainDiv) => {
+const showCartProducts = async (mainDiv, userData) => {
 	mainDiv.innerHTML = "";
-	try {
-		const userResponse = await fetch('/api/login', {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
-		const userData = await userResponse.json();
+	const loadingComponent = LoadingComponent(5)
+	mainDiv.appendChild(loadingComponent)
 
-		if (userData.error) {
+	try {
+		if (!userData) {
 			return
 		}
-
 		const userId = userData.user.id;
 
 		const cartResponse = await fetch(`/api/cart/user/${userId}`, {
@@ -39,7 +36,7 @@ const showCartProducts = async (mainDiv) => {
 			}
 		});
 
-		const cart = await cartResponse.json();	
+		const cart = await cartResponse.json();
 		const cartStatus = cart.status;
 
 		const cartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
@@ -51,9 +48,11 @@ const showCartProducts = async (mainDiv) => {
 
 		const cartProductsInfos = await cartProductsResponse.json();
 
+		loadingComponent.remove()
+
 		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
-				const {product , quantity} = itemProduct
+				const { product, quantity } = itemProduct
 				const itemProductDiv = document.createElement("div");
 				itemProductDiv.classList.add("item-product-div");
 				mainDiv.appendChild(itemProductDiv);

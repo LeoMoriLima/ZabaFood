@@ -2,55 +2,60 @@ import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
 
 export default async (id) => {
-	try {
-		const response = await fetch(`/api/product/${id}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
+	const mainDiv = document.createElement("div");
+	mainDiv.classList.add("banner-product-card-main-div");
+	setTimeout(async () => {
+		try {
+			const response = await fetch(`/api/product/${id}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
 
-		const data = await response.json();
+			const data = await response.json();
 
-		const mainDiv = document.createElement("div");
-		mainDiv.classList.add("banner-product-card-main-div");
 
-		const mainDivText = document.createElement("p");
-		mainDivText.classList.add("main-div-text");
-		mainDivText.innerText = "CONFIRA O MAIS NOVO PRODUTO";
-		mainDiv.appendChild(mainDivText);
 
-		const productDiv = document.createElement("div");
-		productDiv.classList.add("banner-product-card");
-		mainDiv.appendChild(productDiv);
+			const mainDivText = document.createElement("p");
+			mainDivText.classList.add("main-div-text");
+			mainDivText.innerText = "CONFIRA O MAIS NOVO PRODUTO";
+			mainDiv.appendChild(mainDivText);
 
-		const textDiv = document.createElement("div");
-		textDiv.classList.add("banners-product-text-div");
-		productDiv.appendChild(textDiv);
+			const productDiv = document.createElement("div");
+			productDiv.classList.add("banner-product-card");
+			mainDiv.appendChild(productDiv);
 
-		const productTitle = document.createElement("p");
-		productTitle.classList.add("banner-product-title");
-		productTitle.innerText = data.name;
-		textDiv.appendChild(productTitle);
+			const textDiv = document.createElement("div");
+			textDiv.classList.add("banners-product-text-div");
+			productDiv.appendChild(textDiv);
 
-		const productValue = document.createElement("p");
-		productValue.classList.add("banner-product-value");
-		productValue.innerText = `R$ ${(data.value * 1).toFixed(2)}`;
-		textDiv.appendChild(productValue);
+			const productTitle = document.createElement("p");
+			productTitle.classList.add("banner-product-title");
+			productTitle.innerText = data.name;
+			textDiv.appendChild(productTitle);
 
-		const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
-			router.navigate(`/product/${id}`)
-		})
-		textDiv.appendChild(accessHereBtn);
+			const productValue = document.createElement("p");
+			productValue.classList.add("banner-product-value");
+			productValue.innerText = `R$ ${(data.value * 1).toFixed(2)}`;
+			textDiv.appendChild(productValue);
 
-		const imgDiv = document.createElement("img");
-		imgDiv.src = data.url_img;
-		imgDiv.classList.add("banner-product-img");
-		productDiv.appendChild(imgDiv);
+			const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
+				router.navigate(`/product/${id}`)
+			})
+			textDiv.appendChild(accessHereBtn);
 
-		return mainDiv;
+			const imgDiv = document.createElement("img");
+			imgDiv.src = data.url_img;
+			imgDiv.loading = "lazy"
+			imgDiv.classList.add("banner-product-img");
+			productDiv.appendChild(imgDiv);
 
-	} catch (error) {
-		console.error("Erro ao fazer login:", error);
-	}
+
+		} catch (error) {
+			console.error("Erro ao pegar banner:", error);
+		}
+	}, 0);
+
+	return mainDiv;
 }

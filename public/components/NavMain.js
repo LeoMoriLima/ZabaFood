@@ -106,138 +106,159 @@ export default async () => {
     accountIcon.classList.add("a-account-icon");
     aAccountIcon.appendChild(accountIcon);
 
-    try {
-        const response = await fetch('/api/login', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const data = await response.json();
-
-        if (data.error) {
-            const aAccount = textA("ENTRAR", "a-account", "none", "/login");
-            aAccount.onclick = (e) => {
-                e.preventDefault();
-                router.navigate("/login")
-            }
-            accountDiv.appendChild(aAccountIcon);
-            accountDiv.appendChild(aAccount);
-
-            aAccountIcon.href = "/login"
-            aAccountIcon.onclick = (e) => {
-                e.preventDefault();
-                router.navigate("/login")
-            }
-        } else {
-            const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
-            aAccount.onclick = (e) => {
-                e.preventDefault();
-                router.navigate("/myaccount")
-            }
-            accountDiv.appendChild(aAccountIcon);
-            accountDiv.appendChild(accountTextDiv);
-            accountTextDiv.appendChild(aAccount);
-
-            try{
-                const accountData = await fetch(`/api/users/${data.user.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                const userData = await accountData.json();
-
-                const creditBalance = document.createElement("p");
-                creditBalance.classList.add("header-credit-balance");
-                creditBalance.innerText = "Saldo: " + "R$ " + userData.credit_balance;
-                accountTextDiv.appendChild(creditBalance);
-
-                const roundedDivPlus = document.createElement("Div");
-                roundedDivPlus.classList.add("header-rounded-plus-div");
-                accountDiv.appendChild(roundedDivPlus);
-
-                roundedDivPlus.addEventListener("click", () =>{
-                    router.navigate("/payment");
-                })
-
-                const roundedDivText = document.createElement("span");
-                roundedDivText.classList.add("header-rounded-text");
-                roundedDivText.innerText = "+";
-                roundedDivPlus.appendChild(roundedDivText);
-
-            } catch(error){
-                return;
-            }
-            
-            aAccountIcon.href = "/myaccount"
-            aAccountIcon.onclick = (e) => {
-                e.preventDefault();
-                router.navigate("/myaccount")
-            }
-        }
-    } catch (error) {
-        console.log(error);
-    }
-
-    const cartDiv = document.createElement("div");
-    cartDiv.classList.add("cart-div");
-    headerDivRight.appendChild(cartDiv);
-
-    const cartModal = await CartModal("flex");
-
-    if (cartModal) {
-        cartModal.style.display = "none";
-        navDivCenter.appendChild(cartModal);
-
-        cartDiv.addEventListener("mouseover", async () => {
-            cartModal.style.display = "flex";
-        })
-        cartDiv.addEventListener("mouseleave", async () => {
-            cartModal.style.display = "none";
-        })
-        cartModal.addEventListener("mouseover", async () => {
-            cartModal.style.display = "flex";
-        })
-        cartModal.addEventListener("mouseleave", async () => {
-            cartModal.style.display = "none";
-        })
-    }
-
-    const aCartIcon = document.createElement("a");
-    aCartIcon.classList.add("a-cart-icon");
-    aCartIcon.href = cartModal ? "/cart" : "/login";
-    aCartIcon.onclick = (e) => {
-        e.preventDefault();
-        const CartIconHref = aCartIcon.href.substring(aCartIcon.href.lastIndexOf("/"));
-        router.navigate(CartIconHref);
-    }
-    cartDiv.appendChild(aCartIcon);
-
-    const cartIcon = document.createElement("img");
-    cartIcon.src = "../assets/images/cart-icon.svg";
-    aCartIcon.appendChild(cartIcon);
-
-    const getProductsQuantity = async () => {
+    const checkUser = async () => {
         try {
-            const userResponse = await fetch('/api/login', {
+            const response = await fetch('/api/login', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
-            const userData = await userResponse.json();
+            const data = await response.json();
+            if (data.error) {
+                return false
+            }
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
+    const navMainRequests = async (userData) => {
+        try {
+            if (!userData) {
+                const aAccount = textA("ENTRAR", "a-account", "none", "/login");
+                aAccount.onclick = (e) => {
+                    e.preventDefault();
+                    router.navigate("/login")
+                }
+                accountDiv.appendChild(aAccountIcon);
+                accountDiv.appendChild(aAccount);
+
+                aAccountIcon.href = "/login"
+                aAccountIcon.onclick = (e) => {
+                    e.preventDefault();
+                    router.navigate("/login")
+                }
+                const cartDiv = document.createElement("div");
+                cartDiv.classList.add("cart-div");
+                headerDivRight.appendChild(cartDiv);
+
+                const aCartIcon = document.createElement("a");
+                aCartIcon.classList.add("a-cart-icon");
+                aCartIcon.href = "/login";
+                aCartIcon.onclick = (e) => {
+                    e.preventDefault();
+                    router.navigate("/login");
+                }
+                cartDiv.appendChild(aCartIcon);
+                const cartIcon = document.createElement("img");
+                cartIcon.src = "../assets/images/cart-icon.svg";
+                aCartIcon.appendChild(cartIcon);
+            } else {
+                const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
+                aAccount.onclick = (e) => {
+                    e.preventDefault();
+                    router.navigate("/myaccount")
+                }
+                accountDiv.appendChild(aAccountIcon);
+                accountDiv.appendChild(accountTextDiv);
+                accountTextDiv.appendChild(aAccount);
+
+                try {
+                    const accountResponse = await fetch(`/api/users/${userData.user.id}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    const accountData = await accountResponse.json();
+
+                    const creditBalance = document.createElement("p");
+                    creditBalance.classList.add("header-credit-balance");
+                    creditBalance.innerText = "Saldo: " + "R$ " + accountData.credit_balance;
+                    accountTextDiv.appendChild(creditBalance);
+
+                    const roundedDivPlus = document.createElement("Div");
+                    roundedDivPlus.classList.add("header-rounded-plus-div");
+                    accountDiv.appendChild(roundedDivPlus);
+
+                    roundedDivPlus.addEventListener("click", () => {
+                        router.navigate("/payment");
+                    })
+
+                    const roundedDivText = document.createElement("span");
+                    roundedDivText.classList.add("header-rounded-text");
+                    roundedDivText.innerText = "+";
+                    roundedDivPlus.appendChild(roundedDivText);
+
+                    const cartDiv = document.createElement("div");
+                    cartDiv.classList.add("cart-div");
+                    headerDivRight.appendChild(cartDiv);
+
+                    const cartModal = await CartModal("flex", userData);
+                    cartModal.style.display = "none";
+                    navDivCenter.appendChild(cartModal);
+
+                    cartDiv.addEventListener("mouseover", async () => {
+                        cartModal.style.display = "flex";
+                    })
+                    cartDiv.addEventListener("mouseleave", async () => {
+                        cartModal.style.display = "none";
+                    })
+                    cartModal.addEventListener("mouseover", async () => {
+                        cartModal.style.display = "flex";
+                    })
+                    cartModal.addEventListener("mouseleave", async () => {
+                        cartModal.style.display = "none";
+                    })
+                    const aCartIcon = document.createElement("a");
+                    aCartIcon.classList.add("a-cart-icon");
+                    aCartIcon.href = "/cart";
+                    aCartIcon.onclick = (e) => {
+                        e.preventDefault();
+                        router.navigate("/cart");
+                    }
+                    cartDiv.appendChild(aCartIcon);
+                    const cartIcon = document.createElement("img");
+                    cartIcon.src = "../assets/images/cart-icon.svg";
+                    aCartIcon.appendChild(cartIcon);
+
+                    getProductsQuantity(userData, cartDiv);
+
+                    window.addEventListener("productAdded", async () => {
+                        getProductsQuantity(userData, cartDiv);
+                    })
+                } catch (error) {
+                    console.log(error);
+                    return;
+                }
+
+                aAccountIcon.href = "/myaccount"
+                aAccountIcon.onclick = (e) => {
+                    e.preventDefault();
+                    router.navigate("/myaccount")
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getProductsQuantity = async (userData, cartDiv) => {
+        try {
+            if (!userData) {
+                return
+            }
             const userId = userData.user.id;
-
             const cartResponse = await fetch(`/api/cart/user/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
-    
-            const cart = await cartResponse.json();	
+
+            const cart = await cartResponse.json();
             const cartStatus = cart.status;
 
             if (cartStatus === "pending") {
@@ -247,17 +268,17 @@ export default async () => {
                         "Content-Type": "application/json"
                     }
                 });
-    
+
                 const cartProducts = await cartProductsResponse.json();
-    
+
                 const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-    
+
                 const cartQuantityDiv = document.createElement("div");
                 cartQuantityDiv.classList.add("cart-quantity-div");
                 if (totalQuantity !== 0) {
                     cartDiv.appendChild(cartQuantityDiv);
                 }
-    
+
                 const cartQuantityText = document.createElement("p");
                 cartQuantityText.classList.add("cart-quantity-text");
                 cartQuantityText.innerText = totalQuantity > 9 ? `9+` : totalQuantity;
@@ -269,11 +290,10 @@ export default async () => {
         }
     }
 
-    getProductsQuantity();
-
-    window.addEventListener("productAdded", async () => {
-        getProductsQuantity();
-    })
+    setTimeout(async () => {
+        const userResult = await checkUser()
+        navMainRequests(userResult)
+    }, 0);
 
     const navBarDiv = document.createElement("div");
     navBarDiv.classList.add("nav-bar-div");
@@ -296,7 +316,6 @@ export default async () => {
     modalCategory.style.display = "none";
     divNavMain.appendChild(modalCategory);
 
-
     productsMenuDiv.addEventListener("mouseover", async () => {
         modalCategory.style.display = "flex";
     })
@@ -309,7 +328,6 @@ export default async () => {
     modalCategory.addEventListener("mouseleave", async () => {
         modalCategory.style.display = "none";
     })
-
 
     const rightSideNavbarDiv = document.createElement("div");
     rightSideNavbarDiv.classList.add("right-side-navbar-div");
