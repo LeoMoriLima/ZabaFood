@@ -2,6 +2,7 @@ import inputEntry from "./inputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default () => {
@@ -29,32 +30,32 @@ export default () => {
         const phoneInput = document.getElementById("phone-input").value;
 
         if(userInput.length < 4 || userInput.length > 50){
-            alert("O nome de usuário deve conter entre 4 e 50 caracteres!");
+            MessageComponent("O nome de usuário deve conter entre 4 e 50 caracteres!", false);
             return;
         }
 
         if(passwordInput.length < 4 || passwordInput.length > 30){
-            alert("A senha deve conter entre 4 e 30 caracteres!");
+            MessageComponent("A senha deve conter entre 4 e 30 caracteres!", false);
             return;
         }
 
         if(nameInput.length < 4 || nameInput.length > 50){
-            alert("Nome inválido!");
+            MessageComponent("Nome inválido!", false);
             return;
         }
 
         if(!emailRegex.test(emailInput)){
-            alert("Email inválido!");
+            MessageComponent("Email inválido!", false);
             return;
         }
 
         if(cpfInput.length < 11 || cpfInput.length > 18){
-            alert("CPF inválido!");
+            MessageComponent("CPF inválido!", false);
             return;
         }
 
         if(phoneInput.length < 10 || phoneInput.length > 11){
-            alert("Número de telefone inválido!")
+            MessageComponent("Número de telefone inválido!", false)
             return;
         }
 
@@ -79,7 +80,7 @@ export default () => {
             if (data.success) {
                 router.navigate("/login")
             } else{
-                alert("Erro ao efetuar registro");
+                MessageComponent("Erro ao efetuar registro", false);
             }
         } catch (error) {
             console.error("Erro ao efetuar registro:", error);

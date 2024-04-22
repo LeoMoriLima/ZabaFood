@@ -658,13 +658,13 @@ input:focus {
     justify-content: space-around;
 }
 
-.header-credit-balance{
+.header-credit-balance {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 0.9rem;
 }
 
-.header-rounded-plus-div{
+.header-rounded-plus-div {
     border: none;
     border-radius: 50%;
     background-color: var(--color-secundary);
@@ -679,11 +679,11 @@ input:focus {
     transition: all ease-in-out 0.3s;
 }
 
-.header-rounded-plus-div:hover{
+.header-rounded-plus-div:hover {
     background-color: var(--color-emphasis);
 }
 
-.header-rounded-text{
+.header-rounded-text {
     color: var(--color-white);
     font-size: 1.5rem;
     font-weight: 600;
@@ -1483,6 +1483,7 @@ input:focus {
     border-radius: 0.9rem;
     transition: all ease-in-out 0.3s;
     cursor: pointer;
+    margin-top: 80%;
 }
 
 .exit-button:hover {
@@ -1797,7 +1798,6 @@ input:focus {
 .left-menu-user-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 17.5rem;
     align-items: center;
     height: 50.7rem;
@@ -1828,7 +1828,7 @@ input:focus {
 
 .a-orders:hover,
 .a-address:hover,
-.a-settings:hover{
+.a-settings:hover {
     background-color: var(--color-emphasis);
 }
 
@@ -1849,15 +1849,15 @@ input:focus {
     overflow-y: auto;
 }
 
-.order-page-div::-webkit-scrollbar{
+.order-page-div::-webkit-scrollbar {
     width: var(--sb-size);
 }
 
-.order-page-div::-webkit-scrollbar-track{
+.order-page-div::-webkit-scrollbar-track {
     background: var(--sb-track-color);
 }
 
-.order-page-div::-webkit-scrollbar-thumb{
+.order-page-div::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 2px;
 }
@@ -2111,7 +2111,7 @@ input:focus {
     font-size: 0.75rem;
 }
 
-.div-info-user-page{
+.div-info-user-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2122,35 +2122,35 @@ input:focus {
     padding: 1rem;
 }
 
-.user-page-user-info{
+.user-page-user-info {
     display: flex;
     flex-direction: row;
 }
 
-.user-icon-menu-info{
+.user-icon-menu-info {
     width: 5vh;
     height: auto;
 }
 
-.user-text-info-div{
+.user-text-info-div {
     margin-left: 0.5vw;
     text-align: center;
 }
 
-.user-menu-hello-text{
+.user-menu-hello-text {
     font-family: var(--font-title);
     color: var(--color-white);
     font-weight: 700;
     font-size: 1rem;
 }
 
-.p-credit-text{
+.p-credit-text {
     font-family: var(--font-text);
     font-size: 0.9rem;
     color: var(--color-white);
 }
 
-.user-page-add-credit-button{
+.user-page-add-credit-button {
     background-color: var(--color-primary);
     font-family: var(--font-title);
     color: var(--color-secundary);
@@ -2163,7 +2163,7 @@ input:focus {
     cursor: pointer;
 }
 
-.user-page-add-credit-button:hover{
+.user-page-add-credit-button:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 0.07rem solid var(--color-primary);
@@ -2650,7 +2650,7 @@ input:focus {
 
 /* User Address Page */
 
-.address-page-div{
+.address-page-div {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -2658,7 +2658,7 @@ input:focus {
     gap: 3vh;
 }
 
-.address-h1-text{
+.address-h1-text {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -2667,7 +2667,7 @@ input:focus {
     padding-top: 2vh;
 }
 
-.main-address-page-div{
+.main-address-page-div {
     display: flex;
     flex-direction: row;
     background-color: var(--color-light-white);
@@ -2678,17 +2678,17 @@ input:focus {
     justify-content: space-around;
 }
 
-.left-address-page-div{
+.left-address-page-div {
     display: flex;
     flex-direction: column;
-    gap: 2vh;   
+    gap: 2vh;
     align-items: center;
     height: 100%;
     border-right: 2px solid var(--color-white);
     padding-right: 3vw;
 }
 
-.h2-title-address-page{
+.h2-title-address-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -2696,7 +2696,7 @@ input:focus {
     width: 100%;
 }
 
-.div-postal-code{
+.div-postal-code {
     display: flex;
     flex-direction: row;
     border-bottom: 1.12px solid var(--color-white);
@@ -2704,7 +2704,7 @@ input:focus {
     width: 100%;
 }
 
-#input-postal-code{
+#input-postal-code {
     padding-left: 0.83vw;
 }
 
@@ -2735,7 +2735,7 @@ input:focus {
     text-indent: 0.5rem;
 }
 
-.button-search-postal-code{
+.button-search-postal-code {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -2746,20 +2746,20 @@ input:focus {
     cursor: pointer;
 }
 
-.button-search-postal-code:hover{
+.button-search-postal-code:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05);
 }
 
-.address-notice-p{
+.address-notice-p {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.button-create-address{
+.button-create-address {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -2770,19 +2770,19 @@ input:focus {
     cursor: pointer;
 }
 
-.button-create-address:hover{
+.button-create-address:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
 }
 
-.right-address-page-div{
+.right-address-page-div {
     display: flex;
     flex-direction: column;
     gap: 1vh;
 }
 
-.address-div{
+.address-div {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -2793,35 +2793,35 @@ input:focus {
     position: relative;
 }
 
-.icon-address-img{
+.icon-address-img {
     padding: 1.19vh 0.52vw;
 }
 
-.info-address-div{
+.info-address-div {
     width: 23vw;
     padding-top: 1.19vh;
 }
 
-.street-text-info{
+.street-text-info {
     font-family: var(--font-text);
     font-size: 1.125rem;
     color: var(--color-secundary);
     font-weight: 500;
 }
 
-.text-state-city-address{
+.text-state-city-address {
     font-family: var(--font-text);
     font-size: 1rem;
     color: var(--color-secundary);
 }
 
-.text-postal-complement-address{
+.text-postal-complement-address {
     font-family: var(--font-text);
     font-size: 1rem;
     color: var(--color-secundary);
 }
 
-.div-address-icons{
+.div-address-icons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2830,17 +2830,17 @@ input:focus {
     gap: 1.82vw;
 }
 
-.icon-address-action{
+.icon-address-action {
     cursor: pointer;
 }
 
-.address-right-notice{
+.address-right-notice {
     font-family: var(--font-text);
     font-size: 1rem;
     color: var(--color-white);
 }
 
-.page-modal-div{
+.page-modal-div {
     height: 76vh;
     width: 87.5vw;
     background-color: #3333335d;
@@ -2851,7 +2851,7 @@ input:focus {
     z-index: 2;
 }
 
-.modal-div-address{
+.modal-div-address {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -2867,20 +2867,20 @@ input:focus {
     align-items: center;
 }
 
-.h2-update-modal{
+.h2-update-modal {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-white);
     font-size: 2rem;
 }
 
-.modal-div-postal-code{
+.modal-div-postal-code {
     display: flex;
     flex-direction: row;
     gap: 1vh;
 }
 
-.close-icon-address{
+.close-icon-address {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -2888,7 +2888,8 @@ input:focus {
     padding: 2vh;
 }
 
-#modal-input-postal-code, .modal-input{
+#modal-input-postal-code,
+.modal-input {
     height: 4.9vh;
     width: 19vw;
     font-size: 1rem;
@@ -2900,23 +2901,25 @@ input:focus {
     background-color: var(--color-light-white);
 }
 
-#modal-input-postal-code{
+#modal-input-postal-code {
     width: 12vw;
 }
 
-#modal-input-postal-code::placeholder, .modal-input::placeholder{
+#modal-input-postal-code::placeholder,
+.modal-input::placeholder {
     color: var(--color-secundary);
     font-family: var(--font-text);
     font-size: 1rem;
     text-indent: 0.5rem;
 }
 
-.modal-notice-address{
+.modal-notice-address {
     font-family: var(--font-text);
     font-size: 1rem;
     color: var(--color-white);
 }
-.button-update-address{
+
+.button-update-address {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -2927,7 +2930,7 @@ input:focus {
     cursor: pointer;
 }
 
-.button-update-address:hover{
+.button-update-address:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
@@ -2936,7 +2939,7 @@ input:focus {
 
 /* User Setting Page */
 
-.setting-page-div{
+.setting-page-div {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -2946,7 +2949,7 @@ input:focus {
     gap: 3vh;
 }
 
-.setting-h1-text-page{
+.setting-h1-text-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -2955,25 +2958,25 @@ input:focus {
     padding-top: 2vh;
 }
 
-.main-setting-page-div{
+.main-setting-page-div {
     background-color: var(--color-light-white);
     display: flex;
     flex-direction: column;
     padding: 5.3vh 3.6vw;
     border-radius: 10px;
     height: 59vh;
-    width: 72vw;    
+    width: 72vw;
     text-align: center;
 }
 
-.left-setting-page-div{
+.left-setting-page-div {
     display: flex;
     flex-direction: column;
     gap: 3vh;
     align-items: center;
 }
 
-.h2-title-setting-page{
+.h2-title-setting-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -2981,33 +2984,33 @@ input:focus {
     width: 100%;
 }
 
-.div-user-setting-page-info{
+.div-user-setting-page-info {
     display: flex;
     flex-direction: column;
     gap: 2vh;
     width: 30vw;
 }
 
-.user-info-setting-div{
+.user-info-setting-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.user-info-text-setting-div{
+.user-info-text-setting-div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-.user-info-text-setting-page{
+.user-info-text-setting-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1.56rem;
     font-weight: 500;
 }
 
-.user-info-span-setting-page{
+.user-info-span-setting-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1.56rem;
@@ -3015,29 +3018,29 @@ input:focus {
     margin-left: 1vw;
 }
 
-.edit-setting-page-mode{
+.edit-setting-page-mode {
     background-color: var(--color-white);
     border-radius: 5px;
 }
 
-.edit-icon-setting-page{
+.edit-icon-setting-page {
     cursor: pointer;
 }
 
-.user-setting-page-notice{
+.user-setting-page-notice {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.user-setting-button-div{
+.user-setting-button-div {
     display: flex;
     flex-direction: row;
     gap: 20px;
     justify-content: center;
 }
 
-.user-setting-save-button{
+.user-setting-save-button {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3048,20 +3051,20 @@ input:focus {
     cursor: pointer;
 }
 
-.user-setting-save-button-disabled{
+.user-setting-save-button-disabled {
     background-color: var(--color-light-gray);
     border: 1.12px solid var(--color-primary);
     color: var(--color-secundary);
 }
 
-.user-setting-save-button:hover{
+.user-setting-save-button:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.button-erase-account-setting-page{
+.button-erase-account-setting-page {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3072,14 +3075,14 @@ input:focus {
     cursor: pointer;
 }
 
-.button-erase-account-setting-page:hover{
+.button-erase-account-setting-page:hover {
     background-color: var(--color-secundary);
     color: var(--color-white);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.user-setting-page-modal-div{
+.user-setting-page-modal-div {
     height: 88.3vh;
     width: 87.5vw;
     background-color: #3333335d;
@@ -3090,7 +3093,7 @@ input:focus {
     z-index: 2;
 }
 
-.user-setting-page-modal-content-div{
+.user-setting-page-modal-content-div {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -3107,7 +3110,7 @@ input:focus {
     gap: 50px;
 }
 
-.setting-page-modal-h1{
+.setting-page-modal-h1 {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-emphasis);
@@ -3116,20 +3119,20 @@ input:focus {
     padding-top: 2vh;
 }
 
-.text-modal-setting-page{
+.text-modal-setting-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
     font-size: 2rem;
 }
 
-.action-modal-setting-page-div{
+.action-modal-setting-page-div {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.action-button-yes-setting-page{
+.action-button-yes-setting-page {
     width: 11vw;
     border: none;
     border-radius: 12px;
@@ -3141,14 +3144,14 @@ input:focus {
     cursor: pointer;
 }
 
-.action-button-yes-setting-page:hover{
+.action-button-yes-setting-page:hover {
     background-color: var(--color-secundary);
     color: var(--color-white);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.action-button-no-setting-page{
+.action-button-no-setting-page {
     width: 11vw;
     height: 6.52vh;
     border: none;
@@ -3160,7 +3163,7 @@ input:focus {
     cursor: pointer;
 }
 
-.action-button-no-setting-page:hover{
+.action-button-no-setting-page:hover {
     background-color: var(--color-secundary);
     color: var(--color-white);
     border: 1.12px solid var(--color-primary);
@@ -3169,30 +3172,58 @@ input:focus {
 
 /* Loading animation */
 
-.loading-animation{
+.loading-animation {
     animation: loading 1.3s ease-in-out infinite;
 }
 
 
 @keyframes loading {
-    0%{
+    0% {
         rotate: 0deg;
     }
-    100%{
+
+    100% {
         rotate: 360deg;
     }
 }
 
 /* skeletons */
 
-.white-skeletons{
+.white-skeletons {
     background-color: var(--color-white);
 }
 
-.light-white-skeletons{
+.light-white-skeletons {
     background-color: var(--color-light-white);
 }
 
-.light-gray-skeletons{
+.light-gray-skeletons {
     background-color: var(--color-light-gray);
+}
+
+/* Message component */
+
+#message-div {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border: solid 0.5px var(--color-secundary);
+    border-radius: 3rem;
+    color: var(--color-light-white);
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 600;
+    max-width: 20vw;
+    text-align: center;
 }

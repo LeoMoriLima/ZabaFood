@@ -5,8 +5,10 @@ import textA from "./Text-a.js";
 import CategoryModal from "../components/CategoryModal.js";
 import CartModal from "./CartModal.js";
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
+
     const divNavMain = document.createElement("div");
     divNavMain.classList.add("div-nav-main");
 
