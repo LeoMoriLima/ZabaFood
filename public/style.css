@@ -107,7 +107,7 @@ body {
 .div-background {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 3.9375rem;
-    background-image: url(/assets/images/login-background.svg);
+    background-image: url("./assets/images/login-background.svg");
     background-repeat: no-repeat;
     background-size: 105%;
     width: 80rem;
@@ -1482,9 +1482,9 @@ input:focus {
 
 .a-add-product:hover,
 .a-all-product:hover,
-.a-all-product-type:hover{
+.a-all-product-type:hover {
     background-color: var(--color-emphasis);
-} 
+}
 
 .nav-menu-admin-page-selected {
     background-color: var(--color-emphasis);
@@ -3231,7 +3231,7 @@ input:focus {
 
 /* Admin Modify Product Page */
 
-.modify-page-div{
+.modify-page-div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3240,7 +3240,7 @@ input:focus {
     position: relative;
 }
 
-.h1-modify-page{
+.h1-modify-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -3249,7 +3249,7 @@ input:focus {
     padding-top: 2vh;
 }
 
-.modify-page-product-div{
+.modify-page-product-div {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -3257,7 +3257,7 @@ input:focus {
 
 }
 
-.all-products-div-modify-page{
+.all-products-div-modify-page {
     background-color: var(--color-light-white);
     display: flex;
     flex-direction: row;
@@ -3271,47 +3271,47 @@ input:focus {
     margin-right: 10px;
 }
 
-.all-products-image-div-modify{
+.all-products-image-div-modify {
     height: 14vh;
     width: 6.66vw;
     overflow: hidden;
 }
 
-.product-image-modify-page{
+.product-image-modify-page {
     height: 14vh;
     width: 6.66vw;
 }
 
-.product-text-div-modify-page{
+.product-text-div-modify-page {
     width: 20vw;
 }
 
-.product-name-modify-page{
+.product-name-modify-page {
     font-family: var(--font-title);
     color: var(--color-emphasis);
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.product-price-modify-page{
+.product-price-modify-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.product-stock-modify-page{
+.product-stock-modify-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.product-button-div-modify-page{
+.product-button-div-modify-page {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.product-button-modify{
+.product-button-modify {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3322,14 +3322,14 @@ input:focus {
     cursor: pointer;
 }
 
-.product-button-modify:hover{
+.product-button-modify:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.product-button-delete-product{
+.product-button-delete-product {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3340,14 +3340,14 @@ input:focus {
     cursor: pointer;
 }
 
-.product-button-delete-product:hover{
+.product-button-delete-product:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.product-modify-page-modal-div{
+.product-modify-page-modal-div {
     height: 100%;
     width: 100%;
     background-color: #3333335d;
@@ -3358,7 +3358,7 @@ input:focus {
     z-index: 2;
 }
 
-.product-modify-page-modal-content-div{
+.product-modify-page-modal-content-div {
     position: relative;
     top: 50%;
     left: 50%;
@@ -3377,7 +3377,7 @@ input:focus {
     align-items: center;
 }
 
-.close-modify-modal-icon{
+.close-modify-modal-icon {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -3385,59 +3385,59 @@ input:focus {
     padding: 2vh;
 }
 
-#product-modify-image-div{
+#product-modify-image-div {
     width: 24.3vw
 }
 
-#input-modify-admin-name{
+#input-modify-admin-name {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-modify-admin-name::placeholder{
+#input-modify-admin-name::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
 
-#input-modify-admin-value{
+#input-modify-admin-value {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-modify-admin-value::placeholder{
+#input-modify-admin-value::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-#input-modify-admin-stock{
+#input-modify-admin-stock {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
 }
 
-#input-modify-admin-stock::placeholder{
+#input-modify-admin-stock::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-#select-product-modify-page{
+#select-product-modify-page {
     margin-left: -6.16vw;
 }
 
-.modal-text-info{
+.modal-text-info {
     font-family: var(--font-title);
     color: var(--color-emphasis);
     font-size: 1rem;
     font-weight: 700;
 }
 
-.product-button-send-modify{
+.product-button-send-modify {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3448,29 +3448,29 @@ input:focus {
     cursor: pointer;
 }
 
-.product-button-send-modify:hover{
+.product-button-send-modify:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.modify-page-product-div::-webkit-scrollbar{
+.modify-page-product-div::-webkit-scrollbar {
     width: var(--sb-size);
 }
 
-.modify-page-product-div::-webkit-scrollbar-track{
+.modify-page-product-div::-webkit-scrollbar-track {
     background: var(--sb-track-color);
 }
 
-.modify-page-product-div::-webkit-scrollbar-thumb{
+.modify-page-product-div::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 2px;
 }
 
 /* Admin Product Type Page */
 
-.product-type-page-div{
+.product-type-page-div {
     display: flex;
     background-color: var(--color-light-white);
     flex-direction: column;
@@ -3480,7 +3480,7 @@ input:focus {
     position: relative;
 }
 
-.h1-product-type-page{
+.h1-product-type-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -3489,7 +3489,7 @@ input:focus {
     padding-top: 2vh;
 }
 
-.product-type-main-div{
+.product-type-main-div {
     background-color: var(--color-white);
     display: flex;
     flex-direction: row;
@@ -3503,7 +3503,7 @@ input:focus {
     margin-top: 10px;
 }
 
-.add-product-type-div{
+.add-product-type-div {
     border-right: 0.2rem solid var(--color-light-white);
     height: 100%;
     display: flex;
@@ -3514,7 +3514,7 @@ input:focus {
     text-align: center;
 }
 
-.h2-product-type-div{
+.h2-product-type-div {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
@@ -3522,7 +3522,7 @@ input:focus {
     width: 100%;
 }
 
-#input-product-type-name{
+#input-product-type-name {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
@@ -3530,12 +3530,12 @@ input:focus {
     margin-left: 3vw;
 }
 
-#input-product-type-name::placeholder{
+#input-product-type-name::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.product-type-button-send{
+.product-type-button-send {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3547,23 +3547,23 @@ input:focus {
     margin-right: 1vw;
 }
 
-.product-type-button-send:hover{
+.product-type-button-send:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
 }
 
-.all-product-type-page-div{
+.all-product-type-page-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px; 
+    padding: 10px;
     max-height: 100%;
 }
 
-.all-product-type-top{
+.all-product-type-top {
     display: flex;
     flex-direction: row;
     background-color: var(--color-secundary);
@@ -3576,11 +3576,11 @@ input:focus {
 }
 
 
-.div-body-product-type{
+.div-body-product-type {
     overflow-y: auto;
 }
 
-.div-info-body-product-type{
+.div-info-body-product-type {
     display: flex;
     flex-direction: row;
     width: 13.5vw;
@@ -3593,31 +3593,31 @@ input:focus {
     align-items: center;
 }
 
-.div-column-one{
+.div-column-one {
     width: 6vw;
 }
 
-.div-column-two{
+.div-column-two {
     cursor: pointer;
 }
 
-.div-column-three{
+.div-column-three {
     cursor: pointer;
 }
 
-.p-product-type{
+.p-product-type {
     font-family: var(--font-text);
     color: var(--color-dark-gray);
 }
 
-.modal-product-type{
+.modal-product-type {
     background-color: #3333335d;
     position: absolute;
     height: 100%;
     width: 100%;
 }
 
-.modal-content-product-type{
+.modal-content-product-type {
     position: relative;
     top: 50%;
     left: 50%;
@@ -3636,7 +3636,7 @@ input:focus {
     align-items: center;
 }
 
-#input-product-type-modal-content{
+#input-product-type-modal-content {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
@@ -3644,12 +3644,12 @@ input:focus {
     margin-left: 2vw;
 }
 
-#input-product-type-modal-content::placeholder{
+#input-product-type-modal-content::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
 }
 
-.product-type-modal-button{
+.product-type-modal-button {
     height: 4.9vh;
     width: 6.5vw;
     border: none;
@@ -3660,12 +3660,13 @@ input:focus {
     cursor: pointer;
 }
 
-.product-type-modal-button:hover{
+.product-type-modal-button:hover {
     background-color: var(--color-secundary);
     color: var(--color-primary);
     border: 1.12px solid var(--color-primary);
     transform: scale(1.05)
-=======
+}
+
 /* Message component */
 
 #message-div {
