@@ -2187,7 +2187,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     gap: 3rem;
-    min-height: 50vh;
+    min-height: 51vh;
     justify-content: center;
     margin: 5vh;
 }

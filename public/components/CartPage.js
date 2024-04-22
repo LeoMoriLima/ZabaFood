@@ -69,9 +69,9 @@ export default async () => {
                             "Content-Type": "application/json"
                         }
                     });
-                    console.log(response)
                     const data = await response.json();
-                    console.log(data)
+
+                    router.navigate("/cart");
                 })
                 deleteProductDiv.appendChild(deleteProductImg);
     
