@@ -87,7 +87,7 @@ export default async () =>{
 
     const nameEditIcon = document.createElement("img");
     nameEditIcon.classList.add("edit-icon-setting-page");
-    nameEditIcon.src = "../assets/images/edit-icon.svg";
+    nameEditIcon.src = "/assets/images/edit-icon.svg";
     divIconName.appendChild(nameEditIcon);    
 
     nameEditIcon.addEventListener("click", async () =>{
@@ -96,9 +96,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(nameSpan.isContentEditable){
-            nameEditIcon.src = "../assets/images/save-icon.svg"
+            nameEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            nameEditIcon.src = "../assets/images/edit-icon.svg"
+            nameEditIcon.src = "/assets/images/edit-icon.svg"
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
@@ -134,7 +134,7 @@ export default async () =>{
 
     const usernameEditIcon = document.createElement("img");
     usernameEditIcon.classList.add("edit-icon-setting-page");
-    usernameEditIcon.src = "../assets/images/edit-icon.svg";
+    usernameEditIcon.src = "/assets/images/edit-icon.svg";
     divIconUsername.appendChild(usernameEditIcon);
     
     usernameEditIcon.addEventListener("click", () =>{
@@ -143,9 +143,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(usernameSpan.isContentEditable){
-            usernameEditIcon.src = "../assets/images/save-icon.svg"
+            usernameEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            usernameEditIcon.src = "../assets/images/edit-icon.svg"
+            usernameEditIcon.src = "/assets/images/edit-icon.svg"
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
@@ -181,7 +181,7 @@ export default async () =>{
 
     const emailEditIcon = document.createElement("img");
     emailEditIcon.classList.add("edit-icon-setting-page");
-    emailEditIcon.src = "../assets/images/edit-icon.svg";
+    emailEditIcon.src = "/assets/images/edit-icon.svg";
     divIconEmail.appendChild(emailEditIcon);
 
     emailEditIcon.addEventListener("click", () =>{
@@ -190,9 +190,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(emailSpan.isContentEditable){
-            emailEditIcon.src = "../assets/images/save-icon.svg"
+            emailEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            emailEditIcon.src = "../assets/images/edit-icon.svg"
+            emailEditIcon.src = "/assets/images/edit-icon.svg"
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
@@ -228,7 +228,7 @@ export default async () =>{
 
     const passwordEditIcon = document.createElement("img");
     passwordEditIcon.classList.add("edit-icon-setting-page");
-    passwordEditIcon.src = "../assets/images/edit-icon.svg";
+    passwordEditIcon.src = "/assets/images/edit-icon.svg";
     divIconPassword.appendChild(passwordEditIcon);
 
     passwordEditIcon.addEventListener("click", () =>{
@@ -237,9 +237,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(passwordSpan.isContentEditable){
-            passwordEditIcon.src = "../assets/images/save-icon.svg"
+            passwordEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            passwordEditIcon.src = "../assets/images/edit-icon.svg"
+            passwordEditIcon.src = "/assets/images/edit-icon.svg"
             if(passwordSpan.value === undefined && passwordSpan.innerText !== "*********"){
                 passwordSpan.value = passwordSpan.innerText;
             }
@@ -278,7 +278,7 @@ export default async () =>{
 
     const cpfEditIcon = document.createElement("img");
     cpfEditIcon.classList.add("edit-icon-setting-page");
-    cpfEditIcon.src = "../assets/images/edit-icon.svg";
+    cpfEditIcon.src = "/assets/images/edit-icon.svg";
     divIconCPF.appendChild(cpfEditIcon);
 
     cpfEditIcon.addEventListener("click", () =>{
@@ -287,9 +287,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(cpfSpan.isContentEditable){
-            cpfEditIcon.src = "../assets/images/save-icon.svg"
+            cpfEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            cpfEditIcon.src = "../assets/images/edit-icon.svg"
+            cpfEditIcon.src = "/assets/images/edit-icon.svg"
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
@@ -326,7 +326,7 @@ export default async () =>{
 
     const phoneEditIcon = document.createElement("img");
     phoneEditIcon.classList.add("edit-icon-setting-setting-page");
-    phoneEditIcon.src = "../assets/images/edit-icon.svg";
+    phoneEditIcon.src = "/assets/images/edit-icon.svg";
     divIconPhone.appendChild(phoneEditIcon);
 
     phoneEditIcon.addEventListener("click", () =>{
@@ -335,9 +335,9 @@ export default async () =>{
         buttonSave.style.display = "block";
 
         if(phoneSpan.isContentEditable){
-            phoneEditIcon.src = "../assets/images/save-icon.svg"
+            phoneEditIcon.src = "/assets/images/save-icon.svg"
         } else {
-            phoneEditIcon.src = "../assets/images/edit-icon.svg"
+            phoneEditIcon.src = "/assets/images/edit-icon.svg"
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){

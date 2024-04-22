@@ -10,7 +10,7 @@ export default () => {
     termPageDiv.appendChild(termIconDiv);
 
     const termIcon = document.createElement("img");
-    termIcon.src = "../assets/images/z-icon.svg";
+    termIcon.src = "/assets/images/z-icon.svg";
     termIcon.classList.add("term-icon");
     termIconDiv.appendChild(termIcon);
 

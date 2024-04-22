@@ -5,6 +5,7 @@
     --color-light-gray: #CCCCCC;
     --color-dark-gray: #333333;
     --color-light-white: #F3F3F3;
+    --color-medium-white: #F8F8F8;
     --color-white: #FFFFFF;
     --color-yellow: #FFB74D;
     --color-brown: #A3742F;
@@ -106,7 +107,7 @@ body {
 .div-background {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 3.9375rem;
-    background-image: url(../assets/images/login-background.svg);
+    background-image: url(/assets/images/login-background.svg);
     background-repeat: no-repeat;
     background-size: 105%;
     width: 80rem;
@@ -1183,7 +1184,7 @@ input:focus {
     flex-direction: column;
 }
 
-.main-product-div{
+.main-product-div {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1201,7 +1202,7 @@ input:focus {
     display: flex;
 }
 
-.product-main-card{
+.product-main-card {
     min-height: 45rem;
 }
 
@@ -2383,7 +2384,7 @@ input:focus {
 /* products page */
 
 .products-page {
-    background-color: var(--color-light-white);
+    background-color: var(--color-medium-white);
 }
 
 .products-main {
@@ -3243,4 +3244,74 @@ input:focus {
     font-weight: 600;
     max-width: 20vw;
     text-align: center;
+}
+
+/* products types filter */
+
+.type-banner-div {
+    width: 75%;
+    min-height: 15rem;
+    background-color: var(--color-light-white);
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    padding: 2rem 4rem;
+}
+
+.type-banner-div h1 {
+    font-size: 4rem;
+    font-family: var(--font-title);
+    color: var(--color-secundary);
+}
+
+.img-category-filter-div {
+    width: 10dvw;
+    height: 10dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+
+.line-category-template-filter {
+    object-fit: unset;
+    width: 12rem;
+    position: absolute;
+    right: 0.2rem;
+    /* rotate: 45deg; */
+}
+
+.filled-category-template-filter {
+    object-fit: unset;
+    width: 11rem;
+    position: absolute;
+    top: 0.5rem;
+    /* rotate: 45deg; */
+    opacity: 0.8;
+}
+
+.circle-category-template-filter {
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--color-white);
+    position: absolute;
+    top: 0.8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-category-filter {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.img-category-filter {
+    width: 10dvw;
 }

@@ -62,7 +62,7 @@ export default async () => {
 
                     const deleteProductImg = document.createElement("img");
                     deleteProductImg.classList.add("cp-delete-product-img");
-                    deleteProductImg.src = "../assets/images/delete-icon.svg";
+                    deleteProductImg.src = "/assets/images/delete-icon.svg";
                     deleteProductImg.addEventListener("click", async () => {
                         const response = await fetch(`/api/cart_product/${cartProductId}`, {
                             method: "DELETE",

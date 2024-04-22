@@ -119,7 +119,7 @@ export default async () =>{
 
             const icon = document.createElement("img");
             icon.classList.add("icon-address-img");
-            icon.src = "../assets/images/navigation-icon.svg";
+            icon.src = "/assets/images/navigation-icon.svg";
             div.appendChild(icon);
 
             const textDiv = document.createElement("div");
@@ -146,7 +146,7 @@ export default async () =>{
             div.appendChild(divIcons)
 
             const editIcon = document.createElement("img");
-            editIcon.src = "../assets/images/edit-icon.svg";
+            editIcon.src = "/assets/images/edit-icon.svg";
             editIcon.classList.add("icon-address-action");
             divIcons.appendChild(editIcon);
 
@@ -180,7 +180,7 @@ export default async () =>{
 
                 const closeIcon = document.createElement("img");
                 closeIcon.classList.add("close-icon-address");
-                closeIcon.src = "../assets/images/close-icon.svg";
+                closeIcon.src = "/assets/images/close-icon.svg";
                 modalDiv.appendChild(closeIcon);
 
                 closeIcon.addEventListener("click", () =>{
@@ -270,7 +270,7 @@ export default async () =>{
             });
 
             const trashIcon = document.createElement("img");
-            trashIcon.src = "../assets/images/trash-icon.svg";
+            trashIcon.src = "/assets/images/trash-icon.svg";
             trashIcon.classList.add("icon-address-action");
             divIcons.appendChild(trashIcon);
 

@@ -14,7 +14,7 @@ export default () => {
     navHeaderLogin.appendChild(backBtn);
 
     const arrowLeftImg = document.createElement("img");
-    arrowLeftImg.src = "../assets/images/arrow-left.svg";
+    arrowLeftImg.src = "/assets/images/arrow-left.svg";
     arrowLeftImg.classList.add('arrow-left-img');
     backBtn.appendChild(arrowLeftImg);
 
@@ -34,7 +34,7 @@ export default () => {
     navHeaderLogin.appendChild(logoBtn);
     
     const logoImg = document.createElement("img");
-    logoImg.src = "../assets/images/logo-zabafood.svg";
+    logoImg.src = "/assets/images/logo-zabafood.svg";
     logoImg.classList.add('logo-img');
     logoBtn.appendChild(logoImg);
 

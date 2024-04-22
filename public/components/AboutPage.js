@@ -11,7 +11,7 @@ export default () => {
     aboutPageDiv.appendChild(aboutIconDiv);
 
     const aboutIcon = document.createElement("img");
-    aboutIcon.src = "../assets/images/z-icon.svg";
+    aboutIcon.src = "/assets/images/z-icon.svg";
     aboutIcon.classList.add("about-icon");
     aboutIconDiv.appendChild(aboutIcon);
 

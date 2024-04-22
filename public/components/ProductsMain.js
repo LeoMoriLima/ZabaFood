@@ -1,14 +1,22 @@
 import ProductCard from "./ProductCard.js";
 import ButtonComponent from "./ButtonComponent.js";
 import ProductCardSkeleton from "./ProductCardSkeleton.js";
+import TypeProductBanner from "./TypeProductBanner.js";
 
-export default async () => {
+export default async (params) => {
+    const filter = params ? params.filter : undefined;
+    const term = params ? params.term : undefined;
     try {
         let min = 1;
         let max = 12;
 
         const productsMain = document.createElement("main");
         productsMain.classList.add("products-main");
+
+        if (filter === "type") {
+            const typeBanner = TypeProductBanner(term)
+            productsMain.appendChild(typeBanner)
+        }
 
         const productsList = document.createElement("div");
         productsList.classList.add("products-list");
@@ -18,7 +26,7 @@ export default async () => {
             min += 12
             max += 12
 
-            const products = await generateProducts(productsList, min, max);
+            const products = await generateProducts(productsList, min, max, filter, term);
 
             if (products.length < 12) {
                 button.remove();
@@ -26,7 +34,7 @@ export default async () => {
         })
 
         setTimeout(async () => {
-            const products = await generateProducts(productsList, min, max);
+            const products = await generateProducts(productsList, min, max, filter, term);
 
             if (products.length >= 12) {
                 productsMain.appendChild(loadMoreButton);
@@ -41,8 +49,16 @@ export default async () => {
     }
 }
 
-const getProducts = async (min, max) => {
-    const response = await fetch(`/api/product/interval?min=${min}&max=${max}`, {
+const getProducts = async (min, max, filter, term) => {
+    let url;
+
+    if (filter === "type") {
+        url = `/api/product/interval?min=${min}&max=${max}&type=${term}`
+    } else {
+        url = `/api/product/interval?min=${min}&max=${max}`
+    }
+
+    const response = await fetch(url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -53,13 +69,13 @@ const getProducts = async (min, max) => {
 }
 
 
-const generateProducts = async (append, min, max) => {
+const generateProducts = async (append, min, max, filter, term) => {
 
     for (let i = 0; i < 12; i++) {
         append.appendChild(ProductCardSkeleton(`skeleton-${i}`))
     }
 
-    const products = await getProducts(min, max);
+    let products = filter ? await getProducts(min, max, filter, term) : await getProducts(min, max);
     const productCardsPromises = products.map(async (product) => {
         return await ProductCard(product.id);
     });
@@ -69,7 +85,7 @@ const generateProducts = async (append, min, max) => {
     for (let i = 0; i < 12; i++) {
         document.getElementById(`skeleton-${i}`).remove()
     }
-    
+
     productCards.forEach((card) => {
         append.appendChild(card);
     });

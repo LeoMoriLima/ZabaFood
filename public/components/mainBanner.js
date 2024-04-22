@@ -8,7 +8,7 @@ export default () => {
 
     const bannerImg = document.createElement("img");
     bannerImg.classList.add("banner-img")
-    bannerImg.src = "../assets/images/banner-main.svg";
+    bannerImg.src = "/assets/images/banner-main.svg";
     divBannerImg.appendChild(bannerImg);
 
     const infoDiv = document.createElement("div");
@@ -20,7 +20,7 @@ export default () => {
     infoDiv.appendChild(deliveryDiv);
 
     const deliveryIcon = document.createElement("img");
-    deliveryIcon.src = "../assets/images/delivery_truck.svg";
+    deliveryIcon.src = "/assets/images/delivery_truck.svg";
     deliveryIcon.classList.add("delivery-icon");
     deliveryDiv.appendChild(deliveryIcon);
 
@@ -34,7 +34,7 @@ export default () => {
     infoDiv.appendChild(signDiv);
 
     const signIcon = document.createElement("img");
-    signIcon.src = "../assets/images/sign-icon.svg";
+    signIcon.src = "/assets/images/sign-icon.svg";
     signIcon.classList.add("sign-icon");
     signDiv.appendChild(signIcon);
 
@@ -48,7 +48,7 @@ export default () => {
     infoDiv.appendChild(percentageDiv);
 
     const percentageIcon = document.createElement("img");
-    percentageIcon.src = "../assets/images/percentage-icon.svg";
+    percentageIcon.src = "/assets/images/percentage-icon.svg";
     percentageIcon.classList.add("percentage-icon");
     percentageDiv.appendChild(percentageIcon);
 
@@ -62,7 +62,7 @@ export default () => {
     infoDiv.appendChild(cardDiv);
 
     const cardIcon = document.createElement("img");
-    cardIcon.src = "../assets/images/card-icon.svg";
+    cardIcon.src = "/assets/images/card-icon.svg";
     cardIcon.classList.add("card-icon");
     cardDiv.appendChild(cardIcon);
 

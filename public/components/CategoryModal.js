@@ -36,7 +36,7 @@ export default async () => {
             imgCategoryDiv.classList.add("img-category-div");
 
             const imgCategoryTemplateLine = document.createElement("img");
-            imgCategoryTemplateLine.src = "../assets/images/category_template_line.svg";
+            imgCategoryTemplateLine.src = "/assets/images/category_template_line.svg";
             imgCategoryTemplateLine.classList.add("line-category-template");
 
             const imgCategoryCircle = document.createElement("div");
@@ -50,7 +50,7 @@ export default async () => {
             imgCategoryDiv.appendChild(imgCategoryCircle);
 
 
-            const TextType = TextA(`${type.type}`, 'none', 'buttons-type', `/products/${type.type}`);
+            const TextType = TextA(`${type.type}`, 'none', 'buttons-type', `/products/type/${type.type}`);
 
             TextType.classList.add("text-category-modal");
             divCategory.classList.add("div-category");
@@ -61,7 +61,7 @@ export default async () => {
             listCategory.appendChild(elementListCategory);
             divCategory.onclick = (e) => {
                 e.preventDefault();
-                router.navigate(`/products/${type.type}`)
+                router.navigate(`/products/type/${type.type}`)
             }
 
         });

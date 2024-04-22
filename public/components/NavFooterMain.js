@@ -42,7 +42,7 @@ export default () =>{
     leftCenterFooterDiv.appendChild(paymentText);
 
     const paymentMethodIcon = document.createElement("img");
-    paymentMethodIcon.src = "../assets/images/payment-methods-icon.svg";
+    paymentMethodIcon.src = "/assets/images/payment-methods-icon.svg";
     paymentMethodIcon.classList.add("payment-method-icon");
     leftCenterFooterDiv.appendChild(paymentMethodIcon);
 
@@ -67,7 +67,7 @@ export default () =>{
 
     const instagramIcon = document.createElement("img");
     instagramIcon.classList.add("instagram-icon");
-    instagramIcon.src = "../assets/images/instagram-icon.svg"
+    instagramIcon.src = "/assets/images/instagram-icon.svg"
     aInstagram.appendChild(instagramIcon);
 
     const aFacebook = document.createElement("a");
@@ -78,7 +78,7 @@ export default () =>{
 
     const facebookIcon = document.createElement("img");
     facebookIcon.classList.add("facebook-icon")
-    facebookIcon.src = "../assets/images/facebook-icon.svg"
+    facebookIcon.src = "/assets/images/facebook-icon.svg"
     aFacebook.appendChild(facebookIcon);
 
     const aTikTok = document.createElement("a");
@@ -89,7 +89,7 @@ export default () =>{
 
     const tikTokIcon = document.createElement("img");
     tikTokIcon.classList.add("tiktok-icon")
-    tikTokIcon.src = "../assets/images/tiktok-icon.svg"
+    tikTokIcon.src = "/assets/images/tiktok-icon.svg"
     aTikTok.appendChild(tikTokIcon);
 
     const rightDivFooter = document.createElement("div");
@@ -106,7 +106,7 @@ export default () =>{
     rightDivFooter.appendChild(aRightLogo);
 
     const rightLogo = document.createElement("img");
-    rightLogo.src = "../assets/images/logo-zabafood2.svg";
+    rightLogo.src = "/assets/images/logo-zabafood2.svg";
     rightLogo.classList.add("rigth-logo-footer");
     aRightLogo.appendChild(rightLogo);
 
