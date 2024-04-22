@@ -1,5 +1,6 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
+import LoadingComponent from "./LoadingComponent.js";
 
 const discount = 0.92;
 
@@ -95,7 +96,7 @@ export default async (id) => {
 		shopIcon.classList.add("shop-icon");
 		addBtnDiv.appendChild(shopIcon);
 
-		const addBtn = btn("Adicionar", "add-btn", async () => {
+		const addBtn = btn("Adicionar", "add-btn", async (button) => {
 			try {
 				const userResponse = await fetch('/api/login', {
 					method: "GET",
@@ -104,6 +105,17 @@ export default async (id) => {
 					}
 				});
 				const userData = await userResponse.json();
+
+				if (userData.error) {
+					console.log("Não autenticado");
+					router.navigate("/login")
+					return
+				}
+
+				shopIcon.src = "../assets/images/simple-loading.svg";
+				shopIcon.classList.add("loading-animation")
+				button.disabled = true
+				button.innerText = "Adicionando"
 
 				const userId = userData.user.id;
 
@@ -129,6 +141,15 @@ export default async (id) => {
 					})
 				});
 				const data = await response.json();
+
+				shopIcon.classList.remove("loading-animation")
+				shopIcon.src = "../assets/images/check-icon.svg";
+				button.innerText = "Adiconado"
+				setTimeout(() => {
+					button.innerText = "Adicionar"
+					shopIcon.src = "../assets/images/shop-icon.svg";
+					button.disabled = false
+				}, 1000);
 
 				const event = new CustomEvent("productAdded");
 				window.dispatchEvent(event);
