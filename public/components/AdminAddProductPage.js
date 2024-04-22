@@ -78,7 +78,7 @@ export default async () =>{
                 img.src = imageUrl;
                 img.alt = "Preview Image";
                 img.style.maxWidth = "100%";
-                img.style.height = "auto";
+                img.style.height = "100%";
                 imagePreview.innerHTML = "";
                 imagePreview.appendChild(img);
             };
@@ -159,14 +159,14 @@ export default async () =>{
             pErrorMessageAdd.innerText = "Por favor insira uma descrição!"
             return;
         }
-        await submitForm(nameInput, valueInput, stockInput, type, description, imageInput);    
+        await submitForm(nameInput, valueInput, stockInput, type, description, imageInput, imagePreview);    
     })));
 
     const pErrorMessageAdd = document.createElement("p");
     pErrorMessageAdd.classList.add("p-error-message-add");
     addProductDiv.appendChild(pErrorMessageAdd);
 
-    async function submitForm(name, value, stock, type, description, file){
+    async function submitForm(name, value, stock, type, description, file, imagePreview){
         const formData = new FormData();
         formData.append("name", name.value);
         formData.append("file", file.files[0])
@@ -205,7 +205,7 @@ export default async () =>{
             stock.value = "";
             type.value = 1;
             description.value = "";
-            file.value = "";
+            imagePreview.innerHTML = "";;
         }
     }
     return addProductDiv;
