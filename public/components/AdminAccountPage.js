@@ -18,7 +18,7 @@ export default async () => {
     aAddProduct.classList.add("a-add-product");
     aAddProduct.classList.add("nav-menu-admin-page-selected")
     const aAddProductIcon = document.createElement("img")
-    aAddProductIcon.src = "../assets/images/plus-icon.svg"
+    aAddProductIcon.src = "/assets/images/plus-icon.svg"
     aAddProduct.appendChild(aAddProductIcon)
     const addProductText = document.createElement("span")
     addProductText.innerText = "Adicionar produto"
@@ -27,7 +27,7 @@ export default async () => {
 
     const aAllProduct = document.createElement("a");
     const aAllProductIcon = document.createElement("img")
-    aAllProductIcon.src = "../assets/images/book-open-icon.svg"
+    aAllProductIcon.src = "/assets/images/book-open-icon.svg"
     aAllProduct.appendChild(aAllProductIcon)
     const allProductText = document.createElement("span")
     allProductText.innerText = "Produtos cadastrados"

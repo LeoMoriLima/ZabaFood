@@ -1,4 +1,5 @@
 const productRepository = require('../repository/productRepository');
+const productTypeRepository = require("../repository/productTypeRepository")
 
 const getAllProduct = async () => {
     try {
@@ -21,9 +22,9 @@ const getProduct = async (id) => {
     }
 }
 
-const getProductByName = async (name) =>{
+const getProductByName = async (name) => {
     try {
-        const products = await productRepository.getProductByName(name); 
+        const products = await productRepository.getProductByName(name);
         if (!products.length) {
             throw new Error("Produto não encontrado")
         }
@@ -77,6 +78,22 @@ const getProductByInterval = async (min, max) => {
     }
 }
 
+const getProductByIntervalAndType = async (min, max, type) => {
+    try {
+        const productType = await productTypeRepository.getProductTypeByType(type)
+
+        if (!productType) {
+            throw new Error("Tipo de produto não encontrado")
+        }      
+        const productTypeId = productType.id;
+
+        const products = await productRepository.getProductByIntervalAndType(min, max, productTypeId);
+        return products;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllProduct,
     getProduct,
@@ -84,5 +101,6 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    getProductByInterval
+    getProductByInterval,
+    getProductByIntervalAndType
 }

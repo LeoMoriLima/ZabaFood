@@ -75,6 +75,7 @@ const switchPage = async (page, params) => {
 		root.appendChild(await page(params));
 		return
 	}
+
 	root.appendChild(await page());
 }
 
@@ -95,6 +96,9 @@ router.addRoute("/product/:id", async (params) => {
 	switchPage(product, id);
 });
 router.addRoute("/products", async () => switchPage(products));
+router.addRoute("/products/:filter/:term", async (params) => {
+	switchPage(products, params)
+});
 router.addRoute("/register", async () => switchPage(register));
 router.addRoute("/terms", async () => switchPage(terms));
 router.addRoute("/payment", async () => switchPage(payment));

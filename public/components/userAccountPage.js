@@ -24,7 +24,7 @@ export default async () => {
     divInfoUserPage.appendChild(divUserInfo);
 
     const userIcon = document.createElement("img");
-    userIcon.src = "../assets/images/menu-user-icon.svg";
+    userIcon.src = "/assets/images/menu-user-icon.svg";
     userIcon.classList.add("user-icon-menu-info")
     divUserInfo.appendChild(userIcon);
 
@@ -58,7 +58,7 @@ export default async () => {
 
     const aOrders = document.createElement("a");
     const aOrdersIcon = document.createElement("img");
-    aOrdersIcon.src = "../assets/images/bag-icon.svg";
+    aOrdersIcon.src = "/assets/images/bag-icon.svg";
     aOrders.appendChild(aOrdersIcon);
 
     const ordersText = document.createElement("span");
@@ -70,7 +70,7 @@ export default async () => {
 
     const aAddress = document.createElement("a");
     const aAddressIcon = document.createElement("img");
-    aAddressIcon.src = "../assets/images/address-icon.svg";
+    aAddressIcon.src = "/assets/images/address-icon.svg";
     aAddress.appendChild(aAddressIcon);
 
     const addressText = document.createElement("span");
@@ -81,7 +81,7 @@ export default async () => {
 
     const aSettings = document.createElement("a");
     const aSettingsIcon = document.createElement("img");
-    aSettingsIcon.src = "../assets/images/settings-icon.svg";
+    aSettingsIcon.src = "/assets/images/settings-icon.svg";
     aSettings.appendChild(aSettingsIcon);
   
     const settingsText = document.createElement("span");

@@ -99,6 +99,22 @@ const getProductByInterval = async (min, max) => {
     }
 }
 
+const getProductByIntervalAndType = async (min, max, type) => {
+    const query = 'SELECT * FROM product WHERE type_id = $1 ORDER BY created_at ASC LIMIT $2 OFFSET $3';
+    const client = await connectToDatabase();
+    try {
+        const result = await client.query(query, [type, max - min + 1, min - 1]);
+        console.log("Result rows interval e tipo:", result.rows);
+        return result.rows;
+    } catch (error) {
+        console.log('Erro ao encontrar os produtos por intervalo e tipo:', error);
+        throw new Error('Erro ao encontrar os produtos por intervalo e tipo');
+    } finally {
+        client.end();
+    }
+}
+
+
 
 module.exports = {
     insertNewProduct,
@@ -108,4 +124,5 @@ module.exports = {
     updateProduct,
     deleteProduct,
     getProductByInterval,
+    getProductByIntervalAndType
 };

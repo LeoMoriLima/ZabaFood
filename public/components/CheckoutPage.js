@@ -68,7 +68,7 @@ export default async () => {
 
 		const pointIcon = document.createElement("img");
 		pointIcon.classList.add("checkout-point-icon");
-		pointIcon.src = "../assets/images/point-icon.svg";
+		pointIcon.src = "/assets/images/point-icon.svg";
 		addressLeftDiv.appendChild(pointIcon);
 
 		const addressInfo = document.createElement("div");
@@ -96,12 +96,12 @@ export default async () => {
 
 		const pencilIcon = document.createElement("img");
 		pencilIcon.classList.add("checkout-pencil-icon");
-		pencilIcon.src = "../assets/images/pencil-icon.svg";
+		pencilIcon.src = "/assets/images/pencil-icon.svg";
 		addressRightDiv.appendChild(pencilIcon);
 
 		const changeIcon = document.createElement("img");
 		changeIcon.classList.add("checkout-change-icon");
-		changeIcon.src = "../assets/images/change-icon.svg";
+		changeIcon.src = "/assets/images/change-icon.svg";
 		addressRightDiv.appendChild(changeIcon);
 
 		const paymentDiv = document.createElement("div");
@@ -256,7 +256,7 @@ export default async () => {
 
 		const paymentMethodsIcons = document.createElement("img");
 		paymentMethodsIcons.classList.add("checkout-payment-methods-icons");
-		paymentMethodsIcons.src = "../assets/images/payment-methods-icon.svg";
+		paymentMethodsIcons.src = "/assets/images/payment-methods-icon.svg";
 		paymentMethodsDiv.appendChild(paymentMethodsIcons);
 
 		return mainDiv;

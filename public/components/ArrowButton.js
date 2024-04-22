@@ -5,7 +5,7 @@ export default (direction, id , disabled, onClick) => {
     arrowButton.disabled = disabled;
     
     const arrow = document.createElement("img");
-    arrow.src = `../assets/images/arrow-${direction}.svg`;
+    arrow.src = `/assets/images/arrow-${direction}.svg`;
     arrow.classList.add("arrow-buttons");
     arrowButton.appendChild(arrow);
     

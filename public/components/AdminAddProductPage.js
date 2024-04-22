@@ -185,7 +185,7 @@ export default async () =>{
                     body: JSON.stringify({
                         "name" : name.value,
                         "value" : value.value,
-                        "url_img": `../assets/uploads/${image.filename}`,
+                        "url_img": `/assets/uploads/${image.filename}`,
                         "stock": stock.value,
                         "type_id": type.value,
                         "description" : description.value,

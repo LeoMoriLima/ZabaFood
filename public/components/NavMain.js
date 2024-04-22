@@ -34,7 +34,7 @@ export default async () => {
     headerDivLeft.appendChild(aLogoImg);
 
     const logoImg = document.createElement("img");
-    logoImg.src = "../assets/images/logo-zabafood.svg";
+    logoImg.src = "/assets/images/logo-zabafood.svg";
     logoImg.classList.add("logo-img-header");
     aLogoImg.appendChild(logoImg);
 
@@ -47,7 +47,7 @@ export default async () => {
 
     const buttonSearch = buttonGray("", "button-search", "onClick");
     const imgSearch = document.createElement("img");
-    imgSearch.src = "../assets/images/search-icon.svg";
+    imgSearch.src = "/assets/images/search-icon.svg";
     imgSearch.id = "img-search";
     buttonSearch.appendChild(imgSearch);
     divInputHeader.appendChild(buttonSearch);
@@ -83,7 +83,7 @@ export default async () => {
     contactDiv.appendChild(aPhoneIcon);
 
     const phoneIcon = document.createElement("img");
-    phoneIcon.src = "../assets/images/phone-icon.svg";
+    phoneIcon.src = "/assets/images/phone-icon.svg";
     aPhoneIcon.appendChild(phoneIcon);
 
     const aContact = textA("ATENDIMENTO", "a-contact", "none", "/contact");
@@ -104,7 +104,7 @@ export default async () => {
     aAccountIcon.classList.add("a-account-icon");
 
     const accountIcon = document.createElement("img");
-    accountIcon.src = "../assets/images/user-icon.svg";
+    accountIcon.src = "/assets/images/user-icon.svg";
     accountIcon.classList.add("a-account-icon");
     aAccountIcon.appendChild(accountIcon);
 
@@ -155,7 +155,7 @@ export default async () => {
                 }
                 cartDiv.appendChild(aCartIcon);
                 const cartIcon = document.createElement("img");
-                cartIcon.src = "../assets/images/cart-icon.svg";
+                cartIcon.src = "/assets/images/cart-icon.svg";
                 aCartIcon.appendChild(cartIcon);
             } else {
                 const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
@@ -223,7 +223,7 @@ export default async () => {
                     }
                     cartDiv.appendChild(aCartIcon);
                     const cartIcon = document.createElement("img");
-                    cartIcon.src = "../assets/images/cart-icon.svg";
+                    cartIcon.src = "/assets/images/cart-icon.svg";
                     aCartIcon.appendChild(cartIcon);
 
                     getProductsQuantity(userData, cartDiv);
@@ -312,7 +312,7 @@ export default async () => {
 
     const productsMenuArrow = document.createElement("img");
     productsMenuArrow.classList.add("products-menu-arrow");
-    productsMenuArrow.src = "../assets/images/arrow-down.svg";
+    productsMenuArrow.src = "/assets/images/arrow-down.svg";
     productsMenuDiv.appendChild(productsMenuArrow);
     const modalCategory = await CategoryModal();
     modalCategory.style.display = "none";

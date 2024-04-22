@@ -49,7 +49,7 @@ export default async () => {
 
         const creditCardIcon = document.createElement("img");
         creditCardIcon.classList.add("pp-credit-card-icon");
-        creditCardIcon.src = "../assets/images/credit-card-icon.svg";
+        creditCardIcon.src = "/assets/images/credit-card-icon.svg";
         creditcardDescriptionDiv.appendChild(creditCardIcon);
 
         const creditCardText = document.createElement("p");
@@ -78,7 +78,7 @@ export default async () => {
 
         const pixIcon = document.createElement("img");
         pixIcon.classList.add("pp-pix-icon");
-        pixIcon.src = "../assets/images/pix-icon.svg";
+        pixIcon.src = "/assets/images/pix-icon.svg";
         pixDescriptionDiv.appendChild(pixIcon);
 
         const pixText = document.createElement("p");
@@ -107,7 +107,7 @@ export default async () => {
 
         const paymentSlipIcon = document.createElement("img");
         paymentSlipIcon.classList.add("pp-payment-slip-icon");
-        paymentSlipIcon.src = "../assets/images/payment-slip-icon.svg";
+        paymentSlipIcon.src = "/assets/images/payment-slip-icon.svg";
         paymentSlipDescriptionDiv.appendChild(paymentSlipIcon);
 
         const paymentSlipText = document.createElement("p");
