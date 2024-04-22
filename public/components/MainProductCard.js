@@ -1,6 +1,7 @@
 import Button from "./ButtonComponent.js";
 import QuantityInput from "./QuantityInput.js";
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async (product) => {
     try {
@@ -97,7 +98,7 @@ export default async (product) => {
                 navigateTo("checkout");
             } catch (error) {
                 console.error(error);
-                alert("Erro ao adicionar no carrinho");
+                MessageComponent("Erro ao adicionar no carrinho", false);
                 return
             }
         }));
@@ -116,10 +117,10 @@ export default async (product) => {
                     throw cartAdded.error;
                 }
 
-                alert("Produto adicionado ao carrinho!")
+                MessageComponent("Produto adicionado ao carrinho!", false)
             } catch (error) {
                 console.error(error);
-                alert("Erro ao adicionar no carrinho");
+                MessageComponent("Erro ao adicionar no carrinho", false);
                 return
             }
         }));

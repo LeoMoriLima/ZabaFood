@@ -3,6 +3,7 @@ import buttonGray from "./ButtonComponent.js";
 import text from "./Text.js";
 import textA from "./Text-a.js";
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default () => {
     const divBackground = document.createElement("div");
@@ -35,7 +36,7 @@ export default () => {
             if (data.auth) {
                 router.navigate("/")
             } else{
-                alert(data.error);
+                MessageComponent(data.error, false);
             }
 
         } catch (error) {

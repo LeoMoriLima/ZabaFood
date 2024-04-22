@@ -2,11 +2,13 @@ import AdminAccountPage from "../components/AdminAccountPage.js";
 import HeaderMain from "../components/HeaderMain.js";
 import FooterMain from "../components/FooterMain.js";
 import userAccountPage from "../components/userAccountPage.js";
+import MessageContainer from "../components/MessageContainer.js";
 
 export default async () =>{
     document.title = "Minha conta | ZabaFood";
 
     const page = document.createElement("div");
+    page.appendChild(MessageContainer());
     page.appendChild(await HeaderMain());
     const userType = await getUserType();
     if (userType === "admin"){
