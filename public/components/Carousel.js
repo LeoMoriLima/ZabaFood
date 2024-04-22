@@ -45,7 +45,10 @@ export default async () => {
     productsDiv.classList.add("carousel-product-div");
     carouselContainer.appendChild(productsDiv);
 
-    generateCarousel(productsDiv, min, max);
+    setTimeout(async () => {
+       await generateCarousel(productsDiv, min, max);
+    }, 0);
+
 
     carouselContainer.appendChild(ArrowButton("next", "arrow-next", false, async function (arrow) {
         if (arrow.disabled) {

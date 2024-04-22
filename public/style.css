@@ -3182,3 +3182,17 @@ input:focus {
         rotate: 360deg;
     }
 }
+
+/* skeletons */
+
+.white-skeletons{
+    background-color: var(--color-white);
+}
+
+.light-white-skeletons{
+    background-color: var(--color-light-white);
+}
+
+.light-gray-skeletons{
+    background-color: var(--color-light-gray);
+}
