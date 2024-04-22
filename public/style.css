@@ -920,7 +920,7 @@ input:focus {
     gap: 3.0625rem;
     justify-content: center;
     padding: 3rem;
-    min-height: 75vh;
+    min-height: 65vh;
 }
 
 .info-div-checkout {

@@ -1,5 +1,6 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
 	try {
@@ -204,43 +205,50 @@ export default async () => {
 		valueDiv.appendChild(payNowBtnDiv);
 
 		const payNowBtn = btn("Pagar agora", "checkout-pay-now-btn", async () => {
-			try {
-				const response = await fetch(`/api/cart/${cartId}`, {
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						status: "approved",
-					})
-				});
-	
-				const newCartResponse = await fetch("/api/cart", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						user_id: userId,
-					})
-				});
-	
-				const userResponse = await fetch(`/api/users/${userId}`, {
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({
-						credit_balance: (user.credit_balance - freight - cart.total),
-					})
-				});
-	
-				const userData = await userResponse.json();
-	
-				router.navigate("/confirmation")
-			} catch (error) {
-				console.log(error)
+			if (user.credit_balance > (cartTotal + freight)) {
+				try {
+					const response = await fetch(`/api/cart/${cartId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							status: "approved",
+						})
+					});
+		
+					const newCartResponse = await fetch("/api/cart", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							user_id: userId,
+						})
+					});
+		
+					const userResponse = await fetch(`/api/users/${userId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							credit_balance: (user.credit_balance - freight - cart.total),
+						})
+					});
+		
+					const userData = await userResponse.json();
+
+					MessageComponent("Compra realizada com sucesso!", true);
+		
+					router.navigate("/confirmation")
+				} catch (error) {
+					console.log(error)
+				}
+			} else {
+				MessageComponent("Você não possui créditos suficientes para essa compra!", false);
 			}
+			
 		});
 		payNowBtnDiv.appendChild(payNowBtn);
 
