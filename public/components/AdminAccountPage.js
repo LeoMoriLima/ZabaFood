@@ -1,6 +1,8 @@
 import AdminAddProductPage from "./AdminAddProductPage.js";
 import ButtonComponent from "./ButtonComponent.js";
 import router from "../js/routes.js";
+import AdminModifyProductPage from "./AdminModifyProductPage.js";
+import AdminProductTypePage from "./AdminProductTypePage.js";
 
 export default async () => {
     const adminPageDiv = document.createElement("div");
@@ -13,6 +15,15 @@ export default async () => {
     const navMenuAdminPage = document.createElement("nav");
     navMenuAdminPage.classList.add("nav-menu-admin-page");
     leftMenuAdminPage.appendChild(navMenuAdminPage);
+
+    const adminAddProductContent = await AdminAddProductPage();
+    adminAddProductContent.style.display = "flex";
+
+    const adminModifyProductContent = await AdminModifyProductPage();
+    adminModifyProductContent.style.display = "none";
+
+    const adminProductTypeContent = await AdminProductTypePage();
+    adminProductTypeContent.style.display = "none"
 
     const aAddProduct = document.createElement("a");
     aAddProduct.classList.add("a-add-product");
@@ -35,17 +46,46 @@ export default async () => {
     aAllProduct.classList.add("a-all-product");
     navMenuAdminPage.appendChild(aAllProduct);
 
+    const aAllProductType = document.createElement("a");
+    const aAllProductTypeIcon = document.createElement("img");
+    aAllProductTypeIcon.src = "../assets/images/product-type-icon.svg";
+    aAllProductType.appendChild(aAllProductTypeIcon);
+    const allProductTypeText = document.createElement("span");
+    allProductTypeText.innerText = "Tipos de produtos";
+    aAllProductType.appendChild(allProductTypeText);
+    aAllProductType.classList.add("a-all-product-type");
+    navMenuAdminPage.appendChild(aAllProductType);
+
     aAddProduct.addEventListener("click", () => {
+        adminAddProductContent.style.display = "flex";
+        adminModifyProductContent.style.display = "none";
+        adminProductTypeContent.style.display = "none";
         aAddProduct.classList.add("nav-menu-admin-page-selected")
         aAllProduct.classList.remove("nav-menu-admin-page-selected")
+        aAllProductType.classList.remove("nav-menu-admin-page-selected")
     })
 
     aAllProduct.addEventListener("click", () => {
+        adminModifyProductContent.style.display = "flex";
+        adminAddProductContent.style.display = "none";
+        adminProductTypeContent.style.display = "none";
         aAllProduct.classList.add("nav-menu-admin-page-selected")
+        aAddProduct.classList.remove("nav-menu-admin-page-selected")
+        aAllProductType.classList.remove("nav-menu-admin-page-selected")
+    })
+
+    aAllProductType.addEventListener("click", () =>{
+        adminProductTypeContent.style.display = "flex";
+        adminModifyProductContent.style.display = "none";
+        adminAddProductContent.style.display = "none";
+        aAllProductType.classList.add("nav-menu-admin-page-selected")
+        aAllProduct.classList.remove("nav-menu-admin-page-selected")
         aAddProduct.classList.remove("nav-menu-admin-page-selected")
     })
 
-    adminPageDiv.appendChild(await AdminAddProductPage());
+    adminPageDiv.appendChild(adminAddProductContent);
+    adminPageDiv.appendChild(adminModifyProductContent);
+    adminPageDiv.appendChild(adminProductTypeContent)
 
     leftMenuAdminPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {

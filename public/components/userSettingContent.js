@@ -365,9 +365,17 @@ export default async () =>{
     settingPageDiv.appendChild(modalDiv);
     modalDiv.style.display = "none";
 
+    modalDiv.addEventListener("click", () =>{
+        modalDiv.style.display = "none"
+    })
+
     const modalContent = document.createElement("div");
     modalContent.classList.add("user-setting-page-modal-content-div");
     modalDiv.appendChild(modalContent);
+
+    modalContent.addEventListener("click", (event) =>{
+        event.stopPropagation();
+    })
 
     const h1Modal = document.createElement("h1");
     h1Modal.innerText = "ATENÇÃO";
