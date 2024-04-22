@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard.js";
 import ButtonComponent from "./ButtonComponent.js";
+import ProductCardSkeleton from "./ProductCardSkeleton.js";
 
 export default async () => {
     try {
@@ -24,13 +25,16 @@ export default async () => {
             }
         })
 
-        const products = await generateProducts(productsList, min, max);
+        setTimeout(async () => {
+            const products = await generateProducts(productsList, min, max);
 
-        if (products.length >= 12) {
-            productsMain.appendChild(loadMoreButton);
-        }
+            if (products.length >= 12) {
+                productsMain.appendChild(loadMoreButton);
+            }
+        }, 0);
 
-        productsMain.appendChild(loadMoreButton);
+
+        // productsMain.appendChild(loadMoreButton);
         return productsMain;
     } catch (error) {
         console.error(error);
@@ -50,12 +54,22 @@ const getProducts = async (min, max) => {
 
 
 const generateProducts = async (append, min, max) => {
+
+    for (let i = 0; i < 12; i++) {
+        append.appendChild(ProductCardSkeleton(`skeleton-${i}`))
+    }
+
     const products = await getProducts(min, max);
     const productCardsPromises = products.map(async (product) => {
         return await ProductCard(product.id);
     });
 
     const productCards = await Promise.all(productCardsPromises);
+
+    for (let i = 0; i < 12; i++) {
+        document.getElementById(`skeleton-${i}`).remove()
+    }
+    
     productCards.forEach((card) => {
         append.appendChild(card);
     });
