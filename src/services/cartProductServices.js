@@ -79,7 +79,6 @@ const updateCartProduct = async (id, quantity) => {
 const deleteCartProduct = async (id) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
-        console.log(cartProduct)
 
         const cartId = cartProduct[0].cart_id;
         const quantity = cartProduct[0].quantity;

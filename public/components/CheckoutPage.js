@@ -236,7 +236,6 @@ export default async () => {
 				});
 	
 				const userData = await userResponse.json();
-				console.log(userData)
 	
 				router.navigate("/confirmation")
 			} catch (error) {

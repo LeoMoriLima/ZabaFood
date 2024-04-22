@@ -1370,18 +1370,18 @@ input:focus {
 .modal-cart-main-div {
     align-items: center;
     background-color: var(--color-secundary);
-    border-radius: 1.5rem 0.3rem 0.3rem 1.5rem;
+    border-radius: 1.5rem;
     display: none;
     flex-direction: column;
     justify-content: center;
-    min-height: 20vh;
+    min-height: 10vh;
     overflow-y: auto;
     padding: 1.56rem;
     position: absolute;
     width: 25.56rem;
     z-index: 2;
     right: 13.5rem;
-    top: 7.1rem;
+    top: 7.4rem;
 }
 
 .item-product-div {
@@ -2500,9 +2500,9 @@ input:focus {
 
 /* PaymentPage.js */
 
-/* body {
-    overflow-y: hidden;
-} */
+.payment-page #message-div {
+    bottom: 10rem;
+}
 
 .pp-main-div {
     align-items: flex-start;
@@ -2513,7 +2513,7 @@ input:focus {
     gap: 3rem;
     justify-content: center;
     margin: 3rem;
-    min-height: 60vh;
+    min-height: 50vh;
 }
 
 .pp-left-div {
@@ -2650,7 +2650,7 @@ input:focus {
     flex-direction: row;
     justify-content: center;
     margin: 3rem;
-    min-height: 60vh;
+    min-height: 50vh;
 }
 
 .pc-card-text-div {
