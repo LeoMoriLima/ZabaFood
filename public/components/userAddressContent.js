@@ -270,7 +270,7 @@ export default async () =>{
             });
 
             const trashIcon = document.createElement("img");
-            trashIcon.src = "/assets/images/trash-icon.svg";
+            trashIcon.src = "/assets/images/delete-icon.svg";
             trashIcon.classList.add("icon-address-action");
             divIcons.appendChild(trashIcon);
 
