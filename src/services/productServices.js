@@ -94,6 +94,15 @@ const getProductByIntervalAndType = async (min, max, type) => {
     }
 }
 
+const getProductByIntervalAndSearch = async (min, max, search) => {
+    try {
+        const products = await productRepository.getProductByIntervalAndSearch(min, max, search);
+        return products;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllProduct,
     getProduct,
@@ -102,5 +111,6 @@ module.exports = {
     updateProduct,
     deleteProduct,
     getProductByInterval,
-    getProductByIntervalAndType
+    getProductByIntervalAndType,
+    getProductByIntervalAndSearch
 }

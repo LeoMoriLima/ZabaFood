@@ -2,6 +2,7 @@ import ProductCard from "./ProductCard.js";
 import ButtonComponent from "./ButtonComponent.js";
 import ProductCardSkeleton from "./ProductCardSkeleton.js";
 import TypeProductBanner from "./TypeProductBanner.js";
+import NotFound from "./NotFound.js";
 
 export default async (params) => {
     const filter = params ? params.filter : undefined;
@@ -26,7 +27,7 @@ export default async (params) => {
             min += 12
             max += 12
 
-            const products = await generateProducts(productsList, min, max, filter, term);
+            const products = await generateProducts(productsList, min, max, filter, term, productsMain);
 
             if (products.length < 12) {
                 button.remove();
@@ -34,7 +35,7 @@ export default async (params) => {
         })
 
         setTimeout(async () => {
-            const products = await generateProducts(productsList, min, max, filter, term);
+            const products = await generateProducts(productsList, min, max, filter, term, productsMain);
 
             if (products.length >= 12) {
                 productsMain.appendChild(loadMoreButton);
@@ -54,10 +55,13 @@ const getProducts = async (min, max, filter, term) => {
 
     if (filter === "type") {
         url = `/api/product/interval?min=${min}&max=${max}&type=${term}`
-    } else {
+    }
+    if (filter === "search") {
+        url = `/api/product/interval?min=${min}&max=${max}&search=${term}`
+    }
+    else {
         url = `/api/product/interval?min=${min}&max=${max}`
     }
-
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -69,13 +73,20 @@ const getProducts = async (min, max, filter, term) => {
 }
 
 
-const generateProducts = async (append, min, max, filter, term) => {
+const generateProducts = async (append, min, max, filter, term, div) => {
 
     for (let i = 0; i < 12; i++) {
         append.appendChild(ProductCardSkeleton(`skeleton-${i}`))
     }
 
-    let products = filter ? await getProducts(min, max, filter, term) : await getProducts(min, max);
+    let products = filter ? await getProducts(min, max, filter, term) : await getProducts(min, max)
+    if (products.length === 0){
+        for (let i = 0; i < 12; i++) {
+            document.getElementById(`skeleton-${i}`).remove()
+        }
+        div.appendChild(NotFound());
+        return;
+    }
     const productCardsPromises = products.map(async (product) => {
         return await ProductCard(product.id);
     });
