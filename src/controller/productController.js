@@ -142,7 +142,7 @@ const deleteProduct = async (req, res) => {
 }
 
 const getProductByInterval = async (req, res) => {
-    const { min, max , type} = req.query;
+    const { min, max , type, search} = req.query;
     try {
         if(!isInt(String(min))){
             return res.status(400).json({ error: "O mínimo deve ser um número!" })
@@ -154,6 +154,10 @@ const getProductByInterval = async (req, res) => {
 
         if (type) {
             const products = await productServices.getProductByIntervalAndType(min, max, type);
+            return res.status(200).json(products);
+        }
+        if (search) {
+            const products = await productServices.getProductByIntervalAndSearch(min, max, search);
             return res.status(200).json(products);
         }
 

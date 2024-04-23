@@ -3763,3 +3763,30 @@ input:focus {
 .img-category-filter {
     width: 10dvw;
 }
+
+/* Product not found */
+
+.div-message-not-found-product{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.img-message-not-found-product{
+    width: 30%;
+    border-radius: 3rem;
+}
+
+.text-message-not-found-product{
+    font-family: var(--font-title);
+    font-weight: 500;
+    color: var(--color-secundary);
+    font-size: 3.5rem;
+    width: 40%;
+    align-self: center;
+    justify-self: center;
+    margin-left: 2.5rem;
+    text-align: center;
+}

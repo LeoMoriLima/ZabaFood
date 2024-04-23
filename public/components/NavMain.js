@@ -54,16 +54,11 @@ export default async () => {
 
     // Pesquisa
 
-    buttonSearch.addEventListener("click", async (event) => {
-        event.preventDefault();
+    buttonSearch.onclick = (e) => {
+        e.preventDefault();
         const searchTerm = document.getElementById("search-input").value.trim();
-        try {
-            const searchURL = `/products/search/${encodeURIComponent(searchTerm)}`;
-            window.location.href = searchURL;
-        } catch (error) {
-            console.error("Erro ao buscar produtos:", error.message);
-        }
-    });
+        router.navigate(`/products/search/${searchTerm}`);
+    }
 
     const headerDivRight = document.createElement("div");
     headerDivRight.classList.add("header-div-right");
