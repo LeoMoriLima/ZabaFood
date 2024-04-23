@@ -588,6 +588,7 @@ input:focus {
 .button-search {
     border: 0;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .div-nav-main {

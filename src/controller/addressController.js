@@ -117,10 +117,7 @@ const createNewAddress = async (req, res) => {
         if (!isLength(street, { min:2 , max: 50 })){
             return res.status(400).json({ error: "A rua deve ter entre 2 e 50 caracteres" })
         }
-        
-        if (isEmpty(complement)) {
-            return res.status(400).json({ error: "O complemento é obrigatório!" });
-        }
+
         const newAddress = await addressService.createNewAddress(user_id, postal_code, state, city, street, number, complement);
         return res.status(201).json({message:"Novo endereço adicionado com sucesso", address: newAddress});
     } catch (error){

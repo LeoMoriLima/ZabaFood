@@ -54,13 +54,11 @@ const getProducts = async (min, max, filter, term) => {
     let url;
 
     if (filter === "type") {
-        url = `/api/product/interval?min=${min}&max=${max}&type=${term}`
-    }
-    if (filter === "search") {
-        url = `/api/product/interval?min=${min}&max=${max}&search=${term}`
-    }
-    else {
-        url = `/api/product/interval?min=${min}&max=${max}`
+        url = `/api/product/interval?min=${min}&max=${max}&type=${term}`;
+    } else if (filter === "search") {
+        url = `/api/product/interval?min=${min}&max=${max}&search=${term}`;
+    } else {
+        url = `/api/product/interval?min=${min}&max=${max}`;
     }
     const response = await fetch(url, {
         method: "GET",
@@ -80,7 +78,7 @@ const generateProducts = async (append, min, max, filter, term, div) => {
     }
 
     let products = filter ? await getProducts(min, max, filter, term) : await getProducts(min, max)
-    if (products.length === 0){
+    if (products.length === 0) {
         for (let i = 0; i < 12; i++) {
             document.getElementById(`skeleton-${i}`).remove()
         }
