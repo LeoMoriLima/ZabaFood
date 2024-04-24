@@ -1,3 +1,5 @@
+import ButtonComponent from "./ButtonComponent.js";
+
 export default async () => {
     const orderPageDiv = document.createElement("div");
     orderPageDiv.classList.add("order-page-div");
@@ -166,23 +168,16 @@ export default async () => {
             statusText.classList.add("status-text-track");
             divTrack.appendChild(statusText);
 
-            if (cart.status === "pending") {
-                imgCircleProcessing.src = "/assets/images/circle-active-processing.svg";
-                statusText.innerText = "Em processamento";
-            } else if (cart.status === "sended") {
+            if (cart.status === "sended") {
                 imgCircleSended.src = "/assets/images/circle-active-sended.svg";
                 statusText.innerText = "Enviado";
             } else if (cart.status === "delivered") {
                 imgCircleDelivered.src = "/assets/images/circle-active-delivered.svg";
                 statusText.innerText = "Entregue"
-            } else if (cart.status === "approved"){
+            } else if (cart.status === "approved") {
                 imgCircleProcessing.src = "/assets/images/circle-active-processing.svg";
                 statusText.innerText = "Aprovado";
             }
-
-            // trackShipping.addEventListener("mouseleave", function () {
-            //     divTrack.remove();
-            // })
 
             let isTrackShippingOpen = false
 
@@ -272,7 +267,53 @@ export default async () => {
                 isDropdownOpen = !isDropdownOpen; // Alterna o estado do dropdown
             });
 
+            const buttonDiv = document.createElement("div")
+            buttonDiv.classList.add("button-order-div")
+            orderInfoDiv.appendChild(buttonDiv);
 
+            if (cart.status === "sended") {
+                console.log("Alo1");
+                buttonDiv.appendChild(ButtonComponent("Definir como entregue", "light-green-button", async (button) => {
+                    try {
+                        button.disabled = true
+                        button.innerText = ""
+                        const simpleLoading = document.createElement("img");
+                        simpleLoading.src = "/assets/images/simple-loading.svg";
+                        simpleLoading.classList.add("loading-animation")
+                        button.appendChild(simpleLoading)
+
+                        const response = await fetch(`/api/cart/${cart.id}`, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                "status": "delivered",
+                            })
+                        });
+
+                        const data = await response.json()
+
+                        if (data.error) {
+                            throw data.error
+                        }
+                        infoOrderStatus.innerText = "Entregue";
+                        button.classList.remove("light-green-button")
+                        button.classList.add("light-green-button-disabled")
+                        button.innerText = "Produto Enviado"
+                        imgCircleSended.src = "/assets/images/circle-inactive-sended.svg";
+                        imgCircleDelivered.src = "/assets/images/circle-active-delivered.svg";
+                        statusText.innerText = "Entregue";
+                    } catch (error) {
+                        MessageComponent(`Erro ao atualizar status do carrinho`)
+                        console.log(error);
+                    }
+                }))
+            } else if (cart.status === "delivered") {
+                buttonDiv.appendChild(ButtonComponent("Produto Entregue", "light-green-button-disabled"))
+            } else {
+                buttonDiv.appendChild(ButtonComponent("Definir como entregue", "light-green-button-disabled"))
+            }
         });
     } catch (error) {
         console.error(error);
