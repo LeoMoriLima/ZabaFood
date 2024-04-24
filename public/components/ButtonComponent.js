@@ -3,7 +3,9 @@ export default (text, className, onClick) => {
     button.innerText = text;
     button.classList.add(className);
 
-    button.onclick = () => onClick(button);
+    if (onClick) {
+        button.onclick = () => onClick(button);
+    }
 
     return button;
 }
