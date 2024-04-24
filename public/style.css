@@ -70,7 +70,7 @@ body {
 .back-btn {
     color: var(--color-secundary);
     font: var(--font-title);
-    margin-top: 4.36rem
+    margin-top: 4.36rem;
     text-decoration: none;
 }
 
@@ -277,7 +277,8 @@ body {
     width: 100%;
 }
 
-.selected-btn, .deselected-btn {
+.selected-btn,
+.deselected-btn {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
@@ -314,7 +315,8 @@ body {
     justify-content: flex-end;
 }
 
-.unit-price, .buy-3-discount-price {
+.unit-price,
+.buy-3-discount-price {
     color: var(--color-secundary);
     font-family: var(--font-title);
     font-size: 1rem;
@@ -651,7 +653,8 @@ input:focus {
     font-size: 1.2rem;
 }
 
-#a-contact, #a-account {
+#a-contact,
+#a-account {
     color: var(--color-secundary);
     text-decoration: none;
     font-family: var(--font-title);
@@ -873,7 +876,9 @@ input:focus {
     gap: 5%;
 }
 
-.instagram-icon, .facebook-icon, .tiktok-icon {
+.instagram-icon,
+.facebook-icon,
+.tiktok-icon {
     transform: scale(0.8);
 }
 
@@ -1136,7 +1141,10 @@ input:focus {
     width: 80%;
 }
 
-.delivery-div, .sign-div, .percentage-div, .card-div {
+.delivery-div,
+.sign-div,
+.percentage-div,
+.card-div {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -1158,12 +1166,16 @@ input:focus {
     width: 18%;
 }
 
-.delivery-icon, .sign-icon, .percentage-icon, .card-icon {
+.delivery-icon,
+.sign-icon,
+.percentage-icon,
+.card-icon {
     margin-bottom: 5%;
     width: 50%;
 }
 
-.sign-icon, .percentage-icon {
+.sign-icon,
+.percentage-icon {
     width: 15%;
 }
 
@@ -1946,7 +1958,7 @@ input:focus {
 .order-div-left {
     display: flex;
     flex-direction: column;
-    width: 17rem;
+    width: 12rem;
     justify-content: space-between;
 }
 

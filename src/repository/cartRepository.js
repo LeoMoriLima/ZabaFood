@@ -16,7 +16,7 @@ const getCartById = async (id) => {
 
 const getAllCartByUserID = async (userId) => {
     const client = await connectToDatabase();
-    const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC"
+    const query = "SELECT * FROM cart WHERE user_id = $1 AND cart.status <> 'pending' ORDER BY created_at DESC;";
     try {
         const result = await client.query(query, [userId]);
         return result.rows;
