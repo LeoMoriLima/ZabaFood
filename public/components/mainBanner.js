@@ -20,7 +20,7 @@ export default () => {
     infoDiv.appendChild(deliveryDiv);
 
     const deliveryIcon = document.createElement("img");
-    deliveryIcon.src = "/assets/images/delivery_truck.svg";
+    deliveryIcon.src = "/assets/images/delivery-truck.svg";
     deliveryIcon.classList.add("delivery-icon");
     deliveryDiv.appendChild(deliveryIcon);
 

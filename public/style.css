@@ -24,9 +24,9 @@
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -55,28 +55,28 @@ body {
 }
 
 .header-login {
-    width: 100%;
     height: 10.9375rem;
     padding: 0 9rem;
+    width: 100%;
 }
 
 .nav-header-login {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     gap: 10rem;
+    justify-content: space-between;
 }
 
 .back-btn {
     color: var(--color-secundary);
     font: var(--font-title);
-    text-decoration: none;
     margin-top: 4.36rem
+    text-decoration: none;
 }
 
 .arrow-left-img {
-    width: 2.29rem;
     height: 1.27rem;
+    width: 2.29rem;
 }
 
 .span-back {
@@ -89,8 +89,8 @@ body {
 }
 
 .logo-img {
-    width: 10.7rem;
     height: 8.5rem;
+    width: 10.7rem;
 }
 
 .main-entry {
@@ -100,8 +100,8 @@ body {
 }
 
 .entry-icon {
-    width: 2rem;
     margin: 0.3rem;
+    width: 2rem;
 }
 
 .div-background {
@@ -110,43 +110,42 @@ body {
     background-image: url("./assets/images/login-background.svg");
     background-repeat: no-repeat;
     background-size: 105%;
-    width: 80rem;
     height: 40rem;
     margin-bottom: 2rem;
+    width: 80rem;
 }
 
 .entry-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 38rem;
-    height: 40rem;
-    gap: 2rem;
+    background-color: rgba(138, 182, 97, 0.70);
     border-radius: 3.93rem;
     box-shadow: 5px 0px 2px hsla(0, 0%, 0%, 0.45);
-    background-color: rgba(138, 182, 97, 0.70);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 40rem;
+    justify-content: center;
+    width: 38rem;
 }
 
 .div-input {
+    align-items: center;
     border-bottom: 0.1rem solid var(--color-white);
-    width: 31.25rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 1rem;
-    align-items: center;
+    width: 31.25rem;
 
 }
 
 .input-entry {
     border: none;
     height: 2rem;
-    width: 75%;
     background-color: transparent;
     color: var(--color-white);
     font-family: var(--font-text);
     font-size: 1.3rem;
+    width: 75%;
 }
 
 .input-entry::placeholder {
@@ -184,9 +183,8 @@ body {
 }
 
 .logo-img-header {
-    width: 22dvh;
-    height: 8.5rem;
-    margin-right: 3rem;
+    height: 100%;
+    width: 80%;
 }
 
 .green-button {
@@ -236,10 +234,10 @@ body {
     border-radius: 1.25rem;
     display: flex;
     flex-direction: column;
-    height: 30rem;
+    height: 40vh;
     justify-content: space-evenly;
-    padding: 1rem;
-    width: 18.75rem;
+    padding: 2%;
+    width: 100%;
 }
 
 .like-div {
@@ -249,58 +247,51 @@ body {
 }
 
 .card-product-img {
-    margin-bottom: 1rem;
-    height: 12.56rem;
-    width: 10.56rem;
     cursor: pointer;
+    height: 40%;
+    margin-bottom: 5%;
+    max-width: 90%;
 }
 
 .product-title-div {
+    cursor: pointer;
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 1.6rem;
-    width: 100%;
-    cursor: pointer;
+    margin-bottom: 1rem;
+    width: 90%;
 }
 
 .product-title {
     color: var(--color-emphasis);
     font-family: var(--font-title);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .quantity-div {
     display: flex;
     flex-direction: row;
+    height: 10%;
     justify-content: space-around;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     width: 100%;
 }
 
-.selected-btn {
+.selected-btn, .deselected-btn {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
     color: var(--color-secundary);
-    font-family: var(--font-title);
-    font-size: 1rem;
-    font-weight: 500;
-    height: 3.25rem;
-    width: 7.5rem;
     cursor: pointer;
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    font-weight: 500;
+    /* height: 100%; */
+    width: 40%;
 }
 
 .deselected-btn {
     background-color: #F3F3F3;
-    border: 0.1rem solid var(--color-secundary);
-    border-radius: 1.875rem;
-    color: var(--color-secundary);
-    font-family: var(--font-title);
-    font-size: 1rem;
-    height: 3.25rem;
-    width: 7.5rem;
-    cursor: pointer;
 }
 
 .selected-btn:hover,
@@ -313,7 +304,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     width: 100%;
 }
 
@@ -323,10 +314,10 @@ body {
     justify-content: flex-end;
 }
 
-.unit-price {
+.unit-price, .buy-3-discount-price {
     color: var(--color-secundary);
     font-family: var(--font-title);
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -344,23 +335,17 @@ body {
     text-decoration: line-through;
 }
 
-.buy-3-discount-price {
-    color: var(--color-secundary);
-    font-family: var(--font-title);
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
 .add-btn-div {
     background-color: var(--color-primary);
     border: 0.1rem solid var(--color-secundary);
     border-radius: 1.875rem;
+    cursor: pointer;
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.5rem;
+    height: 12%;
     justify-content: center;
-    width: 16.45rem;
-    cursor: pointer;
+    width: 90%;
 }
 
 .add-btn-div:hover {
@@ -377,10 +362,13 @@ body {
     background-color: transparent;
     border: none;
     color: var(--color-light-white);
-    font-family: var(--font-title);
-    font-size: 1.3rem;
-    height: 3.25rem;
     cursor: pointer;
+    font-family: var(--font-title);
+    font-size: 1rem;
+}
+
+.shop-icon {
+    transform: scale(0.8);
 }
 
 /* ProductBanner.js */
@@ -389,14 +377,15 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 7rem;
-    margin-top: 7rem;
+    gap: 10%;
+    height: 80vh;
+    margin-top: 10%;
 }
 
 .main-div-text {
     color: var(--color-secundary);
     font-family: var(--font-title);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
 }
 
@@ -424,7 +413,7 @@ body {
 .banner-product-title {
     color: var(--color-light-white);
     font-family: var(--font-banner-product-title);
-    font-size: 6rem;
+    font-size: 3rem;
     font-weight: 400;
     text-align: center;
     width: 90%;
@@ -433,7 +422,7 @@ body {
 .banner-product-value {
     color: var(--color-secundary);
     font-family: var(--font-title);
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 700;
 }
 
@@ -442,16 +431,21 @@ body {
     border: none;
     border-radius: 1.875rem;
     color: var(--color-light-white);
-    font-family: var(--font-title);
-    font-size: 3rem;
-    height: 6.25rem;
-    width: 30rem;
     cursor: pointer;
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    padding: 1rem 5rem;
+    width: 80%;
+}
+
+.banner-product-access-here-btn:hover {
+    background-color: var(--color-secundary);
+    transform: scale(1.05);
 }
 
 .banner-product-img {
     border-radius: 8rem;
-    height: 80%;
+    height: 60%;
 }
 
 /* Confirmation Page */
@@ -492,8 +486,14 @@ body {
 /* HEADER */
 
 .header-div-left {
-    display: flex;
     align-items: center;
+    display: flex;
+    height: 100%;
+    width: 50%;
+}
+
+.a-logo-img {
+    height: 100%;
 }
 
 .nav-div-center {
@@ -501,9 +501,10 @@ body {
     background-color: var(--color-white);
     display: flex;
     flex-direction: row;
-    height: 9.37rem;
+    gap: 3%;
+    height: 15vh;
     justify-content: space-around;
-    padding: 0 15rem;
+    padding: 0 5%;
     width: 100%;
 }
 
@@ -511,15 +512,16 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    gap: 2rem;
-    width: 100%;
+    justify-content: space-between;
+    gap: 3%;
+    width: 50%;
 }
 
 .cart-div {
     height: auto;
     overflow: visible;
     position: relative;
+    margin-left: 5%;
     width: auto;
 }
 
@@ -529,7 +531,7 @@ body {
     display: flex;
     justify-content: center;
     position: absolute;
-    height: 21px;
+    height: 20px;
     right: -10px;
     top: -10px;
     width: 20px;
@@ -538,21 +540,34 @@ body {
 .cart-quantity-text {
     color: var(--color-white);
     font-family: var(--font-title);
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     font-weight: 500;
 }
 
 .contact-div {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 2%;
+    width: 40%;
+}
+
+.a-phone-icon {
+    transform: scale(0.7);
+}
+
+.a-account-icon {
+    transform: scale(0.85);
+}
+
+.account-text-div {
+    min-width: 60%;
 }
 
 .div-input-header {
     background-color: var(--color-light-white);
-    width: 30rem;
-    padding: 0.3rem;
+    width: 70%;
+    padding: 0 0.6rem;
     display: flex;
     flex-direction: row;
     border-radius: 1rem;
@@ -566,14 +581,14 @@ body {
     color: var(--color-primary);
     font-family: var(--font-title);
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
 #search-input::placeholder {
     color: var(--color-primary);
     font-family: var(--font-title);
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     width: 100%;
 }
 
@@ -648,45 +663,40 @@ input:focus {
     font-size: 1.2rem;
 }
 
-#a-contact {
+#a-contact, #a-account {
     color: var(--color-secundary);
     text-decoration: none;
     font-family: var(--font-title);
-}
-
-#a-account {
-    color: var(--color-secundary);
-    text-decoration: none;
-    font-family: var(--font-title);
+    font-size: 0.8rem;
 }
 
 .account-div {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 0.5rem;
     justify-content: space-around;
+    width: 70%;
 }
 
 .header-credit-balance {
     font-family: var(--font-text);
     color: var(--color-secundary);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 .header-rounded-plus-div {
+    align-items: center;
+    background-color: var(--color-secundary);
     border: none;
     border-radius: 50%;
-    background-color: var(--color-secundary);
-    width: 2.3rem;
-    height: 2.3rem;
-    margin-right: 4.5vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
+    display: flex;
+    height: 25px;
+    justify-content: center;
+    text-align: center;
     transition: all ease-in-out 0.3s;
+    width: 35px;
 }
 
 .header-rounded-plus-div:hover {
@@ -697,16 +707,17 @@ input:focus {
     color: var(--color-white);
     font-size: 1.5rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .nav-bar-div {
+    align-items: center;
     background-color: var(--color-secundary);
-    height: 5dvh;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    height: 4vh;
     justify-content: space-between;
-    padding: 0 15rem;
+    padding: 0 5%;
     width: 100%;
 }
 
@@ -730,8 +741,7 @@ input:focus {
     text-decoration: none;
     font-family: var(--font-title);
     font-weight: 600;
-    font-size: 0.9rem;
-    padding-left: 2rem;
+    font-size: 0.8rem;
 }
 
 #sell-your-products {
@@ -747,7 +757,7 @@ input:focus {
     text-decoration: none;
     font-family: var(--font-title);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .products-menu-div {
@@ -811,22 +821,24 @@ input:focus {
 
 .footer-main {
     margin: 0;
+    width: 100vw;
 }
 
 .footer-image-line {
     margin: 0;
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 
 .div-footer-main {
     display: flex;
     flex-direction: row;
     background-color: var(--color-primary);
-    justify-content: space-around;
+    justify-content: space-between;
     font-family: var(--font-footer);
-    font-size: 1.2rem;
-    height: 8rem;
+    font-size: 1rem;
+    height: 12vh;
+    padding: 1%;
     width: 100%
 }
 
@@ -834,7 +846,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.5rem
+    gap: 3%;
+    width: 20%;
 }
 
 .left-footer-a {
@@ -846,10 +859,16 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 30%;
 }
 
 .payment-text {
     color: var(--color-light-white);
+    width: 70%;
+}
+
+.payment-method-icon {
+    width: 70%;
 }
 
 .right-center-footer-div {
@@ -857,60 +876,75 @@ input:focus {
     color: var(--color-light-white);
     flex-direction: column;
     justify-content: center;
-    gap: 0.5rem
+    gap: 0.5rem;
+    width: 20%
 }
 
 .right-center-social-div {
     display: flex;
     flex-direction: row;
-    gap: 1.125rem;
+    gap: 5%;
+}
+
+.instagram-icon, .facebook-icon, .tiktok-icon {
+    transform: scale(0.8);
 }
 
 .right-div-footer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 28%;
+    width: 30%;
+}
+
+.a-right-logo {
+    width: 80%;
+}
+
+.right-logo-footer {
+    transform: scale(0.7);
 }
 
 /* Main Banner */
 
 .banner-img {
-    width: 100%;
-    z-index: -1;
+    /* width: 100%;
+    z-index: -1; */
 }
 
 /* Carousel */
 
 .carousel {
-    margin-top: 7rem;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 7rem;
-    align-items: center;
+    gap: 4rem;
+    margin-top: 10vh;
 }
 
 .carousel-container {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 5rem;
+    display: flex;
+    gap: 3%;
+    justify-content: center;
+    /* min-height: 30rem; */
     width: 100%;
-    min-height: 30rem;
 }
 
 .carousel-product-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 5rem;
+    gap: 3%;
     flex: 80%;
 }
 
 .arrow-buttons {
     background-color: transparent;
     border: none;
-    width: 4rem;
-    height: 4rem;
+    width: 50%;
+    height: 50%;
     cursor: pointer;
     flex: 10%;
 }
@@ -1120,7 +1154,7 @@ input:focus {
 
 .div-main-banner {
     width: 100%;
-    height: 47.2rem;
+    height: 120%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1131,59 +1165,59 @@ input:focus {
 }
 
 .info-div {
+    align-items: center;
+    background-color: var(--color-primary);
+    border-radius: 1.25rem;
+    bottom: 0;
+    color: var(--color-light-white);
     display: flex;
     flex-direction: row;
-    background-color: var(--color-primary);
-    align-items: center;
-    justify-content: space-evenly;
-    color: var(--color-light-white);
     font-family: var(--font-text);
-    font-size: 1rem;
-    width: 80.3125rem;
-    height: 7.2rem;
-    border-radius: 1.25rem;
-    position: absolute;
+    font-size: 0.9rem;
+    height: 25%;
+    justify-content: space-evenly;
     left: 50%;
-    bottom: 0;
+    position: absolute;
+    top: 90%;
     transform: translateX(-50%);
+    width: 80%;
 }
 
-.delivery-div {
+.delivery-div, .sign-div, .percentage-div, .card-div {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    margin: 10% 0;
+    text-align: center;
 }
 
 .sign-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 7.6rem;
-}
-
-.sign-icon {
-    margin-right: 1rem;
+    width: 15%;
 }
 
 .percentage-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 13rem;
-    margin-top: 0.4rem;
-    text-align: center;
+    width: 22%;
 }
 
 .card-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 9rem;
+    gap: 0;
+    width: 18%;
 }
+
+.delivery-icon, .sign-icon, .percentage-icon, .card-icon {
+    margin-bottom: 5%;
+    width: 50%;
+}
+
+.sign-icon, .percentage-icon {
+    width: 15%;
+}
+
+.card-icon {
+    width: 30%;
+}
+
 
 /* Product page */
 
@@ -1389,10 +1423,10 @@ input:focus {
     overflow-y: auto;
     padding: 1.56rem;
     position: absolute;
-    width: 25.56rem;
+    right: 3%;
+    top: 12%;
+    /* width: 25.56rem; */
     z-index: 2;
-    right: 13.5rem;
-    top: 7.4rem;
 }
 
 .item-product-div {
@@ -1431,9 +1465,9 @@ input:focus {
     color: var(--color-light-white);
     cursor: pointer;
     font-family: var(--font-title);
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 400;
-    height: 4.125rem;
+    height: 3rem;
     padding: 0rem 2.5rem;
     margin-top: 1.5rem;
 }
