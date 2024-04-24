@@ -107,7 +107,7 @@ export default () =>{
 
     const rightLogo = document.createElement("img");
     rightLogo.src = "/assets/images/logo-zabafood2.svg";
-    rightLogo.classList.add("rigth-logo-footer");
+    rightLogo.classList.add("right-logo-footer");
     aRightLogo.appendChild(rightLogo);
 
     return footerMain;

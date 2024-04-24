@@ -4,7 +4,7 @@ import LoadingComponent from "./LoadingComponent.js";
 
 export default async () => {
     let min = 1;
-    let max = 4;
+    let max = 3;
 
     const carousel = document.createElement("div");
     carousel.classList.add("carousel");
