@@ -15,12 +15,13 @@ export default async (id) => {
 
 			const data = await response.json();
 
+			const products = data.filter((product) => !product.deleted)
 			//comparação produto mais recente
-			data.forEach(item => {
+			products.forEach(item => {
 				item.created_at = new Date(item.created_at);
 			});
 			
-			let newProduct = data.reduce((newProduct, item) => {
+			let newProduct = products.reduce((newProduct, item) => {
 				return item.created_at > newProduct.created_at ? item : newProduct;
 			}, { created_at: new Date(0) });
 

@@ -38,12 +38,18 @@ export default async () => {
     
             const cartData = await cartResponse.json();
             
-            for (let i = 0; i < 10; i++) {
-                const skeleton = document.querySelector(`#skeleton-${i}`);
-                skeleton.remove();
-                }
+            setTimeout(async () => {
+                for (let i = 0; i < 10; i++) {
+                    const skeleton = document.querySelector(`#skeleton-${i}`);
+                    if(skeleton){
+                        skeleton.remove();
+                    }
+                    }
+    
+            }, 1000);
 
             cartData.forEach(async (cart) => {
+
     
                 const div = document.createElement("div");
                 div.classList.add("order-div");

@@ -1,4 +1,5 @@
 import ButtonComponent from "./ButtonComponent.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () =>{
     const settingPageDiv = document.createElement("div");
@@ -45,20 +46,18 @@ export default async () =>{
                     phone: phoneSpan.innerText
                 })
             });
-            notice.style.display = "block";
-            notice.innerText = "Usuário atualizado com sucesso!";
+            if(response.ok){
+                MessageComponent("Usuário atualizado com sucesso!", true)
+                const userShowName = document.getElementById("user-info-show-account-page");
+                userShowName.innerText = "Olá " + nameSpan.innerText;
+                buttonSave.style.display = "none"
+            } else {
+                MessageComponent("Erro ao atualizar usuário", false)
+            }
             return;
         } catch (error){
-            notice.style.display = "block";
-            notice.style.color = "tomato";
-            notice.innerText = "Erro ao atualizar usuário!"
             return;
-        } finally{
-            setTimeout(() =>{
-                notice.style.display = "none"
-                buttonSave.style.display = "none";
-            }, 2000);
-        }
+        } 
     }))
 
     buttonSave.style.display = "none"

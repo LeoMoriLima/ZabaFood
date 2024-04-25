@@ -54,6 +54,14 @@ export default async () => {
 
     // Pesquisa
 
+    divInput.addEventListener("keypress", function(e){
+        if(e.keyCode === 13){
+            e.preventDefault();
+            const searchTerm = document.getElementById("search-input").value.trim();
+            router.navigate(`/products/search/${searchTerm}`);
+        }
+    })
+
     buttonSearch.onclick = (e) => {
         e.preventDefault();
         const searchTerm = document.getElementById("search-input").value.trim();

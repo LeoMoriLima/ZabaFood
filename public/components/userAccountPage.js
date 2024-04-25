@@ -46,6 +46,7 @@ export default async () => {
 
         const helloText = document.createElement("p");
         helloText.classList.add("user-menu-hello-text");
+        helloText.id = "user-info-show-account-page"
         helloText.innerText = "Olá, " + userData.name;
         divTextUserInfo.appendChild(helloText);
     
