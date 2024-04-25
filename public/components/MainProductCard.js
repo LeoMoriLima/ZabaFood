@@ -95,7 +95,7 @@ export default async (product) => {
                     throw cartAdded.error;
                 }
 
-                navigateTo("checkout");
+                navigateTo("cart");
             } catch (error) {
                 console.error(error);
                 MessageComponent("Erro ao adicionar no carrinho", false);
@@ -117,7 +117,7 @@ export default async (product) => {
                     throw cartAdded.error;
                 }
 
-                MessageComponent("Produto adicionado ao carrinho!", false)
+                MessageComponent("Produto adicionado ao carrinho!", true)
             } catch (error) {
                 console.error(error);
                 MessageComponent("Erro ao adicionar no carrinho", false);
@@ -194,6 +194,10 @@ const addToCart = async (cartId, productId, quantity) => {
         });
 
         const data = await response.json();
+
+        const event = new CustomEvent("productAdded");
+        window.dispatchEvent(event);
+
         return data
     } catch (error) {
         throw error;
