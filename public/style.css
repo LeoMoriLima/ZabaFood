@@ -407,7 +407,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 8rem;
     justify-content: center;
     width: 50%;
 }
@@ -418,6 +418,18 @@ input[type=number] {
     font-size: 3rem;
     font-weight: 400;
     text-align: center;
+    text-shadow: 0 0.5px 0 #ccc,
+        0 1px 0 #c9c9c9,
+        0 2px 0 #bbb,
+        0 3px 0 #b9b9b9,
+        0 4px 0 #aaa,
+        0 5px 1px rgba(0,0,0,.1),
+        0 0 5px rgba(0,0,0,.1),
+        0 0.5px 1.5px rgba(0,0,0,.3),
+        0 1.5px 2.5px rgba(0,0,0,.2),
+        0 2.5px 5px rgba(0,0,0,.25),
+        0 5px 5px rgba(0,0,0,.2),
+        0 10px 10px rgba(0,0,0,.15);
     width: 90%;
 }
 
@@ -432,6 +444,7 @@ input[type=number] {
     background-color: var(--color-secundary);
     border: none;
     border-radius: 3rem;
+    box-shadow: 2px 2px 10px var(--color-secundary);
     color: var(--color-light-white);
     cursor: pointer;
     font-family: var(--font-title);
@@ -447,6 +460,7 @@ input[type=number] {
 
 .banner-product-img {
     border-radius: 8rem;
+    box-shadow: 2px 2px 10px var(--color-secundary);
     height: 60%;
 }
 
@@ -1390,6 +1404,7 @@ input:focus {
     position: absolute;
     right: 3%;
     top: 12%;
+    max-width: 35vw;
     z-index: 2;
 }
 
@@ -1402,6 +1417,7 @@ input:focus {
 
 .cart-modal-product-img {
     border-radius: 1rem;
+    cursor: pointer;
     height: 6rem;
     margin: 1rem 2rem 1rem 2rem;
     width: 6rem;
@@ -1417,6 +1433,7 @@ input:focus {
 .modal-cart-product-title,
 .modal-cart-product-value {
     color: var(--color-yellow);
+    cursor: pointer;
     font-family: var(--font-title);
     font-size: 1rem;
     font-weight: 700;
