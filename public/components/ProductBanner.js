@@ -35,11 +35,6 @@ export default async (id) => {
 			productTitle.innerText = data.name;
 			textDiv.appendChild(productTitle);
 
-			const productValue = document.createElement("p");
-			productValue.classList.add("banner-product-value");
-			productValue.innerText = `R$ ${(data.value * 1).toFixed(2).replace(".", ",")}`;
-			textDiv.appendChild(productValue);
-
 			const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
 				router.navigate(`/product/${id}`)
 			})
