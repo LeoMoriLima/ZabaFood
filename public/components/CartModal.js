@@ -53,7 +53,6 @@ const showCartProducts = async (mainDiv, userData) => {
 		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
 				const { product, quantity } = itemProduct
-				console.log(product.id);
 				const itemProductDiv = document.createElement("div");
 				itemProductDiv.classList.add("item-product-div");
 				mainDiv.appendChild(itemProductDiv);

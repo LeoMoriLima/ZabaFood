@@ -194,8 +194,7 @@ input[type=number] {
     font-family: var(--font-text);
     font-size: 1.25rem;
     font-weight: 500;
-    height: 4rem;
-    width: 20rem;
+    padding: 1rem 4rem;
     transition: all ease-in-out 0.2s;
 }
 
@@ -478,7 +477,7 @@ input[type=number] {
     width: 100vw;
 }
 
-.card-text-div {
+.gray-div {
     align-items: center;
     background-color: var(--color-light-white);
     border-radius: 2.8125rem;
@@ -490,8 +489,55 @@ input[type=number] {
     width: 45%;
 }
 
+.card-text-div {
+    align-items: center;
+    background-color: var(--color-light-white);
+    border-radius: 2.8125rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 19.25rem;
+    justify-content: flex-start;
+    padding: 2rem;
+    width: 100%;
+}
+
 .status-order-text {
     font-size: 1rem;
+}
+
+.myaccount-btn {
+    background-color: var(--color-secundary);
+    border: none;
+    border-radius: 1.25rem;
+    color: var(--color-light-white);
+    cursor: pointer;
+    font-family: var(--font-text);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 2.5rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.myaccount-btn:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.back-to-main-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 1.25rem;
+    color: var(--color-secundary);
+    cursor: pointer;
+    font-family: var(--font-text);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.back-to-main-btn:hover {
+    transform: scale(1.05);
 }
 
 /* HEADER */

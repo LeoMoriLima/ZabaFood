@@ -5,9 +5,13 @@ export default () => {
 	const mainDiv = document.createElement("div");
 	mainDiv.classList.add("main-div-confirmation-page");
 
+	const grayDiv = document.createElement("div");
+	grayDiv.classList.add("gray-div");
+	mainDiv.appendChild(grayDiv);
+
 	const cardTextDiv = document.createElement("div");
 	cardTextDiv.classList.add("card-text-div");
-	mainDiv.appendChild(cardTextDiv);
+	grayDiv.appendChild(cardTextDiv);
 
 	const orderConfirmationText = document.createElement("p");
 	orderConfirmationText.classList.add("order-confirmation-text");
@@ -19,10 +23,15 @@ export default () => {
 	statusText.innerText = "Status: Processando.";
 	cardTextDiv.appendChild(statusText);
 
-	const backToMainPageBtn = ButtonComponent("Voltar ao início", "green-button", () => {
-		router.navigate("/")
-	})
-	cardTextDiv.appendChild(backToMainPageBtn);
+	const myAccountBtn = ButtonComponent("Acessar meus pedidos", "myaccount-btn", () => {
+		router.navigate("/myaccount")
+	});
+	grayDiv.appendChild(myAccountBtn);
+
+	const backToMainPageBtn = ButtonComponent("Voltar ao início", "back-to-main-btn", () => {
+		router.navigate("/");
+	});
+	grayDiv.appendChild(backToMainPageBtn);
 
 	return mainDiv;
 }
