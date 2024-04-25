@@ -1516,7 +1516,7 @@ input:focus {
 .admin-page-div {
     display: flex;
     flex-direction: row;
-    height: 65vh;
+    height: 66vh;
 }
 
 .left-menu-admin-page {
@@ -1919,7 +1919,7 @@ input:focus {
 .user-page-div {
     display: flex;
     flex-direction: row;
-    height: 65vh;
+    height: 66vh;
 }
 
 .left-menu-user-page {
@@ -2419,6 +2419,7 @@ input:focus {
 
 .cp-product-img {
     border-radius: 2rem;
+    cursor: pointer;
     height: 100%;
     max-width: 40%;
 }
@@ -2433,9 +2434,11 @@ input:focus {
 
 .cp-product-text {
     color: var(--color-emphasis);
+    cursor: pointer;
 }
 
 .cp-product-quantity-text {
+    cursor: pointer;
     font-size: 0.8rem;
     margin-top: 5%;
 }

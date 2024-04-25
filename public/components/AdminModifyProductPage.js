@@ -36,13 +36,15 @@ export default async () => {
     setTimeout(async () => {     
         
         const productData = await getAllProduct();
-
-        for (let i = 0; i < 10; i++) {
-        const skeleton = document.querySelector(`#skeleton-${i}`);
-        if(skeleton){
-            skeleton.remove();
-        }
-        }
+        
+        setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+                const skeleton = document.querySelector(`#skeleton-${i}`);
+                if(skeleton){
+                    skeleton.remove();
+                }
+                }
+        }, 1000);
 
         modifyProductDiv.style.overflowY = "auto";
 

@@ -80,6 +80,9 @@ export default async () => {
                     const productImg = document.createElement("img");
                     productImg.classList.add("cp-product-img");
                     productImg.src = product.url_img;
+                    productImg.addEventListener("click", () => {
+                        router.navigate(`/product/${product.id}`);
+                    });
                     itemProductLeftDiv.appendChild(productImg);
         
                     const productInfoDiv = document.createElement("div");
@@ -89,11 +92,17 @@ export default async () => {
                     const productTitle = document.createElement("p");
                     productTitle.classList.add("cp-product-text");
                     productTitle.innerText = product.name;
+                    productTitle.addEventListener("click", () => {
+                        router.navigate(`/product/${product.id}`);
+                    });
                     productInfoDiv.appendChild(productTitle);
         
                     const productQuantityText = document.createElement("p");
                     productQuantityText.classList.add("cp-product-quantity-text");
                     productQuantityText.innerText = quantity > 1 ? `Quantidade: ${quantity} unidades` : `Quantidade: ${quantity} unidade`;
+                    productQuantityText.addEventListener("click", () => {
+                        router.navigate(`/product/${product.id}`);
+                    });
                     productInfoDiv.appendChild(productQuantityText);
 
                     const quantityInputDiv = document.createElement("div");
