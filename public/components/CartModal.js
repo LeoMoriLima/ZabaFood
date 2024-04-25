@@ -53,6 +53,7 @@ const showCartProducts = async (mainDiv, userData) => {
 		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
 				const { product, quantity } = itemProduct
+				console.log(product.id);
 				const itemProductDiv = document.createElement("div");
 				itemProductDiv.classList.add("item-product-div");
 				mainDiv.appendChild(itemProductDiv);
@@ -60,6 +61,9 @@ const showCartProducts = async (mainDiv, userData) => {
 				const productImg = document.createElement("img");
 				productImg.classList.add("cart-modal-product-img");
 				productImg.src = product.url_img;
+				productImg.addEventListener("click", () => {
+					router.navigate(`/product/${product.id}`);
+				})
 				itemProductDiv.appendChild(productImg);
 
 				const textDiv = document.createElement("div");
@@ -69,11 +73,17 @@ const showCartProducts = async (mainDiv, userData) => {
 				const productTitle = document.createElement("p");
 				productTitle.classList.add("modal-cart-product-title");
 				productTitle.innerText = product.name;
+				productTitle.addEventListener("click", () => {
+					router.navigate(`/product/${product.id}`);
+				})
 				textDiv.appendChild(productTitle);
 
 				const productValue = document.createElement("p");
 				productValue.classList.add("modal-cart-product-value");
 				productValue.innerText = `${quantity}x R$${product.value}`;
+				productValue.addEventListener("click", () => {
+					router.navigate(`/product/${product.id}`);
+				})
 				textDiv.appendChild(productValue);
 			});
 
