@@ -1390,6 +1390,7 @@ input:focus {
     position: absolute;
     right: 3%;
     top: 12%;
+    max-width: 35vw;
     z-index: 2;
 }
 
@@ -1402,6 +1403,7 @@ input:focus {
 
 .cart-modal-product-img {
     border-radius: 1rem;
+    cursor: pointer;
     height: 6rem;
     margin: 1rem 2rem 1rem 2rem;
     width: 6rem;
@@ -1417,6 +1419,7 @@ input:focus {
 .modal-cart-product-title,
 .modal-cart-product-value {
     color: var(--color-yellow);
+    cursor: pointer;
     font-family: var(--font-title);
     font-size: 1rem;
     font-weight: 700;
