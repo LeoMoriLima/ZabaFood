@@ -4005,9 +4005,10 @@ input:focus {
 #div-modal-no-credits {
     position: fixed;
     top: 50%;
+    left: 32%;
+    transform: translate(-50%, -50%);
     width: 35%;
     height: 35%;
-    transform: translate(-50%, -50%) translateY(-100%);
     background-color: var(--color-secundary);
     z-index: 9999;
     padding: 20px;
@@ -4018,6 +4019,7 @@ input:focus {
     align-items: center;
     justify-content: center;
 }
+
 
 .div-text-no-credits{
     display:flex;
@@ -4040,7 +4042,7 @@ input:focus {
     text-decoration: none;
     font-family: var(--font-title);
     color: var(--color-yellow);
-    font-size: 140%;
+    font-size: 120%;
     font-weight: 600;
     transition: color 0.3s ease;
 }
@@ -4052,7 +4054,7 @@ input:focus {
 .text-modal-no-credits{
     font-family: var(--font-title);
     color: var(--color-light-white);
-    font-size: 150%;
+    font-size: 130%;
     margin: 5%;
     text-align: center;
 }
@@ -4075,7 +4077,7 @@ input:focus {
 
 .close-modal-no-credits:hover{
     color: var(--color-emphasis);
-
+}
 /* Order admin page */
 
 .order-page-div-admin {
