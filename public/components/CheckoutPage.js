@@ -2,16 +2,17 @@ import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
 import MessageComponent from "./MessageComponent.js";
 import NoCreditsModal from "./NoCreditsModal.js";
+import LoadingComponent from "./LoadingComponent.js";
 
 export default async () => {
 	try {
 		const response = await fetch('/api/login', {
 			method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const userData = await response.json();
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		const userData = await response.json();
 		const userId = userData.user.id;
 
 		const userResponse = await fetch(`api/users/${userId}`, {
@@ -30,19 +31,10 @@ export default async () => {
 			}
 		});
 
-		const cart = await cartResponse.json();	
+		const cart = await cartResponse.json();
 		const cartId = cart.id;
 		const cartTotal = parseFloat(cart.total);
 		const freight = cartTotal > 0 ? 10 : 0;
-
-		const addressResponse = await fetch(`/api/address/user/${userId}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
-
-		const address = await addressResponse.json();
 
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("checkout-page-main-div");
@@ -60,51 +52,7 @@ export default async () => {
 		addressDivText.innerText = "ENDEREÇO DE ENTREGA";
 		addressInfoDiv.appendChild(addressDivText);
 
-		const addressDiv = document.createElement("div");
-		addressDiv.classList.add("checkout-address-div");
-		addressInfoDiv.appendChild(addressDiv);
 
-		const addressLeftDiv = document.createElement("div");
-		addressLeftDiv.classList.add("checkout-address-left-div");
-		addressDiv.appendChild(addressLeftDiv);
-
-		const pointIcon = document.createElement("img");
-		pointIcon.classList.add("checkout-point-icon");
-		pointIcon.src = "/assets/images/point-icon.svg";
-		addressLeftDiv.appendChild(pointIcon);
-
-		const addressInfo = document.createElement("div");
-		addressInfo.classList.add("checkout-address-info");
-		addressLeftDiv.appendChild(addressInfo);
-
-		const streetText = document.createElement("p");
-		streetText.classList.add("checkout-street-text");
-		streetText.innerText = (address.complement && address.number) ? `${address.street}, ${address.number} - Complemento: ${address.complement}` : (address.number ? `${address.street}, ${address.number}` : `${address.street}`);
-		addressInfo.appendChild(streetText);
-
-		const cityStateText = document.createElement("p");
-		cityStateText.classList.add("checkout-city-state-text");
-		cityStateText.innerText = `${address.city} - ${address.state}`;
-		addressInfo.appendChild(cityStateText);
-
-		const postalCodeText = document.createElement("p");
-		postalCodeText.classList.add("checkout-cep-text");
-		postalCodeText.innerText = `${address.postal_code}`;
-		addressInfo.appendChild(postalCodeText);
-
-		const addressRightDiv = document.createElement("div");
-		addressRightDiv.classList.add("checkout-address-right-div");
-		addressDiv.appendChild(addressRightDiv);
-
-		const pencilIcon = document.createElement("img");
-		pencilIcon.classList.add("checkout-pencil-icon");
-		pencilIcon.src = "/assets/images/pencil-icon.svg";
-		addressRightDiv.appendChild(pencilIcon);
-
-		const changeIcon = document.createElement("img");
-		changeIcon.classList.add("checkout-change-icon");
-		changeIcon.src = "/assets/images/change-icon.svg";
-		addressRightDiv.appendChild(changeIcon);
 
 		const paymentDiv = document.createElement("div");
 		paymentDiv.classList.add("checkout-payment-div");
@@ -205,6 +153,10 @@ export default async () => {
 		payNowBtnDiv.classList.add("checkout-pay-now-btn-div");
 		valueDiv.appendChild(payNowBtnDiv);
 
+		const payNowBtn = btn("Pagar agora", "checkout-pay-now-btn");
+
+		payNowBtnDiv.appendChild(payNowBtn);
+
 		function removeOverlay() {
 			const overlay = document.getElementById("overlay-no-credits");
 			if (overlay) {
@@ -214,58 +166,6 @@ export default async () => {
 		const modal = await NoCreditsModal(removeOverlay);
 		modal.style.display = "none";
 		mainDiv.appendChild(modal);
-
-		const payNowBtn = btn("Pagar agora", "checkout-pay-now-btn", async () => {
-			if (user.credit_balance > (cartTotal + freight)) {
-				try {
-					const response = await fetch(`/api/cart/${cartId}`, {
-						method: "PUT",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							status: "approved",
-						})
-					});
-
-					const newCartResponse = await fetch("/api/cart", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							user_id: userId,
-						})
-					});
-		
-					const userResponse = await fetch(`/api/users/${userId}`, {
-						method: "PUT",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							credit_balance: (user.credit_balance - freight - cart.total),
-						})
-					});
-		
-					const userData = await userResponse.json();
-
-					MessageComponent("Compra realizada com sucesso!", true);
-		
-					router.navigate("/confirmation")
-				} catch (error) {
-					console.log(error)
-				}
-			} else {
-				modal.style.display = "flex";
-				const overlay = document.createElement("div");
-				overlay.id = "overlay-no-credits";
-				document.body.appendChild(overlay);
-			}
-			
-		});
-		payNowBtn.id = cartId
-		payNowBtnDiv.appendChild(payNowBtn);
 
 		const paymentMethodsDiv = document.createElement("div");
 		paymentMethodsDiv.classList.add("checkout-payment-methods-div");
@@ -281,9 +181,377 @@ export default async () => {
 		paymentMethodsIcons.src = "/assets/images/payment-methods-icon.svg";
 		paymentMethodsDiv.appendChild(paymentMethodsIcons);
 
+		const payCart = async (address) => {
+			if (user.credit_balance > (cartTotal + freight)) {
+				try {
+					const response = await fetch(`/api/cart/${cartId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							status: "approved",
+							address_id: address.id
+						})
+					});
+
+					const cartUpdated = await response.json()
+
+					const newCartResponse = await fetch("/api/cart", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							user_id: userId,
+						})
+					});
+
+					const userResponse = await fetch(`/api/users/${userId}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							credit_balance: (user.credit_balance - freight - cart.total),
+						})
+					});
+
+					const userData = await userResponse.json();
+
+					console.log(userData);
+
+					MessageComponent("Compra realizada com sucesso!", true);
+
+					router.navigate("/confirmation")
+				} catch (error) {
+					console.log(error)
+				}
+			} else {
+				modal.style.display = "flex";
+				const overlay = document.createElement("div");
+				overlay.id = "overlay-no-credits";
+				document.body.appendChild(overlay);
+			}
+
+		}
+
+		const generateAddress = async (user_id, index) => {
+			const addressDiv = document.createElement("div");
+			addressDiv.classList.add("checkout-address-div");
+			addressInfoDiv.appendChild(addressDiv);
+			payNowBtn.disabled = true;
+
+			const loading = LoadingComponent(4);
+			addressDiv.appendChild(loading);
+
+			addressDiv.style.justifyContent = "center";
+
+			const addressResponse = await fetch(`/api/address/user/${user_id}?index=${index}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+
+			const address = await addressResponse.json();
+
+			payNowBtn.onclick = () => payCart(address);
+
+			payNowBtn.disabled = false;
+
+			loading.remove();
+			addressDiv.style = "";
+
+			const addressLeftDiv = document.createElement("div");
+			addressLeftDiv.classList.add("checkout-address-left-div");
+			addressDiv.appendChild(addressLeftDiv);
+
+			const pointIcon = document.createElement("img");
+			pointIcon.classList.add("checkout-point-icon");
+			pointIcon.src = "/assets/images/point-icon.svg";
+			addressLeftDiv.appendChild(pointIcon);
+
+			const addressInfo = document.createElement("div");
+			addressInfo.classList.add("checkout-address-info");
+			addressLeftDiv.appendChild(addressInfo);
+
+			const streetText = document.createElement("p");
+			streetText.classList.add("checkout-street-text");
+			streetText.innerText = (address.complement && address.number) ? `${address.street}, ${address.number} - Complemento: ${address.complement}` : (address.number ? `${address.street}, ${address.number}` : `${address.street}`);
+			addressInfo.appendChild(streetText);
+
+			const cityStateText = document.createElement("p");
+			cityStateText.classList.add("checkout-city-state-text");
+			cityStateText.innerText = `${address.city} - ${address.state}`;
+			addressInfo.appendChild(cityStateText);
+
+			const postalCodeText = document.createElement("p");
+			postalCodeText.classList.add("checkout-cep-text");
+			postalCodeText.innerText = `${address.postal_code}`;
+			addressInfo.appendChild(postalCodeText);
+
+			const addressRightDiv = document.createElement("div");
+			addressRightDiv.classList.add("checkout-address-right-div");
+			addressDiv.appendChild(addressRightDiv);
+
+			const pageModalDiv = document.createElement("div");
+			pageModalDiv.classList.add("checkout-page-modal-div");
+			pageModalDiv.style.display = "none";
+			mainDiv.appendChild(pageModalDiv)
+
+			pageModalDiv.addEventListener("click", (event) => {
+				if (event.target === pageModalDiv) {
+					pageModalDiv.style.display = "none";
+				}
+			})
+
+			const modalDiv = document.createElement("div");
+			modalDiv.classList.add("checkout-modal-div-address");
+			modalDiv.style.display = "flex";
+			pageModalDiv.appendChild(modalDiv);
+
+			const pencilIcon = document.createElement("img");
+			pencilIcon.classList.add("checkout-pencil-icon");
+			pencilIcon.src = "/assets/images/pencil-icon.svg";
+			addressRightDiv.appendChild(pencilIcon);
+
+			pencilIcon.addEventListener("click", () => {
+				modalDiv.innerHTML = ""
+				pageModalDiv.style.display = "flex";
+
+				const h2Update = document.createElement("h2");
+				h2Update.classList.add("checkout-h2-update-modal");
+				h2Update.innerText = "Atualizar endereço"
+				modalDiv.appendChild(h2Update);
+
+				const closeIcon = document.createElement("img");
+				closeIcon.classList.add("checkout-close-icon-address");
+				closeIcon.src = "/assets/images/close-icon.svg";
+				modalDiv.appendChild(closeIcon);
+
+				closeIcon.addEventListener("click", () => {
+					pageModalDiv.style.display = "none"
+				})
+
+				const divModalPostalCode = document.createElement("div");
+				divModalPostalCode.classList.add("checkout-modal-div-postal-code");
+				modalDiv.appendChild(divModalPostalCode)
+
+				const modalInputPostalCode = createPostalCodeInput();
+				modalInputPostalCode.value = address.postal_code;
+				divModalPostalCode.appendChild(modalInputPostalCode);
+
+				divModalPostalCode.appendChild(btn("Pesquisar", "checkout-button-search-postal-code", (async () => {
+					const modalPostalCode = await searchPostalCode(modalInputPostalCode.value);
+					modalInputState.value = modalPostalCode.state;
+					modalInputCity.value = modalPostalCode.city;
+					modalInputStreet.value = modalPostalCode.street;
+					modalInputNumber.value = "";
+					modalInputComplement.value = "";
+				})));
+
+				const modalInputCity = document.createElement("input");
+				modalInputCity.classList.add("checkout-modal-input");
+				modalInputCity.value = address.city;
+				modalDiv.appendChild(modalInputCity);
+
+				const modalInputState = document.createElement("input");
+				modalInputState.classList.add("checkout-modal-input");
+				modalInputState.value = address.state;
+				modalDiv.appendChild(modalInputState);
+
+				const modalInputStreet = document.createElement("input");
+				modalInputStreet.classList.add("checkout-modal-input");
+				modalInputStreet.value = address.street;
+				modalDiv.appendChild(modalInputStreet);
+
+				const modalInputNumber = document.createElement("input");
+				modalInputNumber.classList.add("checkout-modal-input");
+				modalInputNumber.value = address.number;
+				modalDiv.appendChild(modalInputNumber);
+
+				const modalInputComplement = document.createElement("input");
+				modalInputComplement.classList.add("checkout-modal-input");
+				modalInputComplement.value = address.complement;
+				modalDiv.appendChild(modalInputComplement);
+
+				modalDiv.appendChild(btn("Atualizar", "checkout-button-update-address", (async () => {
+					try {
+						const response = await fetch(`/api/address/${address.id}`, {
+							method: "PUT",
+							headers: {
+								"Content-Type": "application/json"
+							},
+							body: JSON.stringify({
+								postal_code: modalInputPostalCode.value,
+								state: modalInputState.value,
+								city: modalInputCity.value,
+								street: modalInputStreet.value,
+								number: modalInputNumber.value,
+								complement: modalInputComplement.value
+							})
+						})
+						const responseData = await response.json();
+						if (response.ok) {
+							MessageComponent("Endereço atualizado com sucesso!", true);
+							setTimeout(() => {
+								pageModalDiv.style.display = "none";
+
+							}, 2000);
+							h3.innerText = modalInputStreet.value + "," + " " + modalInputNumber.value;
+							pStateAndCity.innerText = modalInputCity.value + " " + "-" + " " + modalInputState.value;
+							pPostalCodeAndComplement.innerText = modalInputPostalCode.value + "," + " " + modalInputComplement.value;
+						} else {
+							MessageComponent("Erro ao atualizar endereço!", false);
+						}
+						return responseData;
+					} catch (error) {
+						return;
+					}
+				}
+				)));
+			})
+
+			const changeIcon = document.createElement("img");
+			changeIcon.classList.add("checkout-change-icon");
+			changeIcon.src = "/assets/images/change-icon.svg";
+			addressRightDiv.appendChild(changeIcon);
+
+			changeIcon.addEventListener("click", async () => {
+				modalDiv.innerHTML = ""
+				pageModalDiv.style.display = "flex";
+
+				const h2Update = document.createElement("h2");
+				h2Update.classList.add("checkout-h2-modal");
+				h2Update.innerText = "Escolha o endereço de entrega"
+				modalDiv.appendChild(h2Update);
+
+				const addressListDivModal = document.createElement("div")
+				addressListDivModal.classList.add("adress-list-div-modal")
+				modalDiv.appendChild(addressListDivModal)
+
+				addressListDivModal.style.alignItems = "center"
+				addressListDivModal.style.justifyContent = "center"
+
+				const addresListLoading = LoadingComponent(5)
+				addressListDivModal.appendChild(addresListLoading)
+
+				const closeIcon = document.createElement("img");
+				closeIcon.classList.add("checkout-close-icon-address");
+				closeIcon.src = "/assets/images/close-icon.svg";
+				modalDiv.appendChild(closeIcon);
+
+				closeIcon.addEventListener("click", () => {
+					pageModalDiv.style.display = "none"
+				})
+
+				try {
+					const allAddressResponse = await fetch(`/api/address/all/`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
+					const allAddress = await allAddressResponse.json();
+
+					addresListLoading.remove();
+
+					addressListDivModal.style = ""
+
+					allAddress.forEach((userAddress, index) => {
+						const addressDivModal = document.createElement("div");
+						addressDivModal.classList.add("checkout-address-div-modal");
+						addressListDivModal.appendChild(addressDivModal);
+
+						addressDivModal.addEventListener("click", () => {
+							addressDiv.remove()
+							pageModalDiv.style.display = "none"
+							generateAddress(user_id, index)
+						})
+
+						const addressLeftDiv = document.createElement("div");
+						addressLeftDiv.classList.add("checkout-address-left-div");
+						addressDivModal.appendChild(addressLeftDiv);
+
+						const pointIcon = document.createElement("img");
+						pointIcon.classList.add("checkout-point-icon");
+						pointIcon.src = "/assets/images/point-icon.svg";
+						addressLeftDiv.appendChild(pointIcon);
+
+						const addressInfo = document.createElement("div");
+						addressInfo.classList.add("checkout-address-info");
+						addressLeftDiv.appendChild(addressInfo);
+
+						const streetText = document.createElement("p");
+						streetText.classList.add("checkout-street-text");
+						streetText.innerText = (userAddress.complement && userAddress.number) ? `${userAddress.street}, ${userAddress.number} - Complemento: ${userAddress.complement}` : (userAddress.number ? `${userAddress.street}, ${userAddress.number}` : `${userAddress.street}`);
+						addressInfo.appendChild(streetText);
+
+						const cityStateText = document.createElement("p");
+						cityStateText.classList.add("checkout-city-state-text");
+						cityStateText.innerText = `${userAddress.city} - ${userAddress.state}`;
+						addressInfo.appendChild(cityStateText);
+
+						const postalCodeText = document.createElement("p");
+						postalCodeText.classList.add("checkout-cep-text");
+						postalCodeText.innerText = `${userAddress.postal_code}`;
+						addressInfo.appendChild(postalCodeText);
+					});
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			})
+		}
+
+		await generateAddress(userId, 0)
+
 		return mainDiv;
 
 	} catch (error) {
 		console.error("Erro ao fazer login:", error);
 	}
 }
+
+function createPostalCodeInput() {
+	const inputPostalCode = document.createElement("input");
+	inputPostalCode.placeholder = "CEP";
+	inputPostalCode.classList.add("checkout-input-postal-code");
+	inputPostalCode.type = "text";
+	inputPostalCode.addEventListener("input", (event) => {
+		let cep = event.target.value.replace(/\D/g, '');
+		cep = cep.slice(0, 8);
+
+		if (cep.length > 5) {
+			cep = cep.replace(/(\d{5})(\d)/, '$1-$2');
+		}
+
+		event.target.value = cep
+	})
+	inputPostalCode.addEventListener("keypress", (event) => {
+		const allowedChars = /[0-9]/;
+
+		if (!allowedChars.test(event.key)) {
+			event.preventDefault();
+		}
+	});
+
+	return inputPostalCode;
+}
+
+async function searchPostalCode(postalCode) {
+	try {
+		const response = await fetch(`https://api.brasilaberto.com/v1/zipcode/${postalCode}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		const data = await response.json();
+		return data.result;
+	} catch (error) {
+		return;
+	}
+}
+

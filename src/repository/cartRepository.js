@@ -99,12 +99,12 @@ const updateCartStatus = async (status, id) => {
     }
 }
 
-const updateCartApproved = async (id) => {
+const updateCartApproved = async (id, address_id) => {
     const client = await connectToDatabase();
     try {
         await client.query('BEGIN');
 
-        const updatedCart = await client.query("UPDATE cart SET approved_at = NOW(), updated_at = NOW() WHERE id = $1 RETURNING *", [id])
+        const updatedCart = await client.query("UPDATE cart SET approved_at = NOW(), updated_at = NOW(), address_id = $2 WHERE id = $1 RETURNING *", [id, address_id]);
 
         const cartProducts = await client.query('SELECT * FROM cart_product WHERE cart_id = $1', [id]);
 
@@ -121,10 +121,9 @@ const updateCartApproved = async (id) => {
 
 
             const updatedProduct = await client.query('UPDATE product SET stock = stock - $1 WHERE id = $2 RETURNING *', [quantity, productId]);
-
         }
-
         await client.query('COMMIT');
+        return updatedCart.rows[0]
     } catch (error) {
         await client.query('ROLLBACK');
         throw error;

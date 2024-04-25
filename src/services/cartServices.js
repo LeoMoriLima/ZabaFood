@@ -76,9 +76,9 @@ const updateCartStatus = async (status, id) => {
     }
 };
 
-const updateCartApproved = async (id) => {
+const updateCartApproved = async (id, address_id) => {
     try {
-        const cart = await cartRepository.updateCartApproved(id);
+        const cart = await cartRepository.updateCartApproved(id, address_id);
         return cart;
     } catch (error) {
         console.log(error);
