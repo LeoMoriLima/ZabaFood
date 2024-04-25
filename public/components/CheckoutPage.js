@@ -1,6 +1,7 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
 import MessageComponent from "./MessageComponent.js";
+import NoCreditsModal from "./NoCreditsModal.js";
 
 export default async () => {
 	try {
@@ -204,6 +205,16 @@ export default async () => {
 		payNowBtnDiv.classList.add("checkout-pay-now-btn-div");
 		valueDiv.appendChild(payNowBtnDiv);
 
+		function removeOverlay() {
+			const overlay = document.getElementById("overlay-no-credits");
+			if (overlay) {
+				overlay.remove();
+			}
+		}
+		const modal = await NoCreditsModal(removeOverlay);
+		modal.style.display = "none";
+		mainDiv.appendChild(modal);
+
 		const payNowBtn = btn("Pagar agora", "checkout-pay-now-btn", async () => {
 			if (user.credit_balance > (cartTotal + freight)) {
 				try {
@@ -246,7 +257,10 @@ export default async () => {
 					console.log(error)
 				}
 			} else {
-				MessageComponent("Você não possui créditos suficientes para essa compra!", false);
+				modal.style.display = "flex";
+				const overlay = document.createElement("div");
+				overlay.id = "overlay-no-credits";
+				document.body.appendChild(overlay);
 			}
 			
 		});

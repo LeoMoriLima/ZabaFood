@@ -6,7 +6,7 @@ export default async (id) => {
 	mainDiv.classList.add("banner-product-card-main-div");
 	setTimeout(async () => {
 		try {
-			const response = await fetch(`/api/product/${id}`, {
+			const response = await fetch(`/api/product`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json"
@@ -15,7 +15,14 @@ export default async (id) => {
 
 			const data = await response.json();
 
-
+			//comparação produto mais recente
+			data.forEach(item => {
+				item.created_at = new Date(item.created_at);
+			});
+			
+			let newProduct = data.reduce((newProduct, item) => {
+				return item.created_at > newProduct.created_at ? item : newProduct;
+			}, { created_at: new Date(0) });
 
 			const mainDivText = document.createElement("p");
 			mainDivText.classList.add("main-div-text");
@@ -32,21 +39,22 @@ export default async (id) => {
 
 			const productTitle = document.createElement("p");
 			productTitle.classList.add("banner-product-title");
-			productTitle.innerText = data.name;
+			productTitle.innerText = newProduct.name;
 			textDiv.appendChild(productTitle);
 
 			const productValue = document.createElement("p");
 			productValue.classList.add("banner-product-value");
-			productValue.innerText = `R$ ${(data.value * 1).toFixed(2)}`;
+			productValue.innerText = `R$ ${(newProduct.value * 1).toFixed(2)}`;
 			textDiv.appendChild(productValue);
 
+
 			const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
-				router.navigate(`/product/${id}`)
+				router.navigate(`/product/${newProduct.id}`)
 			})
 			textDiv.appendChild(accessHereBtn);
 
 			const imgDiv = document.createElement("img");
-			imgDiv.src = data.url_img;
+			imgDiv.src = newProduct.url_img;
 			imgDiv.loading = "lazy"
 			imgDiv.classList.add("banner-product-img");
 			productDiv.appendChild(imgDiv);

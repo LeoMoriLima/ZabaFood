@@ -31,7 +31,9 @@
 
 body {
     overflow-x: hidden;
+    background-color: var(--color-white);
 }
+
 
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -40,10 +42,6 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
-}
-
-body {
-    background-color: var(--color-white);
 }
 
 .home {
@@ -405,10 +403,12 @@ body {
     background: var(--color-primary);
     display: flex;
     flex-direction: row;
-    height: 40rem;
+    height: 25rem;
     justify-content: space-around;
     overflow: hidden;
-    width: 100%;
+    width: 70%;
+    border-radius: 3rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .banners-product-text-div {
@@ -424,8 +424,7 @@ body {
 .banner-product-title {
     color: var(--color-light-white);
     font-family: var(--font-banner-product-title);
-    font-size: 6rem;
-    font-weight: 400;
+    font-size: 5rem;
     text-align: center;
     width: 90%;
 }
@@ -433,25 +432,26 @@ body {
 .banner-product-value {
     color: var(--color-secundary);
     font-family: var(--font-title);
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 700;
 }
 
 .banner-product-access-here-btn {
     background-color: var(--color-secundary);
     border: none;
-    border-radius: 1.875rem;
+    border-radius: 3rem;
     color: var(--color-light-white);
     font-family: var(--font-title);
-    font-size: 3rem;
-    height: 6.25rem;
-    width: 30rem;
+    font-size: 150%;
+    padding: 2%;
+    width: 45%;
     cursor: pointer;
 }
 
 .banner-product-img {
-    border-radius: 8rem;
-    height: 80%;
+    border-radius: 5rem;
+    height: 70%;
+    margin-left: -10%;
 }
 
 /* Confirmation Page */
@@ -3801,4 +3801,90 @@ input:focus {
     justify-self: center;
     margin-left: 2.5rem;
     text-align: center;
+}
+
+/* modal sem créditos */
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+#div-modal-no-credits {
+    position: fixed;
+    top: 50%;
+    width: 35%;
+    height: 35%;
+    transform: translate(-50%, -50%) translateY(-100%);
+    background-color: var(--color-secundary);
+    z-index: 9999;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    animation: slideIn 0.5s ease forwards;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-text-no-credits{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#overlay-no-credits{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+}
+
+.a-add-credits-modal{
+    text-decoration: none;
+    font-family: var(--font-title);
+    color: var(--color-yellow);
+    font-size: 140%;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.a-add-credits-modal:hover{
+    color: var(--color-light-white);
+}
+
+.text-modal-no-credits{
+    font-family: var(--font-title);
+    color: var(--color-light-white);
+    font-size: 150%;
+    margin: 5%;
+    text-align: center;
+}
+
+.img-no-credits{
+    height: 80%;
+    margin: 1.5%;
+}
+
+.close-modal-no-credits{
+    font-family: var(--font-text);
+    font-size: 150%;
+    height: 10%;
+    font-weight: 600;
+    color: var(--color-medium-white);
+    cursor: pointer;
+    margin: 2%;
+    align-self: flex-start;
+}
+
+.close-modal-no-credits:hover{
+    color: var(--color-emphasis);
 }
