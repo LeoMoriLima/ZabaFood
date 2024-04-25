@@ -56,6 +56,19 @@ const updateProduct = async (id, name, value, url_img, stock, type_id, descripti
     }
 };
 
+const updateDeletedStatus = async (id) =>{
+    try{
+        const product = await productRepository.getProduct(id);
+        if (!product){
+            throw new Error ("Produto não encontrado")
+        }
+        await productRepository.updateDeletedStatus(id);
+        return { success: true };
+    } catch (error){
+        throw error;
+    }
+}
+
 const deleteProduct = async (id) => {
     try {
         const product = await productRepository.getProduct(id);
@@ -110,6 +123,7 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
+    updateDeletedStatus,
     getProductByInterval,
     getProductByIntervalAndType,
     getProductByIntervalAndSearch
