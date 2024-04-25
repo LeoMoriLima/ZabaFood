@@ -325,7 +325,7 @@ export default async () =>{
     divPhone.appendChild(divIconPhone);
 
     const phoneEditIcon = document.createElement("img");
-    phoneEditIcon.classList.add("edit-icon-setting-setting-page");
+    phoneEditIcon.classList.add("edit-icon-setting-page");
     phoneEditIcon.src = "/assets/images/edit-icon.svg";
     divIconPhone.appendChild(phoneEditIcon);
 

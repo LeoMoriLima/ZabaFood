@@ -49,10 +49,6 @@ export default async () => {
     leftDiv.appendChild(inputEntry("Número", "text", "number-input", "none"));
     leftDiv.appendChild(inputEntry("Complemento", "text", "complement-input", "none"));
 
-    const notice = document.createElement("p");
-    notice.classList.add("address-notice-p");
-    leftDiv.appendChild(notice);
-
     leftDiv.appendChild(ButtonComponent("Criar", "button-create-address", (async () => {
         const createError = "Erro ao cadastrar novo endereço"
         const inputState = document.getElementById("state-input");
@@ -78,30 +74,24 @@ export default async () => {
             })
             const data = await response.json();
 
-            if (!response.ok) {
-                throw data.error
-            }
-            notice.innerText = "Endereço criado com sucesso!"
-
-            generateAllAdress()
-
-            return;
-        } catch (error) {
-            notice.style.color = "tomato"
-            notice.innerText = `Erro ao criar endereço: ${error}`
-            return createError;
-        } finally {
+            if (response.ok) {
+            MessageComponent("Endereço criado com sucesso!", true);
             inputState.value = "";
             inputCity.value = "";
             inputStreet.value = "";
             inputNumber.value = "";
             inputComplement.value = "";
-            inputPostalCode.value = "";
-            setTimeout(() => {
-                notice.innerText = ""
-            }, 2000);
-        }
+            inputPostalCode.value = "";                
+            } else {
+                MessageComponent("Erro ao criar endereço!", false);
+                return;
+            }
+            generateAllAdress()
 
+            return;
+        } catch (error) {
+            return ;
+        } 
     })));
 
     const rightDiv = document.createElement("div");
@@ -244,10 +234,6 @@ export default async () => {
                     modalInputComplement.value = data.complement;
                     modalDiv.appendChild(modalInputComplement);
 
-                    const modalNotice = document.createElement("p");
-                    modalNotice.classList.add("modal-notice-address");
-                    modalDiv.appendChild(modalNotice);
-
                     modalDiv.appendChild(ButtonComponent("Atualizar", "button-update-address", (async () => {
                         try {
                             const response = await fetch(`/api/address/${data.id}`, {
@@ -265,21 +251,22 @@ export default async () => {
                                 })
                             })
                             const responseData = await response.json();
-                            modalNotice.style.color = "var(--color-white)"
-                            modalNotice.innerText = "Endereço atualizado com sucesso!"
+                            if(response.ok){
+                                MessageComponent("Endereço atualizado com sucesso!", true);
+                                setTimeout(() => {
+                                    pageModalDiv.style.display = "none";
+    
+                                }, 2000);
+                                h3.innerText = modalInputStreet.value + "," + " " + modalInputNumber.value;
+                                pStateAndCity.innerText = modalInputCity.value + " " + "-" + " " + modalInputState.value;
+                                pPostalCodeAndComplement.innerText = modalInputPostalCode.value + "," + " " + modalInputComplement.value;
+                            } else {
+                                MessageComponent("Erro ao atualizar endereço!", true);
+                            }
                             return responseData;
                         } catch (error) {
-                            modalNotice.style.color = "tomato"
-                            modalNotice.innerText = "Erro ao atualizar endereço"
-                        } finally {
-                            setTimeout(() => {
-                                pageModalDiv.style.display = "none";
-
-                            }, 2000);
-                            h3.innerText = modalInputStreet.value + "," + " " + modalInputNumber.value;
-                            pStateAndCity.innerText = modalInputCity.value + " " + "-" + " " + modalInputState.value;
-                            pPostalCodeAndComplement.innerText = modalInputPostalCode.value + "," + " " + modalInputComplement.value;
-                        }
+                            return;
+                        } 
                     }
                     )));
                 });
@@ -290,8 +277,6 @@ export default async () => {
                 divIcons.appendChild(trashIcon);
 
                 trashIcon.addEventListener("click", async () => {
-
-                    addressRightNotice.style.display = "block";
                     try {
                         const response = await fetch(`/api/address/${data.id}`, {
                             method: "DELETE",
@@ -301,21 +286,17 @@ export default async () => {
                         })
 
                         const deletedData = await response.json();
-                        addressRightNotice.style.color = "var(--color-secundary)"
-                        addressRightNotice.innerText = "Endereço deletado com sucesso!";
-                        MessageComponent("Endereço deletado com sucesso!", true)
-                        div.remove()
+                        if(response.ok){
+                            MessageComponent("Endereço deletado com sucesso!", true);
+                            div.remove();
+                            div.style.display = "";
+                        } else {
+                            MessageComponent("Erro ao deletar endereço!", false);
+                        }
+
                         return;
                     } catch (error) {
-                        addressRightNotice.style.color = "tomato"
-                        addressRightNotice.innerText = "Erro ao deletar endereço!"
-                        MessageComponent("Erro ao deletar endereço!", false)
                         return;
-                    } finally {
-                        setTimeout(() => {
-                            addressRightNotice.style.display = "none";
-                        }, 2000);
-                        div.style.display = "";
                     }
                 })
 
@@ -324,11 +305,6 @@ export default async () => {
     }
 
     generateAllAdress()
-
-    const addressRightNotice = document.createElement("p");
-    addressRightNotice.classList.add("address-right-notice");
-    addressRightNotice.id = "address-right-notice";
-    rightDiv.appendChild(addressRightNotice)
 
     return addressPageDiv;
 }
