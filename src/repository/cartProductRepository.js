@@ -66,15 +66,33 @@ const deleteCartProduct = async (id, cartId, totalProductValue) => {
     }
 }
 
-const updateCartProduct = async (id, quantity) => {
+const updateCartProduct = async (id, cartId, quantity, cartQuantity, operation) => {
     const client = await connectToDatabase();
-    const query = 'UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3';
+
     try {
+        await client.query('BEGIN');
+
+        // Seleciona o produto do carrinho de acordo com o id de cart_product
         const cartProduct = await client.query('SELECT * FROM cart_product WHERE id = $1', [id]);
-        const total_item = cartProduct.rows[0].price_unity * quantity;
-        client.query(query, [quantity, total_item, id]);
+        
+        // Atualiza a quantidade e o valor total do produto do carrinho
+        const totalItem = cartProduct.rows[0].price_unity * quantity;
+        await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3', [quantity, totalItem, id]);
         console.log('Dados atualizados com sucesso');
+
+        // Atualiza o total do carrinho
+        const totalCartItem = cartProduct.rows[0].price_unity * cartQuantity;
+        if (operation === 'subtract') {
+            await client.query('UPDATE cart SET total = total - $1 WHERE id = $2', [totalCartItem, cartId]);
+        } else if (operation === 'add') {
+            await client.query('UPDATE cart SET total = total + $1 WHERE id = $2', [totalCartItem, cartId]);
+        } else {
+            throw new Error("Operação inválida");
+        }
+
+        await client.query('COMMIT');
     } catch (error) {
+        await client.query('ROLLBACK');
         console.log('Erro ao atualizar dados:', error);
         throw error;
     } finally {

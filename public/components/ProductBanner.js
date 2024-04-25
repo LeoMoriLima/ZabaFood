@@ -44,7 +44,7 @@ export default async (id) => {
 
 			const productValue = document.createElement("p");
 			productValue.classList.add("banner-product-value");
-			productValue.innerText = `R$ ${(newProduct.value * 1).toFixed(2)}`;
+			productValue.innerText = `R$ ${(data.value * 1).toFixed(2).replace(".", ",")}`;
 			textDiv.appendChild(productValue);
 
 

@@ -78,7 +78,18 @@ const updateCartProduct = async (id, quantity) => {
         if (!cartProduct) {
             throw new Error("Item não encontrado");
         }
-        await cartProductRepository.updateCartProduct(id, quantity);
+        const cartId = cartProduct[0].cart_id;
+        const oldQuantity = cartProduct[0].quantity;
+
+        let cartQuantity;
+        if ((oldQuantity - quantity) > 0) {
+            cartQuantity = oldQuantity - quantity;
+            await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'subtract');
+        } else { 
+            cartQuantity = quantity - oldQuantity;
+            await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'add');
+        }
+
     } catch (error) {
         console.log(error);
         throw error;
@@ -88,6 +99,9 @@ const updateCartProduct = async (id, quantity) => {
 const deleteCartProduct = async (id) => {
     try {
         const cartProduct = await cartProductRepository.getCartProductByID(id);
+        if (!cartProduct) {
+            throw new Error("Item não encontrado");
+        }
         const cartId = cartProduct[0].cart_id;
         const quantity = cartProduct[0].quantity;
         const value = parseFloat(cartProduct[0].price_unity);

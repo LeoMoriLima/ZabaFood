@@ -3,7 +3,7 @@ const cartRepository = require('../repository/cartRepository');
 const getCart = async (id) => {
     try {
         const cart = await cartRepository.getCartById(id);
-        if(!cart){
+        if (!cart) {
             throw new Error("Carrinho não encontrado");
         }
         return cart;
@@ -13,32 +13,41 @@ const getCart = async (id) => {
 }
 
 const getAllCartByUserID = async (userId) => {
-    try{
+    try {
         const cart = await cartRepository.getAllCartByUserID(userId);
-        if(!cart){
+        if (!cart) {
             throw new Error("Carrinho não encontrado");
         }
         return cart;
-    } catch (error){
+    } catch (error) {
         throw error;
     }
 }
 
 const getCartByUserID = async (userId) => {
-	try {
+    try {
         const cart = await cartRepository.getCartByUserID(userId);
-        if(!cart){
+        if (!cart) {
             throw new Error("Carrinho não encontrado");
         }
         return cart;
-	} catch (error) {
+    } catch (error) {
         throw error;
-	}
+    }
 }
 
 const getAllCarts = async () => {
     try {
         const carts = await cartRepository.getAllCarts();
+        return carts;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getAllCartsByInterval = async (min, max) => {
+    try {
+        const carts = await cartRepository.getAllCartsByInterval(min, max);
         return carts;
     } catch (error) {
         throw error;
@@ -57,7 +66,7 @@ const createCart = async (user_id) => {
 const updateCartStatus = async (status, id) => {
     try {
         const cart = await cartRepository.getCartById(id);
-        if(!cart){
+        if (!cart) {
             throw new Error("Carrinho não encontrado.");
         }
         await cartRepository.updateCartStatus(status, id);
@@ -103,6 +112,7 @@ module.exports = {
     getAllCartByUserID,
     getCartByUserID,
     getAllCarts,
+    getAllCartsByInterval,
     createCart,
     updateCartStatus,
     updateCartApproved,

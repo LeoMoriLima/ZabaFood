@@ -16,11 +16,11 @@ const getCartById = async (id) => {
 
 const getAllCartByUserID = async (userId) => {
     const client = await connectToDatabase();
-    const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC"
-    try{
+    const query = "SELECT * FROM cart WHERE user_id = $1 AND cart.status <> 'pending' ORDER BY created_at DESC;";
+    try {
         const result = await client.query(query, [userId]);
         return result.rows;
-    } catch (error){
+    } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
@@ -51,6 +51,21 @@ const getAllCarts = async () => {
     } catch (error) {
         console.log('Erro ao encontrar os carrinhos', error);
         throw error;
+    } finally {
+        client.end();
+    }
+}
+
+const getAllCartsByInterval = async (min, max) => {
+    const query = `SELECT cart.*, "users".name FROM cart JOIN "users" ON cart.user_id = "users".id WHERE cart.status <> 'pending' ORDER BY cart.created_at DESC LIMIT $1 OFFSET $2;
+    `;
+    const client = await connectToDatabase();
+    try {
+        const result = await client.query(query, [max - min + 1, min - 1]);
+        return result.rows;
+    } catch (error) {
+        console.log('Erro ao encontrar os carrinhos por intervalo:', error);
+        throw new Error('Erro ao encontrar os carrinhos por intervalo');
     } finally {
         client.end();
     }
@@ -132,6 +147,7 @@ module.exports = {
     getAllCartByUserID,
     getCartByUserID,
     getAllCarts,
+    getAllCartsByInterval,
     createNewCart,
     updateCartStatus,
     updateCartApproved,

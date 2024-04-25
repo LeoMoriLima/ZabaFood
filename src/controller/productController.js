@@ -122,6 +122,25 @@ const updateProduct = async (req, res) => {
     }
 }
 
+const updateDeletedStatus = async (req, res) =>{
+    const { id } = req.params;
+    try{
+        const admin = req.user.user_type.includes("admin");
+        if(!admin) {
+            return res.status(403).json({error: "Usuário sem permissão"});
+        };
+
+        if(!isUUID(id)){
+            return res.status(400).json({ error: "ID inválido" });
+        }
+
+        const product = await productServices.updateDeletedStatus(id);
+        return res.status(200).json({message: "Produto excluído com sucesso!"});
+    } catch(error){
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 const deleteProduct = async (req, res) => {
     const { id } = req.params;
     try {
@@ -174,6 +193,7 @@ module.exports = {
     getProductByName,
     createProduct,
     updateProduct,
+    updateDeletedStatus,
     deleteProduct,
     getProductByInterval
 }
