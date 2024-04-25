@@ -103,7 +103,7 @@ export default async (product) => {
             }
         }));
 
-        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "green-button", async () => {
+        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "add-green-button", async () => {
             if (userData.error) {
                 navigateTo("login");
                 return

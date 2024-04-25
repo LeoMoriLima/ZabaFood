@@ -32,7 +32,7 @@ export default async (id) => {
     recommendedProductsDiv.classList.add("product-card-recommended-div")
     main.appendChild(recommendedProductsDiv)
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         recommendedProductsDiv.appendChild(ProductCardRecommendedSkeleton(`skeleton-${i}`))
     }
 
@@ -84,7 +84,7 @@ const generateRecommended = async (append) => {
         return await ProductCardRecommended(product.id);
     }));
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         document.getElementById(`skeleton-${i}`).remove()
     }
 
