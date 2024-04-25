@@ -42,12 +42,12 @@ const getProductTypeByType = async (type) => {
     }
 }
 
-const createProductType = async (type) => {
+const createProductType = async (type, url_img) => {
     const client = await connectToDatabase();
-    const query = "INSERT INTO product_type (type) VALUES ($1)";
+    const query = "INSERT INTO product_type (type, url_img) VALUES ($1, $2)";
 
     try {
-        await client.query(query, [type]);
+        await client.query(query, [type, url_img]);
         console.log("Dados inseridos com sucesso");
     } catch (error) {
         console.log("Erro ao inserir dados:", error);
@@ -57,11 +57,11 @@ const createProductType = async (type) => {
     }
 }
 
-const updateProductType = async (id, type) => {
+const updateProductType = async (id, type, url_img) => {
     const client = await connectToDatabase();
-    const query = "UPDATE product_type SET type = $1 WHERE id = $2";
+    const query = "UPDATE product_type SET type = $1, url_img = $2 WHERE id = $3";
     try {
-        await client.query(query, [type, id]);
+        await client.query(query, [type, url_img, id]);
         console.log("Dados atualizados com sucesso");
     } catch (error) {
         console.log("Erro ao atualizar dados:", error);

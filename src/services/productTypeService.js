@@ -22,20 +22,20 @@ const getProductType = async (id) => {
     }
 }
 
-const createProductType = async (type) => {
+const createProductType = async (type, url_img) => {
     try {
         const productTypeExists = await productTypeRepository.getProductTypeByType(type);
         if (productTypeExists) {
             throw new Error("Esse tipo de produto já existe.");
         }
-        const productType = await productTypeRepository.createProductType(type);
+        const productType = await productTypeRepository.createProductType(type, url_img);
         return productType;
     } catch (error) {
         throw error;
     }
 }
 
-const updateProductType = async (id, type) => {
+const updateProductType = async (id, type, url_img) => {
     try {
         const productType = await productTypeRepository.getProductType(id);
         if (!productType) {
@@ -45,7 +45,7 @@ const updateProductType = async (id, type) => {
         if (productTypeExists) {
             throw new Error("Esse tipo de produto já existe.");
         }
-        await productTypeRepository.updateProductType(id, type);
+        await productTypeRepository.updateProductType(id, type, url_img);
     } catch (error) {
         console.log(error);
         throw error;

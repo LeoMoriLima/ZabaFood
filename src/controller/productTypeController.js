@@ -28,7 +28,7 @@ const getProductType = async (req, res) => {
 }
 
 const createProductType = async (req, res) => {
-    const { type } = req.body;
+    const { type, url_img } = req.body;
     try {
         const admin = req.user.user_type.includes("admin");
         if (!admin) {
@@ -39,7 +39,7 @@ const createProductType = async (req, res) => {
             return res.status(400).json({ error: "O tipo de produto é obrigatório!" });
         };
 
-        const newProductType = await productTypeService.createProductType(type);
+        const newProductType = await productTypeService.createProductType(type, url_img);
         return res.status(201).json({ message: 'Novo tipo de produto adicionado com sucesso', product: newProductType });
     } catch (error) {
         console.log(error);
@@ -49,7 +49,7 @@ const createProductType = async (req, res) => {
 
 const updateProductType = async (req, res) => {
     const { id } = req.params;
-    const { type } = req.body;
+    const { type, url_img} = req.body;
 
     try {
         const admin = req.user.user_type.includes("admin");
@@ -65,7 +65,7 @@ const updateProductType = async (req, res) => {
             return res.status(400).json({ error: "O tipo de produto é obrigatório" });
         };
 
-        const updatedProductType = await productTypeService.updateProductType(id, type);
+        const updatedProductType = await productTypeService.updateProductType(id, type, url_img);
         return res.status(200).json({ message: 'Tipo de roduto atualizado com sucesso', product: updatedProductType });
     } catch (error) {
         console.log(error);
