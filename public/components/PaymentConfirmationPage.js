@@ -10,11 +10,11 @@ export default () => {
 	mainDiv.appendChild(cardTextDiv);
 
 	const orderConfirmationText = document.createElement("p");
-	orderConfirmationText.classList.add("order-confirmation-text");
+	orderConfirmationText.classList.add("pc-order-confirmation-text");
 	orderConfirmationText.innerText = "Compra realizada!";
 	cardTextDiv.appendChild(orderConfirmationText);
 
-	const backToMainPageBtn = ButtonComponent("Voltar ao início", "green-button", () => {
+	const backToMainPageBtn = ButtonComponent("Voltar ao início", "pc-green-button", () => {
         router.navigate("/");
 	})
 	cardTextDiv.appendChild(backToMainPageBtn);
