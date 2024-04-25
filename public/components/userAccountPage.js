@@ -3,6 +3,7 @@ import userAddressContent from "./userAddressContent.js";
 import orderPageDiv from "./userOrdersContent.js";
 import userSettingContent from "./userSettingContent.js";
 import router from "../js/routes.js";
+import LoadingComponent from "./LoadingComponent.js";
 
 export default async () => {
     const userPageDiv = document.createElement("div");
@@ -12,52 +13,96 @@ export default async () => {
     leftMenuUserPage.classList.add("left-menu-user-page");
     userPageDiv.appendChild(leftMenuUserPage);
 
-    const userId = await getUserId();
-    const userData = await getUserInfo(userId);
+    const skeletonNavBar = document.createElement("div");
+    skeletonNavBar.classList.add("div-info-user-page")
+    skeletonNavBar.id = "skeleton-user-nav-bar"
+    leftMenuUserPage.appendChild(skeletonNavBar)
+    
+    const loadingNavBar = LoadingComponent(3);
+    skeletonNavBar.appendChild(loadingNavBar)
 
-    const divInfoUserPage = document.createElement("div");
-    divInfoUserPage.classList.add("div-info-user-page");
-    leftMenuUserPage.appendChild(divInfoUserPage)
+    setTimeout(async () => {
+        const userId = await getUserId();
+        const userData = await getUserInfo(userId);
 
-    const divUserInfo = document.createElement("div");
-    divUserInfo.classList.add("user-page-user-info");
-    divInfoUserPage.appendChild(divUserInfo);
+        skeletonNavBar.remove();
 
-    const userIcon = document.createElement("img");
-    userIcon.src = "/assets/images/menu-user-icon.svg";
-    userIcon.classList.add("user-icon-menu-info")
-    divUserInfo.appendChild(userIcon);
+        const divInfoUserPage = document.createElement("div");
+        divInfoUserPage.classList.add("div-info-user-page");
+        leftMenuUserPage.insertBefore(divInfoUserPage, leftMenuUserPage.firstChild);
 
-    const divTextUserInfo = document.createElement("div");
-    divTextUserInfo.classList.add("user-text-info-div");
-    divUserInfo.appendChild(divTextUserInfo);
+        const divUserInfo = document.createElement("div");
+        divUserInfo.classList.add("user-page-user-info");
+        divInfoUserPage.appendChild(divUserInfo);
 
-    const helloText = document.createElement("p");
-    helloText.classList.add("user-menu-hello-text");
-    helloText.innerText = "Olá, " + userData.name;
-    divTextUserInfo.appendChild(helloText);
+        const userIcon = document.createElement("img");
+        userIcon.src = "/assets/images/menu-user-icon.svg";
+        userIcon.classList.add("user-icon-menu-info")
+        divUserInfo.appendChild(userIcon);
 
-    const creditText = document.createElement("p");
-    creditText.classList.add("p-credit-text");
-    creditText.innerText = "Saldo : " + "R$" + userData.credit_balance;
-    divTextUserInfo.appendChild(creditText);
+        const divTextUserInfo = document.createElement("div");
+        divTextUserInfo.classList.add("user-text-info-div");
+        divUserInfo.appendChild(divTextUserInfo);
 
-    divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () =>{
-        router.navigate("/payment");
-    }))
+        const helloText = document.createElement("p");
+        helloText.classList.add("user-menu-hello-text");
+        helloText.innerText = "Olá, " + userData.name;
+        divTextUserInfo.appendChild(helloText);
+    
+        const creditText = document.createElement("p");
+        creditText.classList.add("p-credit-text");
+        creditText.innerText = "Saldo : " + "R$" + userData.credit_balance;
+        divTextUserInfo.appendChild(creditText);
+    
+        divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () =>{
+            router.navigate("/payment");
+        }))
+
+        const addressContent = await userAddressContent();
+        addressContent.style.display = "none";
+        const orderContent = await orderPageDiv();
+        const settingContent = await userSettingContent()
+        settingContent.style.display = "none";
+
+        userPageDiv.appendChild(orderContent);
+        userPageDiv.appendChild(addressContent);
+        userPageDiv.appendChild(settingContent);
+
+        aAddress.addEventListener("click", () =>{
+            aAddress.classList.add("nav-menu-user-page-selected");
+            aOrders.classList.remove("nav-menu-user-page-selected");
+            aSettings.classList.remove("nav-menu-user-page-selected");
+            addressContent.style.display = "flex";
+            orderContent.style.display = "none";
+            settingContent.style.display = "none"
+        })
+        
+        aOrders.addEventListener("click", () => {
+            aOrders.classList.add("nav-menu-user-page-selected");
+            aSettings.classList.remove("nav-menu-user-page-selected");
+            aAddress.classList.remove("nav-menu-user-page-selected");
+            orderContent.style.display = "flex";
+            addressContent.style.display = "none";
+            settingContent.style.display = "none";
+        })
+        
+        aSettings.addEventListener("click", () => { 
+            aSettings.classList.add("nav-menu-user-page-selected");
+            aOrders.classList.remove("nav-menu-user-page-selected");
+            aAddress.classList.remove("nav-menu-user-page-selected");
+            settingContent.style.display = "flex";
+            addressContent.style.display = "none";
+            orderContent.style.display = "none";
+    })
+    }, 0);
 
     const navMenuUserPage = document.createElement("nav");
     navMenuUserPage.classList.add("nav-menu-user-page");
     leftMenuUserPage.appendChild(navMenuUserPage);
-    
-    const addressContent = await userAddressContent();
-    addressContent.style.display = "none";
-    const orderContent = await orderPageDiv();
-    const settingContent = await userSettingContent()
-    settingContent.style.display = "none";
 
     const aOrders = document.createElement("a");
     const aOrdersIcon = document.createElement("img");
+    aOrdersIcon.classList.add("a-icon-menu-user");
     aOrdersIcon.src = "/assets/images/bag-icon.svg";
     aOrders.appendChild(aOrdersIcon);
 
@@ -70,6 +115,7 @@ export default async () => {
 
     const aAddress = document.createElement("a");
     const aAddressIcon = document.createElement("img");
+    aAddressIcon.classList.add("a-icon-menu-user");
     aAddressIcon.src = "/assets/images/address-icon.svg";
     aAddress.appendChild(aAddressIcon);
 
@@ -81,6 +127,7 @@ export default async () => {
 
     const aSettings = document.createElement("a");
     const aSettingsIcon = document.createElement("img");
+    aSettingsIcon.classList.add("a-icon-menu-user");
     aSettingsIcon.src = "/assets/images/settings-icon.svg";
     aSettings.appendChild(aSettingsIcon);
   
@@ -90,36 +137,6 @@ export default async () => {
     aSettings.classList.add("a-settings");
     navMenuUserPage.appendChild(aSettings);
 
-    aAddress.addEventListener("click", () =>{
-        aAddress.classList.add("nav-menu-user-page-selected");
-        aOrders.classList.remove("nav-menu-user-page-selected");
-        aSettings.classList.remove("nav-menu-user-page-selected");
-        addressContent.style.display = "flex";
-        orderContent.style.display = "none";
-        settingContent.style.display = "none"
-    })
-
-    aOrders.addEventListener("click", () => {
-        aOrders.classList.add("nav-menu-user-page-selected");
-        aSettings.classList.remove("nav-menu-user-page-selected");
-        aAddress.classList.remove("nav-menu-user-page-selected");
-        orderContent.style.display = "flex";
-        addressContent.style.display = "none";
-        settingContent.style.display = "none";
-    })
-
-    aSettings.addEventListener("click", () => { 
-        aSettings.classList.add("nav-menu-user-page-selected");
-        aOrders.classList.remove("nav-menu-user-page-selected");
-        aAddress.classList.remove("nav-menu-user-page-selected");
-        settingContent.style.display = "flex";
-        addressContent.style.display = "none";
-        orderContent.style.display = "none";
-    })
-
-    userPageDiv.appendChild(orderContent);
-    userPageDiv.appendChild(addressContent);
-    userPageDiv.appendChild(settingContent);
 
     leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {

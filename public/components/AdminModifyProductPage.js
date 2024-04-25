@@ -26,6 +26,7 @@ export default async () => {
         const skeletonDiv = document.createElement("div");
         skeletonDiv.classList.add("all-products-div-modify-page");
         skeletonDiv.id = `skeleton-${i}`
+        skeletonDiv.classList.add('skeleton-modify-product-page');
         modifyProductDiv.appendChild(skeletonDiv);
 
         const firstLoading = LoadingComponent(5);

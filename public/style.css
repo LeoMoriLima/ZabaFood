@@ -1507,11 +1507,13 @@ input:focus {
     font-family: var(--font-title);
     color: var(--color-secundary);
     font-weight: 700;
-    width: 10rem;
-    padding: 1.9rem;
+    font-size: 0.7rem;
+    width: 17vw;
+    height: 4.5vh;
     border: none;
     border-radius: 0.9rem;
     transition: all ease-in-out 0.3s;
+    margin-top: 20vh;
     cursor: pointer;
 }
 
@@ -1854,14 +1856,15 @@ input:focus {
 .user-page-div {
     display: flex;
     flex-direction: row;
+    height: 65vh;
 }
 
 .left-menu-user-page {
     display: flex;
     flex-direction: column;
-    width: 17.5rem;
+    justify-content: flex-start;
+    width: 20%;
     align-items: center;
-    height: 52rem;
     background-color: var(--color-secundary);
 }
 
@@ -1878,7 +1881,8 @@ input:focus {
     background-color: var(--color-primary);
     font-family: var(--font-title);
     width: 100%;
-    padding: 1.5rem;
+    font-size: 0.8rem;
+    padding: 1vh 1vh;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -1893,6 +1897,10 @@ input:focus {
     background-color: var(--color-emphasis);
 }
 
+.a-icon-menu-user{
+    transform: scale(0.8);
+}
+
 .nav-menu-user-page-selected {
     background-color: var(--color-emphasis);
 }
@@ -1903,7 +1911,7 @@ input:focus {
     flex-direction: column;
     justify-content: flex-start;
     gap: 20px;
-    width: 85%;
+    width: 80%;
     padding-left: 3rem;
     background-color: var(--color-white);
     max-height: 88vh;
@@ -1926,13 +1934,17 @@ input:focus {
 
 .order-page-title-div {
     text-align: left;
-    width: 25rem;
-    padding-top: 2rem;
+    width: 90%;
+    padding-top: 2vh;
 }
 
 .order-page-title {
     font-family: var(--font-text);
+    font-weight: 500;
     color: var(--color-secundary);
+    font-size: 1.7rem;
+    width: 90%;
+    padding-top: 2vh;
 }
 
 .order-div {
@@ -1943,8 +1955,8 @@ input:focus {
     align-items: center;
     justify-content: space-around;
     border-radius: 0.625rem;
-    width: 86rem;
-    height: 9.1rem;
+    width: 94%;
+    height: 88%;
     padding: 4vh 0 4vh 0;
 }
 
@@ -1963,7 +1975,10 @@ input:focus {
     border-bottom: 0.07rem solid var(--color-secundary);
     flex-direction: row;
     align-items: center;
-    padding: 3rem;
+    justify-content: flex-start;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
 }
 
 .order-product-name-div {
@@ -1977,22 +1992,22 @@ input:focus {
 }
 
 .circle-img-div {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 100%;
     overflow: hidden;
 }
 
 .order-img {
     overflow: hidden;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
 }
 
 .order-div-left {
     display: flex;
     flex-direction: column;
-    width: 12rem;
+    width: 20%;
     justify-content: space-between;
 }
 
@@ -2000,6 +2015,7 @@ input:focus {
     font-family: var(--font-title);
     font-weight: 700;
     color: var(--color-emphasis);
+    font-size: 0.8rem;
 }
 
 .order-id-label {
@@ -2014,6 +2030,7 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-dark-gray);
+    font-size: 0.8rem;
 }
 
 .order-date-label {
@@ -2032,11 +2049,18 @@ input:focus {
     width: 10rem;
 }
 
+.div-info-order{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
 .info-order-price-label {
     font-family: var(--font-title);
     font-weight: 700;
     color: var(--color-emphasis);
-    font-size: 1rem;
 }
 
 .info-order-price {
@@ -2049,7 +2073,6 @@ input:focus {
     font-family: var(--font-title);
     font-weight: 700;
     color: var(--color-emphasis);
-    font-size: 1rem;
 }
 
 .info-order-status {
@@ -2059,12 +2082,16 @@ input:focus {
 }
 
 .action-order-div {
+    width: 25%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .action-title {
     font-family: var(--font-title);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-emphasis);
     text-align: left;
@@ -2073,7 +2100,7 @@ input:focus {
 .track-shipping {
     position: relative;
     font-family: var(--font-title);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-primary);
     margin-bottom: 0.5rem;
@@ -2090,6 +2117,35 @@ input:focus {
 
 .order-arrow-down.rotate {
     transform: rotate(180deg);
+}
+
+.button-order-div{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.light-green-button-user {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 1.25rem;
+    color: var(--color-light-white);
+    cursor: pointer;
+    font-family: var(--font-text);
+    font-size: 0.8rem;
+    font-weight: 500;
+    height: 10%;
+    width: 100%;
+    transition: all ease-in-out 0.2s;
+    padding: 1vh;
+}
+
+.light-green-button-user:hover {
+    background-color: var(--color-secundary);
+    transform: scale(1.05);
 }
 
 .div-track {
@@ -2134,7 +2190,7 @@ input:focus {
 .drop-arrow-text {
     position: relative;
     font-family: var(--font-title);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-primary);
 }
@@ -2142,8 +2198,8 @@ input:focus {
 .div-order-products {
     display: flex;
     flex-direction: column;
-    width: 25rem;
-    max-height: 18rem;
+    width: 30vw;
+    max-height: 37vh;
     overflow-y: auto;
     position: absolute;
     z-index: 1;
@@ -2179,8 +2235,8 @@ input:focus {
     width: 100%;
     border-top: 0.07rem solid var(--color-white);
     border-bottom: 0.07rem solid var(--color-white);
-    padding: 1rem;
-    height: 10rem;
+    padding: 1vh;
+    height: 16vh;
 }
 
 .user-page-user-info {
@@ -2196,18 +2252,20 @@ input:focus {
 .user-text-info-div {
     margin-left: 0.5vw;
     text-align: center;
+    height: 100%;
+    width: 100%;
 }
 
 .user-menu-hello-text {
     font-family: var(--font-title);
     color: var(--color-white);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .p-credit-text {
     font-family: var(--font-text);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: var(--color-white);
 }
 
@@ -2216,8 +2274,9 @@ input:focus {
     font-family: var(--font-title);
     color: var(--color-secundary);
     font-weight: 700;
-    width: 12rem;
-    padding: 0.9rem;
+    font-size: 0.8rem;
+    width: 17vw;
+    height: 4.5vh;
     border: none;
     border-radius: 0.9rem;
     transition: all ease-in-out 0.3s;
@@ -2715,7 +2774,7 @@ input:focus {
 .address-page-div {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 80%;
     position: relative;
     align-items: center;
     gap: 3vh;
@@ -2725,7 +2784,7 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
-    font-size: 3rem;
+    font-size: 1.7rem;
     width: 90%;
     padding-top: 2vh;
 }
@@ -2734,28 +2793,28 @@ input:focus {
     display: flex;
     flex-direction: row;
     background-color: var(--color-light-white);
-    padding: 5.3vh 3.6vw;
     border-radius: 10px;
-    width: 72vw;
-    height: 59vh;
+    width: 90%;
+    height: 70%;
     justify-content: space-around;
 }
 
 .left-address-page-div {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 1.5vh;
     align-items: center;
     height: 100%;
+    width: 50%;
     border-right: 2px solid var(--color-white);
-    padding-right: 3vw;
+    padding: 1vh 1vw;
 }
 
 .h2-title-address-page {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
-    font-size: 2rem;
+    font-size: 1.4rem;
     width: 100%;
 }
 
@@ -2771,6 +2830,23 @@ input:focus {
     padding-left: 0.83vw;
 }
 
+#img-city-input,
+#img-state-input,
+#img-street-input,
+#img-number-input,
+#img-complement-input {
+    display: none;
+}
+
+#div-state-input,
+#div-city-input,
+#div-street-input,
+#div-number-input,
+#div-complement-input {
+    width: 100%;
+    height: 10%;
+}
+
 #input-postal-code,
 #state-input,
 #city-input,
@@ -2780,7 +2856,7 @@ input:focus {
     background-color: var(--color-light-white);
     color: var(--color-secundary);
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: none;
     border-radius: 10px;
     text-indent: 0.5rem;
@@ -2794,13 +2870,14 @@ input:focus {
 #complement-input::placeholder {
     color: var(--color-secundary);
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-indent: 0.5rem;
 }
 
 .button-search-postal-code {
-    height: 4.9vh;
+    height: 3.9vh;
     width: 6.5vw;
+    font-size: 0.6rem;
     border: none;
     border-radius: 14px;
     background-color: var(--color-primary);
@@ -2816,15 +2893,9 @@ input:focus {
     transform: scale(1.05);
 }
 
-.address-notice-p {
-    font-family: var(--font-text);
-    color: var(--color-secundary);
-    font-size: 1rem;
-}
-
 .button-create-address {
     height: 4.9vh;
-    width: 6.5vw;
+    width: 7.5vw;
     border: none;
     border-radius: 14px;
     background-color: var(--color-primary);
@@ -2842,45 +2913,48 @@ input:focus {
 .right-address-page-div {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 42vh;
     gap: 1vh;
 }
 
 .address-div {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     border: 1px solid var(--color-secundary);
     text-align: left;
-    width: 31.5vw;
-    height: 11vh;
+    width: 90%;
+    height: 25%;
     position: relative;
 }
 
 .icon-address-img {
-    padding: 1.19vh 0.52vw;
+    padding: 1vh;
+    transform: scale(0.8);
 }
 
 .info-address-div {
-    width: 23vw;
-    padding-top: 1.19vh;
+    width: 54%;
 }
 
 .street-text-info {
     font-family: var(--font-text);
-    font-size: 1.125rem;
+    font-size: 0.9rem;
     color: var(--color-secundary);
     font-weight: 500;
 }
 
 .text-state-city-address {
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--color-secundary);
 }
 
 .text-postal-complement-address {
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--color-secundary);
 }
 
@@ -2895,6 +2969,7 @@ input:focus {
 
 .icon-address-action {
     cursor: pointer;
+    transform: scale(0.8);
 }
 
 .address-right-notice {
@@ -2905,8 +2980,8 @@ input:focus {
 
 
 .page-modal-div {
-    height: 76vh;
-    width: 87.5vw;
+    height: 100%;
+    width: 100%;
     background-color: #3333335d;
     position: absolute;
     flex-direction: row;
@@ -2919,13 +2994,13 @@ input:focus {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 32vw;
-    height: 51vh;
-    background-color: var(--color-secundary);
+    width: 50%;
+    height: 74%;
+    background-color: var(--color-white);
     z-index: 1;
     gap: 1vh;
     justify-content: center;
-    padding: 1vh 6.5vw;
+    padding: 1vh;
     border-radius: 10px;
     text-align: center;
     align-items: center;
@@ -2934,8 +3009,8 @@ input:focus {
 .h2-update-modal {
     font-family: var(--font-text);
     font-weight: 500;
-    color: var(--color-white);
-    font-size: 2rem;
+    color: var(--color-secundary);
+    font-size: 1.4rem;
 }
 
 .modal-div-postal-code {
@@ -2950,42 +3025,49 @@ input:focus {
     top: 0;
     right: 0;
     padding: 2vh;
+    transform: scale(0.8);
 }
 
-#modal-input-postal-code,
+.modal-div-postal-code{
+    width: 64%;
+}
+
 .modal-input {
-    height: 4.9vh;
-    width: 19vw;
-    font-size: 1rem;
+    height: 10%;
+    width: 64%;
+    font-size: 0.8rem;
     font-family: var(--font-text);
     color: var(--color-secundary);
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     text-indent: 0.5rem;
     background-color: var(--color-light-white);
 }
 
-#modal-input-postal-code {
-    width: 12vw;
+.input-postal-code {
+    height: 100%;
+    width: 64%;
+    font-size: 0.8rem;
+    font-family: var(--font-text);
+    color: var(--color-secundary);
+    border: none;
+    border-radius: 5px;
+    text-indent: 0.5rem;
+    background-color: var(--color-light-white);
 }
 
-#modal-input-postal-code::placeholder,
+.input-postal-code::placeholder,
 .modal-input::placeholder {
     color: var(--color-secundary);
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-indent: 0.5rem;
-}
-
-.modal-notice-address {
-    font-family: var(--font-text);
-    font-size: 1rem;
-    color: var(--color-white);
 }
 
 .button-update-address {
     height: 4.9vh;
-    width: 6.5vw;
+    width: 7.5vw;
+    font-size: 0.8rem;
     border: none;
     border-radius: 14px;
     background-color: var(--color-primary);
@@ -3008,7 +3090,7 @@ input:focus {
     flex-direction: column;
     position: relative;
     background-color: var(--color-white);
-    width: 85%;
+    width: 80%;
     align-items: center;
     gap: 3vh;
 }
@@ -3017,7 +3099,7 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
-    font-size: 3rem;
+    font-size: 1.7rem;
     width: 90%;
     padding-top: 2vh;
 }
@@ -3026,17 +3108,17 @@ input:focus {
     background-color: var(--color-light-white);
     display: flex;
     flex-direction: column;
-    padding: 5.3vh 3.6vw;
     border-radius: 10px;
-    height: 59vh;
-    width: 72vw;
+    height: 80%;
+    width: 90%;
     text-align: center;
 }
 
 .left-setting-page-div {
     display: flex;
     flex-direction: column;
-    gap: 3vh;
+    padding: 1vh;
+    gap: 1vh;
     align-items: center;
 }
 
@@ -3044,15 +3126,16 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
-    font-size: 2rem;
+    font-size: 1.4rem;
     width: 100%;
+    margin-bottom: 4vh;
 }
 
 .div-user-setting-page-info {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
-    width: 30vw;
+    gap: 1vh;
+    width: 60%;
 }
 
 .user-info-setting-div {
@@ -3065,30 +3148,31 @@ input:focus {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    height: 60%;
 }
 
 .user-info-text-setting-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
-    font-size: 1.56rem;
-    font-weight: 500;
+    font-size: 1rem;
 }
 
 .user-info-span-setting-page {
     font-family: var(--font-text);
     color: var(--color-secundary);
-    font-size: 1.56rem;
-    font-weight: 500;
+    font-size: 1rem;
     margin-left: 1vw;
 }
 
 .edit-setting-page-mode {
     background-color: var(--color-white);
     border-radius: 5px;
+    padding-right: 8vw;
 }
 
 .edit-icon-setting-page {
     cursor: pointer;
+    transform: scale(0.8);
 }
 
 .user-setting-page-notice {
@@ -3102,11 +3186,13 @@ input:focus {
     flex-direction: row;
     gap: 20px;
     justify-content: center;
+    margin-bottom: 1vh;
 }
 
 .user-setting-save-button {
-    height: 4.9vh;
-    width: 6.5vw;
+    height: 4vh;
+    width: 10.5vw;
+    font-size: 0.7rem;
     border: none;
     border-radius: 14px;
     background-color: var(--color-primary);
@@ -3129,8 +3215,9 @@ input:focus {
 }
 
 .button-erase-account-setting-page {
-    height: 4.9vh;
-    width: 6.5vw;
+    height: 4vh;
+    width: 10.5vw;
+    font-size: 0.7rem;
     border: none;
     border-radius: 14px;
     background-color: var(--color-emphasis);
@@ -3147,8 +3234,8 @@ input:focus {
 }
 
 .user-setting-page-modal-div {
-    height: 88.3vh;
-    width: 87.5vw;
+    height: 100%;
+    width: 100%;
     background-color: #3333335d;
     position: absolute;
     flex-direction: row;
@@ -3161,13 +3248,13 @@ input:focus {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 32vw;
-    height: 51vh;
+    width: 50%;
+    height: 70%;
     background-color: var(--color-light-white);
     z-index: 1;
     gap: 1vh;
     justify-content: center;
-    padding: 1vh 6.5vw;
+    padding: 1vh;
     border-radius: 10px;
     text-align: center;
     align-items: center;
@@ -3178,7 +3265,7 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-emphasis);
-    font-size: 3rem;
+    font-size: 2rem;
     width: 90%;
     padding-top: 2vh;
 }
@@ -3187,7 +3274,7 @@ input:focus {
     font-family: var(--font-text);
     font-weight: 500;
     color: var(--color-secundary);
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .action-modal-setting-page-div {
@@ -3197,10 +3284,11 @@ input:focus {
 }
 
 .action-button-yes-setting-page {
-    width: 11vw;
+    width: 7.5vw;
+    height: 4.5vh;
+    font-size: 0.7rem;
     border: none;
     border-radius: 12px;
-    height: 6.52vh;
     background-color: var(--color-primary);
     font-family: var(--font-text);
     color: var(--color-white);
@@ -3216,8 +3304,9 @@ input:focus {
 }
 
 .action-button-no-setting-page {
-    width: 11vw;
-    height: 6.52vh;
+    width: 7.5vw;
+    height: 4.5vh;
+    font-size: 0.7rem;
     border: none;
     border-radius: 12px;
     background-color: var(--color-emphasis);
@@ -3734,6 +3823,7 @@ input:focus {
 .all-product-type-top {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: var(--color-secundary);
     padding: 1vh 1vw;
     width: 100%;
@@ -3751,7 +3841,30 @@ input:focus {
 
 .div-body-product-type {
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     width: 100%;
+}
+
+#skeleton-product-type-div{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(to right, transparent 0%, #f0f0f0 50%, transparent 100%);
+    animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100vw;
+    }
+    100% {
+        background-position: 100vw;
+    }
 }
 
 .div-info-body-product-type {
@@ -4328,4 +4441,25 @@ input:focus {
     width: 14vw;
     padding: 1vh;
     opacity: 0.8;
+}
+
+/* Skeleton */
+
+.skeleton-modify-product-page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, transparent 0%, #f0f0f0 50%, transparent 100%);
+    animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100vw;
+    }
+    100% {
+        background-position: 100vw;
+    }
 }

@@ -1,4 +1,5 @@
 import ButtonComponent from "./ButtonComponent.js";
+import LoadingComponent from "./LoadingComponent.js";
 import inputEntry from "./inputEntry.js";
 
 export default async () =>{
@@ -52,34 +53,44 @@ export default async () =>{
     divBodyProductType.classList.add("div-body-product-type");
     allProductTypeDiv.appendChild(divBodyProductType);
 
-    setTimeout(async() =>{        
+    addProductTypeDiv.appendChild(ButtonComponent("Criar", "product-type-button-send", (async () => {
+        const name = document.getElementById("input-product-type-name");
+        try{
+            const response = await fetch('/api/product_type', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: name.value,
+                })
+            })
+            divBodyProductType.innerHtml = ""
+        } catch (error){
+            return;
+        } finally {
+            name.value = "";
+            setTimeout(async () => {
+                const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
+                divBodyProductType.appendChild(rightPage);
+            }, 0);
+        }
+    })));
+
+    setTimeout(async() =>{
+        const skeletonDiv = document.createElement("div");
+        skeletonDiv.classList.add("product-type-page-right-div");
+        skeletonDiv.id = `skeleton-product-type-div`
+        divBodyProductType.appendChild(skeletonDiv);
+
+        const loading = LoadingComponent(5);
+        skeletonDiv.appendChild(loading);
+        
         const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
         divBodyProductType.appendChild(rightPage);
 
+        skeletonDiv.remove();
 
-        addProductTypeDiv.appendChild(ButtonComponent("Criar", "product-type-button-send", (async () => {
-            const name = document.getElementById("input-product-type-name");
-            try{
-                const response = await fetch('/api/product_type', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        type: name.value,
-                    })
-                })
-                divBodyProductType.innerHtml = ""
-            } catch (error){
-                return;
-            } finally {
-                name.value = "";
-                setTimeout(async () => {
-                    const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
-                    divBodyProductType.appendChild(rightPage);
-                }, 0);
-            }
-        })));
     },0);
 
     return productTypeDiv;
