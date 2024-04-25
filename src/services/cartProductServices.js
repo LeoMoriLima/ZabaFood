@@ -53,13 +53,14 @@ const getCartByCartId = async (cartId) => {
 const createCartProduct = async (cart_id, product_id, quantity) => {
     try {
         const cartProducts = await cartProductRepository.getCartProductsByCartId(cart_id);
-
         const foundProduct = cartProducts.find(product => product.product_id === product_id);
 
         if (foundProduct) {
             const cartProductId = foundProduct.id;
             const newQuantity = quantity + foundProduct.quantity;
-            const result = await cartProductRepository.updateCartProduct(cartProductId, newQuantity);
+            // const cartQuantity = quantity - foundProduct.quantity;
+            const result = await cartProductRepository.updateCartProduct(cartProductId, cart_id, newQuantity, quantity, "add");
+
             return result;
         } else {
             const result = await cartProductRepository.createNewCartProduct(cart_id, product_id, quantity);
@@ -85,11 +86,10 @@ const updateCartProduct = async (id, quantity) => {
         if ((oldQuantity - quantity) > 0) {
             cartQuantity = oldQuantity - quantity;
             await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'subtract');
-        } else { 
+        } else {
             cartQuantity = quantity - oldQuantity;
             await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'add');
         }
-
     } catch (error) {
         console.log(error);
         throw error;
@@ -117,15 +117,6 @@ const deleteCartProduct = async (id) => {
     }
 }
 
-const testCartProductTransaction = async (cart_id, product_id, quantity) => {
-    try {
-        await cartProductRepository.cartProductTransaction(cart_id, product_id, quantity);
-        return { success: true };
-    } catch (error) {
-        throw error;
-    }
-}
-
 module.exports = {
     getCartProduct,
     getCartProductsByUserId,
@@ -134,5 +125,4 @@ module.exports = {
     createCartProduct,
     updateCartProduct,
     deleteCartProduct,
-    testCartProductTransaction
 }

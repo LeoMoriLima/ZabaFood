@@ -101,12 +101,32 @@ const updateCartStatus = async (status, id) => {
 
 const updateCartApproved = async (id) => {
     const client = await connectToDatabase();
-    const query = 'UPDATE cart SET approved_at = NOW(), updated_at = NOW() WHERE id = $1';
     try {
-        await client.query(query, [id]);
-        console.log('Status do pedido atualizado com sucesso!');
+        await client.query('BEGIN');
+
+        const updatedCart = await client.query("UPDATE cart SET approved_at = NOW(), updated_at = NOW() WHERE id = $1 RETURNING *", [id])
+
+        const cartProducts = await client.query('SELECT * FROM cart_product WHERE cart_id = $1', [id]);
+
+        for (const cartProduct of cartProducts.rows) {
+
+            const productId = cartProduct.product_id;
+            const quantity = cartProduct.quantity;
+
+            const product = await client.query('SELECT * FROM product WHERE id = $1', [productId]);
+            const stock = product.rows[0].stock;
+            if (stock < quantity) {
+                throw new Error(`Estoque de ${product.name} insuficiente`);
+            }
+
+
+            const updatedProduct = await client.query('UPDATE product SET stock = stock - $1 WHERE id = $2 RETURNING *', [quantity, productId]);
+
+        }
+
+        await client.query('COMMIT');
     } catch (error) {
-        console.log('Erro ao atualizar status do carrinho:', error);
+        await client.query('ROLLBACK');
         throw error;
     } finally {
         client.end();

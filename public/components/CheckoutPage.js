@@ -216,7 +216,7 @@ export default async () => {
 							status: "approved",
 						})
 					});
-		
+
 					const newCartResponse = await fetch("/api/cart", {
 						method: "POST",
 						headers: {
@@ -250,6 +250,7 @@ export default async () => {
 			}
 			
 		});
+		payNowBtn.id = cartId
 		payNowBtnDiv.appendChild(payNowBtn);
 
 		const paymentMethodsDiv = document.createElement("div");

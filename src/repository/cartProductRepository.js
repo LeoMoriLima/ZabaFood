@@ -68,13 +68,12 @@ const deleteCartProduct = async (id, cartId, totalProductValue) => {
 
 const updateCartProduct = async (id, cartId, quantity, cartQuantity, operation) => {
     const client = await connectToDatabase();
-
     try {
         await client.query('BEGIN');
 
         // Seleciona o produto do carrinho de acordo com o id de cart_product
         const cartProduct = await client.query('SELECT * FROM cart_product WHERE id = $1', [id]);
-        
+
         // Atualiza a quantidade e o valor total do produto do carrinho
         const totalItem = cartProduct.rows[0].price_unity * quantity;
         await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3', [quantity, totalItem, id]);
@@ -132,43 +131,11 @@ const createNewCartProduct = async (cart_id, product_id, quantity) => {
     }
 }
 
-const cartProductTransaction = async (cart_id, product_id, quantity) => {
-    const client = await connectToDatabase();
-    try {
-        await client.query('BEGIN');
-
-        // Verificar se há estoque suficiente
-        const product = await client.query('SELECT * FROM product WHERE id = $1', [product_id]);
-        const stock = product.rows[0].stock;
-        if (stock < quantity) {
-            throw new Error('Estoque insuficiente');
-        }
-
-        // Atualizar o estoque
-        await client.query('UPDATE product SET stock = stock - $1 WHERE id = $2', [quantity, product_id]);
-
-        const price_unity = product.rows[0].value;
-
-        // Adicionar item ao carrinho
-        await client.query(
-            'INSERT INTO cart_product (cart_id, product_id, quantity, price_unity, total_item) VALUES ($1, $2, $3, $4, $5)',
-            [cart_id, product_id, quantity, price_unity, quantity * price_unity]
-        );
-        await client.query('COMMIT');
-    } catch (error) {
-        await client.query('ROLLBACK');
-        throw error;
-    } finally {
-        await client.end();
-    }
-}
-
 module.exports = {
     createNewCartProduct,
     getCartProductByID,
     getCartProductsByCartId,
     getAllCartProduct,
     updateCartProduct,
-    deleteCartProduct,
-    cartProductTransaction
+    deleteCartProduct
 }
