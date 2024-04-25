@@ -3869,6 +3869,68 @@ input:focus {
     text-align: center;
 }
 
+.div-image-file-product-type{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding-left: 1.6vw;
+}
+
+.image-preview-product-type{
+    border: 1px solid var(--color-secundary);
+    border-radius: 0.8rem;
+    height: 5.5rem;
+    width: 5.5rem;
+    overflow: hidden;
+}
+
+.div-image-text-product-type{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.p-file-admin-product-type{
+    color: var(--color-secundary);
+    font-family: var(--font-text);
+    font-size: 0.7rem;
+}
+
+.label-file-product-type{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 18vw;
+    height: 4vh;
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    color: var(--color-light-white);
+    background-color: var(--color-primary);
+    border-radius: 0.5rem;
+    transition: all ease-in 0.3s;
+    cursor: pointer;
+}
+
+.label-file-product-type:hover {
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+#input-admin-file-product-type{
+    display: none;
+}
+
+#input-admin-file-product-type-modal{
+    display: none;
+}
+
+
 .h2-product-type-div {
     font-family: var(--font-text);
     font-weight: 500;
@@ -3896,10 +3958,11 @@ input:focus {
 }
 
 .product-type-button-send {
-    height: 4.9vh;
-    width: 6.5vw;
+    height: 4vh;
+    width: 8.5vw;
+    font-size: 0.8rem;
     border: none;
-    border-radius: 14px;
+    border-radius: 8px;
     background-color: var(--color-primary);
     color: var(--color-white);
     transition: all ease-in-out 0.3s;
@@ -4016,8 +4079,8 @@ input:focus {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    width: 45%;
-    height: 40%;
+    width: 58%;
+    height: 60%;
     background-color: var(--color-white);
     z-index: 1;
     gap: 1vh;
@@ -4026,6 +4089,46 @@ input:focus {
     border-radius: 10px;
     text-align: center;
     align-items: center;
+}
+
+.image-preview-product-type-modal{
+    border: 1px solid var(--color-secundary);
+    border-radius: 0.8rem;
+    height: 4.5rem;
+    width: 4.5rem;
+    overflow: hidden;
+}
+
+.label-file-product-type-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 16vw;
+    height: 4vh;
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    color: var(--color-light-white);
+    background-color: var(--color-primary);
+    border-radius: 0.5rem;
+    transition: all ease-in 0.3s;
+    cursor: pointer;
+}
+
+.label-file-product-type-modal:hover {
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.div-image-file-product-type-modal{
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
 }
 
 #div-input-product-type-modal-content{
@@ -4042,7 +4145,7 @@ input:focus {
     border-radius: 0.5rem;
     color: var(--color-secundary);
     text-indent: 1rem;
-    margin-left: 2vw;
+    margin-left: 4vw;
     font-size: 0.7rem;
 }
 
@@ -4052,14 +4155,16 @@ input:focus {
 }
 
 .product-type-modal-button {
-    height: 4.9vh;
-    width: 6.5vw;
+    height: 4vh;
+    width: 10.5vw;
+    font-size: 0.8rem;
     border: none;
-    border-radius: 14px;
+    border-radius: 8px;
     background-color: var(--color-primary);
     color: var(--color-white);
     transition: all ease-in-out 0.3s;
     cursor: pointer;
+    margin-top: 2vh;
 }
 
 .product-type-modal-button:hover {

@@ -1,5 +1,6 @@
 import ButtonComponent from "./ButtonComponent.js";
 import LoadingComponent from "./LoadingComponent.js";
+import MessageComponent from "./MessageComponent.js";
 import inputEntry from "./inputEntry.js";
 
 export default async () =>{
@@ -23,6 +24,55 @@ export default async () =>{
     h2AddProductType.innerText = "Adicionar novo tipo de produto"
     h2AddProductType.classList.add("h2-product-type-div");
     addProductTypeDiv.appendChild(h2AddProductType);
+
+    const divImageFile = document.createElement("div");
+    divImageFile.classList.add("div-image-file-product-type");
+    addProductTypeDiv.appendChild(divImageFile);
+
+    const imagePreview = document.createElement("div");
+    imagePreview.classList.add("image-preview-product-type");
+    divImageFile.appendChild(imagePreview);
+
+    const divImageText = document.createElement("div");
+    divImageText.classList.add("div-image-text-product-type");
+    divImageFile.appendChild(divImageText);
+
+    const pFile = document.createElement("p");
+    pFile.innerText = "Ícone da categoria";
+    pFile.classList.add("p-file-admin-product-type");
+    divImageText.appendChild(pFile)
+
+    const labelFile = document.createElement("label");
+    labelFile.innerText = "Selecionar arquivo";
+    labelFile.classList.add("label-file-product-type");
+    labelFile.setAttribute("for", "input-admin-file-product-type");
+    divImageText.appendChild(labelFile)
+
+    const imageInput = document.createElement("input");
+    imageInput.type = "file";
+    imageInput.id = "input-admin-file-product-type";
+    divImageText.appendChild(imageInput);
+    
+    imageInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+
+        if(file){
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const imageUrl = e.target.result;
+                const img = document.createElement("img");
+                img.src = imageUrl;
+                img.alt = "Preview Image";
+                img.style.maxWidth = "100%";
+                img.style.height = "100%";
+                imagePreview.innerHTML = "";
+                imagePreview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        };
+    });
 
     addProductTypeDiv.appendChild(inputEntry("Nome do produto", "text", "input-product-type-name", "none"))
 
@@ -55,26 +105,45 @@ export default async () =>{
 
     addProductTypeDiv.appendChild(ButtonComponent("Criar", "product-type-button-send", (async () => {
         const name = document.getElementById("input-product-type-name");
-        try{
-            const response = await fetch('/api/product_type', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    type: name.value,
+        const formData = new FormData();
+        formData.append("name", name.value);
+        formData.append("file", imageInput.files[0])
+        try {
+
+            const response = await fetch('/upload_file', {
+                method: 'POST',
+                body: formData,
+            });
+            const image = await response.json();
+
+            try{
+
+                const response = await fetch('/api/product_type', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        type: name.value,
+                        url_img: `/assets/uploads/${image.filename}`
+                    })
                 })
-            })
-            divBodyProductType.innerHtml = ""
-        } catch (error){
+                divBodyProductType.innerHtml = ""
+            } catch (error){
+                return;
+            } finally {
+                name.value = "";
+                imageInput.value = "";
+                imagePreview.innerHTML = "";
+                setTimeout(async () => {
+                    const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
+                    divBodyProductType.appendChild(rightPage);
+                }, 0);
+            }
+        }catch(error){
+            console.log(error);
             return;
-        } finally {
-            name.value = "";
-            setTimeout(async () => {
-                const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
-                divBodyProductType.appendChild(rightPage);
-            }, 0);
-        }
+            }
     })));
 
     setTimeout(async() =>{
@@ -150,6 +219,8 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
         editIcon.addEventListener("click", async () =>{
             modalProductType.style.display = "flex"
 
+            const data = await getProductType(type.id);
+
             const modalContent = document.createElement("div");
             modalContent.classList.add("modal-content-product-type");
             modalProductType.appendChild(modalContent)
@@ -162,6 +233,67 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
             h2ModalProductType.innerText = "Atualizar tipo de produto";
             h2ModalProductType.classList.add("h2-product-type-div");
             modalContent.appendChild(h2ModalProductType)
+
+            const divImageFileModal = document.createElement("div");
+            divImageFileModal.classList.add("div-image-file-product-type-modal");
+            modalContent.appendChild(divImageFileModal);
+
+            const imagePreviewModal = document.createElement("div");
+            imagePreviewModal.classList.add("image-preview-product-type-modal");
+            divImageFileModal.appendChild(imagePreviewModal);
+
+            const divImageTextModal = document.createElement("div");
+            divImageTextModal.classList.add("div-image-text-product-type");
+            divImageFileModal.appendChild(divImageTextModal);
+
+            const pFileModal = document.createElement("p");
+            pFileModal.innerText = "Ícone da categoria";
+            pFileModal.classList.add("p-file-admin-product-type");
+            divImageTextModal.appendChild(pFileModal)
+
+            const labelFileModal = document.createElement("label");
+            labelFileModal.innerText = "Selecionar arquivo";
+            labelFileModal.classList.add("label-file-product-type-modal");
+            labelFileModal.setAttribute("for", "input-admin-file-product-type-modal");
+            divImageTextModal.appendChild(labelFileModal)
+
+            const imageInputModal = document.createElement("input");
+            imageInputModal.type = "file";
+            imageInputModal.id = "input-admin-file-product-type-modal";
+            divImageTextModal.appendChild(imageInputModal);
+            
+            imageInputModal.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+
+                if(file){
+                    const reader = new FileReader();
+                    imagePreviewModal.innerHTML = "";
+
+                    reader.onload = (e) => {
+                        const imageUrl = e.target.result;
+                        const img = document.createElement("img");
+                        img.src = imageUrl;
+                        img.alt = "Preview Image";
+                        img.style.maxWidth = "100%";
+                        img.style.height = "100%";
+                        imagePreviewModal.innerHTML = "";
+                        imagePreviewModal.appendChild(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                };
+            });
+
+            const imgProductModal = document.createElement("img");
+            imgProductModal.alt = "Preview Image";
+            imgProductModal.style.maxWidth = "100%";
+            imgProductModal.style.height = "100%";
+            imagePreviewModal.appendChild(imgProductModal);
+            if (typeof data.url_img === 'string' && data.url_img.trim() !== '') {
+                imgProductModal.src = data.url_img;
+            } else {
+                imgProductModal.remove();
+            }
 
             modalContent.appendChild(inputEntry(type.type, "text", "input-product-type-modal-content", "none" ))
 
@@ -177,23 +309,52 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
 
             modalContent.appendChild(ButtonComponent("Atualizar", "product-type-modal-button", (async () =>{
                 const productTypeName = document.getElementById("input-product-type-modal-content");
+
+                const formData = new FormData();
+                formData.append("name", productTypeName.value);
+                formData.append("file", imageInputModal.files[0]);
+
                 try{
-                    const updateResponse = await fetch(`/api/product_type/${type.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            type: productTypeName.value || type.type
+                    let image;
+
+                    if (!imageInputModal.files[0]) {
+                        const src = product.url_img;
+                        image = src.split("/").pop();
+                    } else {
+                        const response = await fetch("/upload_file", {
+                            method: "POST",
+                            body: formData,
+                        });
+                        const responseJson = await response.json();
+                        image = responseJson.filename;
+                    }
+
+                    try{
+                        const updateResponse = await fetch(`/api/product_type/${type.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                type: productTypeName.value || type.type,
+                                url_img: `../assets/uploads/${image}`,
+                            })
                         })
-                    })
-                } catch (error){
-                    return;
-                } finally {
-                    modalContent.remove();
-                    modalProductType.style.display = "none";
-                    pInfo.innerText = productTypeName.value
-                }
+
+                        if(updateResponse.ok){
+                            modalContent.remove();
+                            modalProductType.style.display = "none";
+                            pInfo.innerText = productTypeName.value
+                            MessageComponent("Categoria do produto atualizada com sucesso!", true)
+                        } else {
+                            MessageComponent("Erro ao atualizar a categoria do produto!", false)
+                        }
+                    } catch (error){
+                        return;
+                    } 
+            }catch (error){
+                console.log(error)
+            }
             })))
         })
 
@@ -212,7 +373,10 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
                 });
 
                 if(deleteResponse.ok) {
+                    MessageComponent("Categoria excluida com sucesso!", true)
                     divInfo.remove()
+                } else {
+                    MessageComponent("Erro ao excluir categoria!", false)
                 }
 
             } catch(error){
@@ -227,3 +391,17 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
 }
 return rightPageDiv;
 }
+
+async function getProductType(id){
+    try{
+        const response = await fetch(`/api/product_type/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+        return data;
+    } catch(error){
+        return
+    }}
