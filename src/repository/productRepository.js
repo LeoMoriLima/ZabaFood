@@ -29,7 +29,7 @@ const getProduct = async (id) => {
 }
 
 const getAllProduct = async () => {
-    const query = 'SELECT * FROM product';
+    const query = 'SELECT * FROM product ORDER BY created_at ASC';
     const client = await connectToDatabase();
     try {
         const result = await client.query(query);
@@ -70,6 +70,20 @@ const updateProduct = async (id, name, value, url_img, stock, type_id, descripti
     }
 }
 
+const updateDeletedStatus = async (id) => {
+    const client = await connectToDatabase();
+    const query = 'UPDATE product SET deleted = true WHERE id = $1';
+    try{
+        await client.query(query, [id]);
+        console.log('Produto deletado com sucesso');
+    } catch (error){
+        console.log('Erro ao deletar dados:', error);
+        throw new Error ('Erro ao deletar o produto');
+    } finally {
+        client.end();
+    }
+}
+
 const deleteProduct = async (id) => {
     const client = await connectToDatabase();
     const query = 'DELETE FROM product WHERE id = $1';
@@ -86,7 +100,7 @@ const deleteProduct = async (id) => {
 
 
 const getProductByInterval = async (min, max) => {
-    const query = 'SELECT * FROM product ORDER BY created_at ASC LIMIT $1 OFFSET $2';
+    const query = 'SELECT * FROM product WHERE deleted <> true ORDER BY created_at ASC LIMIT $1 OFFSET $2';
     const client = await connectToDatabase();
     try {
         const result = await client.query(query, [max - min + 1, min - 1]);
@@ -100,7 +114,7 @@ const getProductByInterval = async (min, max) => {
 }
 
 const getProductByIntervalAndType = async (min, max, type) => {
-    const query = 'SELECT * FROM product WHERE type_id = $1 ORDER BY created_at ASC LIMIT $2 OFFSET $3';
+    const query = 'SELECT * FROM product WHERE type_id = $1 and deleted <> true ORDER BY created_at ASC LIMIT $2 OFFSET $3';
     const client = await connectToDatabase();
     try {
         const result = await client.query(query, [type, max - min + 1, min - 1]);
@@ -114,7 +128,7 @@ const getProductByIntervalAndType = async (min, max, type) => {
 }
 
 const getProductByIntervalAndSearch = async (min, max, search) => {
-    const query = 'SELECT * FROM product WHERE LOWER(name) LIKE LOWER($1) ORDER BY created_at ASC LIMIT $2 OFFSET $3';
+    const query = 'SELECT * FROM product WHERE LOWER(name) LIKE LOWER($1) and deleted <> true ORDER BY created_at ASC LIMIT $2 OFFSET $3';
     const client = await connectToDatabase();
     try {
         const result = await client.query(query, [`%${search.toLowerCase()}%`, max - min + 1, min - 1]);
@@ -136,6 +150,7 @@ module.exports = {
     getProductByName,
     updateProduct,
     deleteProduct,
+    updateDeletedStatus,
     getProductByInterval,
     getProductByIntervalAndType,
     getProductByIntervalAndSearch

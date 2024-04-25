@@ -272,7 +272,7 @@ export default async () => {
                 orderInfoDiv.appendChild(buttonDiv);
 
                 if (cart.status === "approved") {
-                    buttonDiv.appendChild(ButtonComponent("Definir como enviado", "light-green-button", async (button) => {
+                    buttonDiv.appendChild(ButtonComponent("Definir como enviado", "light-green-button-order", async (button) => {
                         try {
                             button.disabled = true
                             button.innerText = ""
@@ -297,7 +297,7 @@ export default async () => {
                                 throw data.error
                             }
 
-                            button.classList.remove("light-green-button")
+                            button.classList.remove("light-green-button-order")
                             button.classList.add("light-green-button-disabled")
                             button.innerText = "Produto Enviado"
                             imgCircleProcessing.src = "/assets/images/circle-inactive-processing.svg";

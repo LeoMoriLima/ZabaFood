@@ -1,5 +1,6 @@
 import ButtonComponent from "./ButtonComponent.js";
 import inputEntry from "./inputEntry.js";
+import MessageComponent from "./MessageComponent.js";
 
 export default async () =>{
     const addProductDiv = document.createElement("div");
@@ -128,43 +129,39 @@ export default async () =>{
         const stockInput = document.getElementById("input-admin-stock");
         const type = selectProductType;
         const description = descriptionTextArea;
-        pErrorMessageAdd.innerText = "";
 
-        if(!nameInput.value){
-            pErrorMessageAdd.innerText = "Por favor insira um nome!"
+
+        if(!imageInput.files[0]){
+            MessageComponent("Por favor insira uma imagem", false)
             return;
         }
 
-        if(!valueInput.value){
-            pErrorMessageAdd.innerText = "Por favor insira um valor!"
+        if(!nameInput.value){
+            MessageComponent("Por favor insira um nome", false)
+            return;
+        }
+
+        if(selectProductType.value === "1"){
+            MessageComponent("Por favor insira um tipo de produto", false)
             return;
         }
 
         if(!stockInput.value){
-            pErrorMessageAdd.innerText = "Por favor insira um valor de estoque!"
+            MessageComponent("Por favor insira um valor de estoque", false)
             return;
         }
 
-        if(!imageInput.value){
-            pErrorMessageAdd.innerText = "Por favor insira uma imagem!"
-            return;
-        }
-
-        if(type.value === 1){
-            pErrorMessageAdd.innerText = "Por favor insira um tipo de produto!"
+        if(!valueInput.value){
+            MessageComponent("Por favor insira um valor", false)
             return;
         }
 
         if(!description.value){
-            pErrorMessageAdd.innerText = "Por favor insira uma descrição!"
+            MessageComponent("Por favor insira uma descrição", false)
             return;
         }
         await submitForm(nameInput, valueInput, stockInput, type, description, imageInput, imagePreview);    
     })));
-
-    const pErrorMessageAdd = document.createElement("p");
-    pErrorMessageAdd.classList.add("p-error-message-add");
-    addProductDiv.appendChild(pErrorMessageAdd);
 
     async function submitForm(name, value, stock, type, description, file, imagePreview){
         const formData = new FormData();
@@ -192,24 +189,28 @@ export default async () =>{
                     })
                 });
 
+                if(response.ok){
+                    MessageComponent("Produto adicionado com sucesso!", true);
+                    name.value = "";
+                    value.value = "";
+                    stock.value = "";
+                    type.value = "1";
+                    description.value = "";
+                    imagePreview.innerHTML = "";
+                    imageInput.value = "";
+                } else {
+                    MessageComponent("Erro ao adicionar produto!", false);
+                }
+
                 const data = await response.json();
             } catch(error){
-                console.error("Erro ao fazer a requisição". error.message);
-                throw new Error ("Erro ao fazer a requisição!", error.message);
+                console.error("Erro ao fazer a requisição");
+                console.log(error)
+                throw new Error ("Erro ao fazer a requisição!");
             }
         } catch (error) {
             console.log(error);
-        } finally {
-            name.value = "";
-            value.value = "";
-            stock.value = "";
-            type.value = 1;
-            description.value = "";
-            imagePreview.innerHTML = "";;
         }
     }
     return addProductDiv;
 }
-
-
-

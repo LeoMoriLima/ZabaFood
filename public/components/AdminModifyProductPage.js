@@ -1,7 +1,9 @@
 import ButtonComponent from "./ButtonComponent.js";
+import LoadingComponent from "./LoadingComponent.js";
+import MessageComponent from "./MessageComponent.js";
 import inputEntry from "./inputEntry.js";
 
-export default async () =>{
+export default async () => {
     const modifyPageDiv = document.createElement("div");
     modifyPageDiv.classList.add("modify-page-div");
 
@@ -14,13 +16,40 @@ export default async () =>{
     modifyProductDiv.classList.add("modify-page-product-div");
     modifyPageDiv.appendChild(modifyProductDiv);
 
+    const modalDiv = document.createElement("div");
+    modalDiv.classList.add("product-modify-page-modal-div");
+    modalDiv.style.display = "none";
+    modifyPageDiv.appendChild(modalDiv);
 
-    setTimeout(async () =>{
+    for (let i = 0; i < 10; i++) {
+
+        const skeletonDiv = document.createElement("div");
+        skeletonDiv.classList.add("all-products-div-modify-page");
+        skeletonDiv.id = `skeleton-${i}`
+        modifyProductDiv.appendChild(skeletonDiv);
+
+        const firstLoading = LoadingComponent(5);
+        skeletonDiv.appendChild(firstLoading);
+
+    }
+    setTimeout(async () => {     
+        
         const productData = await getAllProduct();
 
-        productData.forEach(product => {
+        for (let i = 0; i < 10; i++) {
+        const skeleton = document.querySelector(`#skeleton-${i}`);
+        if(skeleton){
+            skeleton.remove();
+        }
+        }
+
+        modifyProductDiv.style.overflowY = "auto";
+
+        const products = productData.filter((product) => !product.deleted);
+
+        products.forEach((product) => {
             const div = document.createElement("div");
-            div.classList.add("all-products-div-modify-page")
+            div.classList.add("all-products-div-modify-page");
             modifyProductDiv.appendChild(div);
 
             const productImgDiv = document.createElement("div");
@@ -55,232 +84,315 @@ export default async () =>{
             productButtonDiv.classList.add("product-button-div-modify-page");
             div.appendChild(productButtonDiv);
 
-            productButtonDiv.appendChild(ButtonComponent("Modificar", "product-button-modify", (async () =>{
-                const modalDiv = document.createElement("div");
-                modalDiv.classList.add("product-modify-page-modal-div");
-                modifyPageDiv.appendChild(modalDiv);
+            productButtonDiv.appendChild(
+                ButtonComponent("Modificar", "product-button-modify", async () => {
+                    modalDiv.style.display = "flex";
 
-                modalDiv.addEventListener("click", () =>{
-                    modalDiv.remove();
+                    setTimeout(async () => {
+                        const modalContent = document.createElement("div");
+                        modalContent.classList.add("product-modify-page-modal-content-div");
+                        modalDiv.appendChild(modalContent);
+
+                        const loading = LoadingComponent(5);
+                        modalContent.appendChild(loading);
+
+
+                        const selectProductType = document.createElement("select");
+                        selectProductType.classList.add("select-product-type");
+                        selectProductType.id = "select-product-modify-page";
+
+                        const optionBase = document.createElement("option");
+                        optionBase.classList.add("product-type-option");
+                        optionBase.innerText = "Selecione a categoria do produto";
+                        optionBase.value = 1;
+                        selectProductType.appendChild(optionBase);
+
+                        const option = await getAllProductType(selectProductType);
+                        const info = await getProductById(product.id);
+
+                        loading.remove();
+
+                        modalDiv.addEventListener("click", () => {
+                            modalDiv.style.display = "none";
+                            modalContent.remove();
+                        });
+
+                        modalContent.addEventListener("click", (event) => {
+                            event.stopPropagation();
+                        });
+
+                        const closeIcon = document.createElement("img");
+                        closeIcon.classList.add("close-modify-modal-icon");
+                        closeIcon.src = "../assets/images/close-icon.svg";
+                        modalContent.appendChild(closeIcon);
+
+                        closeIcon.addEventListener("click", () => {
+                            modalDiv.style.display = "none";
+                            modalContent.remove();
+                        });
+
+                        const pId = document.createElement("p");
+                        pId.classList.add("modal-text-info");
+                        pId.innerText = "ID: " + product.id;
+                        modalContent.appendChild(pId);
+
+                        const divImageFileModal = document.createElement("div");
+                        divImageFileModal.classList.add("div-image-file-modal");
+                        divImageFileModal.id = "product-modify-image-div-modal";
+                        modalContent.appendChild(divImageFileModal);
+
+                        const imagePreviewModal = document.createElement("div");
+                        imagePreviewModal.classList.add("image-preview-modal");
+                        divImageFileModal.appendChild(imagePreviewModal);
+
+                        const divImageTextModal = document.createElement("div");
+                        divImageTextModal.classList.add("div-image-text-modal");
+                        divImageFileModal.appendChild(divImageTextModal);
+
+                        const pFile = document.createElement("p");
+                        pFile.innerText = "Foto do Produto";
+                        pFile.classList.add("p-file-admin-modal");
+                        divImageTextModal.appendChild(pFile);
+
+                        const labelFile = document.createElement("label");
+                        labelFile.innerText = "Selecionar arquivo";
+                        labelFile.classList.add("label-file-modal");
+                        labelFile.setAttribute("for", "input-admin-file-modal");
+                        divImageTextModal.appendChild(labelFile);
+
+                        const imageInputModal = document.createElement("input");
+                        imageInputModal.type = "file";
+                        imageInputModal.id = "input-admin-file-modal";
+                        imageInputModal.value = "";
+                        divImageTextModal.appendChild(imageInputModal);
+
+                        imageInputModal.addEventListener("change", (event) => {
+                            const file = event.target.files[0];
+
+                            if (file) {
+                                const readerModal = new FileReader();
+                                imagePreviewModal.innerHTML = "";
+
+                                readerModal.onload = (e) => {
+                                    const imageUrl = e.target.result;
+                                    const img = document.createElement("img");
+                                    img.src = imageUrl;
+                                    img.alt = "Preview Image";
+                                    img.style.maxWidth = "100%";
+                                    img.style.height = "100%";
+                                    imagePreviewModal.appendChild(img);
+                                };
+
+                                readerModal.readAsDataURL(file);
+                            }
+                        });
+
+                        const imgProductModal = document.createElement("img");
+                        imgProductModal.alt = "Preview Image";
+                        imgProductModal.style.maxWidth = "100%";
+                        imgProductModal.style.height = "100%";
+                        imgProductModal.src = info.url_img;
+                        imagePreviewModal.appendChild(imgProductModal);
+
+                        const descriptionTextArea = document.createElement("textarea");
+                        descriptionTextArea.classList.add("description-text-area-modal");
+                        descriptionTextArea.placeholder = info.description;
+                        modalContent.appendChild(
+                            inputEntry(info.name, "text", "input-modify-admin-name", "none")
+                        );
+                        modalContent.appendChild(selectProductType);
+                        modalContent.appendChild(
+                            inputEntry(
+                                info.stock,
+                                "number",
+                                "input-modify-admin-stock",
+                                "none"
+                            )
+                        );
+                        modalContent.appendChild(
+                            inputEntry(
+                                "R$ " + info.value,
+                                "number",
+                                "input-modify-admin-value",
+                                "none"
+                            )
+                        );
+                        modalContent.appendChild(descriptionTextArea);
+
+                        const buttonSendModify = ButtonComponent(
+                            "Enviar",
+                            "product-button-send-modify",
+                            async () => {
+                                const productInputName = document.getElementById(
+                                    "input-modify-admin-name"
+                                );
+                                const productInputValue = document.getElementById(
+                                    "input-modify-admin-value"
+                                );
+                                const productInputStock = document.getElementById(
+                                    "input-modify-admin-stock"
+                                );
+
+                                if (productInputName.value === "") {
+                                    productInputName.value = info.name;
+                                }
+
+                                if (productInputValue.value === "") {
+                                    productInputValue.value = info.value;
+                                }
+
+                                if (productInputStock.value === "") {
+                                    productInputStock.value = info.stock;
+                                }
+
+                                if (selectProductType.value === "1") {
+                                    selectProductType.value = info.type_id;
+                                }
+
+                                const formData = new FormData();
+                                formData.append("name", productInputName.value);
+                                formData.append("file", imageInputModal.files[0]);
+
+                                try {
+                                    let image;
+
+                                    if (!imageInputModal.files[0]) {
+                                        const src = product.url_img;
+                                        image = src.split("/").pop();
+                                    } else {
+                                        const response = await fetch("/upload_file", {
+                                            method: "POST",
+                                            body: formData,
+                                        });
+                                        const responseJson = await response.json();
+                                        image = responseJson.filename;
+                                    }
+                                    try {
+                                        const response = await fetch(`/api/product/${product.id}`, {
+                                            method: "PUT",
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                                name: productInputName.value || product.name,
+                                                value: productInputValue.value || product.value,
+                                                url_img: `../assets/uploads/${image}`,
+                                                stock: productInputStock.value || product.stock,
+                                                type_id: selectProductType.value || product.type_id,
+                                                description:
+                                                    descriptionTextArea.value || product.description,
+                                            }),
+                                        });
+
+                                        if (response.ok) {
+                                            MessageComponent("Produto modificado com sucesso", true);
+                                            productName.innerText = productInputName.value;
+                                            productPrice.innerText =
+                                                "R$ " + Number(productInputValue.value).toFixed(2);
+                                            productStock.value = productInputStock.value;
+                                            descriptionTextArea.placeholder =
+                                                descriptionTextArea.value;
+                                            img.src = `../assets/uploads/${image}`;
+                                            modalDiv.style.display = "none";
+                                            modalDiv.innerHTML = "";
+                                        } else {
+                                            MessageComponent("Erro ao modificar produto", false);
+                                        }
+                                    } catch (error) {
+                                        console.error("Erro ao fazer a requisição".error.message);
+                                        throw new Error(
+                                            "Erro ao fazer a requisição!",
+                                            error.message
+                                        );
+                                    }
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            }
+                        );
+                        modalContent.appendChild(buttonSendModify);
+                    }, 0);
                 })
+            );
 
-                const modalContent = document.createElement("div");
-                modalContent.classList.add("product-modify-page-modal-content-div");
-                modalDiv.appendChild(modalContent);
-
-                modalContent.addEventListener("click", (event) =>{
-                    event.stopPropagation();
-                })
-
-                const closeIcon = document.createElement("img");
-                closeIcon.classList.add("close-modify-modal-icon");
-                closeIcon.src = "../assets/images/close-icon.svg";
-                modalContent.appendChild(closeIcon);
-
-                closeIcon.addEventListener("click", () =>{
-                    modalDiv.remove();
-                })
-
-                const pId = document.createElement("p");
-                pId.classList.add("modal-text-info");
-                pId.innerText = "ID: " + product.id;
-                modalContent.appendChild(pId)
-
-                const divImageFile = document.createElement("div");
-                divImageFile.classList.add("div-image-file");
-                divImageFile.id = "product-modify-image-div";
-                modalContent.appendChild(divImageFile);
-            
-                const imagePreview = document.createElement("div");
-                imagePreview.classList.add("image-preview");
-                divImageFile.appendChild(imagePreview);
-
-                const imgProduct = document.createElement("img");
-                imgProduct.alt = "Preview Image";
-                imgProduct.style.maxWidth = "100%";
-                imgProduct.style.height = "100%";
-                imgProduct.src = product.url_img;
-                imagePreview.appendChild(imgProduct);
-            
-                const divImageText = document.createElement("div");
-                divImageText.classList.add("div-image-text");
-                divImageFile.appendChild(divImageText);
-            
-                const pFile = document.createElement("p");
-                pFile.innerText = "Foto do Produto";
-                pFile.classList.add("p-file-admin");
-                divImageText.appendChild(pFile)
-            
-                const labelFile = document.createElement("label");
-                labelFile.innerText = "Selecionar arquivo";
-                labelFile.classList.add("label-file");
-                labelFile.setAttribute("for", "input-admin-file");
-                divImageText.appendChild(labelFile)
-            
-                const imageInput = document.createElement("input");
-                imageInput.type = "file";
-                imageInput.id = "input-admin-file";
-                imageInput.value = "";
-                divImageText.appendChild(imageInput);
-
-                imageInput.addEventListener("change", (event) => {
-                    const file = event.target.files[0];
-            
-                    if(file){
-                        const reader = new FileReader();
-            
-                        reader.onload = (e) => {
-                            const imageUrl = e.target.result;
-                            const img = document.createElement("img");
-                            img.src = imageUrl;
-                            img.alt = "Preview Image";
-                            img.style.maxWidth = "100%";
-                            img.style.height = "auto";
-                            imagePreview.innerHTML = "";
-                            imagePreview.appendChild(img);
-                        };
-            
-                        reader.readAsDataURL(file);
-                    };
-                });
-
-                const selectProductType = document.createElement("select");
-                selectProductType.classList.add("select-product-type");
-                selectProductType.id = "select-product-modify-page"
-
-                const optionBase = document.createElement("option");
-                optionBase.classList.add("product-type-option");
-                optionBase.innerText = "Selecione a categoria do produto";
-                optionBase.value = 1;
-                selectProductType.appendChild(optionBase);
-
-                setTimeout(async () =>{
-                    getAllProductType(selectProductType);
-                }, 0)             
-
-                const descriptionTextArea = document.createElement("textarea");
-                descriptionTextArea.classList.add("description-text-area");
-                descriptionTextArea.placeholder = product.description;
-                modalContent.appendChild(inputEntry(product.name, "text", "input-modify-admin-name", "none"));
-                modalContent.appendChild(selectProductType);
-                modalContent.appendChild(inputEntry(product.stock, "number", "input-modify-admin-stock", "none"));
-                modalContent.appendChild(inputEntry("R$ " + product.value , "number", "input-modify-admin-value", "none"));
-                modalContent.appendChild(descriptionTextArea);
-
-                const buttonSendModify = ButtonComponent("Enviar", "product-button-send-modify", (async () =>{
-                    const productInputName = document.getElementById("input-modify-admin-name");
-                    const productInputValue = document.getElementById("input-modify-admin-value");
-                    const productInputStock = document.getElementById("input-modify-admin-stock");
-                    
-                    submitForm(productInputName, productInputValue, productInputStock, selectProductType, descriptionTextArea, imageInput, product);
-
-                    const formData = new FormData();
-                    formData.append("name", productInputName.value);
-                    formData.append("file", imageInput.files[0]);
-
-                    try {            
-                        let image;
-                
-                        if(!imageInput.files[0]){
-                            const src = product.url_img
-                            image = src.split('/').pop();
-                        } else{
-                            const response = await fetch('/upload_file', {
-                                method: 'POST',
-                                body: formData,
-                            });
-                            const responseJson = await response.json();
-                            image = responseJson.filename;
-                        }
-                        try{
-                            const response = await fetch(`/api/product/${product.id}`, {
+            productButtonDiv.appendChild(
+                ButtonComponent(
+                    "Deletar",
+                    "product-button-delete-product",
+                    async () => {
+                        try {
+                            const result = await fetch(`/api/product/status/${product.id}`, {
                                 method: "PUT",
                                 headers: {
-                                    "Content-Type": "application/json"
+                                    "Content-Type": "application/json",
                                 },
-                                body: JSON.stringify({
-                                    "name" : productInputName.value || product.name,
-                                    "value" : productInputValue.value || product.value,
-                                    "url_img": `../assets/uploads/${image}`,
-                                    "stock": productInputStock.value || product.stock,
-                                    "type_id": selectProductType.value || product.type_id,
-                                    "description" : descriptionTextArea.value || product.description,
-                                })
                             });
-                
-                            const data = await response.json();
-                        } catch(error){
-                            console.error("Erro ao fazer a requisição". error.message);
-                            throw new Error ("Erro ao fazer a requisição!", error.message);
+                            if (result.ok) {
+                                div.remove();
+                                MessageComponent("Produto removido com sucesso", true);
+                            } else {
+                                MessageComponent("Erro ao remover produto", false);
+                            }
+                        } catch (error) {
+                            return;
                         }
-                    } catch (error) {
-                        console.log(error);
-                    } finally {
-                        setInterval(() =>{
-                            modalDiv.remove();
-                        }, 2000)
-
                     }
-
-
-                }))
-                modalContent.appendChild(buttonSendModify);
-            })))
-
-            productButtonDiv.appendChild(ButtonComponent("Deletar", "product-button-delete-product", (async () =>{
-                try{
-                    const result = await fetch(`/api/product/${product.id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    });
-                    const data = await result.json()
-                } catch(error){
-                    return;
-                } finally {
-                    div.remove();
-                }
-
-            })))
+                )
+            );
         });
     }, 0);
 
     return modifyPageDiv;
+};
+
+async function getAllProduct() {
+    try {
+        const result = await fetch("/api/product", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await result.json();
+        return data;
+    } catch (error) {
+        return;
+    }
 }
 
-async function getAllProduct(){
-    try{
-        const result = await fetch ('/api/product', {
-            method: 'GET',
+async function getProductById(id) {
+    try {
+        const result = await fetch(`/api/product/${id}`, {
+            method: "GET",
             headers: {
-                "Content-Type": "application/json"
-            }
-        })
+                "Content-Type": "application/json",
+            },
+        });
         const data = await result.json();
-        return data
-    } catch (error){
+        return data;
+    } catch (error) {
         return;
     }
 }
 
 async function getAllProductType(selectProductType) {
-    try{
-        const response = await fetch('/api/product_type', {
+    try {
+        const response = await fetch("/api/product_type", {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
         const data = await response.json();
 
-        data.forEach(type => {
+        data.forEach((type) => {
             const option = document.createElement("option");
             option.innerText = type.type;
             option.classList.add("product-type-option");
             option.value = type.id;
             selectProductType.appendChild(option);
-        })
-    } catch(error){
-    console.log(error);
-}};
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}

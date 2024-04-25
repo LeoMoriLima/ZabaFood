@@ -27,15 +27,19 @@ export default async (params) => {
             min += 12
             max += 12
 
-            const products = await generateProducts(productsList, min, max, filter, term, productsMain);
-
+            const products = await generateProducts(productsList, min, max, filter, term);
+            console.log(products);
             if (products.length < 12) {
                 button.remove();
             }
         })
 
         setTimeout(async () => {
-            const products = await generateProducts(productsList, min, max, filter, term, productsMain);
+            const products = await generateProducts(productsList, min, max, filter, term);
+
+            if (products.length === 0) {
+                productsMain.appendChild(NotFound());
+            }
 
             if (products.length >= 12) {
                 productsMain.appendChild(loadMoreButton);
@@ -71,7 +75,7 @@ const getProducts = async (min, max, filter, term) => {
 }
 
 
-const generateProducts = async (append, min, max, filter, term, div) => {
+const generateProducts = async (append, min, max, filter, term) => {
 
     for (let i = 0; i < 12; i++) {
         append.appendChild(ProductCardSkeleton(`skeleton-${i}`))
@@ -82,8 +86,7 @@ const generateProducts = async (append, min, max, filter, term, div) => {
         for (let i = 0; i < 12; i++) {
             document.getElementById(`skeleton-${i}`).remove()
         }
-        div.appendChild(NotFound());
-        return;
+        return products;
     }
     const productCardsPromises = products.map(async (product) => {
         return await ProductCard(product.id);
