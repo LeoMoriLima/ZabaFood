@@ -1,4 +1,4 @@
-export default (max, id ) => {
+export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
     const quantityInput = document.createElement("div");
     quantityInput.classList.add("quantity-input-container")
 
@@ -11,6 +11,10 @@ export default (max, id ) => {
             input.value = value - 1;
         }
         toggleButtons();
+
+        if (onClickMinus) {
+            onClickMinus()
+        }
     };
     quantityInput.appendChild(minusButton);
 
@@ -18,7 +22,7 @@ export default (max, id ) => {
     input.id = id;
     input.classList.add("quantity-input")
     input.type = 'number';
-    input.value = 1;
+    input.value = currentValue || 1;
     input.min = '1';
     input.max = `${max}`;
     input.step = '1';
@@ -37,6 +41,10 @@ export default (max, id ) => {
             input.value = value + 1;
         }
         toggleButtons();
+        
+        if (onClickPlus) {
+            onClickPlus() 
+        }
     };
     quantityInput.appendChild(plusButton);
 

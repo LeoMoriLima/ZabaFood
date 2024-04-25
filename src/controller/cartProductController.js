@@ -104,10 +104,6 @@ const updateCartProduct = async (req, res) => {
     const { id } = req.params;
     const { quantity } = req.body;
     try {
-        if (userType !== "user" && userType !== "admin") {
-            return res.status(403).json({ error: "Usuário sem permissão" });
-        };
-
         if(!isUUID(id)){
             return res.status(400).json({ error: "ID inválido!" });
         };

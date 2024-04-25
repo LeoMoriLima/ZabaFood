@@ -43,7 +43,6 @@ export default async (id) => {
 		mainDiv.appendChild(quantityDiv);
 
 		const unitBtn = btn("Unidade", "selected-btn", async () => {
-			// productQuantity = 1;
 			unitBtn.classList.add('selected-btn');
 			unitBtn.classList.remove('deselected-btn');
 			buy3Btn.classList.add('deselected-btn');
@@ -52,7 +51,6 @@ export default async (id) => {
 		quantityDiv.appendChild(unitBtn);
 
 		const buy3Btn = btn("Compre 3", "deselected-btn", async () => {
-			// productQuantity = 3;
 			buy3Btn.classList.add('selected-btn');
 			buy3Btn.classList.remove('deselected-btn');
 			unitBtn.classList.add('deselected-btn');
