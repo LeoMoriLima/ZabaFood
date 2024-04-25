@@ -1,6 +1,7 @@
 import cart from "../pages/cart.js";
 import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
+import QuantityInput from "./QuantityInput.js";
 
 export default async () => {
     const mainDiv = document.createElement("div");
@@ -94,6 +95,45 @@ export default async () => {
                     productQuantityText.classList.add("cp-product-quantity-text");
                     productQuantityText.innerText = quantity > 1 ? `Quantidade: ${quantity} unidades` : `Quantidade: ${quantity} unidade`;
                     productInfoDiv.appendChild(productQuantityText);
+
+                    const quantityInputDiv = document.createElement("div");
+                    quantityInputDiv.classList.add("cp-quantity-input-div");
+                    productInfoDiv.appendChild(quantityInputDiv);
+                    
+                    const changeValue = async () =>{
+                        try {
+                            const quantityInputValue = document.getElementById(`cp-product-quantity-input-${cartProductId}`).value;
+                        
+                            const response = await fetch(`/api/cart_product/${cartProductId}`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    "quantity": quantityInputValue,
+                                })
+                            });
+    
+                            productQuantityText.innerText = quantityInputValue > 1 ? `Quantidade: ${quantityInputValue} unidades` : `Quantidade: ${quantityInputValue} unidade`;
+    
+                            productValue.innerText = `R$${(product.value * quantityInputValue).toFixed(2).replace(".", ",")}`;
+    
+                            const newCartResponse = await fetch(`/api/cart/user/${userId}`, {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            });
+                
+                            const newCartInfo = await newCartResponse.json();
+                            subtotalTextDivRight.innerText = `R$${(newCartInfo.total).replace(".", ",")}`;
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+
+                    const quantityInput = QuantityInput(product.stock, `cp-product-quantity-input-${cartProductId}`, quantity, changeValue, changeValue);
+                    quantityInputDiv.appendChild(quantityInput);
         
                     const itemProductRightDiv = document.createElement("div");
                     itemProductRightDiv.classList.add("cp-item-product-right-div");
