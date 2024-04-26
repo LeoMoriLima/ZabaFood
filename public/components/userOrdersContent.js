@@ -298,7 +298,7 @@ export default async () => {
                 orderInfoDiv.appendChild(buttonDiv);
     
                 if (cart.status === "sended") {
-                    buttonDiv.appendChild(ButtonComponent("Definir como entregue", "light-green-button-user", async (button) => {
+                    buttonDiv.appendChild(ButtonComponent("Já recebi", "light-green-button-user", async (button) => {
                         try {
                             button.disabled = true
                             button.innerText = ""
@@ -325,7 +325,7 @@ export default async () => {
                             infoOrderStatus.innerText = "Entregue";
                             button.classList.remove("light-green-button-user")
                             button.classList.add("light-green-button-disabled")
-                            button.innerText = "Produto Entregue"
+                            button.innerText = "Entregue!"
                             imgCircleSended.src = "/assets/images/circle-inactive-sended.svg";
                             imgCircleDelivered.src = "/assets/images/circle-active-delivered.svg";
                             statusText.innerText = "Entregue";
@@ -335,9 +335,9 @@ export default async () => {
                         }
                     }))
                 } else if (cart.status === "delivered") {
-                    buttonDiv.appendChild(ButtonComponent("Produto Entregue", "light-green-button-disabled"))
+                    buttonDiv.appendChild(ButtonComponent("Entregue!", "light-green-button-disabled"))
                 } else {
-                    buttonDiv.appendChild(ButtonComponent("Definir como entregue", "light-green-button-disabled"))
+                    buttonDiv.appendChild(ButtonComponent("Já recebi!", "light-green-button-disabled"))
                 }
             });
         } catch (error) {
