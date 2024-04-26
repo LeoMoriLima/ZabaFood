@@ -337,7 +337,7 @@ async function createAllRightPage (divBodyProductType, productTypeDiv){
                             },
                             body: JSON.stringify({
                                 type: productTypeName.value || type.type,
-                                url_img: `../assets/uploads/${image}`,
+                                url_img: `/assets/uploads/${image}`,
                             })
                         })
 

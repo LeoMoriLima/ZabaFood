@@ -30,9 +30,10 @@ const getProductType = async (id) => {
 
 const getProductTypeByType = async (type) => {
     const client = await connectToDatabase();
-    const query = "SELECT * FROM product_type WHERE type = $1";
+    const query = "SELECT * FROM product_type WHERE LOWER(type) = LOWER($1)";
     try {
         const result = await client.query(query, [type]);
+
         return result.rows[0];
     } catch (error) {
         console.log("Erro ao encontrar o tipo de produto:", error);

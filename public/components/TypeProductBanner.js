@@ -1,3 +1,5 @@
+import MessageComponent from "./MessageComponent.js";
+
 export default (type) => {
     const typeBannerDiv = document.createElement("div");
     typeBannerDiv.classList.add("type-banner-div")
@@ -17,7 +19,12 @@ export default (type) => {
     imgCategoryCircle.classList.add("circle-category-template-filter");
     const imgCategory = document.createElement("img");
     imgCategory.classList.add("img-category-filter");
-    // imgCategory.src = type.img;
+
+    setTimeout(async () => {
+        const typeData = await getProductTypeByType(type)
+        imgCategory.src = typeData.url_img;
+    }, 0);
+
     imgCategoryCircle.appendChild(imgCategory);
 
     imgCategoryDiv.appendChild(imgCategoryTemplateLine);
@@ -32,4 +39,20 @@ export default (type) => {
     typeBannerDiv.appendChild(typeH2);
 
     return typeBannerDiv
+}
+
+const getProductTypeByType = async (type) => {
+    try {
+        const response = await fetch(`/api/product_type/type/${type}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json()
+        return data
+    } catch (error) {
+        MessageComponent("Erro ao buscar imagem", false)
+        console.log(error);
+    }
 }

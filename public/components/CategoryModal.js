@@ -43,7 +43,7 @@ export default async () => {
             imgCategoryCircle.classList.add("circle-category-template");
             const imgCategory = document.createElement("img");
             imgCategory.classList.add("img-category");
-            // imgCategory.src = type.img;
+            imgCategory.src = type.url_img;
             imgCategoryCircle.appendChild(imgCategory);
 
             imgCategoryDiv.appendChild(imgCategoryTemplateLine);
