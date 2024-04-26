@@ -27,6 +27,17 @@ const getProductType = async (req, res) => {
     }
 }
 
+const getProductTypeByType = async (req, res) => {
+    const { type } = req.params;
+    try {
+        const productType = await productTypeService.getProductTypeByType(type);
+        return res.status(200).json(productType);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Erro ao buscar dados" });
+    }
+}
+
 const createProductType = async (req, res) => {
     const { type, url_img } = req.body;
     try {
@@ -97,6 +108,7 @@ const deleteProductType = async (req, res) => {
 module.exports = {
     getAllProductTypes,
     getProductType,
+    getProductTypeByType,
     createProductType,
     updateProductType,
     deleteProductType,
