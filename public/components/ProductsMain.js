@@ -28,7 +28,7 @@ export default async (params) => {
             max += 12
 
             const products = await generateProducts(productsList, min, max, filter, term);
-            console.log(products);
+
             if (products.length < 12) {
                 button.remove();
             }

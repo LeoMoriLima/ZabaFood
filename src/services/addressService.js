@@ -12,9 +12,9 @@ const getAddress = async (id) => {
 	}
 }
 
-const getAddressByUserID = async (userId) => {
+const getAddressByUserID = async (userId, index) => {
 	try {
-        const address = await addressRepository.getAddressByUserID(userId);
+        const address = await addressRepository.getAddressByUserID(userId, index);
         if(!address){
             throw new Error("Endereço não encontrado");
         }
