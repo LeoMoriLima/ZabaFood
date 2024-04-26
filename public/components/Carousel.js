@@ -3,8 +3,12 @@ import ArrowButton from "./ArrowButton.js";
 import LoadingComponent from "./LoadingComponent.js";
 
 export default async () => {
-    let min = 1;
-    let max = 3;
+    const windowWidth = window.innerWidth;
+
+    console.log(windowWidth);
+
+    let min = 1
+    let max = windowWidth >= 1366 ? 4 : 3;
 
     const carousel = document.createElement("div");
     carousel.classList.add("carousel");
@@ -30,8 +34,8 @@ export default async () => {
         backArrow.disabled = true;
         nextArrow.disabled = true;
 
-        min -= 3;
-        max -= 3;
+        min -= windowWidth >= 1366 ? 4 : 3;
+        max -= windowWidth >= 1366 ? 4 : 3;
 
         productsDiv.innerHTML = "";
 
@@ -60,8 +64,8 @@ export default async () => {
 
         nextArrow.disabled = true
         backArrow.disabled = true
-        min += 3;
-        max += 3;
+        min += windowWidth >= 1366 ? 4 : 3;
+        max += windowWidth >= 1366 ? 4 : 3;
 
         productsDiv.innerHTML = "";
         await generateCarousel(productsDiv, min, max);
