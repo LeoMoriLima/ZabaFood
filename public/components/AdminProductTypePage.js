@@ -220,22 +220,24 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
                 modalProductType.style.display = "flex"
                 editIcon.style.pointerEvents = "none";
-
-                modalProductType.addEventListener("click", () => {
-                    modalContent.remove();
-                    modalProductType.style.display = "none";
-                    editIcon.style.pointerEvents = "auto";
-                    modalProductType.innerHTML = ""
-                    modalProductType.removeEventListener("click");
-                });
-
-                const data = await getProductType(type.id);
-
                 modalProductType.innerHTML = ""
 
                 const modalContent = document.createElement("div");
                 modalContent.classList.add("modal-content-product-type");
                 modalProductType.appendChild(modalContent)
+
+                const loading = LoadingComponent(5);
+                modalContent.appendChild(loading)
+                const data = await getProductType(type.id);
+                loading.remove();
+
+                modalProductType.onclick = () =>{
+                    modalContent.remove();
+                    modalProductType.style.display = "none";
+                    editIcon.style.pointerEvents = "auto";
+                    modalProductType.innerHTML = ""
+                    modalProductType.onclick = "";
+                }
 
                 modalContent.addEventListener("click", (event) => {
                     event.stopPropagation();
@@ -314,13 +316,13 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                 closeIcon.src = "../assets/images/close-icon.svg";
                 modalContent.appendChild(closeIcon);
 
-                closeIcon.addEventListener("click", () => {
+                closeIcon.onclick = () =>{
                     modalContent.remove();
                     modalProductType.style.display = "none";
                     editIcon.style.pointerEvents = "auto";
-                    modalProductType.innerHTML = ""
-                    modalProductType.removeEventListener("click");
-                });
+                    modalProductType.innerHTML = "";
+                    modalProductType.onclick = "";
+                }
 
                 modalContent.appendChild(ButtonComponent("Atualizar", "product-type-modal-button", (async () => {
                     const productTypeName = document.getElementById("input-product-type-modal-content");
