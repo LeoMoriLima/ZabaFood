@@ -89,7 +89,7 @@ const getProducts = async (min, max) => {
 }
 
 const generateCarousel = async (element, min, max) => {
-    const loadingComponent = LoadingComponent(10);
+    const loadingComponent = LoadingComponent(7);
 
     element.appendChild(loadingComponent);
 
