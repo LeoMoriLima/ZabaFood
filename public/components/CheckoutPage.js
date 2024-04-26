@@ -352,26 +352,31 @@ export default async () => {
 				})));
 
 				const modalInputCity = document.createElement("input");
+				modalInputCity.placeholder = "Cidade"
 				modalInputCity.classList.add("checkout-modal-input");
 				modalInputCity.value = address.city;
 				modalDiv.appendChild(modalInputCity);
 
 				const modalInputState = document.createElement("input");
+				modalInputState.placeholder = "Estado"
 				modalInputState.classList.add("checkout-modal-input");
 				modalInputState.value = address.state;
 				modalDiv.appendChild(modalInputState);
 
 				const modalInputStreet = document.createElement("input");
+				modalInputStreet.placeholder = "Rua"
 				modalInputStreet.classList.add("checkout-modal-input");
 				modalInputStreet.value = address.street;
 				modalDiv.appendChild(modalInputStreet);
 
 				const modalInputNumber = document.createElement("input");
+				modalInputNumber.placeholder = "Número"
 				modalInputNumber.classList.add("checkout-modal-input");
 				modalInputNumber.value = address.number;
 				modalDiv.appendChild(modalInputNumber);
 
 				const modalInputComplement = document.createElement("input");
+				modalInputComplement.placeholder = "Complemento"
 				modalInputComplement.classList.add("checkout-modal-input");
 				modalInputComplement.value = address.complement;
 				modalDiv.appendChild(modalInputComplement);
@@ -389,7 +394,7 @@ export default async () => {
 								city: modalInputCity.value,
 								street: modalInputStreet.value,
 								number: modalInputNumber.value,
-								complement: modalInputComplement.value
+								complement: modalInputComplement.value || ""
 							})
 						})
 						const responseData = await response.json();

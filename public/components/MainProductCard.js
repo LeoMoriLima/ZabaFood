@@ -2,6 +2,7 @@ import Button from "./ButtonComponent.js";
 import QuantityInput from "./QuantityInput.js";
 import router from "../js/routes.js";
 import MessageComponent from "./MessageComponent.js";
+import LoadingComponent from "./LoadingComponent.js";
 
 export default async (product) => {
     try {
@@ -81,15 +82,25 @@ export default async (product) => {
         productButtonDiv.classList.add("product-button-div");
         productInfoDiv.appendChild(productButtonDiv);
 
-        productButtonDiv.appendChild(Button("Comprar", "light-green-button", async () => {
+        productButtonDiv.appendChild(Button("Comprar", "light-green-button", async (button) => {
             if (userData.error) {
                 navigateTo("login");
                 return
             }
+            const simpleLoading = document.createElement("img");
+            simpleLoading.src = "/assets/images/simple-loading.svg";
+            simpleLoading.classList.add("loading-animation")
             try {
+                button.disabled = true;
+                button.innerText = "";
+                button.appendChild(simpleLoading);
+
                 const quantity = document.getElementById("product-quantity-input").value;
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
+                simpleLoading.remove()
+                button.innerText = "Comprar";
+                button.disabled = false
 
                 if (cartAdded.error) {
                     throw cartAdded.error;
@@ -97,21 +108,35 @@ export default async (product) => {
 
                 navigateTo("cart");
             } catch (error) {
+                simpleLoading.remove()
+                button.innerText = "Comprar";
+                button.disabled = false
                 console.error(error);
                 MessageComponent("Erro ao adicionar no carrinho", false);
                 return
             }
         }));
 
-        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "add-green-button", async () => {
+        productButtonDiv.appendChild(Button("Adicionar ao carrinho", "add-green-button", async (button) => {
             if (userData.error) {
                 navigateTo("login");
                 return
             }
+            const simpleLoading = document.createElement("img");
+            simpleLoading.src = "/assets/images/simple-loading.svg";
+            simpleLoading.classList.add("loading-animation")
+
             try {
+                button.disabled = true;
+                button.innerText = "";
+                button.appendChild(simpleLoading);
+
                 const quantity = document.getElementById("product-quantity-input").value;
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
+                simpleLoading.remove()
+                button.innerText = "Adicionar ao carrinho";
+                button.disabled = false
 
                 if (cartAdded.error) {
                     throw cartAdded.error;
@@ -119,6 +144,9 @@ export default async (product) => {
 
                 MessageComponent("Produto adicionado ao carrinho!", true)
             } catch (error) {
+                simpleLoading.remove()
+                button.innerText = "Adicionar ao carrinho";
+                button.disabled = false
                 console.error(error);
                 MessageComponent("Erro ao adicionar no carrinho", false);
                 return

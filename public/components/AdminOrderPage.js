@@ -26,7 +26,6 @@ export default async () => {
             const cartData = await cartResponse.json();
 
             cartData.forEach(async (cart) => {
-
                 const div = document.createElement("div");
                 div.classList.add("order-div-admin");
                 orderPageDiv.appendChild(div);
@@ -97,8 +96,8 @@ export default async () => {
                 const infoOrderStatus = document.createElement("p");
                 infoOrderStatus.classList.add("info-order-address");
                 divInfo.appendChild(infoOrderStatus);
-                infoOrderStatus.innerText = `Avenida Brigadeiro Faria Lima, 3477
-                São Paulo - São Paulo , 04538-133, 18º Andar`
+                infoOrderStatus.innerText = `${cart.street}, ${cart.number},
+                ${cart.state} - ${cart.city} , ${cart.postal_code}, ${cart.complement || ""}`
 
                 // action order div
 
