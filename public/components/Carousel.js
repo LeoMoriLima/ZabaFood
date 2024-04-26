@@ -24,21 +24,21 @@ export default async () => {
             return
         }
 
-        const backArrow = arrow
+        const backArrow = arrow;
         const nextArrow = document.getElementById("arrow-next");
 
-        if (max === 12) {
-            nextArrow.disabled = false;
-        }
+        backArrow.disabled = true;
+        nextArrow.disabled = true;
 
-        min -= 4;
-        max -= 4;
+        min -= 3;
+        max -= 3;
 
-        if (min === 1) {
-            backArrow.disabled = true;
-        }
         productsDiv.innerHTML = "";
-        generateCarousel(productsDiv, min, max);
+
+        await generateCarousel(productsDiv, min, max);
+
+        min !== 1 ? backArrow.disabled = false : backArrow.disabled = true;
+        max !== 12 ? nextArrow.disabled = false : nextArrow.disabled = true;
     }))
 
     const productsDiv = document.createElement("div");
@@ -46,31 +46,28 @@ export default async () => {
     carouselContainer.appendChild(productsDiv);
 
     setTimeout(async () => {
-       await generateCarousel(productsDiv, min, max);
+        await generateCarousel(productsDiv, min, max);
     }, 0);
 
 
     carouselContainer.appendChild(ArrowButton("next", "arrow-next", false, async function (arrow) {
         if (arrow.disabled) {
-            console.log("Desativado");
             return
         }
 
         const nextArrow = arrow;
         const backArrow = document.getElementById("arrow-back");
 
-        if (min === 1) {
-            backArrow.disabled = false;
-        }
+        nextArrow.disabled = true
+        backArrow.disabled = true
+        min += 3;
+        max += 3;
 
-        min += 4;
-        max += 4;
-
-        if (max === 12) {
-            nextArrow.disabled = true;
-        }
         productsDiv.innerHTML = "";
-        generateCarousel(productsDiv, min, max);
+        await generateCarousel(productsDiv, min, max);
+
+        max !== 12 ? nextArrow.disabled = false : nextArrow.disabled = true;
+        min !== 1 ? backArrow.disabled = false : backArrow.disabled = true;
     }))
 
     return carousel;
