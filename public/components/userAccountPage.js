@@ -139,7 +139,7 @@ export default async () => {
     navMenuUserPage.appendChild(aSettings);
 
 
-    leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
+    leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button-user-page', async () => {
         try {
             const response = await fetch('/logout', {
                 method: "GET",

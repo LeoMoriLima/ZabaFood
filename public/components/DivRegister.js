@@ -10,7 +10,7 @@ export default () => {
     divBackground.classList.add("div-background");
 
     const entryCard = document.createElement("div");
-    entryCard.classList.add("entry-card");
+    entryCard.classList.add("entry-card-register");
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
 
