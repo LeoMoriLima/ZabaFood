@@ -115,6 +115,17 @@ input[type=number] {
     width: 90vw;
 }
 
+.div-background-register {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3.9375rem;
+    background-image: url("./assets/images/register-background.svg");
+    background-repeat: no-repeat;
+    background-size: 105%;
+    height: 60vh;
+    margin-bottom: 2rem;
+    width: 90vw;
+}
+
 .entry-card,
 .entry-card-register {
     align-items: center;
@@ -175,6 +186,12 @@ input[type=number] {
     font-weight: 500;
     margin: 1rem 0;
     padding: 0.7rem 4.9rem;
+    transition: all ease-in-out 0.3s;
+}
+
+.button-entry:hover{
+    background-color: var(--color-secundary);
+    color: var(--color-white);
 }
 
 .text-class {
@@ -272,6 +289,7 @@ input[type=number] {
     font-weight: 500;
     height: 1.5rem;
     width: 40%;
+    transition: all ease-in-out 0.3s;
 }
 
 .deselected-btn {
@@ -331,6 +349,7 @@ input[type=number] {
     height: 12%;
     justify-content: center;
     width: 90%;
+    transition: all ease-in-out 0.3s;
 }
 
 .add-btn-div:hover {
@@ -436,6 +455,7 @@ input[type=number] {
     font-size: 1.5rem;
     padding: 1rem 3rem;
     width: 73%;
+    transition: all ease-in-out 0.3s;
 }
 
 .banner-product-access-here-btn:hover {
@@ -631,6 +651,7 @@ input[type=number] {
 
 #img-search {
     width: 80%;
+    transform: scale(0.8);
 }
 
 input:focus {
@@ -739,7 +760,7 @@ input:focus {
 
 .header-rounded-text {
     color: var(--color-white);
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
 }
@@ -1745,7 +1766,8 @@ input:focus {
     width: 12rem;
 }
 
-.exit-button:hover {
+.exit-button:hover,
+.exit-button-user-page:hover {
     background-color: var(--color-secundary);
     border: 0.07rem solid var(--color-primary);
     color: var(--color-primary);
@@ -1753,7 +1775,8 @@ input:focus {
 }
 
 .exit-button-user-page {
-    margin-top: 110%;
+    bottom: 14%;
+    position: absolute;
 }
 
 .add-product-div {
@@ -1853,7 +1876,7 @@ input:focus {
 
 #div-input-admin-name {
     border: none;
-    width: 100%;
+    width: 75%;
 }
 
 #img-input-admin-name {
@@ -1865,6 +1888,7 @@ input:focus {
     border-radius: 0.5rem;
     color: var(--color-secundary);
     height: 3.7vh;
+    width: 100%;
     text-indent: 1rem;
 }
 
@@ -1911,7 +1935,7 @@ input:focus {
 
 #div-input-admin-value {
     border: none;
-    width: 100%;
+    width: 75%;
 }
 
 #img-input-admin-value {
@@ -1923,6 +1947,7 @@ input:focus {
     border-radius: 0.5rem;
     color: var(--color-secundary);
     height: 3.7vh;
+    width: 100%;
     text-indent: 1rem;
 }
 
@@ -1935,17 +1960,19 @@ input:focus {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.87rem;
     color: var(--color-secundary);
-    height: 23vh;
+    height: 17.5vh;
     resize: none;
+    font-size: 1rem;
     text-indent: 1rem;
     width: 23rem;
+    padding: 1rem 0.5rem;
+    margin-left: 5vw;
 }
 
 .description-text-area::placeholder {
     color: var(--color-secundary);
     font-size: 1rem;
     font-family: var(--font-text);
-    padding: 1rem 0.5rem;
 }
 
 .button-admin-send {
@@ -2112,6 +2139,7 @@ input:focus {
     flex-direction: column;
     justify-content: flex-start;
     width: 15rem;
+    position: relative;
 }
 
 .nav-menu-user-page {
@@ -2199,7 +2227,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 88%;
+    height: 8.32rem;
     justify-content: space-around;
     padding: 4vh 0 4vh 0;
     width: 94%;
@@ -3700,6 +3728,11 @@ input:focus {
 
 .all-products-image-div-modify {
     overflow: hidden;
+    width: 8rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .product-image-modify-page {
@@ -3832,15 +3865,16 @@ input:focus {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     height: 100%;
+    width: 100%;
     padding: 0.8vh 0 0.8vh 0;
     text-indent: 1rem;
 }
 
 #input-modify-admin-name::placeholder {
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 #div-input-modify-admin-value {
@@ -3857,15 +3891,16 @@ input:focus {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     height: 100%;
+    width: 100%;
     padding: 0.8vh 0 0.8vh 0;
     text-indent: 1rem;
 }
 
 #input-modify-admin-value::placeholder {
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 #div-input-modify-admin-stock {
@@ -3882,21 +3917,21 @@ input:focus {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     height: 100%;
+    width: 100%;
     padding: 0.8vh 0 0.8vh 0;
     text-indent: 1rem;
 }
 
 #input-modify-admin-stock::placeholder {
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 #select-product-modify-page {
-    margin-left: -11.2vw;
-    font-size: 0.7rem;
-    width: 90%;
+    font-size: 0.9rem;
+    width: 100%;
 }
 
 #input-admin-file-modal {
@@ -3913,22 +3948,23 @@ input:focus {
     color: var(--color-secundary);
     height: 13%;
     resize: none;
-    text-indent: 1rem;
-    width: 121%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    width: 100.4%;
 }
 
 .description-text-area-modal::placeholder {
     color: var(--color-secundary);
     font-family: var(--font-text);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .image-preview-modal {
     border: 1px solid var(--color-secundary);
     border-radius: 0.8rem;
-    height: 60%;
+    height: 6rem;
     overflow: hidden;
-    width: 20%;
+    width: 7rem;
 }
 
 .div-image-file-modal {
@@ -3941,12 +3977,13 @@ input:focus {
 }
 
 .div-image-text-modal {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    height: 94%;
+    height: 6rem;
     justify-content: center;
-    text-align: center;
+    text-align: left;
+    justify-content: space-between;
     width: 77%;
 }
 
@@ -3959,7 +3996,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     font-family: var(--font-title);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     height: 30%;
     justify-content: center;
     transition: all ease-in 0.3s;
@@ -3975,7 +4012,7 @@ input:focus {
 .p-file-admin-modal {
     color: var(--color-secundary);
     font-family: var(--font-text);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .modal-text-info {
@@ -3990,10 +4027,10 @@ input:focus {
     border: none;
     border-radius: 14px;
     color: var(--color-white);
+    font-size: 0.9rem;
     cursor: pointer;
-    height: 4.9vh;
     transition: all ease-in-out 0.3s;
-    width: 6.5vw;
+    padding: 0.5rem 2rem;
 }
 
 .product-button-send-modify:hover {
@@ -4083,7 +4120,6 @@ input:focus {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    text-align: center;
     justify-content: space-between;
 }
 
@@ -4129,8 +4165,6 @@ input:focus {
     font-family: var(--font-text);
     font-size: 1.2rem;
     font-weight: 500;
-    margin-bottom: 2rem;
-    text-align: left;
     width: 90%;
 }
 
@@ -4311,13 +4345,12 @@ input:focus {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 16vw;
-    height: 4vh;
+    padding: 0.5rem 1rem;
     font-family: var(--font-title);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--color-light-white);
     background-color: var(--color-primary);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     transition: all ease-in 0.3s;
     cursor: pointer;
 }
@@ -4334,7 +4367,6 @@ input:focus {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 1rem;
 }
 
@@ -4351,22 +4383,21 @@ input:focus {
     border: 0.07rem solid var(--color-secundary);
     border-radius: 0.5rem;
     color: var(--color-secundary);
-    margin-left: 4vw;
-    font-size: 0.7rem;
+    width: 100%;
+    font-size: 0.9rem;
     text-indent: 1rem;
 }
 
 #input-product-type-modal-content::placeholder {
     color: var(--color-secundary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .product-type-modal-button {
-    height: 4vh;
-    width: 10.5vw;
-    font-size: 0.8rem;
+    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 1rem;
     background-color: var(--color-primary);
     color: var(--color-white);
     cursor: pointer;
@@ -4942,6 +4973,11 @@ input:focus {
     flex-direction: column;
     height: 100%;
     justify-content: center;
+}
+
+.skeleton-order-div-user{
+    animation: shimmer 6s infinite linear;
+    background: linear-gradient(to right, transparent 0%, #f0f0f0 50%, transparent 100%);
 }
 
 @keyframes shimmer {

@@ -75,7 +75,9 @@ export default async () => {
 
             const productPrice = document.createElement("p");
             productPrice.classList.add("product-price-modify-page");
-            productPrice.innerText = "R$ " + product.value;
+            const value = Number(product.value);
+            const formattedValue = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            productPrice.innerText = formattedValue;
             productTextDiv.appendChild(productPrice);
 
             const productStock = document.createElement("p");
@@ -197,6 +199,9 @@ export default async () => {
                         imgProductModal.src = info.url_img;
                         imagePreviewModal.appendChild(imgProductModal);
 
+                        const valueInfo = Number(info.value);
+                        const formattedValueInfo = valueInfo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
                         const descriptionTextArea = document.createElement("textarea");
                         descriptionTextArea.classList.add("description-text-area-modal");
                         descriptionTextArea.placeholder = info.description;
@@ -214,7 +219,7 @@ export default async () => {
                         );
                         modalContent.appendChild(
                             inputEntry(
-                                "R$ " + info.value,
+                                formattedValueInfo,
                                 "number",
                                 "input-modify-admin-value",
                                 "none"
