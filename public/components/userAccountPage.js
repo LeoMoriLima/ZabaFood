@@ -52,7 +52,9 @@ export default async () => {
     
         const creditText = document.createElement("p");
         creditText.classList.add("p-credit-text");
-        creditText.innerText = "Saldo : " + "R$" + userData.credit_balance;
+        const value = Number(userData.credit_balance);
+        const formattedValue = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        creditText.innerText = "Saldo : " + formattedValue;
         divTextUserInfo.appendChild(creditText);
     
         divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () =>{

@@ -7,7 +7,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default () => {
     const divBackground = document.createElement("div");
-    divBackground.classList.add("div-background");
+    divBackground.classList.add("div-background-register");
 
     const entryCard = document.createElement("div");
     entryCard.classList.add("entry-card-register");

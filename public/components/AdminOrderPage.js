@@ -84,7 +84,9 @@ export default async () => {
                 divInfo.appendChild(infoOrderPriceLabel);
 
                 const infoOrderPrice = document.createElement("p");
-                infoOrderPrice.innerText = "R$" + cart.total;
+                const value = Number(cart.total);
+                const formattedValue = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                infoOrderPrice.innerText = formattedValue;
                 infoOrderPrice.classList.add("info-order-price-admin");
                 divInfo.appendChild(infoOrderPrice);
 

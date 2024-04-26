@@ -181,7 +181,9 @@ export default async () => {
 
                     const creditBalance = document.createElement("p");
                     creditBalance.classList.add("header-credit-balance");
-                    creditBalance.innerText = "Saldo: " + "R$ " + accountData.credit_balance;
+                    const value = Number(accountData.credit_balance);
+                    const formattedValue = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                    creditBalance.innerText = "Saldo: " + formattedValue;
                     accountTextDiv.appendChild(creditBalance);
 
                     const roundedDivPlus = document.createElement("Div");
