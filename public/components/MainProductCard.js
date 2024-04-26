@@ -89,6 +89,7 @@ export default async (product) => {
             }
             const simpleLoading = document.createElement("img");
             simpleLoading.src = "/assets/images/simple-loading.svg";
+            simpleLoading.classList.add("simple-loading-product")
             simpleLoading.classList.add("loading-animation")
             try {
                 button.disabled = true;
@@ -123,6 +124,7 @@ export default async (product) => {
                 return
             }
             const simpleLoading = document.createElement("img");
+            simpleLoading.classList.add("simple-loading-product")
             simpleLoading.src = "/assets/images/simple-loading.svg";
             simpleLoading.classList.add("loading-animation")
 
