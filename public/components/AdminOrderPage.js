@@ -294,7 +294,7 @@ export default async () => {
 
                             const data = await response.json()
 
-                            if(data.error){
+                            if (data.error) {
                                 throw data.error
                             }
 
@@ -323,6 +323,7 @@ export default async () => {
                     button.innerText = ""
                     const simpleLoading = document.createElement("img");
                     simpleLoading.src = "/assets/images/simple-loading.svg";
+                    simpleLoading.classList.add("button-load-more-admin-loading")
                     simpleLoading.classList.add("loading-animation")
                     simpleLoading.style.width = "2rem"
                     button.appendChild(simpleLoading)
