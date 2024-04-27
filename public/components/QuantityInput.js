@@ -13,7 +13,7 @@ export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
         toggleButtons();
 
         if (onClickMinus) {
-            onClickMinus()
+            onClickMinus(minusButton);
         }
     };
     quantityInput.appendChild(minusButton);
@@ -43,7 +43,7 @@ export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
         toggleButtons();
         
         if (onClickPlus) {
-            onClickPlus() 
+            onClickPlus(plusButton);
         }
     };
     quantityInput.appendChild(plusButton);

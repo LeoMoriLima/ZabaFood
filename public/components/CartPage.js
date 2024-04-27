@@ -3,6 +3,8 @@ import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
 import QuantityInput from "./QuantityInput.js";
 
+const discount = 0.92;
+
 export default async () => {
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("cp-main-div");
@@ -114,10 +116,12 @@ export default async () => {
                     quantityInputDiv.classList.add("cp-quantity-input-div");
                     productInfoDiv.appendChild(quantityInputDiv);
                     
-                    const changeValue = async () =>{
+                    const changeValue = async (button) =>{
                         try {
                             const quantityInputValue = document.getElementById(`cp-product-quantity-input-${cartProductId}`).value;
                         
+                            button.disabled = true;
+
                             const response = await fetch(`/api/cart_product/${cartProductId}`, {
                                 method: "PUT",
                                 headers: {
@@ -130,7 +134,7 @@ export default async () => {
     
                             productQuantityText.innerText = quantityInputValue > 1 ? `Quantidade: ${quantityInputValue} unidades` : `Quantidade: ${quantityInputValue} unidade`;
     
-                            productValue.innerText = `R$${(product.value * quantityInputValue).toFixed(2).replace(".", ",")}`;
+                            productValue.innerText = quantityInputValue > 2 ? `R$${(product.value * quantityInputValue * discount).toFixed(2).replace(".", ",")}` : `R$${(product.value * quantityInputValue).toFixed(2).replace(".", ",")}`;
     
                             const newCartResponse = await fetch(`/api/cart/user/${userId}`, {
                                 method: "GET",
@@ -141,7 +145,10 @@ export default async () => {
                 
                             const newCartInfo = await newCartResponse.json();
                             subtotalTextDivRight.innerText = `R$${(newCartInfo.total).replace(".", ",")}`;
+
+                            button.disabled = false;
                         } catch (error) {
+                            button.disabled = false;
                             console.log(error);
                         }
                     }
@@ -155,7 +162,7 @@ export default async () => {
         
                     const productValue = document.createElement("p");
                     productValue.classList.add("cp-product-value");
-                    productValue.innerText = `R$${(product.value * quantity).toFixed(2).replace(".", ",")}`;
+                    productValue.innerText = quantity > 2 ? `R$${(product.value * quantity * discount).toFixed(2).replace(".", ",")}` :`R$${(product.value * quantity).toFixed(2).replace(".", ",")}`;
                     itemProductRightDiv.appendChild(productValue);
                 });
             } else {

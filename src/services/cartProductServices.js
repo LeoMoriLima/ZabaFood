@@ -58,7 +58,6 @@ const createCartProduct = async (cart_id, product_id, quantity) => {
         if (foundProduct) {
             const cartProductId = foundProduct.id;
             const newQuantity = quantity + foundProduct.quantity;
-            // const cartQuantity = quantity - foundProduct.quantity;
             const result = await cartProductRepository.updateCartProduct(cartProductId, cart_id, newQuantity, quantity, "add");
 
             return result;
@@ -68,7 +67,7 @@ const createCartProduct = async (cart_id, product_id, quantity) => {
         }
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
         throw error;
     }
 }
@@ -80,16 +79,9 @@ const updateCartProduct = async (id, quantity) => {
             throw new Error("Item não encontrado");
         }
         const cartId = cartProduct[0].cart_id;
-        const oldQuantity = cartProduct[0].quantity;
 
-        let cartQuantity;
-        if ((oldQuantity - quantity) > 0) {
-            cartQuantity = oldQuantity - quantity;
-            await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'subtract');
-        } else {
-            cartQuantity = quantity - oldQuantity;
-            await cartProductRepository.updateCartProduct(id, cartId, quantity, cartQuantity, 'add');
-        }
+        await cartProductRepository.updateCartProduct(id, cartId, quantity);
+
     } catch (error) {
         console.log(error);
         throw error;
