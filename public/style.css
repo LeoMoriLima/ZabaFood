@@ -59,20 +59,23 @@ input[type=number] {
     height: 10.9375rem;
     padding: 0 9rem;
     width: 100%;
+    display: flex;
 }
 
 .nav-header-login {
     display: flex;
     flex-direction: row;
     gap: 10rem;
+    width: 100%;
     justify-content: space-between;
 }
 
 .back-btn {
     color: var(--color-secundary);
     font: var(--font-title);
-    margin-top: 4.36rem;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .arrow-left-img {
@@ -86,12 +89,14 @@ input[type=number] {
 }
 
 .logo-btn {
-    margin-top: 1.57rem;
+    display: flex;
+    height: 100%;
+    align-items: center;
 }
 
 .logo-img {
-    height: 6rem;
-    width: 8rem;
+    height: 5.1rem;
+    width: 6.5rem;
 }
 
 .main-entry {
@@ -111,7 +116,7 @@ input[type=number] {
     background-image: url("./assets/images/login-background.svg");
     background-repeat: no-repeat;
     background-size: 105%;
-    height: 60vh;
+    height: 30rem;
     margin-bottom: 2rem;
     width: 90vw;
 }
@@ -122,7 +127,7 @@ input[type=number] {
     background-image: url("./assets/images/register-background.svg");
     background-repeat: no-repeat;
     background-size: 105%;
-    height: 60vh;
+    height: 30rem;
     margin-bottom: 2rem;
     width: 90vw;
 }
@@ -137,7 +142,7 @@ input[type=number] {
     flex-direction: column;
     font-size: 1rem;
     gap: 2rem;
-    height: 60vh;
+    height: 100%;
     justify-content: center;
     width: 45vw;
 }
@@ -766,7 +771,7 @@ input:focus {
 
 .header-rounded-text {
     color: var(--color-white);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
 }
@@ -5116,4 +5121,26 @@ input:focus {
         padding: 1rem;
         width: 15rem;
     }
+
+    .div-background,
+    .div-background-register {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3.9375rem;
+        background-image: url("./assets/images/login-background.svg");
+        background-repeat: no-repeat;
+        background-size: 105%;
+        height: 32rem;
+        margin-bottom: 2rem;
+        width: 75vw;
+    }
+
+    .div-background-register {
+        background-image: url("./assets/images/register-background.svg")
+    }
+
+    .entry-card,
+    .entry-card-register {
+        width: 40vw;
+    }
+
 }
