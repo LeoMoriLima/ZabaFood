@@ -58,22 +58,27 @@ const getAllCarts = async () => {
 
 const getAllCartsByInterval = async (min, max) => {
     const query = `
-      SELECT 
+    SELECT 
         cart.*, 
         "users".name,
-        address.*
-      FROM 
+        address.postal_code,
+        address.state,
+        address.city,
+        address.street,
+        address.number,
+        address.complement
+    FROM 
         cart 
-      JOIN 
+    JOIN 
         "users" ON cart.user_id = "users".id 
-      JOIN
+    JOIN
         address ON cart.address_id = address.id
-      WHERE 
+    WHERE 
         cart.status <> 'pending' 
-      ORDER BY 
+    ORDER BY 
         cart.created_at DESC 
-      LIMIT $1 OFFSET $2;
-    `;
+    LIMIT $1 OFFSET $2;
+`;
     const client = await connectToDatabase();
     try {
         const result = await client.query(query, [max - min + 1, min - 1]);

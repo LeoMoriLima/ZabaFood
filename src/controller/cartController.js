@@ -15,7 +15,8 @@ const getCart = async (req, res) => {
 
         const cart = await cartServices.getCart(id);
         return res.status(200).json(cart);
-    } catch {
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: 'Erro ao buscar dados' });
     }
 }
@@ -99,7 +100,7 @@ const createCart = async (req, res) => {
 
 const updateCartStatus = async (req, res) => {
     const { id } = req.params;
-    const { status , address_id} = req.body;
+    const { status, address_id } = req.body;
     try {
         if (!isUUID(id)) {
             return res.status(400).json({ error: "ID inválido!" })
