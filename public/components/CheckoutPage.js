@@ -267,10 +267,14 @@ export default async () => {
 			addressLeftDiv.classList.add("checkout-address-left-div");
 			addressDiv.appendChild(addressLeftDiv);
 
+			const iconDiv = document.createElement("div")
+			iconDiv.classList.add("checkout-point-icon-div")
+			addressLeftDiv.appendChild(iconDiv);
+
 			const pointIcon = document.createElement("img");
 			pointIcon.classList.add("checkout-point-icon");
 			pointIcon.src = "/assets/images/point-icon.svg";
-			addressLeftDiv.appendChild(pointIcon);
+			iconDiv.appendChild(pointIcon)
 
 			const addressInfo = document.createElement("div");
 			addressInfo.classList.add("checkout-address-info");
@@ -479,10 +483,14 @@ export default async () => {
 						addressLeftDiv.classList.add("checkout-address-left-div");
 						addressDivModal.appendChild(addressLeftDiv);
 
+						const iconModalDiv = document.createElement("div");
+						iconModalDiv.classList.add("checkout-point-icon-modal-div")
+						addressLeftDiv.appendChild(iconModalDiv);
+
 						const pointIcon = document.createElement("img");
-						pointIcon.classList.add("checkout-point-icon");
+						pointIcon.classList.add("checkout-point-icon-modal");
 						pointIcon.src = "/assets/images/point-icon.svg";
-						addressLeftDiv.appendChild(pointIcon);
+						iconModalDiv.appendChild(pointIcon)
 
 						const addressInfo = document.createElement("div");
 						addressInfo.classList.add("checkout-address-info");
