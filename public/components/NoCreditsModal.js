@@ -34,9 +34,6 @@ export default async(removeOverlayCallback) => {
     divModal.appendChild(img);
     divModal.appendChild(divText);
     divModal.appendChild(x);
-    
-
-    console.log("Modal criado:", divModal);
 
     return divModal;
 }

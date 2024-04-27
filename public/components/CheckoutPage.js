@@ -219,8 +219,6 @@ export default async () => {
 
 					const userData = await userResponse.json();
 
-					console.log(userData);
-
 					MessageComponent("Compra realizada com sucesso!", true);
 
 					router.navigate("/confirmation")

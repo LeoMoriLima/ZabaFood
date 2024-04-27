@@ -5,8 +5,6 @@ import LoadingComponent from "./LoadingComponent.js";
 export default async () => {
     const windowWidth = window.innerWidth;
 
-    console.log(windowWidth);
-
     let min = 1
     let max = windowWidth >= 1366 ? 4 : 3;
 

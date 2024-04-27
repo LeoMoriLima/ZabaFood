@@ -1,5 +1,7 @@
 const { connectToDatabase } = require('../db/postgresql');
 
+const discount = 0.92;
+
 const getCartProductByID = async (id) => {
     const client = await connectToDatabase();
     const query = 'SELECT * FROM cart_product WHERE id = $1';
@@ -66,28 +68,28 @@ const deleteCartProduct = async (id, cartId, totalProductValue) => {
     }
 }
 
-const updateCartProduct = async (id, cartId, quantity, cartQuantity, operation) => {
+const updateCartProduct = async (id, cartId, quantity) => {
     const client = await connectToDatabase();
+
     try {
         await client.query('BEGIN');
 
         // Seleciona o produto do carrinho de acordo com o id de cart_product
         const cartProduct = await client.query('SELECT * FROM cart_product WHERE id = $1', [id]);
 
-        // Atualiza a quantidade e o valor total do produto do carrinho
-        const totalItem = cartProduct.rows[0].price_unity * quantity;
-        await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3', [quantity, totalItem, id]);
-        console.log('Dados atualizados com sucesso');
+        const oldTotalItem = cartProduct.rows[0].total_item;
 
-        // Atualiza o total do carrinho
-        const totalCartItem = cartProduct.rows[0].price_unity * cartQuantity;
-        if (operation === 'subtract') {
-            await client.query('UPDATE cart SET total = total - $1 WHERE id = $2', [totalCartItem, cartId]);
-        } else if (operation === 'add') {
-            await client.query('UPDATE cart SET total = total + $1 WHERE id = $2', [totalCartItem, cartId]);
-        } else {
-            throw new Error("Operação inválida");
-        }
+        // Retira o valor total do produto do carrinho
+        await client.query('UPDATE cart SET total = total - $1 WHERE id = $2', [oldTotalItem, cartId]);
+
+        // Calcula o novo valor total do produto de acordo com a quantidade do mesmo
+        const productTotalValue = quantity >= 3 ? cartProduct.rows[0].price_unity * quantity * discount : cartProduct.rows[0].price_unity * quantity;
+
+        // Atualiza o valor total do produto na tabela de cart_product
+        await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3', [quantity, productTotalValue, id]);
+
+        // Atualiza o carrinho com o novo total do produto
+        await client.query('UPDATE cart SET total = total + $1 WHERE id = $2', [productTotalValue, cartId]);
 
         await client.query('COMMIT');
     } catch (error) {
@@ -106,18 +108,21 @@ const createNewCartProduct = async (cart_id, product_id, quantity) => {
 
         // Busca o valor do produto de acordo com o product_id
         const product = await client.query('SELECT * FROM product WHERE id = $1', [product_id]);
+        
         const productValue = product.rows[0].value;
+
+        const totalItem = quantity > 2 ? product.rows[0].value * quantity * discount : product.rows[0].value * quantity;
 
         // Cria o registro na tabela cart_product
         await client.query(
             'INSERT INTO cart_product (cart_id, product_id, quantity, price_unity, total_item) VALUES ($1, $2, $3, $4, $5)',
-            [cart_id, product_id, quantity, productValue, quantity * productValue]
+            [cart_id, product_id, quantity, productValue, totalItem]
         );
 
         // Adiciona o valor total do produto ao carrinho do usuário
         await client.query(
             'UPDATE cart SET total = total + $1 WHERE id = $2',
-            [quantity * productValue, cart_id]);
+            [totalItem, cart_id]);
 
         await client.query('COMMIT');
 

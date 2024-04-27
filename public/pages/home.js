@@ -14,7 +14,7 @@ export default async () => {
     page.appendChild(MessageContainer());
     page.appendChild(await HeaderMain());
     page.appendChild(mainBanner());
-    page.appendChild(await Carousel())
+    page.appendChild(await Carousel());
     page.appendChild(await ProductBanner(productId));
     page.appendChild(ImageLine());
     page.appendChild(FooterMain());
