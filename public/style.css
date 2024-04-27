@@ -657,12 +657,17 @@ input[type=number] {
     font-family: var(--font-title);
     font-size: 0.8rem;
     text-decoration: none;
-    width: 100%;
+    width: 18vw;
 }
 
 #img-search {
     width: 80%;
     transform: scale(0.8);
+    transition: all ease-in-out 0.3s;
+}
+
+#img-search:hover {
+    transform: scale(0.9);
 }
 
 input:focus {
@@ -883,7 +888,7 @@ input:focus {
     width: 100%;
     bottom: 6%;
     position: absolute;
-    z-index: -1;
+    pointer-events: none;
 }
 
 .div-footer-main {
@@ -2201,7 +2206,7 @@ input:focus {
     font-family: var(--font-title);
     font-size: 0.8rem;
     gap: 1rem;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 1vh 1vh;
     transition: all ease-in-out 0.3s;
     width: 100%;
@@ -2768,6 +2773,7 @@ input:focus {
     font-weight: 600;
     padding: 5% 20%;
     width: 90%;
+    transition: all ease-in-out 0.3s;
 }
 
 .cp-close-cart-btn:hover {
@@ -2861,6 +2867,13 @@ input:focus {
     font-size: 1.3rem;
     font-style: normal;
     padding: 0.7rem 4.9rem;
+    transition: all ease-in-out 0.3s;
+}
+
+.button-load-more:hover {
+    background-color: var(--color-secundary);
+    border-color: var(--color-primary);
+    transform: scale(1.05)
 }
 
 /* Product Card Recommended */
@@ -3206,10 +3219,6 @@ input:focus {
     width: 100%;
 }
 
-#input-postal-code {
-    padding-left: 0.83vw;
-}
-
 #img-city-input,
 #img-state-input,
 #img-street-input,
@@ -3322,6 +3331,11 @@ input:focus {
     position: relative;
     text-align: left;
     width: 90%;
+    transition: all ease-in-out 0.3s;
+}
+
+.address-div:hover {
+    transform: scale(1.05);
 }
 
 .icon-address-img {
@@ -3601,7 +3615,7 @@ input:focus {
     color: var(--color-white);
     cursor: pointer;
     font-size: 1rem;
-    padding: 0.5rem 2em;
+    padding: 0.5rem 1.7rem;
     transition: all ease-in-out 0.3s;
 }
 
@@ -5141,6 +5155,59 @@ input:focus {
     .entry-card,
     .entry-card-register {
         width: 40vw;
+    }
+
+    
+    /* Product Page - 1366 */
+    .main-product-div {
+        width: 85vw;
+    }
+
+    /* Admin Account Page - 1366 */
+
+    .admin-page-div {
+        height: 96vh;
+    }
+
+    .all-products-div-modify-page {
+        min-height: 9rem;
+    }
+
+    .all-products-image-div-modify {
+        width:  8rem;
+        height: 7rem;
+    }
+
+    .product-image-modify-page {
+        max-height: 7rem;
+        max-width: 8rem;
+    }
+
+    .product-modify-page-modal-content-div {
+        height: 73vh;
+    }
+
+    .circle-img-div-admin {
+        height: 5rem;
+        width: 5rem;
+    }
+
+    /* User Account Page - 1366 */
+
+    .user-page-div {
+        height: 96vh;
+    }
+
+    .address-page-div {
+        height: 100%;
+    }
+
+    .main-address-page-div {
+        height: 75%;
+    }
+
+    .right-address-page-div {
+        height: 45vh;
     }
 
 }
