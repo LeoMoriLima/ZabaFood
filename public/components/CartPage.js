@@ -76,6 +76,10 @@ export default async () => {
                         router.navigate("/cart");
                     })
                     deleteProductDiv.appendChild(deleteProductImg);
+
+                    const productImgDiv = document.createElement("div");
+                    productImgDiv.classList.add("cp-product-img-div");
+                    itemProductLeftDiv.appendChild(productImgDiv);
         
                     const productImg = document.createElement("img");
                     productImg.classList.add("cp-product-img");
@@ -83,7 +87,8 @@ export default async () => {
                     productImg.addEventListener("click", () => {
                         router.navigate(`/product/${product.id}`);
                     });
-                    itemProductLeftDiv.appendChild(productImg);
+                    productImgDiv.appendChild(productImg);
+
         
                     const productInfoDiv = document.createElement("div");
                     productInfoDiv.classList.add("cp-product-info-div");
