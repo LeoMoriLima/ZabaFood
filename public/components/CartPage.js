@@ -2,6 +2,7 @@ import cart from "../pages/cart.js";
 import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
 import QuantityInput from "./QuantityInput.js";
+import MessageComponent from "./MessageComponent.js";
 
 const discount = 0.92;
 
@@ -112,6 +113,11 @@ export default async () => {
                     });
                     productInfoDiv.appendChild(productQuantityText);
 
+                    // const productStockText = document.createElement("p");
+                    // productStockText.classList.add("cp-product-stock-text")
+                    // productStockText.innerText = `Estoque: ${product.stock}`
+                    // productInfoDiv.appendChild(productStockText)
+
                     const quantityInputDiv = document.createElement("div");
                     quantityInputDiv.classList.add("cp-quantity-input-div");
                     productInfoDiv.appendChild(quantityInputDiv);
@@ -216,11 +222,19 @@ export default async () => {
             subtotalTextDiv.appendChild(subtotalTextDivRight);
 
             const closeCartBtn = btn("Fechar pedido", "cp-close-cart-btn", async () => {
-                router.navigate("/checkout");
+                let hasProductWithNoStock = false
+                cartProductsInfo.forEach(cartProduct => {
+                    if (cartProduct.product.stock < cartProduct.quantity) {
+                        MessageComponent(`Estoque de ${cartProduct.product.name} insuficiente`)
+                        hasProductWithNoStock = true
+                    }
+                });
+                
+                if (!hasProductWithNoStock) {
+                    router.navigate("/checkout");
+                }
             });
-            subtotalDiv.appendChild(closeCartBtn);
-
-            
+            subtotalDiv.appendChild(closeCartBtn);   
         } catch (error) {
             console.error("Erro ao buscar o carrinho:", error);
         }

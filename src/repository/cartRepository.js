@@ -136,9 +136,8 @@ const updateCartApproved = async (id, address_id) => {
             const product = await client.query('SELECT * FROM product WHERE id = $1', [productId]);
             const stock = product.rows[0].stock;
             if (stock < quantity) {
-                throw new Error(`Estoque de ${product.name} insuficiente`);
+                throw new Error(`Estoque de ${product.rows[0].name} insuficiente`);
             }
-
 
             const updatedProduct = await client.query('UPDATE product SET stock = stock - $1 WHERE id = $2 RETURNING *', [quantity, productId]);
         }

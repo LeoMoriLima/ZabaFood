@@ -2694,7 +2694,8 @@ input:focus {
     cursor: pointer;
 }
 
-.cp-product-quantity-text {
+.cp-product-quantity-text,
+.cp-product-stock-text {
     cursor: pointer;
     font-size: 0.8rem;
     margin-top: 5%;
