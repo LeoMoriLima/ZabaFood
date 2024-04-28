@@ -112,14 +112,11 @@ const updateCartStatus = async (req, res) => {
         }
 
         if (status === "approved") {
-            // if (!isUUID(address_id)) {
-            //     return res.status(400).json({ error: "ID inválido!" })
-            // }
-            cartServices.updateCartApproved(id, address_id);
+            await cartServices.updateCartApproved(id, address_id);
         } else if (status === "sended") {
-            cartServices.updateCartSended(id)
+            await cartServices.updateCartSended(id)
         } else if (status === "delivered") {
-            cartServices.updateCartDelivered(id);
+            await cartServices.updateCartDelivered(id);
         } else {
             throw new Error("Status invalido");
         }

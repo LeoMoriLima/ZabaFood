@@ -95,9 +95,7 @@ const deleteCartProduct = async (id) => {
             throw new Error("Item não encontrado");
         }
         const cartId = cartProduct[0].cart_id;
-        const quantity = cartProduct[0].quantity;
-        const value = parseFloat(cartProduct[0].price_unity);
-        const totalProductValue = quantity * value;
+        const totalProductValue = parseFloat(cartProduct[0].total_item);
 
         if (!cartProduct) {
             throw new Error("Item não encontrado");

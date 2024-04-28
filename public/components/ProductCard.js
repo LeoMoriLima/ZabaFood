@@ -1,6 +1,7 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
 import LoadingComponent from "./LoadingComponent.js";
+import MessageComponent from "./MessageComponent.js";
 
 const discount = 0.92;
 
@@ -12,13 +13,13 @@ export default async (id) => {
 				"Content-Type": "application/json"
 			}
 		});
-		const data = await response.json();
+		const productData = await response.json();
 
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("product-card");
 
 		const imgDiv = document.createElement("img");
-		imgDiv.src = data.url_img;
+		imgDiv.src = productData.url_img;
 		imgDiv.classList.add("card-product-img");
 		mainDiv.appendChild(imgDiv);
 		imgDiv.addEventListener("click", () => {
@@ -35,7 +36,7 @@ export default async (id) => {
 
 		const productTitle = document.createElement("p");
 		productTitle.classList.add("product-title");
-		productTitle.innerText = data.name;
+		productTitle.innerText = productData.name;
 		productTitleDiv.appendChild(productTitle);
 
 		const quantityDiv = document.createElement("div");
@@ -68,7 +69,7 @@ export default async (id) => {
 
 		const unitPrice = document.createElement("p");
 		unitPrice.classList.add("unit-price");
-		unitPrice.innerText = `R$ ${(data.value * 1).toFixed(2)}`;
+		unitPrice.innerText = `R$ ${(productData.value * 1).toFixed(2)}`;
 		unitPriceDiv.appendChild(unitPrice);
 
 		const buy3PriceDiv = document.createElement("div");
@@ -77,12 +78,12 @@ export default async (id) => {
 
 		const buy3FullPrice = document.createElement("p");
 		buy3FullPrice.classList.add("buy-3-full-price");
-		buy3FullPrice.innerText = `R$ ${(data.value * 3).toFixed(2)}`;
+		buy3FullPrice.innerText = `R$ ${(productData.value * 3).toFixed(2)}`;
 		buy3PriceDiv.appendChild(buy3FullPrice);
 
 		const buy3DiscountPrice = document.createElement("p");
 		buy3DiscountPrice.classList.add("buy-3-discount-price");
-		buy3DiscountPrice.innerText = `R$ ${((data.value * 3) * discount).toFixed(2)}`;
+		buy3DiscountPrice.innerText = `R$ ${((productData.value * 3) * discount).toFixed(2)}`;
 		buy3PriceDiv.appendChild(buy3DiscountPrice);
 
 		const addBtnDiv = document.createElement("div");
@@ -115,6 +116,18 @@ export default async (id) => {
 				button.disabled = true
 				button.innerText = "Adicionando"
 
+				const quantityValue = unitBtn.classList.contains("selected-btn") ? 1 : 3
+
+				console.log("Quantity value:", quantityValue);
+
+				if (productData.stock < 1 && quantityValue === 1) {
+					throw "Estoque do produto insuficiente"
+				}
+
+				if (productData.stock < 3 && quantityValue === 3) {
+					throw "Estoque do produto insuficiente"
+				}
+
 				const userId = userData.user.id;
 
 				const cartResponse = await fetch(`/api/cart/user/${userId}`, {
@@ -135,14 +148,14 @@ export default async (id) => {
 					body: JSON.stringify({
 						cart_id: cartId,
 						product_id: id,
-						quantity: unitBtn.classList.contains("selected-btn") ? 1 : 3,
+						quantity: quantityValue,
 					})
 				});
 				const data = await response.json();
 
 				shopIcon.classList.remove("loading-animation")
 				shopIcon.src = "/assets/images/check-icon.svg";
-				button.innerText = "Adiconado"
+				button.innerText = "Adicionado"
 				setTimeout(() => {
 					button.innerText = "Adicionar"
 					shopIcon.src = "/assets/images/shop-icon.svg";
@@ -153,6 +166,11 @@ export default async (id) => {
 				window.dispatchEvent(event);
 
 			} catch (error) {
+				shopIcon.classList.remove("loading-animation")
+				shopIcon.src = "/assets/images/shop-icon.svg";
+				button.innerText = "Adicionar"
+				button.disabled = false
+				MessageComponent(error, false)
 				console.error("Erro ao adicionar produtos ao carrinho:", error);
 			}
 		})

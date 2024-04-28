@@ -18,7 +18,6 @@ const getAddressByUserID = async (userId, index) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY created_at ASC LIMIT 1 OFFSET $2;";
     try {
-        console.log("Index repository:", index);
         const result = await client.query(query, [userId, index]);
         return result.rows[0];
     } catch (error) {
@@ -29,13 +28,13 @@ const getAddressByUserID = async (userId, index) => {
     }
 }
 
-const getAllUserAddress = async (userId) =>{
+const getAllUserAddress = async (userId) => {
     const client = await connectToDatabase();
     const query = "SELECT * FROM address WHERE user_id = $1 ORDER BY created_at ASC"
-    try{
+    try {
         const result = await client.query(query, [userId]);
         return result.rows;
-    } catch (error){
+    } catch (error) {
         throw new Error("Erro ao selecionar os dados");
     } finally {
         client.end();

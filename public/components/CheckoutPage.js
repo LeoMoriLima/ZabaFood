@@ -195,7 +195,11 @@ export default async () => {
 						})
 					});
 
-					const cartUpdated = await response.json()
+					const cartUpdated = await response.json();
+
+					if (cartUpdated.error) {
+						throw cartUpdated.error
+					}
 
 					const newCartResponse = await fetch("/api/cart", {
 						method: "POST",
@@ -223,7 +227,8 @@ export default async () => {
 
 					router.navigate("/confirmation")
 				} catch (error) {
-					console.log(error)
+					MessageComponent(error, false)
+					console.error(error)
 				}
 			} else {
 				modal.style.display = "flex";

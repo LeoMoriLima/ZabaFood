@@ -95,8 +95,12 @@ export default async (product) => {
                 button.disabled = true;
                 button.innerText = "";
                 button.appendChild(simpleLoading);
-
                 const quantity = document.getElementById("product-quantity-input").value;
+
+                if (product.stock < 1 || product.stock < quantity) {
+                    throw "Estoque insuficiente.";
+                }
+
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
                 simpleLoading.remove()
@@ -113,7 +117,7 @@ export default async (product) => {
                 button.innerText = "Comprar";
                 button.disabled = false
                 console.error(error);
-                MessageComponent("Erro ao adicionar no carrinho", false);
+                MessageComponent(`Erro ao adicionar no carrinho: ${error}`, false);
                 return
             }
         }));
@@ -132,8 +136,12 @@ export default async (product) => {
                 button.disabled = true;
                 button.innerText = "";
                 button.appendChild(simpleLoading);
-
                 const quantity = document.getElementById("product-quantity-input").value;
+
+                if (product.stock < 1 || product.stock < quantity) {
+                    throw "Estoque insuficiente.";
+                }
+
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
                 simpleLoading.remove()
@@ -150,7 +158,7 @@ export default async (product) => {
                 button.innerText = "Adicionar ao carrinho";
                 button.disabled = false
                 console.error(error);
-                MessageComponent("Erro ao adicionar no carrinho", false);
+                MessageComponent(`Erro ao adicionar no carrinho: ${error}`, false);
                 return
             }
         }));
