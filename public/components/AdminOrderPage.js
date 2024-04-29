@@ -230,6 +230,11 @@ export default async () => {
 
                         divProducts.classList.toggle('show');
 
+                        divProducts.style.height = "6rem";
+                        divProducts.style.width = "23.9rem";
+                        divProducts.style.justifyContent = "center";
+                        divProducts.style.alignItems = "center";
+
                         const loadingComponent = LoadingComponent(5);
                         loadingComponent.classList.add("ap-products-loading");
                         divProducts.appendChild(loadingComponent);
@@ -237,6 +242,11 @@ export default async () => {
                         productCartData.forEach(async (productCartItem) => {
                             const productResponse = await fetch(`/api/product/${productCartItem.product_id}`);
                             const productData = await productResponse.json();
+
+                            divProducts.style.height = "";
+                            divProducts.style.width = "";
+                            divProducts.style.justifyContent = "";
+                            divProducts.style.alignItems = "";
 
                             loadingComponent.remove();
 
