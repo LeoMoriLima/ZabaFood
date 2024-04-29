@@ -1,7 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
-import userAddressContent from "./userAddressContent.js";
-import orderPageDiv from "./userOrdersContent.js";
-import userSettingContent from "./userSettingContent.js";
+import userAddressContent from "./UserAddressContent.js";
+import orderPageDiv from "./UserOrdersContent.js";
+import userSettingContent from "./UserSettingContent.js";
 import router from "../js/routes.js";
 import LoadingComponent from "./LoadingComponent.js";
 

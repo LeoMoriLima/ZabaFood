@@ -1,7 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
 import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 
 export default async () => {
     const addressPageDiv = document.createElement("div");

@@ -1,4 +1,4 @@
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import text from "./Text.js";
 import textA from "./Text-a.js";

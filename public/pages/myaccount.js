@@ -1,7 +1,7 @@
 import AdminAccountPage from "../components/AdminAccountPage.js";
 import HeaderMain from "../components/HeaderMain.js";
 import FooterMain from "../components/FooterMain.js";
-import userAccountPage from "../components/userAccountPage.js";
+import userAccountPage from "../components/UserAccountPage.js";
 import MessageContainer from "../components/MessageContainer.js";
 
 export default async () => {

@@ -1,5 +1,5 @@
 import ButtonComponent from "./ButtonComponent.js";
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 import MessageComponent from "./MessageComponent.js";
 
 export default async () =>{
