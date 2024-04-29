@@ -1550,6 +1550,12 @@ input:focus {
     height: 2rem;
     justify-content: center;
     width: 3.5vw;
+    transition: all ease-in-out 0.3s;
+}
+
+.quantity-button-math:hover {
+    background-color: var(--color-secundary);
+    color: var(--color-white);
 }
 
 .quantity-input {
@@ -1566,8 +1572,14 @@ input:focus {
 
 .quantity-button-math:disabled {
     border: solid var(--color-secundary) 1px;
+    background: transparent;
     color: var(--color-secundary);
     opacity: 0.8;
+}
+
+.quantity-button-math:disabled:hover {
+    background: transparent;
+    color: var(--color-secundary);
 }
 
 .product-button-div {
@@ -1723,6 +1735,7 @@ input:focus {
     font-weight: 400;
     margin-top: 1.5rem;
     padding: 0.5rem 2rem;
+    transition: all ease-in-out 0.3s;
 }
 
 .modal-cart-checkout-btn:hover {
@@ -1955,6 +1968,10 @@ input:focus {
     width: 75%;
 }
 
+.select-product-type:focus {
+    outline: none;
+}
+
 #div-input-admin-stock {
     border: none;
     width: 75%;
@@ -2013,6 +2030,10 @@ input:focus {
     width: 23rem;
     padding: 1rem 0.5rem;
     margin-left: 5vw;
+}
+
+.description-text-area:focus {
+    outline: none;
 }
 
 .description-text-area::placeholder {
@@ -3259,6 +3280,7 @@ input:focus {
     font-family: var(--font-text);
     font-size: 0.8rem;
     text-indent: 0.5rem;
+    width: 100%;
 }
 
 #input-postal-code::placeholder,
@@ -3337,7 +3359,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height: 100%;
+    height: 6rem;
     position: relative;
     text-align: left;
     width: 90%;
@@ -3574,6 +3596,7 @@ input:focus {
     background-color: var(--color-white);
     border-radius: 5px;
     padding-right: 8vw;
+    outline: none;
 }
 
 .edit-icon-setting-page {
@@ -4010,6 +4033,10 @@ input:focus {
     padding: 0.5rem;
     font-size: 0.9rem;
     width: 100.4%;
+}
+
+.description-text-area-modal:focus {
+    outline: none;
 }
 
 .description-text-area-modal::placeholder {
@@ -5250,6 +5277,10 @@ input:focus {
     .circle-img-div-admin {
         height: 5rem;
         width: 5rem;
+    }
+    
+    .order-page-div-admin {
+        width: 81%;
     }
 
     /* User Account Page - 1366 */
