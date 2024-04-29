@@ -5,8 +5,11 @@ import TypeProductBanner from "./TypeProductBanner.js";
 import NotFound from "./NotFound.js";
 
 export default async (params) => {
+    const decoded = decodeURIComponent(params.term);
+
     const filter = params ? params.filter : undefined;
-    const term = params ? params.term : undefined;
+    const term = params ? decoded : undefined;
+    
     try {
         let min = 1;
         let max = 12;

@@ -34,7 +34,7 @@ export default (type) => {
     typeBannerDiv.appendChild(imgCategoryDiv);
 
     const typeH2 = document.createElement("h1");
-    typeH2.innerText = type.toUpperCase();
+    typeH2.innerText = decodeURIComponent(type).toUpperCase();
 
     typeBannerDiv.appendChild(typeH2);
 
@@ -43,7 +43,7 @@ export default (type) => {
 
 const getProductTypeByType = async (type) => {
     try {
-        const response = await fetch(`/api/product_type/type/${type}`, {
+        const response = await fetch(`/api/product_type/type/${decodeURIComponent(type)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
