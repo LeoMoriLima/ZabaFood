@@ -129,17 +129,21 @@ export default async () => {
                     })
                 })
                 divBodyProductType.innerHtml = ""
+                if(response.ok){
+                    MessageComponent("Categoria do produto criada com sucesso!", true);
+                    name.value = "";
+                    imageInput.value = "";
+                    imagePreview.innerHTML = "";
+                    setTimeout(async () => {
+                        const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
+                        divBodyProductType.appendChild(rightPage);
+                    }, 0);
+                } else {
+                    MessageComponent("Erro ao criar categoria de produto!", false);
+                }
             } catch (error) {
                 return;
-            } finally {
-                name.value = "";
-                imageInput.value = "";
-                imagePreview.innerHTML = "";
-                setTimeout(async () => {
-                    const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
-                    divBodyProductType.appendChild(rightPage);
-                }, 0);
-            }
+            } 
         } catch (error) {
             console.log(error);
             return;
@@ -309,7 +313,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                     imgProductModal.remove();
                 }
 
-                modalContent.appendChild(inputEntry(type.type, "text", "input-product-type-modal-content", "none"));
+                modalContent.appendChild(inputEntry(data.type, "text", "input-product-type-modal-content", "none"));
 
                 const closeIcon = document.createElement("img");
                 closeIcon.classList.add("close-modify-modal-icon");
@@ -335,7 +339,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                         let image;
 
                         if (!imageInputModal.files[0]) {
-                            const src = product.url_img;
+                            const src = type.url_img;
                             image = src.split("/").pop();
                         } else {
                             const response = await fetch("/upload_file", {
@@ -361,7 +365,12 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                             if (updateResponse.ok) {
                                 modalContent.remove();
                                 modalProductType.style.display = "none";
-                                pInfo.innerText = productTypeName.value;
+                                if(productTypeName.value){
+                                    pInfo.innerText = productTypeName.value;
+                                } else {
+                                    pInfo.innerText = data.type;
+                                }                                
+                                editIcon.style.pointerEvents = "auto";
                                 MessageComponent("Categoria do produto atualizada com sucesso!", true);
                             } else {
                                 MessageComponent("Erro ao atualizar a categoria do produto!", false);

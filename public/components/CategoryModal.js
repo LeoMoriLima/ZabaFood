@@ -49,8 +49,8 @@ export default async () => {
             imgCategoryDiv.appendChild(imgCategoryTemplateLine);
             imgCategoryDiv.appendChild(imgCategoryCircle);
 
-
-            const TextType = TextA(`${type.type}`, 'none', 'buttons-type', `/products/type/${type.type}`);
+            const enconded = encodeURIComponent(type.type);
+            const TextType = TextA(`${type.type}`, 'none', 'buttons-type', `/products/type/${enconded}`);
 
             TextType.classList.add("text-category-modal");
             divCategory.classList.add("div-category");
@@ -61,7 +61,8 @@ export default async () => {
             listCategory.appendChild(elementListCategory);
             divCategory.onclick = (e) => {
                 e.preventDefault();
-                router.navigate(`/products/type/${type.type}`);
+                window.history.pushState({}, "", `/products/type/${enconded.toLocaleLowerCase()}`);
+                router.navigate(`/products/type/${enconded}`, true);
             }
 
         });

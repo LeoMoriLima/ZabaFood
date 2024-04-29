@@ -2059,6 +2059,7 @@ input:focus {
     margin: 3rem calc(30vw / 2);
     padding: 2rem;
     width: 70vw;
+    min-height: 59.4vh;
 }
 
 .about-icon-div {
@@ -2131,6 +2132,7 @@ input:focus {
     justify-content: center;
     margin: 3% 25%;
     padding: 3%;
+    min-height: 57.3vh;
 }
 
 .h1-contact-page {
@@ -2828,6 +2830,7 @@ input:focus {
     flex-direction: column;
     gap: 2rem;
     padding: 2rem;
+    min-height: 69.9vh;
 }
 
 /* 
