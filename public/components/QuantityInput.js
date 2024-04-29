@@ -1,6 +1,6 @@
 export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
     const quantityInput = document.createElement("div");
-    quantityInput.classList.add("quantity-input-container")
+    quantityInput.classList.add("quantity-input-container");
 
     const minusButton = document.createElement("button");
     minusButton.classList.add("quantity-button-math");
@@ -20,7 +20,7 @@ export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
 
     const input = document.createElement('input');
     input.id = id;
-    input.classList.add("quantity-input")
+    input.classList.add("quantity-input");
     input.type = 'number';
     input.value = currentValue || 1;
     input.min = '1';

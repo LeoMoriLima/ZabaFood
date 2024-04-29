@@ -14,12 +14,12 @@ export default async () => {
     userPageDiv.appendChild(leftMenuUserPage);
 
     const skeletonNavBar = document.createElement("div");
-    skeletonNavBar.classList.add("div-info-user-page")
-    skeletonNavBar.id = "skeleton-user-nav-bar"
-    leftMenuUserPage.appendChild(skeletonNavBar)
+    skeletonNavBar.classList.add("div-info-user-page");
+    skeletonNavBar.id = "skeleton-user-nav-bar";
+    leftMenuUserPage.appendChild(skeletonNavBar);
     
     const loadingNavBar = LoadingComponent(3);
-    skeletonNavBar.appendChild(loadingNavBar)
+    skeletonNavBar.appendChild(loadingNavBar);
 
     setTimeout(async () => {
         const userId = await getUserId();
@@ -37,7 +37,7 @@ export default async () => {
 
         const userIcon = document.createElement("img");
         userIcon.src = "/assets/images/menu-user-icon.svg";
-        userIcon.classList.add("user-icon-menu-info")
+        userIcon.classList.add("user-icon-menu-info");
         divUserInfo.appendChild(userIcon);
 
         const divTextUserInfo = document.createElement("div");
@@ -46,7 +46,7 @@ export default async () => {
 
         const helloText = document.createElement("p");
         helloText.classList.add("user-menu-hello-text");
-        helloText.id = "user-info-show-account-page"
+        helloText.id = "user-info-show-account-page";
         helloText.innerText = "Olá, " + userData.name;
         divTextUserInfo.appendChild(helloText);
     
@@ -57,28 +57,28 @@ export default async () => {
         creditText.innerText = "Saldo : " + formattedValue;
         divTextUserInfo.appendChild(creditText);
     
-        divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () =>{
+        divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () => {
             router.navigate("/payment");
-        }))
+        }));
 
         const addressContent = await userAddressContent();
         addressContent.style.display = "none";
         const orderContent = await orderPageDiv();
-        const settingContent = await userSettingContent()
+        const settingContent = await userSettingContent();
         settingContent.style.display = "none";
 
         userPageDiv.appendChild(orderContent);
         userPageDiv.appendChild(addressContent);
         userPageDiv.appendChild(settingContent);
 
-        aAddress.addEventListener("click", () =>{
+        aAddress.addEventListener("click", () => {
             aAddress.classList.add("nav-menu-user-page-selected");
             aOrders.classList.remove("nav-menu-user-page-selected");
             aSettings.classList.remove("nav-menu-user-page-selected");
             addressContent.style.display = "flex";
             orderContent.style.display = "none";
-            settingContent.style.display = "none"
-        })
+            settingContent.style.display = "none";
+        });
         
         aOrders.addEventListener("click", () => {
             aOrders.classList.add("nav-menu-user-page-selected");
@@ -87,7 +87,7 @@ export default async () => {
             orderContent.style.display = "flex";
             addressContent.style.display = "none";
             settingContent.style.display = "none";
-        })
+        });
         
         aSettings.addEventListener("click", () => { 
             aSettings.classList.add("nav-menu-user-page-selected");
@@ -160,7 +160,6 @@ export default async () => {
     return userPageDiv;
 }
 
-
 async function getUserId(){
     try{
         const response = await fetch ('/api/login', {
@@ -170,13 +169,13 @@ async function getUserId(){
             }
         });
         const data = await response.json();
-        return data.user.id
+        return data.user.id;
     } catch (error){
         return;
     }
 }
 
-async function getUserInfo(userId){
+async function getUserInfo(userId) {
     try{
         const response = await fetch (`/api/users/${userId}`, {
             method: "GET",
@@ -186,7 +185,7 @@ async function getUserInfo(userId){
         });
         const userData = await response.json();
         return userData;
-    } catch(error){
+    } catch(error) {
         return;
     }
 }

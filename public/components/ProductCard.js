@@ -1,6 +1,5 @@
 import btn from "./ButtonComponent.js"
 import router from "../js/routes.js";
-import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
 
 const discount = 0.92;
@@ -23,7 +22,7 @@ export default async (id) => {
 		imgDiv.classList.add("card-product-img");
 		mainDiv.appendChild(imgDiv);
 		imgDiv.addEventListener("click", () => {
-			router.navigate(`/product/${id}`)
+			router.navigate(`/product/${id}`);
 		})
 
 		const productTitleDiv = document.createElement("div");
@@ -31,7 +30,7 @@ export default async (id) => {
 		mainDiv.appendChild(productTitleDiv);
 
 		productTitleDiv.addEventListener("click", () => {
-			router.navigate(`/product/${id}`)
+			router.navigate(`/product/${id}`);
 		})
 
 		const productTitle = document.createElement("p");
@@ -112,13 +111,11 @@ export default async (id) => {
 				}
 
 				shopIcon.src = "/assets/images/simple-loading.svg";
-				shopIcon.classList.add("loading-animation")
-				button.disabled = true
-				button.innerText = "Adicionando"
+				shopIcon.classList.add("loading-animation");
+				button.disabled = true;
+				button.innerText = "Adicionando";
 
-				const quantityValue = unitBtn.classList.contains("selected-btn") ? 1 : 3
-
-				console.log("Quantity value:", quantityValue);
+				const quantityValue = unitBtn.classList.contains("selected-btn") ? 1 : 3;
 
 				if (productData.stock < 1 && quantityValue === 1) {
 					throw "Estoque do produto insuficiente"
@@ -153,31 +150,30 @@ export default async (id) => {
 				});
 				const data = await response.json();
 
-				shopIcon.classList.remove("loading-animation")
+				shopIcon.classList.remove("loading-animation");
 				shopIcon.src = "/assets/images/check-icon.svg";
-				button.innerText = "Adicionado"
+				button.innerText = "Adicionado";
 				setTimeout(() => {
-					button.innerText = "Adicionar"
+					button.innerText = "Adicionar";
 					shopIcon.src = "/assets/images/shop-icon.svg";
-					button.disabled = false
+					button.disabled = false;
 				}, 1000);
 
 				const event = new CustomEvent("productAdded");
 				window.dispatchEvent(event);
 
 			} catch (error) {
-				shopIcon.classList.remove("loading-animation")
+				shopIcon.classList.remove("loading-animation");
 				shopIcon.src = "/assets/images/shop-icon.svg";
-				button.innerText = "Adicionar"
-				button.disabled = false
-				MessageComponent(error, false)
+				button.innerText = "Adicionar";
+				button.disabled = false;
+				MessageComponent(error, false);
 				console.error("Erro ao adicionar produtos ao carrinho:", error);
 			}
 		})
 		addBtnDiv.appendChild(addBtn);
 
 		return mainDiv;
-
 
 	} catch (error) {
 		console.error("Erro ao fazer login:", error);

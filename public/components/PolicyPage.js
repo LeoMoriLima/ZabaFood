@@ -65,7 +65,7 @@ export default () => {
     });
     
     policyPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
-        router.navigate("/")
+        router.navigate("/");
     }));
 
     return policyPageDiv;

@@ -5,7 +5,7 @@ import LoadingComponent from "./LoadingComponent.js";
 export default async () => {
     const windowWidth = window.innerWidth;
 
-    let min = 1
+    let min = 1;
     let max = windowWidth >= 1366 ? 4 : 3;
 
     const carousel = document.createElement("div");
@@ -60,8 +60,8 @@ export default async () => {
         const nextArrow = arrow;
         const backArrow = document.getElementById("arrow-back");
 
-        nextArrow.disabled = true
-        backArrow.disabled = true
+        nextArrow.disabled = true;
+        backArrow.disabled = true;
         min += windowWidth >= 1366 ? 4 : 3;
         max += windowWidth >= 1366 ? 4 : 3;
 
@@ -84,7 +84,7 @@ const getProducts = async (min, max) => {
             }
         });
         const data = await response.json();
-        return data
+        return data;
     } catch (error) {
         console.log(error);
     }

@@ -15,7 +15,7 @@ export default async (id) => {
 
 			const data = await response.json();
 
-			const products = data.filter((product) => !product.deleted)
+			const products = data.filter((product) => !product.deleted);
 			//comparação produto mais recente
 			products.forEach(item => {
 				item.created_at = new Date(item.created_at);
@@ -44,13 +44,13 @@ export default async (id) => {
 			textDiv.appendChild(productTitle);
 
 			const accessHereBtn = btn("Acesse aqui!", "banner-product-access-here-btn", async () => {
-				router.navigate(`/product/${newProduct.id}`)
-			})
+				router.navigate(`/product/${newProduct.id}`);
+			});
 			textDiv.appendChild(accessHereBtn);
 
 			const imgDiv = document.createElement("img");
 			imgDiv.src = newProduct.url_img;
-			imgDiv.loading = "lazy"
+			imgDiv.loading = "lazy";
 			imgDiv.classList.add("banner-product-img");
 			productDiv.appendChild(imgDiv);
 

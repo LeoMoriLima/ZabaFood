@@ -8,7 +8,7 @@ export default () => {
     backBtn.href = '/';
     backBtn.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/")
+        router.navigate("/");
     }
     backBtn.classList.add('back-btn');
     navHeaderLogin.appendChild(backBtn);
@@ -28,7 +28,7 @@ export default () => {
     logoBtn.href = '/';
     logoBtn.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/")
+        router.navigate("/");
     }
     logoBtn.classList.add('logo-btn');
     navHeaderLogin.appendChild(logoBtn);

@@ -24,7 +24,7 @@ export default () => {
 	cardTextDiv.appendChild(statusText);
 
 	const myAccountBtn = ButtonComponent("Acessar meus pedidos", "myaccount-btn", () => {
-		router.navigate("/myaccount")
+		router.navigate("/myaccount");
 	});
 	grayDiv.appendChild(myAccountBtn);
 

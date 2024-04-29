@@ -30,7 +30,7 @@ export default async () => {
     leftDiv.appendChild(divPostalCode);
 
     const inputPostalCode = createPostalCodeInput();
-    inputPostalCode.id = "input-postal-code"
+    inputPostalCode.id = "input-postal-code";
 
     divPostalCode.appendChild(inputPostalCode);
     divPostalCode.appendChild(ButtonComponent("Pesquisar", "button-search-postal-code", (async () => {
@@ -40,8 +40,7 @@ export default async () => {
         const inputStreet = document.getElementById("street-input");
         inputState.value = postalCode.state;
         inputCity.value = postalCode.city;
-        inputStreet.value = postalCode.street
-
+        inputStreet.value = postalCode.street;
     })));
     leftDiv.appendChild(inputEntry("Estado", "text", "state-input", "none"));
     leftDiv.appendChild(inputEntry("Cidade", "text", "city-input", "none"));
@@ -50,7 +49,7 @@ export default async () => {
     leftDiv.appendChild(inputEntry("Complemento", "text", "complement-input", "none"));
 
     leftDiv.appendChild(ButtonComponent("Criar", "button-create-address", (async () => {
-        const createError = "Erro ao cadastrar novo endereço"
+        const createError = "Erro ao cadastrar novo endereço";
         const inputState = document.getElementById("state-input");
         const inputCity = document.getElementById("city-input");
         const inputStreet = document.getElementById("street-input");
@@ -86,7 +85,7 @@ export default async () => {
                 MessageComponent("Erro ao criar endereço!", false);
                 return;
             }
-            generateAllAdress()
+            generateAllAdress();
 
             return;
         } catch (error) {
@@ -100,23 +99,23 @@ export default async () => {
 
     const allAddress = document.createElement("h2");
     allAddress.classList.add("h2-title-address-page");
-    allAddress.innerText = "Endereços cadastrados"
+    allAddress.innerText = "Endereços cadastrados";
 
     const generateAllAdress = async () => {
-        const loadingComponent = LoadingComponent(5)
+        const loadingComponent = LoadingComponent(5);
 
-        rightDiv.appendChild(loadingComponent)
+        rightDiv.appendChild(loadingComponent);
 
         const userAddress = await getUserAddress();
 
         if (!userAddress) {
-            rightDiv.innerHTML = ""
+            rightDiv.innerHTML = "";
             allAddress.innerText = "Cadastre um novo endereço para começar";
             rightDiv.appendChild(allAddress);
         } else {
-            rightDiv.innerHTML = ""
+            rightDiv.innerHTML = "";
             rightDiv.appendChild(allAddress);
-            loadingComponent.remove()
+            loadingComponent.remove();
             userAddress.forEach(data => {
                 const div = document.createElement("div");
                 div.classList.add("address-div");
@@ -148,7 +147,7 @@ export default async () => {
 
                 const divIcons = document.createElement("div");
                 divIcons.classList.add("div-address-icons");
-                div.appendChild(divIcons)
+                div.appendChild(divIcons);
 
                 const editIcon = document.createElement("img");
                 editIcon.src = "/assets/images/edit-icon.svg";
@@ -158,7 +157,7 @@ export default async () => {
                 const pageModalDiv = document.createElement("div");
                 pageModalDiv.classList.add("page-modal-div");
                 pageModalDiv.style.display = "none";
-                addressPageDiv.appendChild(pageModalDiv)
+                addressPageDiv.appendChild(pageModalDiv);
 
                 pageModalDiv.addEventListener("click", () => {
                     pageModalDiv.style.display = "none";
@@ -175,12 +174,12 @@ export default async () => {
 
 
                 editIcon.addEventListener("click", async () => {
-                    modalDiv.innerHTML = ""
+                    modalDiv.innerHTML = "";
                     pageModalDiv.style.display = "flex";
 
                     const h2Update = document.createElement("h2");
                     h2Update.classList.add("h2-update-modal");
-                    h2Update.innerText = "Atualizar endereço"
+                    h2Update.innerText = "Atualizar endereço";
                     modalDiv.appendChild(h2Update);
 
                     const closeIcon = document.createElement("img");
@@ -189,12 +188,12 @@ export default async () => {
                     modalDiv.appendChild(closeIcon);
 
                     closeIcon.addEventListener("click", () => {
-                        pageModalDiv.style.display = "none"
+                        pageModalDiv.style.display = "none";
                     })
 
                     const divModalPostalCode = document.createElement("div");
                     divModalPostalCode.classList.add("modal-div-postal-code");
-                    modalDiv.appendChild(divModalPostalCode)
+                    modalDiv.appendChild(divModalPostalCode);
 
                     const modalInputPostalCode = createPostalCodeInput();
                     modalInputPostalCode.value = data.postal_code;
@@ -299,12 +298,11 @@ export default async () => {
                         return;
                     }
                 })
-
             });
         }
     }
 
-    generateAllAdress()
+    generateAllAdress();
 
     return addressPageDiv;
 }
@@ -337,7 +335,7 @@ function createPostalCodeInput() {
             cep = cep.replace(/(\d{5})(\d)/, '$1-$2');
         }
 
-        event.target.value = cep
+        event.target.value = cep;
     })
     inputPostalCode.addEventListener("keypress", (event) => {
         const allowedChars = /[0-9]/;

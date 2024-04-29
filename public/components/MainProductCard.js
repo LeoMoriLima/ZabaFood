@@ -2,12 +2,11 @@ import Button from "./ButtonComponent.js";
 import QuantityInput from "./QuantityInput.js";
 import router from "../js/routes.js";
 import MessageComponent from "./MessageComponent.js";
-import LoadingComponent from "./LoadingComponent.js";
 
 export default async (product) => {
     try {
         const userData = await getUser();
-        const product_type = await getType(product.type_id)
+        const product_type = await getType(product.type_id);
 
         const mainProductCard = document.createElement("div");
         mainProductCard.classList.add("product-main-card");
@@ -22,13 +21,11 @@ export default async (product) => {
         productImgDiv.appendChild(productImg);
 
         // Info divs
-
         const productInfoDiv = document.createElement("div");
         productInfoDiv.classList.add("product-div-info");
         mainProductCard.appendChild(productInfoDiv);
 
         // General infos
-
         const productGeneralInfo = document.createElement("div");
         productGeneralInfo.classList.add("product-info-general");
         productInfoDiv.appendChild(productGeneralInfo);
@@ -37,13 +34,12 @@ export default async (product) => {
         productName.innerText = product.name;
         productGeneralInfo.appendChild(productName);
 
-        const productType = document.createElement("h2")
-        productType.classList.add("product-type-info")
-        productType.innerText = `Tipo: ${product_type}`
-        productGeneralInfo.appendChild(productType)
+        const productType = document.createElement("h2");
+        productType.classList.add("product-type-info");
+        productType.innerText = `Tipo: ${product_type}`;
+        productGeneralInfo.appendChild(productType);
 
         // Price infos
-
         const productPriceInfo = document.createElement("div");
         productPriceInfo.classList.add("product-info-price");
         productInfoDiv.appendChild(productPriceInfo);
@@ -52,12 +48,11 @@ export default async (product) => {
         productValue.innerText = `R$ ${product.value}`;
         productPriceInfo.appendChild(productValue);
 
-        const productValueDivided = document.createElement("p")
-        productValueDivided.innerText = `em até 12x`
-        productPriceInfo.appendChild(productValueDivided)
+        const productValueDivided = document.createElement("p");
+        productValueDivided.innerText = `em até 12x`;
+        productPriceInfo.appendChild(productValueDivided);
 
         // Quantity infos
-
         const productQuantityInfo = document.createElement("div");
         productQuantityInfo.classList.add("product-info-quantity");
         productInfoDiv.appendChild(productQuantityInfo);
@@ -77,7 +72,6 @@ export default async (product) => {
         quantityInputDiv.appendChild(productStock);
 
         // Buttons
-
         const productButtonDiv = document.createElement("div");
         productButtonDiv.classList.add("product-button-div");
         productInfoDiv.appendChild(productButtonDiv);
@@ -89,8 +83,9 @@ export default async (product) => {
             }
             const simpleLoading = document.createElement("img");
             simpleLoading.src = "/assets/images/simple-loading.svg";
-            simpleLoading.classList.add("simple-loading-product")
-            simpleLoading.classList.add("loading-animation")
+            simpleLoading.classList.add("simple-loading-product");
+            simpleLoading.classList.add("loading-animation");
+
             try {
                 button.disabled = true;
                 button.innerText = "";
@@ -103,9 +98,9 @@ export default async (product) => {
 
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
-                simpleLoading.remove()
+                simpleLoading.remove();
                 button.innerText = "Comprar";
-                button.disabled = false
+                button.disabled = false;
 
                 if (cartAdded.error) {
                     throw cartAdded.error;
@@ -113,24 +108,24 @@ export default async (product) => {
 
                 navigateTo("cart");
             } catch (error) {
-                simpleLoading.remove()
+                simpleLoading.remove();
                 button.innerText = "Comprar";
-                button.disabled = false
+                button.disabled = false;
                 console.error(error);
                 MessageComponent(`Erro ao adicionar no carrinho: ${error}`, false);
-                return
+                return;
             }
         }));
 
         productButtonDiv.appendChild(Button("Adicionar ao carrinho", "add-green-button", async (button) => {
             if (userData.error) {
                 navigateTo("login");
-                return
+                return;
             }
             const simpleLoading = document.createElement("img");
-            simpleLoading.classList.add("simple-loading-product")
+            simpleLoading.classList.add("simple-loading-product");
             simpleLoading.src = "/assets/images/simple-loading.svg";
-            simpleLoading.classList.add("loading-animation")
+            simpleLoading.classList.add("loading-animation");
 
             try {
                 button.disabled = true;
@@ -144,22 +139,22 @@ export default async (product) => {
 
                 const cart = await getCart(userData.user.id);
                 const cartAdded = await addToCart(cart.id, product.id, quantity);
-                simpleLoading.remove()
+                simpleLoading.remove();
                 button.innerText = "Adicionar ao carrinho";
-                button.disabled = false
+                button.disabled = false;
 
                 if (cartAdded.error) {
                     throw cartAdded.error;
                 }
 
-                MessageComponent("Produto adicionado ao carrinho!", true)
+                MessageComponent("Produto adicionado ao carrinho!", true);
             } catch (error) {
-                simpleLoading.remove()
+                simpleLoading.remove();
                 button.innerText = "Adicionar ao carrinho";
-                button.disabled = false
+                button.disabled = false;
                 console.error(error);
                 MessageComponent(`Erro ao adicionar no carrinho: ${error}`, false);
-                return
+                return;
             }
         }));
 
@@ -243,6 +238,6 @@ const addToCart = async (cartId, productId, quantity) => {
 }
 
 const navigateTo = (endpoint) => {
-    router.navigate(`/${endpoint}`)
+    router.navigate(`/${endpoint}`);
 }
 

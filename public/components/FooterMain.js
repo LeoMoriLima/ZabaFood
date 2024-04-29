@@ -1,6 +1,6 @@
 import NavFooterMain from "./NavFooterMain.js";
 
-export default () =>{
+export default () => {
     const footerMain = document.createElement("footer");
     footerMain.appendChild(NavFooterMain());
 

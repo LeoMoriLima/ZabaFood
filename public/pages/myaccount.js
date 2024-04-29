@@ -4,19 +4,19 @@ import FooterMain from "../components/FooterMain.js";
 import userAccountPage from "../components/userAccountPage.js";
 import MessageContainer from "../components/MessageContainer.js";
 
-export default async () =>{
+export default async () => {
     document.title = "Minha conta | ZabaFood";
 
     const page = document.createElement("div");
     page.appendChild(MessageContainer());
     page.appendChild(await HeaderMain());
     const userType = await getUserType();
-    if (userType === "admin"){
+    if (userType === "admin") {
         page.appendChild(await AdminAccountPage());
-    } else if (userType === "user"){
-     page.appendChild(await userAccountPage())
+    } else if (userType === "user") {
+        page.appendChild(await userAccountPage());
     }
-    page.appendChild(FooterMain())
+    page.appendChild(FooterMain());
 
     return page;
 }

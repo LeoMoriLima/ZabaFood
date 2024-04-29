@@ -2,7 +2,7 @@ import MessageComponent from "./MessageComponent.js";
 
 export default (type) => {
     const typeBannerDiv = document.createElement("div");
-    typeBannerDiv.classList.add("type-banner-div")
+    typeBannerDiv.classList.add("type-banner-div");
 
     const imgCategoryDiv = document.createElement("div");
     imgCategoryDiv.classList.add("img-category-filter-div");
@@ -21,14 +21,14 @@ export default (type) => {
     imgCategory.classList.add("img-category-filter");
 
     setTimeout(async () => {
-        const typeData = await getProductTypeByType(type)
+        const typeData = await getProductTypeByType(type);
         imgCategory.src = typeData.url_img;
     }, 0);
 
     imgCategoryCircle.appendChild(imgCategory);
 
     imgCategoryDiv.appendChild(imgCategoryTemplateLine);
-    imgCategoryDiv.appendChild(imgCategoryTemplateFilled)
+    imgCategoryDiv.appendChild(imgCategoryTemplateFilled);
     imgCategoryDiv.appendChild(imgCategoryCircle);
 
     typeBannerDiv.appendChild(imgCategoryDiv);
@@ -38,7 +38,7 @@ export default (type) => {
 
     typeBannerDiv.appendChild(typeH2);
 
-    return typeBannerDiv
+    return typeBannerDiv;
 }
 
 const getProductTypeByType = async (type) => {
@@ -49,10 +49,10 @@ const getProductTypeByType = async (type) => {
                 "Content-Type": "application/json"
             }
         });
-        const data = await response.json()
-        return data
+        const data = await response.json();
+        return data;
     } catch (error) {
-        MessageComponent("Erro ao buscar imagem", false)
+        MessageComponent("Erro ao buscar imagem", false);
         console.log(error);
     }
 }

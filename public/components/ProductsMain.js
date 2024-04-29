@@ -15,8 +15,8 @@ export default async (params) => {
         productsMain.classList.add("products-main");
 
         if (filter === "type") {
-            const typeBanner = TypeProductBanner(term)
-            productsMain.appendChild(typeBanner)
+            const typeBanner = TypeProductBanner(term);
+            productsMain.appendChild(typeBanner);
         }
 
         const productsList = document.createElement("div");
@@ -24,8 +24,8 @@ export default async (params) => {
         productsMain.appendChild(productsList);
 
         const loadMoreButton = ButtonComponent("Carregar mais", "button-load-more", async (button) => {
-            min += 12
-            max += 12
+            min += 12;
+            max += 12;
 
             const products = await generateProducts(productsList, min, max, filter, term);
 
@@ -45,7 +45,6 @@ export default async (params) => {
                 productsMain.appendChild(loadMoreButton);
             }
         }, 0);
-
 
         // productsMain.appendChild(loadMoreButton);
         return productsMain;
@@ -74,17 +73,16 @@ const getProducts = async (min, max, filter, term) => {
     return data;
 }
 
-
 const generateProducts = async (append, min, max, filter, term) => {
 
     for (let i = 0; i < 12; i++) {
-        append.appendChild(ProductCardSkeleton(`skeleton-${i}`))
+        append.appendChild(ProductCardSkeleton(`skeleton-${i}`));
     }
 
     let products = filter ? await getProducts(min, max, filter, term) : await getProducts(min, max)
     if (products.length === 0) {
         for (let i = 0; i < 12; i++) {
-            document.getElementById(`skeleton-${i}`).remove()
+            document.getElementById(`skeleton-${i}`).remove();
         }
         return products;
     }
@@ -95,7 +93,7 @@ const generateProducts = async (append, min, max, filter, term) => {
     const productCards = await Promise.all(productCardsPromises);
 
     for (let i = 0; i < 12; i++) {
-        document.getElementById(`skeleton-${i}`).remove()
+        document.getElementById(`skeleton-${i}`).remove();
     }
 
     productCards.forEach((card) => {

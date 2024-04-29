@@ -12,7 +12,7 @@ export default async () => {
                 }
             });
             const data = await response.json();
-            return data
+            return data;
         } catch (error) {
             console.log(error);
         }
@@ -61,7 +61,7 @@ export default async () => {
             listCategory.appendChild(elementListCategory);
             divCategory.onclick = (e) => {
                 e.preventDefault();
-                router.navigate(`/products/type/${type.type}`)
+                router.navigate(`/products/type/${type.type}`);
             }
 
         });

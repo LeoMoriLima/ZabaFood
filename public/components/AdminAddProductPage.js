@@ -30,10 +30,10 @@ export default async () =>{
 
     const descriptionTextArea = document.createElement("textarea");
     descriptionTextArea.classList.add("description-text-area");
-    descriptionTextArea.placeholder = "Descrição do produto..."
+    descriptionTextArea.placeholder = "Descrição do produto...";
 
     const formAddProductImg = document.createElement("form");
-    formAddProductImg.addEventListener("submit", submitForm)
+    formAddProductImg.addEventListener("submit", submitForm);
 
     const divImageFile = document.createElement("div");
     divImageFile.classList.add("div-image-file");
@@ -50,13 +50,13 @@ export default async () =>{
     const pFile = document.createElement("p");
     pFile.innerText = "Foto do Produto";
     pFile.classList.add("p-file-admin");
-    divImageText.appendChild(pFile)
+    divImageText.appendChild(pFile);
 
     const labelFile = document.createElement("label");
     labelFile.innerText = "Selecionar arquivo";
     labelFile.classList.add("label-file");
     labelFile.setAttribute("for", "input-admin-file");
-    divImageText.appendChild(labelFile)
+    divImageText.appendChild(labelFile);
 
     const imageInput = document.createElement("input");
     imageInput.type = "file";
@@ -121,8 +121,6 @@ export default async () =>{
     buttonAdminPageDiv.classList.add("button-admin-page-div");
     addProductDiv.appendChild(buttonAdminPageDiv);
     
-
-
     buttonAdminPageDiv.appendChild(ButtonComponent("Adicionar Produto", "button-admin-send", (async () => {
         const nameInput = document.getElementById("input-admin-name");
         const valueInput = document.getElementById("input-admin-value");
@@ -131,42 +129,43 @@ export default async () =>{
         const description = descriptionTextArea;
 
 
-        if(!imageInput.files[0]){
-            MessageComponent("Por favor insira uma imagem", false)
+        if(!imageInput.files[0]) {
+            MessageComponent("Por favor insira uma imagem", false);
             return;
         }
 
-        if(!nameInput.value){
-            MessageComponent("Por favor insira um nome", false)
+        if(!nameInput.value) {
+            MessageComponent("Por favor insira um nome", false);
             return;
         }
 
-        if(selectProductType.value === "1"){
-            MessageComponent("Por favor insira um tipo de produto", false)
+        if(selectProductType.value === "1") {
+            MessageComponent("Por favor insira um tipo de produto", false);
             return;
         }
 
-        if(!stockInput.value){
-            MessageComponent("Por favor insira um valor de estoque", false)
+        if(!stockInput.value) {
+            MessageComponent("Por favor insira um valor de estoque", false);
             return;
         }
 
-        if(!valueInput.value){
-            MessageComponent("Por favor insira um valor", false)
+        if(!valueInput.value) {
+            MessageComponent("Por favor insira um valor", false);
             return;
         }
 
         if(!description.value){
-            MessageComponent("Por favor insira uma descrição", false)
+            MessageComponent("Por favor insira uma descrição", false);
             return;
         }
+
         await submitForm(nameInput, valueInput, stockInput, type, description, imageInput, imagePreview);    
     })));
 
-    async function submitForm(name, value, stock, type, description, file, imagePreview){
+    async function submitForm(name, value, stock, type, description, file, imagePreview) {
         const formData = new FormData();
         formData.append("name", name.value);
-        formData.append("file", file.files[0])
+        formData.append("file", file.files[0]);
         try {
             const response = await fetch('/upload_file', {
                 method: 'POST',
@@ -205,7 +204,6 @@ export default async () =>{
                 const data = await response.json();
             } catch(error){
                 console.error("Erro ao fazer a requisição");
-                console.log(error)
                 throw new Error ("Erro ao fazer a requisição!");
             }
         } catch (error) {

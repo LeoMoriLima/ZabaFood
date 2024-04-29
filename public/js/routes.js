@@ -51,7 +51,7 @@ class Router {
 			}
 		}
 
-		this.navigate("/not-found")
+		this.navigate("/not-found");
 	}
 
 	// Extrai os parâmetros de uma rota dinâmica com base nos segmentos capturados pelo regex
@@ -97,14 +97,14 @@ router.addRoute("/product/:id", async (params) => {
 });
 router.addRoute("/products", async () => switchPage(products));
 router.addRoute("/products/:filter/:term", async (params) => {
-	switchPage(products, params)
+	switchPage(products, params);
 });
 router.addRoute("/register", async () => switchPage(register));
 router.addRoute("/terms", async () => switchPage(terms));
 router.addRoute("/payment", async () => switchPage(payment));
 router.addRoute("/pay-confirmation", async () => switchPage(payconfirmation));
 
-router.navigate(window.location.pathname)
+router.navigate(window.location.pathname);
 
 window.addEventListener('popstate', () => {
 	router.navigate(window.location.pathname, true);

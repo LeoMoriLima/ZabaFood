@@ -150,7 +150,7 @@ input[type=number] {
 .entry-card-register {
     gap: 0.6rem;
     justify-content: flex-start;
-    padding-top: 2rem;
+    padding-top: 3rem;
 }
 
 .div-input {
@@ -829,6 +829,7 @@ input:focus {
     gap: 0.5rem;
     height: 100%;
     justify-content: center;
+    margin-left: 1rem;
 }
 
 #discount-text {
@@ -4957,7 +4958,13 @@ input:focus {
     overflow-y: auto;
     position: absolute;
     z-index: 1;
-    width: 30vw;
+    width: 28vw;
+}
+
+.div-order-products-admin > .ap-products-loading,
+.div-order-products > .cp-products-loading {
+    padding-left: 40%;
+    transform: scale(0.8);
 }
 
 .button-order-div-admin {
@@ -5116,6 +5123,10 @@ input:focus {
         width: 8rem;
     }
 
+    .modal-cart-main-div {
+        right: 14%;
+    }
+
     .carousel-container {
         align-items: center;
         display: flex;
@@ -5155,9 +5166,10 @@ input:focus {
 
     .entry-card,
     .entry-card-register {
+        max-width: 45rem;
+        padding-top: 4rem;
         width: 40vw;
     }
-
     
     /* Product Page - 1366 */
     .main-product-div {
