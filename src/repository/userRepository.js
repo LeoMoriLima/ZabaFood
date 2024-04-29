@@ -80,6 +80,23 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
     }
 }
 
+const updateUserStatus = async (id, status) => {
+    const query = 'UPDATE users SET deleted = $1 WHERE id = $2';
+    let client;
+    try{
+        client = await pool.connect();
+        await client.query(query, [status, id]);
+        console.log('Usuário excluído com sucesso');
+    } catch (error){
+        console.log('Erro ao atualizar dados:', error);
+        throw error;
+    } finally {
+        if (client) {
+            client.release()
+        }
+    }
+}
+
 const updateUserCreditBalance = async (id, credit_balance) => {
     const query = 'UPDATE users SET credit_balance = $1 WHERE id = $2';
     let client;
@@ -119,6 +136,7 @@ module.exports = {
     insertNewUser,
     getUser,
     updateUser,
+    updateUserStatus,
     updateUserCreditBalance,
     deleteUser,
 }

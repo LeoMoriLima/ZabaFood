@@ -28,6 +28,7 @@ app.use('/api', routes);
 app.get('/logout', (req, res) => {
 	res.clearCookie('session_id', { path: '/' });
 	res.end();
+  return res.status(200).json({ success: true });
 });
 
 app.use(express.static(path.join(__dirname, '../public')));
