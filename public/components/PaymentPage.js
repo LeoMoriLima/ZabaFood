@@ -4,15 +4,6 @@ import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
 	try {
-		const userResponse = await fetch('/api/login', {
-			method: "GET",
-            headers: {
-				"Content-Type": "application/json"
-            }
-        });
-        const userData = await userResponse.json();
-		const userId = userData.user.id;
-
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("pp-main-div");
 
@@ -156,7 +147,6 @@ export default async () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        user_id: userId,
                         transaction_type: "credit",
                         transaction_value: creditInputDivTitle.value,
                     })

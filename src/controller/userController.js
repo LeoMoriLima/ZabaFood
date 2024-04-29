@@ -151,10 +151,33 @@ const updateUser = async (req, res) => {
     }
 }
 
+const updateUserStatus = async (req, res) =>{
+    const id = req.user.id
+    const { status } = req.body;
+    try{
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
+        const result = await userServices.updateUserStatus(id, status);
+        return res.status(200).json({ success: true, message: 'Usuário excluído com sucesso!' });
+
+    } catch (error){
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 const updateUserCreditBalance = async (req, res) => {
-    const id = req.params.id;
+    const id = req.user.id;
     const { credit_balance } = req.body;
     try {
+        
+        const userType = req.user.user_type;
+        if (userType !== "user" && userType !== "admin") {
+            return res.status(403).json({ error: "Usuário sem permissão" });
+        };
+
         if (!credit_balance) {
             throw new Error ( "O saldo de créditos é obrigatório" );
         }
@@ -190,6 +213,7 @@ module.exports = {
     getUser,
     createUser,
     updateUser,
+    updateUserStatus,
     updateUserCreditBalance,
     deleteUser,
 }

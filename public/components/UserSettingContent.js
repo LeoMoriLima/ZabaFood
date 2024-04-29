@@ -1,5 +1,6 @@
 import ButtonComponent from "./ButtonComponent.js";
 import MessageComponent from "./MessageComponent.js";
+import router from "../js/routes.js";
 
 export default async () => {
     const settingPageDiv = document.createElement("div");
@@ -397,12 +398,17 @@ export default async () => {
 
     divActionModal.appendChild(ButtonComponent("Sim", "action-button-yes-setting-page", (async () =>{
         try{
-            const response = await fetch ('/api/users', {
-                method: "DELETE",
+            const response = await fetch ('/api/users/deleted', {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                body: JSON.stringify({
+                    status: true
+                })
             });
+
+        if(response.ok){
             try{
                 const logout = await fetch('/api/logout', {
                     method: "GET",
@@ -416,6 +422,9 @@ export default async () => {
             } finally {
                 router.navigate("/");
             }
+
+         }
+                     
         } catch(error){
             console.log("Erro ao excluir a conta");
             return;

@@ -1,53 +1,63 @@
-const { connectToDatabase } = require('../db/postgresql');
+const { pool } = require('../db/postgresql');
 
 const discount = 0.92;
 
 const getCartProductByID = async (id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'SELECT * FROM cart_product WHERE id = $1';
     try {
+        client = await pool.connect();
         const result = await client.query(query, [id]);
         return result.rows;
     } catch (error) {
         console.log('Erro ao buscar itens:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getCartProductsByCartId = async (cartId) => {
-    const client = await connectToDatabase();
+    let client;
     const query = "SELECT * FROM cart_product WHERE cart_id = $1;";
     try {
+        client = await pool.connect();
         const result = await client.query(query, [cartId]);
         return result.rows;
     } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getAllCartProduct = async () => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'SELECT * FROM cart_product';
     try {
+        client = await pool.connect();
         const result = await client.query(query);
         return result.rows;
     } catch (error) {
         console.log('Erro ao encontrar os itens:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const deleteCartProduct = async (id, cartId, totalProductValue) => {
-    const client = await connectToDatabase();
+    let client;
 
     try {
+        client = await pool.connect();
         await client.query('BEGIN');
 
         // Remove o cart_product da tabela de produtos do carrinho
@@ -64,14 +74,17 @@ const deleteCartProduct = async (id, cartId, totalProductValue) => {
         console.log('Erro ao deletar item:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const updateCartProduct = async (id, cartId, quantity) => {
-    const client = await connectToDatabase();
+    let client;
 
     try {
+        client = await pool.connect();
         await client.query('BEGIN');
 
         // Seleciona o produto do carrinho de acordo com o id de cart_product
@@ -97,18 +110,21 @@ const updateCartProduct = async (id, cartId, quantity) => {
         console.log('Erro ao atualizar dados:', error);
         throw error;
     } finally {
-        await client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const createNewCartProduct = async (cart_id, product_id, quantity) => {
-    const client = await connectToDatabase();
+    let client;
     try {
-        await client.query('BEGIN');
+        client = await pool.connect();
+        client.query('BEGIN');
 
         // Busca o valor do produto de acordo com o product_id
         const product = await client.query('SELECT * FROM product WHERE id = $1', [product_id]);
-        
+
         const productValue = product.rows[0].value;
 
         const totalItem = quantity > 2 ? product.rows[0].value * quantity * discount : product.rows[0].value * quantity;
@@ -132,7 +148,9 @@ const createNewCartProduct = async (cart_id, product_id, quantity) => {
         console.log('Erro ao inserir dados:', error);
         throw error;
     } finally {
-        await client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 

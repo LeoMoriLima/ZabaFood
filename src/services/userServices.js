@@ -60,6 +60,18 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
     }
 }
 
+const updateUserStatus = async (id, status) =>{
+    try{
+        const user = await userRepository.getUser(id);
+        if(!user){
+            throw new Error ("Usuário não existente");
+        }
+        await userRepository.updateUserStatus(id, status);
+    } catch (error){
+        throw error;
+    }
+}
+
 const updateUserCreditBalance = async (id, credit_balance) => {
     try {
         const user = await userRepository.getUser(id);
@@ -90,6 +102,7 @@ module.exports = {
     getUser,
     createUser,
     updateUser,
+    updateUserStatus,
     updateUserCreditBalance,
     deleteUser,
 }

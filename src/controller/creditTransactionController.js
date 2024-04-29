@@ -1,4 +1,4 @@
-const creditTransactionService = require("../services/creditTransactionService.js");
+const creditTransactionService = require("../services/creditTransactionServices.js");
 const { isUUID, isInt, isEmpty } = require('validator');
 
 const getCreditTransactionById = async (req, res) => {
