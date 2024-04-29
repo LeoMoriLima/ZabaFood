@@ -739,7 +739,7 @@ input:focus {
 }
 
 #a-account {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .account-div {
@@ -914,6 +914,10 @@ input:focus {
     justify-content: center;
     padding-top: 1rem;
     width: 20%;
+}
+
+.left-footer-div {
+    margin-left: 5vw;
 }
 
 .left-footer-a {
@@ -3187,7 +3191,7 @@ input:focus {
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    height: 70%;
+    height: 80%;
     justify-content: space-around;
     width: 90%;
 }
@@ -3197,7 +3201,7 @@ input:focus {
     border-right: 2px solid var(--color-white);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1vh;
     height: 100%;
     padding: 1rem;
     width: 40%;
@@ -3590,10 +3594,9 @@ input:focus {
     border-radius: 14px;
     color: var(--color-white);
     cursor: pointer;
-    font-size: 0.7rem;
-    height: 4vh;
+    font-size: 1rem;
+    padding: 0.5rem 3rem;
     transition: all ease-in-out 0.3s;
-    width: 10.5vw;
 }
 
 .user-setting-save-button-disabled {
@@ -5112,8 +5115,8 @@ input:focus {
     }
 
     .logo-img-header {
-        height: 90%;
-        width: 8rem;
+        height: 100%;
+        width: 8.3rem;
     }
 
     .carousel-container {
@@ -5158,6 +5161,14 @@ input:focus {
         width: 40vw;
     }
 
+    .right-div-footer {
+        padding-right: 0;
+    }
+
+    .left-footer-div {
+        margin-left: 6vw;
+    }
+
     
     /* Product Page - 1366 */
     .main-product-div {
@@ -5170,8 +5181,24 @@ input:focus {
         height: 96vh;
     }
 
+    .form-add-product-div {
+        height: 30%;
+    }
+
     .all-products-div-modify-page {
         min-height: 9rem;
+    }
+
+    .product-type-page-div {
+        width: 87%
+    }
+
+    .div-column-two {
+        margin-left: 0.5vw;
+    }
+
+    .modify-page-div {
+        width: 87%;
     }
 
     .all-products-image-div-modify {
@@ -5199,8 +5226,17 @@ input:focus {
         height: 96vh;
     }
 
+    .order-page-div {
+        width: 87.4%;
+    }
+
     .address-page-div {
         height: 100%;
+        width: 87.4%;
+    }
+
+    .setting-page-div {
+        width: 87.4%;
     }
 
     .main-address-page-div {
