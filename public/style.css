@@ -1414,16 +1414,6 @@ input:focus {
 .percentage-icon,
 .card-icon {
     margin-bottom: 5%;
-    width: 50%;
-}
-
-.sign-icon,
-.percentage-icon {
-    width: 15%;
-}
-
-.card-icon {
-    width: 30%;
 }
 
 /* Product page */
@@ -2059,7 +2049,6 @@ input:focus {
     margin: 3rem calc(30vw / 2);
     padding: 2rem;
     width: 70vw;
-    min-height: 59.4vh;
 }
 
 .about-icon-div {
@@ -2132,7 +2121,6 @@ input:focus {
     justify-content: center;
     margin: 3% 25%;
     padding: 3%;
-    min-height: 57.3vh;
 }
 
 .h1-contact-page {
@@ -2192,8 +2180,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 15rem;
     position: relative;
+    width: 15rem;
 }
 
 .nav-menu-user-page {
@@ -2830,7 +2818,6 @@ input:focus {
     flex-direction: column;
     gap: 2rem;
     padding: 2rem;
-    min-height: 69.9vh;
 }
 
 /* 
@@ -2896,7 +2883,9 @@ input:focus {
 
 .product-card-recommended-div {
     display: flex;
+    flex-direction: row;
     gap: 2rem;
+    justify-content: space-between;
     margin: 5vw;
     width: 100%;
 }
@@ -3495,6 +3484,7 @@ input:focus {
     background-color: var(--color-white);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 3vh;
     position: relative;
     width: 80%;
@@ -3510,13 +3500,13 @@ input:focus {
 }
 
 .main-setting-page-div {
+    align-items: center;
     background-color: var(--color-light-white);
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
-    height: 80%;
     text-align: center;
-    width: 90%;
+    width: 70%;
 }
 
 .left-setting-page-div {
@@ -3525,6 +3515,7 @@ input:focus {
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
+    width: 80%;
 }
 
 .h2-title-setting-page {
@@ -3532,15 +3523,15 @@ input:focus {
     font-family: var(--font-text);
     font-size: 1.4rem;
     font-weight: 500;
-    margin-bottom: 4vh;
+    margin-bottom: 2%;
     width: 100%;
 }
 
 .div-user-setting-page-info {
     display: flex;
     flex-direction: column;
-    gap: 1vh;
-    width: 60%;
+    gap: 1%;
+    width: 100%;
 }
 
 .user-info-setting-div {
@@ -3587,9 +3578,9 @@ input:focus {
 .user-setting-button-div {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 1.5rem;
     justify-content: center;
-    margin-bottom: 1vh;
+    margin-bottom: 1%;
 }
 
 .user-setting-save-button {
@@ -3683,20 +3674,22 @@ input:focus {
     gap: 20px;
 }
 
-.action-button-yes-setting-page {
+.action-button-yes-setting-page,
+.action-button-no-setting-page {
     background-color: var(--color-primary);
     border: none;
     border-radius: 12px;
     color: var(--color-white);
     cursor: pointer;
     font-family: var(--font-text);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     height: 4.5vh;
     transition: all ease-in-out 0.3s;
     width: 7.5vw;
 }
 
-.action-button-yes-setting-page:hover {
+.action-button-yes-setting-page:hover,
+.action-button-no-setting-page:hover {
     background-color: var(--color-secundary);
     border: 1.12px solid var(--color-primary);
     color: var(--color-white);
@@ -3705,22 +3698,6 @@ input:focus {
 
 .action-button-no-setting-page {
     background-color: var(--color-emphasis);
-    border: none;
-    border-radius: 12px;
-    color: var(--color-white);
-    cursor: pointer;
-    font-family: var(--font-text);
-    font-size: 0.7rem;
-    height: 4.5vh;
-    transition: all ease-in-out 0.3s;
-    width: 7.5vw;
-}
-
-.action-button-no-setting-page:hover {
-    background-color: var(--color-secundary);
-    border: 1.12px solid var(--color-primary);
-    color: var(--color-white);
-    transform: scale(1.05)
 }
 
 /* Loading animation */
@@ -5080,14 +5057,15 @@ input:focus {
         background-color: var(--color-secundary);
         display: flex;
         flex-direction: row;
+        gap: 65%;
         height: 1.6rem;
         justify-content: center;
         padding: 0 5%;
         width: 100%;
-        gap: 65%;
     }
 
     .nav-div-center {
+        align-items: center;
         background-color: var(--color-white);
         display: flex;
         flex-direction: row;
@@ -5096,7 +5074,6 @@ input:focus {
         justify-content: center;
         padding: 0 5%;
         width: 100%;
-        align-items: center;
     }
 
     .header-div-right {
@@ -5109,12 +5086,12 @@ input:focus {
     }
 
     .header-div-left {
-        display: flex;
-        height: 100%;
-        width: 36%;
         align-items: center;
-        justify-content: flex-start;
+        display: flex;
         gap: 3rem;
+        height: 100%;
+        justify-content: flex-start;
+        width: 36%;
     }
 
     .a-logo-img {
@@ -5237,10 +5214,6 @@ input:focus {
 
     /* User Account Page - 1366 */
 
-    .user-page-div {
-        height: 96vh;
-    }
-
     .order-page-div {
         width: 87.4%;
     }
@@ -5262,4 +5235,15 @@ input:focus {
         height: 45vh;
     }
 
+    /* Product Card Recommended */
+
+    .product-card-recommended-div {
+        width: 85%;
+    }
+
+    /* Product main description */
+
+    .product-main-description {
+        width: 85%;
+    }
 }
