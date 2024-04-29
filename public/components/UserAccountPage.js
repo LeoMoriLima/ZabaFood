@@ -143,7 +143,7 @@ export default async () => {
 
     leftMenuUserPage.appendChild(ButtonComponent("SAIR", 'exit-button-user-page', async () => {
         try {
-            const response = await fetch('/logout', {
+            const response = await fetch('/api/logout', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

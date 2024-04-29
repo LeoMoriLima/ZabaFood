@@ -408,21 +408,23 @@ export default async () => {
                 })
             });
 
-            if(response.ok){
-                try{
-                    const logout = await fetch('/logout', {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    });
-                } catch (error){
-                    console.error("Erro ao fazer a requisição");
-                    throw new error("Erro ao fazer a requisição!");
-                } finally {
-                    router.navigate("/");
-                }
-            }            
+        if(response.ok){
+            try{
+                const logout = await fetch('/api/logout', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+            } catch (error){
+                console.error("Erro ao fazer a requisição");
+                throw new error("Erro ao fazer a requisição!");
+            } finally {
+                router.navigate("/");
+            }
+
+         }
+                     
         } catch(error){
             console.log("Erro ao excluir a conta");
             return;

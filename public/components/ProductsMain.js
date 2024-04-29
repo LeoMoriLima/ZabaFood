@@ -5,10 +5,8 @@ import TypeProductBanner from "./TypeProductBanner.js";
 import NotFound from "./NotFound.js";
 
 export default async (params) => {
-    const decoded = decodeURIComponent(params.term);
-
     const filter = params ? params.filter : undefined;
-    const term = params ? decoded : undefined;
+    const term = params ? decodeURIComponent(params.term) : undefined;
     
     try {
         let min = 1;

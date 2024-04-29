@@ -982,7 +982,7 @@ input:focus {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    min-width: 55rem;
+    min-width: 64rem;
 }
 
 .carousel-product-div {
@@ -1796,7 +1796,6 @@ input:focus {
     font-size: 0.9rem;
     font-weight: 700;
     height: 3rem;
-    margin-bottom: 2rem;
     transition: all ease-in-out 0.3s;
     width: 12rem;
 }
@@ -1810,8 +1809,12 @@ input:focus {
 }
 
 .exit-button-user-page {
-    bottom: 14%;
+    bottom: 10%;
     position: absolute;
+}
+
+.exit-button {
+    margin-bottom: 2rem;
 }
 
 .add-product-div {
@@ -4944,8 +4947,8 @@ input:focus {
     width: 28vw;
 }
 
-.div-order-products-admin > .ap-products-loading,
-.div-order-products > .cp-products-loading {
+.div-order-products-admin>.ap-products-loading,
+.div-order-products>.cp-products-loading {
     padding-left: 40%;
     transform: scale(0.8);
 }
@@ -5052,6 +5055,9 @@ input:focus {
 }
 
 @media only screen and (min-width: 1366px) {
+
+    /* Home - 1366 */
+
     .nav-bar-div {
         align-items: center;
         background-color: var(--color-secundary);
@@ -5076,11 +5082,12 @@ input:focus {
         width: 100%;
     }
 
+
     .header-div-right {
         align-items: center;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         gap: 2rem;
         width: 37%;
     }
@@ -5118,6 +5125,8 @@ input:focus {
         width: 70rem;
     }
 
+    /* Product card - 1366px */
+
     .product-card {
         align-items: center;
         background-color: var(--color-white);
@@ -5130,6 +5139,17 @@ input:focus {
         padding: 1rem;
         width: 15rem;
     }
+
+    /* products 1360px */
+
+    .line-category-template-filter {
+        object-fit: unset;
+        position: absolute;
+        right: -1.5rem;
+        width: 12rem;
+    }
+
+    /* Login and register - 1360px */
 
     .div-background,
     .div-background-register {
@@ -5161,7 +5181,7 @@ input:focus {
     .left-footer-div {
         margin-left: 6vw;
     }
-    
+
     /* Product Page - 1366 */
     .main-product-div {
         width: 85vw;
@@ -5194,7 +5214,7 @@ input:focus {
     }
 
     .all-products-image-div-modify {
-        width:  8rem;
+        width: 8rem;
         height: 7rem;
     }
 
