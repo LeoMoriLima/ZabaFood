@@ -8,7 +8,7 @@ export default (text_content, id, class_text, href) => {
     text.href = href;
     text.onclick = (e) => {
         e.preventDefault();
-        router.navigate(href)
+        router.navigate(href);
     }
     return text;
 }

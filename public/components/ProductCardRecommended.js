@@ -14,7 +14,7 @@ export default async (id) => {
 		mainDiv.classList.add("product-card-recommended");
 
 		mainDiv.addEventListener("click", () => {
-			router.navigate(`/product/${id}`)
+			router.navigate(`/product/${id}`);
 		})
 
 		const imgDiv = document.createElement("img");
@@ -45,7 +45,6 @@ export default async (id) => {
 		unitPriceDiv.appendChild(unitPrice);
 
 		return mainDiv;
-
 
 	} catch (error) {
 		console.error("Erro ao fazer login:", error);

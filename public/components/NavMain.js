@@ -1,11 +1,9 @@
-import inputEntry from "./inputEntry.js";
-import text from "./Text.js";
+import inputEntry from "./InputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import CategoryModal from "../components/CategoryModal.js";
 import CartModal from "./CartModal.js";
 import router from "../js/routes.js";
-import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
 
@@ -29,7 +27,7 @@ export default async () => {
     aLogoImg.href = "/";
     aLogoImg.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/")
+        router.navigate("/");
     }
     headerDivLeft.appendChild(aLogoImg);
 
@@ -78,10 +76,10 @@ export default async () => {
 
     const aPhoneIcon = document.createElement("a");
     aPhoneIcon.classList.add("a-phone-icon");
-    aPhoneIcon.href = "/contact"
+    aPhoneIcon.href = "/contact";
     aPhoneIcon.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/contact")
+        router.navigate("/contact");
     }
     contactDiv.appendChild(aPhoneIcon);
 
@@ -92,7 +90,7 @@ export default async () => {
     const aContact = textA("ATENDIMENTO", "a-contact", "none", "/contact");
     aContact.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/contact")
+        router.navigate("/contact");
     }
     contactDiv.appendChild(aContact);
 
@@ -121,9 +119,9 @@ export default async () => {
             });
             const data = await response.json();
             if (data.error) {
-                return false
+                return false;
             }
-            return data
+            return data;
         } catch (error) {
             console.log(error);
         }
@@ -135,7 +133,7 @@ export default async () => {
                 const aAccount = textA("ENTRAR", "a-account", "none", "/login");
                 aAccount.onclick = (e) => {
                     e.preventDefault();
-                    router.navigate("/login")
+                    router.navigate("/login");
                 }
                 accountDiv.appendChild(aAccountIcon);
                 accountDiv.appendChild(aAccount);
@@ -143,7 +141,7 @@ export default async () => {
                 aAccountIcon.href = "/login"
                 aAccountIcon.onclick = (e) => {
                     e.preventDefault();
-                    router.navigate("/login")
+                    router.navigate("/login");
                 }
                 const cartDiv = document.createElement("div");
                 cartDiv.classList.add("cart-div");
@@ -164,7 +162,7 @@ export default async () => {
                 const aAccount = textA("MINHA CONTA", "a-account", "none", "/myaccount");
                 aAccount.onclick = (e) => {
                     e.preventDefault();
-                    router.navigate("/myaccount")
+                    router.navigate("/myaccount");
                 }
                 accountDiv.appendChild(aAccountIcon);
                 accountDiv.appendChild(accountTextDiv);
@@ -244,7 +242,7 @@ export default async () => {
                 aAccountIcon.href = "/myaccount"
                 aAccountIcon.onclick = (e) => {
                     e.preventDefault();
-                    router.navigate("/myaccount")
+                    router.navigate("/myaccount");
                 }
             }
         } catch (error) {
@@ -255,7 +253,7 @@ export default async () => {
     const getProductsQuantity = async (userData, cartDiv) => {
         try {
             if (!userData) {
-                return
+                return;
             }
             const userId = userData.user.id;
             const cartResponse = await fetch(`/api/cart/user/${userId}`, {
@@ -298,13 +296,13 @@ export default async () => {
     }
 
     setTimeout(async () => {
-        const userResult = await checkUser()
-        navMainRequests(userResult)
+        const userResult = await checkUser();
+        navMainRequests(userResult);
     }, 0);
 
     const navBarDiv = document.createElement("div");
     navBarDiv.classList.add("nav-bar-div");
-    divNavMain.appendChild(navBarDiv)
+    divNavMain.appendChild(navBarDiv);
 
     const productsMenuDiv = document.createElement("div");
     productsMenuDiv.classList.add("products-menu-div");
@@ -343,7 +341,7 @@ export default async () => {
     const about = textA("QUEM SOMOS", "about-nav", "none", "/about");
     about.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/about")
+        router.navigate("/about");
     }
     rightSideNavbarDiv.appendChild(about);
 

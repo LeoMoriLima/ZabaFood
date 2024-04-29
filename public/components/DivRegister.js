@@ -1,4 +1,4 @@
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import textA from "./Text-a.js";
 import router from "../js/routes.js";
@@ -29,33 +29,33 @@ export default () => {
         const cpfInput = document.getElementById("cpf-input").value;
         const phoneInput = document.getElementById("phone-input").value;
 
-        if(userInput.length < 4 || userInput.length > 50){
+        if(userInput.length < 4 || userInput.length > 50) {
             MessageComponent("O nome de usuário deve conter entre 4 e 50 caracteres!", false);
             return;
         }
 
-        if(passwordInput.length < 4 || passwordInput.length > 30){
+        if(passwordInput.length < 4 || passwordInput.length > 30) {
             MessageComponent("A senha deve conter entre 4 e 30 caracteres!", false);
             return;
         }
 
-        if(nameInput.length < 4 || nameInput.length > 50){
+        if(nameInput.length < 4 || nameInput.length > 50) {
             MessageComponent("Nome inválido!", false);
             return;
         }
 
-        if(!emailRegex.test(emailInput)){
+        if(!emailRegex.test(emailInput)) {
             MessageComponent("Email inválido!", false);
             return;
         }
 
-        if(cpfInput.length < 11 || cpfInput.length > 18){
+        if(cpfInput.length < 11 || cpfInput.length > 18) {
             MessageComponent("CPF inválido!", false);
             return;
         }
 
-        if(phoneInput.length < 10 || phoneInput.length > 11){
-            MessageComponent("Número de telefone inválido!", false)
+        if(phoneInput.length < 10 || phoneInput.length > 11) {
+            MessageComponent("Número de telefone inválido!", false);
             return;
         }
 
@@ -78,7 +78,7 @@ export default () => {
             const data = await response.json();
 
             if (data.success) {
-                router.navigate("/login")
+                router.navigate("/login");
             } else{
                 MessageComponent("Erro ao efetuar registro", false);
             }

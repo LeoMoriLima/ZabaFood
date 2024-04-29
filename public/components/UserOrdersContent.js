@@ -12,24 +12,22 @@ export default async () => {
     const orderPageTitle = document.createElement("h1");
     orderPageTitle.innerText = "Pedidos";
     orderPageTitle.classList.add("order-page-title");
-    orderPageTitleDiv.appendChild(orderPageTitle)
+    orderPageTitleDiv.appendChild(orderPageTitle);
 
     for (let i = 0; i < 10; i++) {
 
         const skeletonDiv = document.createElement("div");
         skeletonDiv.classList.add("order-div");
-        skeletonDiv.classList.add("skeleton-order-div-user")
-        skeletonDiv.id = `skeleton-${i}`
+        skeletonDiv.classList.add("skeleton-order-div-user");
+        skeletonDiv.id = `skeleton-${i}`;
         orderPageDiv.appendChild(skeletonDiv);
 
         const firstLoading = LoadingComponent(5);
         skeletonDiv.appendChild(firstLoading);
-
     }
 
     setTimeout(async () => {
         try {
-
             const cartResponse = await fetch('/api/cart/all', {
                 method: "GET",
                 headers: {
@@ -42,23 +40,21 @@ export default async () => {
             setTimeout(async () => {
                 for (let i = 0; i < 10; i++) {
                     const skeleton = document.querySelector(`#skeleton-${i}`);
-                    if(skeleton){
+                    if(skeleton) {
                         skeleton.remove();
                     }
-                    }
-    
+                }
             }, 1000);
 
             cartData.forEach(async (cart) => {
-
     
                 const div = document.createElement("div");
                 div.classList.add("order-div");
                 orderPageDiv.appendChild(div);
     
                 const orderInfoDiv = document.createElement("div");
-                orderInfoDiv.classList.add("order-info-div")
-                div.appendChild(orderInfoDiv)
+                orderInfoDiv.classList.add("order-info-div");
+                div.appendChild(orderInfoDiv);
     
                 const divLeft = document.createElement("div");
                 divLeft.classList.add("order-div-left");
@@ -66,17 +62,17 @@ export default async () => {
     
                 const divId = document.createElement("div");
                 divId.classList.add("div-order-id");
-                divLeft.appendChild(divId)
+                divLeft.appendChild(divId);
     
                 const orderLabel = document.createElement("p");
-                orderLabel.classList.add("order-id-label")
+                orderLabel.classList.add("order-id-label");
                 orderLabel.innerText = "ID do pedido";
-                divId.appendChild(orderLabel)
+                divId.appendChild(orderLabel);
     
                 const orderNumber = document.createElement("p");
                 const orderID = cart.id.substring(0, 4).toUpperCase();
-                orderNumber.classList.add("order-id-number")
-                orderNumber.innerText = "#" + orderID
+                orderNumber.classList.add("order-id-number");
+                orderNumber.innerText = "#" + orderID;
                 divId.appendChild(orderNumber);
     
                 const divDate = document.createElement("div");
@@ -86,13 +82,13 @@ export default async () => {
                 const orderDateLabel = document.createElement("p");
                 orderDateLabel.innerText = "Data do pedido";
                 orderDateLabel.classList.add("order-date-label");
-                divDate.appendChild(orderDateLabel)
+                divDate.appendChild(orderDateLabel);
     
                 const orderDate = new Date(cart.created_at);
                 const formatedDate = orderDate.toLocaleDateString('pt-BR');
     
                 const orderCreatedAt = document.createElement("p");
-                orderCreatedAt.classList.add("order-date-created-at")
+                orderCreatedAt.classList.add("order-date-created-at");
                 orderCreatedAt.innerText = formatedDate;
                 divDate.appendChild(orderCreatedAt);
     
@@ -114,7 +110,7 @@ export default async () => {
     
                 const infoOrderLabelStatus = document.createElement("p");
                 infoOrderLabelStatus.classList.add("info-order-label-status");
-                infoOrderLabelStatus.innerText = "Status"
+                infoOrderLabelStatus.innerText = "Status";
                 divInfo.appendChild(infoOrderLabelStatus);
     
                 const infoOrderStatus = document.createElement("p");
@@ -130,7 +126,7 @@ export default async () => {
                 } else if (cart.status === "delivered") {
                     infoOrderStatus.innerText = "Entregue";
                 } else {
-                    infoOrderStatus.innerText = "Status desconhecido"
+                    infoOrderStatus.innerText = "Status desconhecido";
                 }
     
                 const actionDiv = document.createElement("div");
@@ -138,9 +134,9 @@ export default async () => {
                 orderInfoDiv.appendChild(actionDiv);
     
                 const actionTitle = document.createElement("p");
-                actionTitle.classList.add("action-title")
+                actionTitle.classList.add("action-title");
                 actionTitle.innerText = "Ações";
-                actionDiv.appendChild(actionTitle)
+                actionDiv.appendChild(actionTitle);
     
                 const trackShipping = document.createElement("p");
                 trackShipping.classList.add("track-shipping");
@@ -150,7 +146,7 @@ export default async () => {
                 const arrowDown = document.createElement("img");
                 arrowDown.classList.add("order-arrow-down");
                 arrowDown.src = "/assets/images/arrow-down-green.svg";
-                trackShipping.appendChild(arrowDown)
+                trackShipping.appendChild(arrowDown);
     
                 const divTrack = document.createElement("div");
                 divTrack.classList.add("div-track");
@@ -160,7 +156,7 @@ export default async () => {
                 const trackStatus = document.createElement("h1");
                 trackStatus.classList.add("track-status");
                 trackStatus.innerText = "Status do envio";
-                divTrack.appendChild(trackStatus)
+                divTrack.appendChild(trackStatus);
     
                 const statusCircleDiv = document.createElement("div");
                 statusCircleDiv.classList.add("status-circle-div");
@@ -208,7 +204,7 @@ export default async () => {
                     statusText.innerText = "Aprovado";
                 }
     
-                let isTrackShippingOpen = false
+                let isTrackShippingOpen = false;
     
                 trackShipping.addEventListener("click", function () {
     
@@ -221,22 +217,22 @@ export default async () => {
                         divTrack.classList.toggle('show');
                     }
     
-                    isTrackShippingOpen = !isTrackShippingOpen
+                    isTrackShippingOpen = !isTrackShippingOpen;
                 })
     
                 const divDropArrow = document.createElement("div");
                 divDropArrow.classList.add("div-drop-arrow");
                 actionDiv.appendChild(divDropArrow);
     
-                const dropArrowText = document.createElement("p")
-                dropArrowText.classList.add("drop-arrow-text")
-                dropArrowText.innerText = "Exibir produtos"
-                divDropArrow.appendChild(dropArrowText)
+                const dropArrowText = document.createElement("p");
+                dropArrowText.classList.add("drop-arrow-text");
+                dropArrowText.innerText = "Exibir produtos";
+                divDropArrow.appendChild(dropArrowText);
     
                 const dropArrow = document.createElement("img");
-                dropArrow.classList.add("drop-arrow-img")
+                dropArrow.classList.add("drop-arrow-img");
                 dropArrow.src = "/assets/images/arrow-down-green.svg";
-                divDropArrow.appendChild(dropArrow)
+                divDropArrow.appendChild(dropArrow);
     
                 const productCartResponse = await fetch(`/api/cart_product/order/${cart.id}`);
                 const productCartData = await productCartResponse.json();
@@ -258,10 +254,16 @@ export default async () => {
                         dropArrow.classList.add('rotate');
     
                         divProducts.classList.toggle('show');
+
+                        const loadingComponent = LoadingComponent(5);
+                        loadingComponent.classList.add("cp-products-loading");
+                        divProducts.appendChild(loadingComponent);
     
                         productCartData.forEach(async (productCartItem) => {
                             const productResponse = await fetch(`/api/product/${productCartItem.product_id}`);
                             const productData = await productResponse.json();
+
+                            loadingComponent.remove();
     
                             const imgDiv = document.createElement("div");
                             imgDiv.classList.add("order-img-div");
@@ -287,28 +289,27 @@ export default async () => {
     
                             const productValue = document.createElement("p");
                             productValue.classList.add("order-product-value");
-                            productValue.innerText = "R$" + productData.value
+                            productValue.innerText = "R$" + productData.value;
                             productInfoDiv.appendChild(productValue);
-    
                         });
                     }
     
                     isDropdownOpen = !isDropdownOpen; // Alterna o estado do dropdown
                 });
     
-                const buttonDiv = document.createElement("div")
-                buttonDiv.classList.add("button-order-div")
+                const buttonDiv = document.createElement("div");
+                buttonDiv.classList.add("button-order-div");
                 orderInfoDiv.appendChild(buttonDiv);
     
                 if (cart.status === "sended") {
                     buttonDiv.appendChild(ButtonComponent("Já recebi", "light-green-button-user", async (button) => {
                         try {
-                            button.disabled = true
-                            button.innerText = ""
+                            button.disabled = true;
+                            button.innerText = "";
                             const simpleLoading = document.createElement("img");
                             simpleLoading.src = "/assets/images/simple-loading.svg";
-                            simpleLoading.classList.add("loading-animation")
-                            button.appendChild(simpleLoading)
+                            simpleLoading.classList.add("loading-animation");
+                            button.appendChild(simpleLoading);
     
                             const response = await fetch(`/api/cart/${cart.id}`, {
                                 method: "PUT",
@@ -320,27 +321,27 @@ export default async () => {
                                 })
                             });
     
-                            const data = await response.json()
+                            const data = await response.json();
     
                             if (data.error) {
-                                throw data.error
+                                throw data.error;
                             }
                             infoOrderStatus.innerText = "Entregue";
-                            button.classList.remove("light-green-button-user")
-                            button.classList.add("light-green-button-disabled")
-                            button.innerText = "Entregue!"
+                            button.classList.remove("light-green-button-user");
+                            button.classList.add("light-green-button-disabled");
+                            button.innerText = "Entregue!";
                             imgCircleSended.src = "/assets/images/circle-inactive-sended.svg";
                             imgCircleDelivered.src = "/assets/images/circle-active-delivered.svg";
                             statusText.innerText = "Entregue";
                         } catch (error) {
-                            MessageComponent(`Erro ao atualizar status do carrinho`)
+                            MessageComponent(`Erro ao atualizar status do carrinho`);
                             console.log(error);
                         }
                     }))
                 } else if (cart.status === "delivered") {
-                    buttonDiv.appendChild(ButtonComponent("Entregue!", "light-green-button-disabled"))
+                    buttonDiv.appendChild(ButtonComponent("Entregue!", "light-green-button-disabled"));
                 } else {
-                    buttonDiv.appendChild(ButtonComponent("Já recebi!", "light-green-button-disabled"))
+                    buttonDiv.appendChild(ButtonComponent("Já recebi!", "light-green-button-disabled"));
                 }
             });
         } catch (error) {

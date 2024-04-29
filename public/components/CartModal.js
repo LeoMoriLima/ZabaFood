@@ -20,8 +20,8 @@ export default async (displayconfig, userData) => {
 
 const showCartProducts = async (mainDiv, userData) => {
 	mainDiv.innerHTML = "";
-	const loadingComponent = LoadingComponent(5)
-	mainDiv.appendChild(loadingComponent)
+	const loadingComponent = LoadingComponent(5);
+	mainDiv.appendChild(loadingComponent);
 
 	try {
 		if (!userData) {
@@ -48,11 +48,11 @@ const showCartProducts = async (mainDiv, userData) => {
 
 		const cartProductsInfos = await cartProductsResponse.json();
 
-		loadingComponent.remove()
+		loadingComponent.remove();
 
 		if (cartProductsInfos.length !== 0 && cartStatus === "pending") {
 			cartProductsInfos.map(itemProduct => {
-				const { product, quantity } = itemProduct
+				const { product, quantity } = itemProduct;
 				const itemProductDiv = document.createElement("div");
 				itemProductDiv.classList.add("item-product-div");
 				mainDiv.appendChild(itemProductDiv);
@@ -87,9 +87,9 @@ const showCartProducts = async (mainDiv, userData) => {
 			});
 
 			const checkoutBtn = btn("Finalizar compra", "modal-cart-checkout-btn", async () => {
-				router.navigate("/cart")
-			})
-			checkoutBtn.classList.add("modal-cart-checkout-btn")
+				router.navigate("/cart");
+			});
+			checkoutBtn.classList.add("modal-cart-checkout-btn");
 			mainDiv.appendChild(checkoutBtn);
 		} else {
 			const emptyCartText = document.createElement("p");

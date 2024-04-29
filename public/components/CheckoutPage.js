@@ -198,7 +198,7 @@ export default async () => {
 					const cartUpdated = await response.json();
 
 					if (cartUpdated.error) {
-						throw cartUpdated.error
+						throw cartUpdated.error;
 					}
 
 					const newCartResponse = await fetch("/api/cart", {
@@ -225,10 +225,10 @@ export default async () => {
 
 					MessageComponent("Compra realizada com sucesso!", true);
 
-					router.navigate("/confirmation")
+					router.navigate("/confirmation");
 				} catch (error) {
-					MessageComponent(error, false)
-					console.error(error)
+					MessageComponent(error, false);
+					console.error(error);
 				}
 			} else {
 				modal.style.display = "flex";
@@ -270,14 +270,14 @@ export default async () => {
 			addressLeftDiv.classList.add("checkout-address-left-div");
 			addressDiv.appendChild(addressLeftDiv);
 
-			const iconDiv = document.createElement("div")
-			iconDiv.classList.add("checkout-point-icon-div")
+			const iconDiv = document.createElement("div");
+			iconDiv.classList.add("checkout-point-icon-div");
 			addressLeftDiv.appendChild(iconDiv);
 
 			const pointIcon = document.createElement("img");
 			pointIcon.classList.add("checkout-point-icon");
 			pointIcon.src = "/assets/images/point-icon.svg";
-			iconDiv.appendChild(pointIcon)
+			iconDiv.appendChild(pointIcon);
 
 			const addressInfo = document.createElement("div");
 			addressInfo.classList.add("checkout-address-info");
@@ -305,7 +305,7 @@ export default async () => {
 			const pageModalDiv = document.createElement("div");
 			pageModalDiv.classList.add("checkout-page-modal-div");
 			pageModalDiv.style.display = "none";
-			mainDiv.appendChild(pageModalDiv)
+			mainDiv.appendChild(pageModalDiv);
 
 			pageModalDiv.addEventListener("click", (event) => {
 				if (event.target === pageModalDiv) {
@@ -324,12 +324,12 @@ export default async () => {
 			addressRightDiv.appendChild(pencilIcon);
 
 			pencilIcon.addEventListener("click", () => {
-				modalDiv.innerHTML = ""
+				modalDiv.innerHTML = "";
 				pageModalDiv.style.display = "flex";
 
 				const h2Update = document.createElement("h2");
 				h2Update.classList.add("checkout-h2-update-modal");
-				h2Update.innerText = "Atualizar endereço"
+				h2Update.innerText = "Atualizar endereço";
 				modalDiv.appendChild(h2Update);
 
 				const closeIcon = document.createElement("img");
@@ -338,12 +338,12 @@ export default async () => {
 				modalDiv.appendChild(closeIcon);
 
 				closeIcon.addEventListener("click", () => {
-					pageModalDiv.style.display = "none"
+					pageModalDiv.style.display = "none";
 				})
 
 				const divModalPostalCode = document.createElement("div");
 				divModalPostalCode.classList.add("checkout-modal-div-postal-code");
-				modalDiv.appendChild(divModalPostalCode)
+				modalDiv.appendChild(divModalPostalCode);
 
 				const modalInputPostalCode = createPostalCodeInput();
 				modalInputPostalCode.value = address.postal_code;
@@ -359,31 +359,31 @@ export default async () => {
 				})));
 
 				const modalInputCity = document.createElement("input");
-				modalInputCity.placeholder = "Cidade"
+				modalInputCity.placeholder = "Cidade";
 				modalInputCity.classList.add("checkout-modal-input");
 				modalInputCity.value = address.city;
 				modalDiv.appendChild(modalInputCity);
 
 				const modalInputState = document.createElement("input");
-				modalInputState.placeholder = "Estado"
+				modalInputState.placeholder = "Estado";
 				modalInputState.classList.add("checkout-modal-input");
 				modalInputState.value = address.state;
 				modalDiv.appendChild(modalInputState);
 
 				const modalInputStreet = document.createElement("input");
-				modalInputStreet.placeholder = "Rua"
+				modalInputStreet.placeholder = "Rua";
 				modalInputStreet.classList.add("checkout-modal-input");
 				modalInputStreet.value = address.street;
 				modalDiv.appendChild(modalInputStreet);
 
 				const modalInputNumber = document.createElement("input");
-				modalInputNumber.placeholder = "Número"
+				modalInputNumber.placeholder = "Número";
 				modalInputNumber.classList.add("checkout-modal-input");
 				modalInputNumber.value = address.number;
 				modalDiv.appendChild(modalInputNumber);
 
 				const modalInputComplement = document.createElement("input");
-				modalInputComplement.placeholder = "Complemento"
+				modalInputComplement.placeholder = "Complemento";
 				modalInputComplement.classList.add("checkout-modal-input");
 				modalInputComplement.value = address.complement;
 				modalDiv.appendChild(modalInputComplement);
@@ -431,23 +431,23 @@ export default async () => {
 			addressRightDiv.appendChild(changeIcon);
 
 			changeIcon.addEventListener("click", async () => {
-				modalDiv.innerHTML = ""
+				modalDiv.innerHTML = "";
 				pageModalDiv.style.display = "flex";
 
 				const h2Update = document.createElement("h2");
 				h2Update.classList.add("checkout-h2-modal");
-				h2Update.innerText = "Escolha o endereço de entrega"
+				h2Update.innerText = "Escolha o endereço de entrega";
 				modalDiv.appendChild(h2Update);
 
-				const addressListDivModal = document.createElement("div")
-				addressListDivModal.classList.add("adress-list-div-modal")
-				modalDiv.appendChild(addressListDivModal)
+				const addressListDivModal = document.createElement("div");
+				addressListDivModal.classList.add("adress-list-div-modal");
+				modalDiv.appendChild(addressListDivModal);
 
-				addressListDivModal.style.alignItems = "center"
-				addressListDivModal.style.justifyContent = "center"
+				addressListDivModal.style.alignItems = "center";
+				addressListDivModal.style.justifyContent = "center";
 
-				const addresListLoading = LoadingComponent(5)
-				addressListDivModal.appendChild(addresListLoading)
+				const addresListLoading = LoadingComponent(5);
+				addressListDivModal.appendChild(addresListLoading);
 
 				const closeIcon = document.createElement("img");
 				closeIcon.classList.add("checkout-close-icon-address");
@@ -455,7 +455,7 @@ export default async () => {
 				modalDiv.appendChild(closeIcon);
 
 				closeIcon.addEventListener("click", () => {
-					pageModalDiv.style.display = "none"
+					pageModalDiv.style.display = "none";
 				})
 
 				try {
@@ -469,7 +469,7 @@ export default async () => {
 
 					addresListLoading.remove();
 
-					addressListDivModal.style = ""
+					addressListDivModal.style = "";
 
 					allAddress.forEach((userAddress, index) => {
 						const addressDivModal = document.createElement("div");
@@ -477,9 +477,9 @@ export default async () => {
 						addressListDivModal.appendChild(addressDivModal);
 
 						addressDivModal.addEventListener("click", () => {
-							addressDiv.remove()
-							pageModalDiv.style.display = "none"
-							generateAddress(user_id, index)
+							addressDiv.remove();
+							pageModalDiv.style.display = "none";
+							generateAddress(user_id, index);
 						})
 
 						const addressLeftDiv = document.createElement("div");
@@ -493,7 +493,7 @@ export default async () => {
 						const pointIcon = document.createElement("img");
 						pointIcon.classList.add("checkout-point-icon-modal");
 						pointIcon.src = "/assets/images/point-icon.svg";
-						iconModalDiv.appendChild(pointIcon)
+						iconModalDiv.appendChild(pointIcon);
 
 						const addressInfo = document.createElement("div");
 						addressInfo.classList.add("checkout-address-info");
@@ -521,7 +521,7 @@ export default async () => {
 			})
 		}
 
-		await generateAddress(userId, 0)
+		await generateAddress(userId, 0);
 
 		return mainDiv;
 
@@ -543,7 +543,7 @@ function createPostalCodeInput() {
 			cep = cep.replace(/(\d{5})(\d)/, '$1-$2');
 		}
 
-		event.target.value = cep
+		event.target.value = cep;
 	})
 	inputPostalCode.addEventListener("keypress", (event) => {
 		const allowedChars = /[0-9]/;

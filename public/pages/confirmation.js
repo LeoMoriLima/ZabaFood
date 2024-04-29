@@ -8,8 +8,8 @@ export default async () => {
 
     const page = document.createElement("div");
     page.appendChild(MessageContainer());
-    page.appendChild(await HeaderMain())
-    page.appendChild(ConfirmationPage())
+    page.appendChild(await HeaderMain());
+    page.appendChild(ConfirmationPage());
     page.appendChild(FooterMain());
 
     return page;

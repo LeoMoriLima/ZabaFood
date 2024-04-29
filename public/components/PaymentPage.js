@@ -1,6 +1,5 @@
 import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
-import MessageContainer from "./MessageContainer.js";
 import MessageComponent from "./MessageComponent.js";
 
 export default async () => {

@@ -1,6 +1,6 @@
 import router from "../js/routes.js";
 
-export default () =>{
+export default () => {
     const footerMain = document.createElement("footer");
     footerMain.classList.add("footer-main");
     
@@ -16,17 +16,17 @@ export default () =>{
     aTerm.href="/terms";
     aTerm.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/terms")
+        router.navigate("/terms");
     }
     aTerm.innerText = "Termos e condições";
     aTerm.classList.add("left-footer-a");
-    leftFooterDiv.appendChild(aTerm)
+    leftFooterDiv.appendChild(aTerm);
 
     const aPolicy = document.createElement("a");
     aPolicy.href="/policy";
     aPolicy.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/policy")
+        router.navigate("/policy");
     }
     aPolicy.innerText="Política de privacidade";
     aPolicy.classList.add("left-footer-a");
@@ -55,7 +55,7 @@ export default () =>{
     rightCenterFooterDiv.appendChild(socialText);
 
     const rightCenterSocialDiv = document.createElement("div");
-    rightCenterSocialDiv.classList.add("right-center-social-div")
+    rightCenterSocialDiv.classList.add("right-center-social-div");
     rightCenterFooterDiv.appendChild(rightCenterSocialDiv);
 
 
@@ -67,7 +67,7 @@ export default () =>{
 
     const instagramIcon = document.createElement("img");
     instagramIcon.classList.add("instagram-icon");
-    instagramIcon.src = "/assets/images/instagram-icon.svg"
+    instagramIcon.src = "/assets/images/instagram-icon.svg";
     aInstagram.appendChild(instagramIcon);
 
     const aFacebook = document.createElement("a");
@@ -77,8 +77,8 @@ export default () =>{
     rightCenterSocialDiv.appendChild(aFacebook);
 
     const facebookIcon = document.createElement("img");
-    facebookIcon.classList.add("facebook-icon")
-    facebookIcon.src = "/assets/images/facebook-icon.svg"
+    facebookIcon.classList.add("facebook-icon");
+    facebookIcon.src = "/assets/images/facebook-icon.svg";
     aFacebook.appendChild(facebookIcon);
 
     const aTikTok = document.createElement("a");
@@ -88,8 +88,8 @@ export default () =>{
     rightCenterSocialDiv.appendChild(aTikTok);
 
     const tikTokIcon = document.createElement("img");
-    tikTokIcon.classList.add("tiktok-icon")
-    tikTokIcon.src = "/assets/images/tiktok-icon.svg"
+    tikTokIcon.classList.add("tiktok-icon");
+    tikTokIcon.src = "/assets/images/tiktok-icon.svg";
     aTikTok.appendChild(tikTokIcon);
 
     const rightDivFooter = document.createElement("div");
@@ -100,7 +100,7 @@ export default () =>{
     aRightLogo.href = "/";
     aRightLogo.onclick = (e) => {
         e.preventDefault();
-        router.navigate("/")
+        router.navigate("/");
     }
     aRightLogo.classList.add("a-right-logo");
     rightDivFooter.appendChild(aRightLogo);

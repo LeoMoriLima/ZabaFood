@@ -1,7 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
 import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 
 export default async () => {
     const modifyPageDiv = document.createElement("div");
@@ -25,7 +25,7 @@ export default async () => {
 
         const skeletonDiv = document.createElement("div");
         skeletonDiv.classList.add("all-products-div-modify-page");
-        skeletonDiv.id = `skeleton-${i}`
+        skeletonDiv.id = `skeleton-${i}`;
         skeletonDiv.classList.add('skeleton-modify-product-page');
         modifyProductDiv.appendChild(skeletonDiv);
 
@@ -40,10 +40,10 @@ export default async () => {
         setTimeout(() => {
             for (let i = 0; i < 10; i++) {
                 const skeleton = document.querySelector(`#skeleton-${i}`);
-                if(skeleton){
+                if(skeleton) {
                     skeleton.remove();
                 }
-                }
+            }
         }, 1000);
 
         modifyProductDiv.style.overflowY = "auto";
@@ -100,7 +100,6 @@ export default async () => {
 
                         const loading = LoadingComponent(5);
                         modalContent.appendChild(loading);
-
 
                         const selectProductType = document.createElement("select");
                         selectProductType.classList.add("select-product-type");

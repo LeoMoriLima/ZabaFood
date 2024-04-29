@@ -7,7 +7,7 @@ export default () => {
     divMainBanner.appendChild(divBannerImg);
 
     const bannerImg = document.createElement("img");
-    bannerImg.classList.add("banner-img")
+    bannerImg.classList.add("banner-img");
     bannerImg.src = "/assets/images/banner-main.svg";
     divBannerImg.appendChild(bannerImg);
 

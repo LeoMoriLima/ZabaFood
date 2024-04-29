@@ -12,7 +12,7 @@ export default (placeholder, type, id, imgName) => {
     divInput.appendChild(inputEntry);
 
     const imgInput = document.createElement("img");
-    imgInput.classList.add("entry-icon")
+    imgInput.classList.add("entry-icon");
     imgInput.id = "img-" + id;
     imgInput.src = `/assets/images/${imgName}.svg`;
     divInput.appendChild(imgInput);
