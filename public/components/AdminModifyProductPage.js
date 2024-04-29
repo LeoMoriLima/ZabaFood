@@ -127,7 +127,7 @@ export default async () => {
 
                         const closeIcon = document.createElement("img");
                         closeIcon.classList.add("close-modify-modal-icon");
-                        closeIcon.src = "../assets/images/close-icon.svg";
+                        closeIcon.src = "/assets/images/close-icon.svg";
                         modalContent.appendChild(closeIcon);
 
                         closeIcon.addEventListener("click", () => {
@@ -267,7 +267,7 @@ export default async () => {
                                         const src = product.url_img;
                                         image = src.split("/").pop();
                                     } else {
-                                        const response = await fetch("/upload_file", {
+                                        const response = await fetch("/api/upload_file", {
                                             method: "POST",
                                             body: formData,
                                         });
@@ -283,7 +283,7 @@ export default async () => {
                                             body: JSON.stringify({
                                                 name: productInputName.value || product.name,
                                                 value: productInputValue.value || product.value,
-                                                url_img: `../assets/uploads/${image}`,
+                                                url_img: `/assets/uploads/${image}`,
                                                 stock: productInputStock.value || product.stock,
                                                 type_id: selectProductType.value || product.type_id,
                                                 description:
@@ -299,7 +299,7 @@ export default async () => {
                                             productStock.value = productInputStock.value;
                                             descriptionTextArea.placeholder =
                                                 descriptionTextArea.value;
-                                            img.src = `../assets/uploads/${image}`;
+                                            img.src = `/assets/uploads/${image}`;
                                             modalDiv.style.display = "none";
                                             modalDiv.innerHTML = "";
                                         } else {

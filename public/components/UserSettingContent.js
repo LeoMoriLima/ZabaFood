@@ -404,7 +404,7 @@ export default async () => {
                 }
             });
             try{
-                const logout = await fetch('/logout', {
+                const logout = await fetch('/api/logout', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"

@@ -53,7 +53,7 @@ export default async () => {
 
     const aAllProductType = document.createElement("a");
     const aAllProductTypeIcon = document.createElement("img");
-    aAllProductTypeIcon.src = "../assets/images/product-type-icon.svg";
+    aAllProductTypeIcon.src = "/assets/images/product-type-icon.svg";
     aAllProductTypeIcon.classList.add("a-icon-admin-account-page");
     aAllProductType.appendChild(aAllProductTypeIcon);
     const allProductTypeText = document.createElement("span");
@@ -65,7 +65,7 @@ export default async () => {
     const aOrder = document.createElement("a");
     const aOrderIcon = document.createElement("img");
     aOrderIcon.classList.add("a-icon-admin-account-page");
-    aOrderIcon.src = "../assets/images/notes-icon.svg";
+    aOrderIcon.src = "/assets/images/notes-icon.svg";
     aOrder.appendChild(aOrderIcon);
     const aOrderText = document.createElement("span");
     aOrderText.innerText = "Pedidos";
@@ -141,7 +141,7 @@ export default async () => {
 
     leftMenuAdminPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {
-            const response = await fetch('/logout', {
+            const response = await fetch('/api/logout', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

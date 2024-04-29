@@ -25,7 +25,7 @@ app.use(express.json());
 const routes = require('./routes/routes.js');
 app.use('/api', routes);
 
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
 	res.clearCookie('session_id', { path: '/' });
 	res.end();
 });
@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-app.post("/upload_file", upload.single("file"), uploadFile);
+app.post("/api/upload_file", upload.single("file"), uploadFile);
 
 function uploadFile (req, res) {
 	console.log(req.body);

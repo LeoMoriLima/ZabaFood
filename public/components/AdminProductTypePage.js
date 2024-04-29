@@ -110,7 +110,7 @@ export default async () => {
         formData.append("file", imageInput.files[0]);
         try {
 
-            const response = await fetch('/upload_file', {
+            const response = await fetch('/api/upload_file', {
                 method: 'POST',
                 body: formData,
             });
@@ -214,7 +214,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
             const editIcon = document.createElement("img");
             editIcon.classList.add("table-product-type-icon");
-            editIcon.src = "../assets/images/edit-icon.svg";
+            editIcon.src = "/assets/images/edit-icon.svg";
             divColumnTwo.appendChild(editIcon);
 
             editIcon.addEventListener("click", async () => {
@@ -317,7 +317,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
                 const closeIcon = document.createElement("img");
                 closeIcon.classList.add("close-modify-modal-icon");
-                closeIcon.src = "../assets/images/close-icon.svg";
+                closeIcon.src = "/assets/images/close-icon.svg";
                 modalContent.appendChild(closeIcon);
 
                 closeIcon.onclick = () => {
@@ -342,7 +342,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                             const src = type.url_img;
                             image = src.split("/").pop();
                         } else {
-                            const response = await fetch("/upload_file", {
+                            const response = await fetch("/api/upload_file", {
                                 method: "POST",
                                 body: formData,
                             });
@@ -386,7 +386,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
             const deleteIcon = document.createElement("img");
             deleteIcon.classList.add("table-product-type-icon");
-            deleteIcon.src = "../assets/images/delete-icon.svg";
+            deleteIcon.src = "/assets/images/delete-icon.svg";
             divColumnThree.appendChild(deleteIcon);
 
             deleteIcon.addEventListener("click", async () => {

@@ -167,7 +167,7 @@ export default async () =>{
         formData.append("name", name.value);
         formData.append("file", file.files[0]);
         try {
-            const response = await fetch('/upload_file', {
+            const response = await fetch('/api/upload_file', {
                 method: 'POST',
                 body: formData,
             });

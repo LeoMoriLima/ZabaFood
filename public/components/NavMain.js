@@ -55,8 +55,8 @@ export default async () => {
     divInput.addEventListener("keypress", function(e){
         if(e.keyCode === 13){
             e.preventDefault();
-            const enconded = encodeURIComponent(searchTerm);
             const searchTerm = document.getElementById("search-input").value.trim();
+            const enconded = encodeURIComponent(searchTerm);
             window.history.pushState({}, "", `/products/search/${enconded.toLocaleLowerCase()}`);
             router.navigate(`/products/search/${enconded}`, true);
         }
@@ -64,8 +64,8 @@ export default async () => {
 
     buttonSearch.onclick = (e) => {
         e.preventDefault();
-        const enconded = encodeURIComponent(searchTerm);
         const searchTerm = document.getElementById("search-input").value.trim();
+        const enconded = encodeURIComponent(searchTerm);
         window.history.pushState({}, "", `/products/search/${enconded.toLocaleLowerCase()}`);
         router.navigate(`/products/search/${enconded}`, true);
     }
