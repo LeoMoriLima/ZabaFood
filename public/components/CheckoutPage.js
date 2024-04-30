@@ -34,7 +34,7 @@ export default async () => {
 		const cart = await cartResponse.json();
 		const cartId = cart.id;
 		const cartTotal = parseFloat(cart.total);
-		const freight = cartTotal > 0 ? 10 : 0;
+		let freight = cartTotal > 0 ? 10 : 0;
 
 		const mainDiv = document.createElement("div");
 		mainDiv.classList.add("checkout-page-main-div");
@@ -115,10 +115,21 @@ export default async () => {
 		freightDivText.innerText = "Frete:";
 		freightDiv.appendChild(freightDivText);
 
+		const freightDivValueNumber = document.createElement("div");
+		freightDivValueNumber.classList.add("checkout-freight-div-value-number");
 		const freightDivValue = document.createElement("p");
 		freightDivValue.classList.add("checkout-freight-div-value");
+		if (cartTotal > 200){
+			const freightBefore = freight;
+			freight = 0;
+			const freightDivValueBefore = document.createElement("p");
+			freightDivValueBefore.classList.add("checkout-freight-div-value-before");
+			freightDivValueBefore.innerText = `R$ ${freightBefore},00`;
+			freightDivValueNumber.appendChild(freightDivValueBefore);
+		}
 		freightDivValue.innerText = `R$ ${freight},00`;
-		freightDiv.appendChild(freightDivValue);
+		freightDivValueNumber.appendChild(freightDivValue);
+		freightDiv.appendChild(freightDivValueNumber);
 
 		const subTotalDiv = document.createElement("div");
 		subTotalDiv.classList.add("checkout-subtotal-div");

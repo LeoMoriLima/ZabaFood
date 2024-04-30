@@ -38,9 +38,9 @@ export default async (params) => {
             const products = await generateProducts(productsList, min, max, filter, term);
 
             if (products.length === 0) {
-                productsMain.appendChild(NotFound());
+                const notFoundElement = await NotFound(term);
+                productsMain.appendChild(notFoundElement);
             }
-
             if (products.length >= 12) {
                 productsMain.appendChild(loadMoreButton);
             }

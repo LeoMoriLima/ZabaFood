@@ -26,10 +26,11 @@ export default async () => {
 
     setTimeout(async () => {
         const productTypes = await getAllProductType();
-        productTypes.forEach(type => {
+        productTypes.forEach((type, index) => {
 
             const elementListCategory = document.createElement("li");
             elementListCategory.classList.add("element-list-category");
+            elementListCategory.style.setProperty('--index', index);
             const divCategory = document.createElement("div");
 
             const imgCategoryDiv = document.createElement("div");
