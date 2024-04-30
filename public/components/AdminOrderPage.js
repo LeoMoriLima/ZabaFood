@@ -18,6 +18,19 @@ export default async () => {
     orderPageTitle.classList.add("order-page-title-admin");
     orderPageTitleDiv.appendChild(orderPageTitle);
 
+    for (let i = 0; i < 10; i++) {
+
+        const skeletonDiv = document.createElement("div");
+        skeletonDiv.classList.add("order-div-admin");
+        skeletonDiv.id = `skeleton-${i}`;
+        skeletonDiv.classList.add('skeleton-modify-product-page');
+        orderPageDiv.appendChild(skeletonDiv);
+
+        const firstLoading = LoadingComponent(5);
+        skeletonDiv.appendChild(firstLoading);
+
+    }
+
     const generateOrders = async (min, max) => {
         try {
             const cartResponse = await fetch(`/api/cart?min=${min}&max=${max}`, {
@@ -28,6 +41,15 @@ export default async () => {
             });
 
             const cartData = await cartResponse.json();
+
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    const skeleton = document.querySelector(`#skeleton-${i}`);
+                    if (skeleton) {
+                        skeleton.remove();
+                    }
+                }
+            }, 1000);
 
             cartData.forEach(async (cart) => {
                 const div = document.createElement("div");

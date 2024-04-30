@@ -302,16 +302,19 @@ export default async () => {
 
 			const streetText = document.createElement("p");
 			streetText.classList.add("checkout-street-text");
+			streetText.id = "street-text-checkout"
 			streetText.innerText = (address.complement && address.number) ? `${address.street}, ${address.number} - Complemento: ${address.complement}` : (address.number ? `${address.street}, ${address.number}` : `${address.street}`);
 			addressInfo.appendChild(streetText);
 
 			const cityStateText = document.createElement("p");
 			cityStateText.classList.add("checkout-city-state-text");
+			cityStateText.id = "city-state-text"
 			cityStateText.innerText = `${address.city} - ${address.state}`;
 			addressInfo.appendChild(cityStateText);
 
 			const postalCodeText = document.createElement("p");
 			postalCodeText.classList.add("checkout-cep-text");
+			postalCodeText.id = "cep-text-checkout"
 			postalCodeText.innerText = `${address.postal_code}`;
 			addressInfo.appendChild(postalCodeText);
 
@@ -340,9 +343,25 @@ export default async () => {
 			pencilIcon.src = "/assets/images/pencil-icon.svg";
 			addressRightDiv.appendChild(pencilIcon);
 
-			pencilIcon.addEventListener("click", () => {
+			pencilIcon.addEventListener("click", async () => {
 				modalDiv.innerHTML = "";
 				pageModalDiv.style.display = "flex";
+
+				const loading = LoadingComponent(4);
+				modalDiv.appendChild(loading);
+	
+	
+				const addressReload = await fetch(`/api/address/user/${user_id}?index=${index}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+
+				
+				const info = await addressReload.json();
+				
+				loading.remove();
 
 				const h2Update = document.createElement("h2");
 				h2Update.classList.add("checkout-h2-update-modal");
@@ -363,7 +382,7 @@ export default async () => {
 				modalDiv.appendChild(divModalPostalCode);
 
 				const modalInputPostalCode = createPostalCodeInput();
-				modalInputPostalCode.value = address.postal_code;
+				modalInputPostalCode.value = info.postal_code;
 				divModalPostalCode.appendChild(modalInputPostalCode);
 
 				divModalPostalCode.appendChild(btn("Pesquisar", "checkout-button-search-postal-code", (async () => {
@@ -378,34 +397,37 @@ export default async () => {
 				const modalInputCity = document.createElement("input");
 				modalInputCity.placeholder = "Cidade";
 				modalInputCity.classList.add("checkout-modal-input");
-				modalInputCity.value = address.city;
+				modalInputCity.value = info.city;
 				modalDiv.appendChild(modalInputCity);
 
 				const modalInputState = document.createElement("input");
 				modalInputState.placeholder = "Estado";
 				modalInputState.classList.add("checkout-modal-input");
-				modalInputState.value = address.state;
+				modalInputState.value = info.state;
 				modalDiv.appendChild(modalInputState);
 
 				const modalInputStreet = document.createElement("input");
 				modalInputStreet.placeholder = "Rua";
 				modalInputStreet.classList.add("checkout-modal-input");
-				modalInputStreet.value = address.street;
+				modalInputStreet.value = info.street;
 				modalDiv.appendChild(modalInputStreet);
 
 				const modalInputNumber = document.createElement("input");
 				modalInputNumber.placeholder = "Número";
 				modalInputNumber.classList.add("checkout-modal-input");
-				modalInputNumber.value = address.number;
+				modalInputNumber.value = info.number;
 				modalDiv.appendChild(modalInputNumber);
 
 				const modalInputComplement = document.createElement("input");
 				modalInputComplement.placeholder = "Complemento";
 				modalInputComplement.classList.add("checkout-modal-input");
-				modalInputComplement.value = address.complement;
+				modalInputComplement.value = info.complement;
 				modalDiv.appendChild(modalInputComplement);
 
 				modalDiv.appendChild(btn("Atualizar", "checkout-button-update-address", (async () => {
+					const street = document.getElementById("street-text-checkout");
+					const city = document.getElementById("city-state-text");
+					const postal = document.getElementById("cep-text-checkout")
 					try {
 						const response = await fetch(`/api/address/${address.id}`, {
 							method: "PUT",
@@ -424,13 +446,12 @@ export default async () => {
 						const responseData = await response.json();
 						if (response.ok) {
 							MessageComponent("Endereço atualizado com sucesso!", true);
+							street.innerText = (modalInputComplement.value && modalInputNumber.value) ? `${modalInputStreet.value}, ${modalInputNumber.value} - Complemento: ${modalInputComplement.value || ""}` : (modalInputNumber.value ? `${modalInputStreet.value}, ${modalInputNumber.value}` : `${modalInputStreet.value}`);
+							city.innerText = `${modalInputCity.value} - ${modalInputState.value}`;
+							postal.innerText = `${modalInputPostalCode.value}`;
 							setTimeout(() => {
 								pageModalDiv.style.display = "none";
-
-							}, 2000);
-							h3.innerText = modalInputStreet.value + "," + " " + modalInputNumber.value;
-							pStateAndCity.innerText = modalInputCity.value + " " + "-" + " " + modalInputState.value;
-							pPostalCodeAndComplement.innerText = modalInputPostalCode.value + "," + " " + modalInputComplement.value;
+							}, 1000);
 						} else {
 							MessageComponent("Erro ao atualizar endereço!", false);
 						}

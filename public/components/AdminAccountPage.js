@@ -25,8 +25,10 @@ export default async () => {
     const adminProductTypeContent = await AdminProductTypePage();
     adminProductTypeContent.style.display = "none";
 
-    const adminOrderContent = await AdminOrderPage();
-    adminOrderContent.style.display = "none";
+    let adminOrderContent;
+
+    // const adminOrderContent = await AdminOrderPage();
+    // adminOrderContent.style.display = "none";
 
     const aAddProduct = document.createElement("a");
     aAddProduct.classList.add("a-add-product");
@@ -77,9 +79,11 @@ export default async () => {
         if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
+        if (adminOrderContent) {
+            adminOrderContent.remove();
+        }
         adminAddProductContent.style.display = "flex";
         adminProductTypeContent.style.display = "none";
-        adminOrderContent.style.display = "none";
         aAddProduct.classList.add("nav-menu-admin-page-selected");
         aAllProduct.classList.remove("nav-menu-admin-page-selected");
         aAllProductType.classList.remove("nav-menu-admin-page-selected");
@@ -91,7 +95,9 @@ export default async () => {
         if (!adminModifyProductContent === "") {
             adminModifyProductContent.remove();
         }
-
+        if (adminOrderContent) {
+            adminOrderContent.remove();
+        }
         if (aAllProduct.classList.contains("nav-menu-admin-page-selected")) {
             return;
         }
@@ -101,7 +107,6 @@ export default async () => {
         adminModifyProductContent.style.display = "flex";
         adminAddProductContent.style.display = "none";
         adminProductTypeContent.style.display = "none";
-        adminOrderContent.style.display = "none";
         aAllProduct.classList.add("nav-menu-admin-page-selected");
         aAddProduct.classList.remove("nav-menu-admin-page-selected");
         aAllProductType.classList.remove("nav-menu-admin-page-selected");
@@ -112,20 +117,30 @@ export default async () => {
         if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
-
+        if (adminOrderContent) {
+            adminOrderContent.remove();
+        }
         adminProductTypeContent.style.display = "flex";
         adminAddProductContent.style.display = "none";
-        adminOrderContent.style.display = "none";
         aAllProductType.classList.add("nav-menu-admin-page-selected");
         aAllProduct.classList.remove("nav-menu-admin-page-selected");
         aAddProduct.classList.remove("nav-menu-admin-page-selected");
         aOrder.classList.remove("nav-menu-admin-page-selected");
     })
 
-    aOrder.addEventListener("click", () => {
+    aOrder.addEventListener("click", async () => {
         if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
+        if (!adminOrderContent === "") {
+            adminOrderContent.remove();
+        }
+        if (aOrder.classList.contains("nav-menu-admin-page-selected")) {
+            return;
+        }
+        
+        adminOrderContent = await AdminOrderPage();
+        adminPageDiv.appendChild(adminOrderContent);
         adminOrderContent.style.display = "flex";
         adminProductTypeContent.style.display = "none";
         adminAddProductContent.style.display = "none";
@@ -137,7 +152,6 @@ export default async () => {
 
     adminPageDiv.appendChild(adminAddProductContent);
     adminPageDiv.appendChild(adminProductTypeContent);
-    adminPageDiv.appendChild(adminOrderContent);
 
     leftMenuAdminPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {
