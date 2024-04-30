@@ -9,7 +9,7 @@ export default (id) => {
 
     skeletonDiv.style.display = "flex";
     skeletonDiv.style.justifyContent = "center";
-    skeletonDiv.style.alignItems= "center";
+    skeletonDiv.style.alignItems = "center";
     skeletonDiv.style.minHeight = "24rem";
 
     skeletonDiv.appendChild(LoadingComponent(10));

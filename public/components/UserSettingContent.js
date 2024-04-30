@@ -32,10 +32,10 @@ export default async () => {
     leftDiv.appendChild(div);
 
     const buttonSave = ButtonComponent("Salvar", "user-setting-save-button", (async () => {
-        try{
-            const response = await fetch ('/api/users', {
+        try {
+            const response = await fetch('/api/users', {
                 method: "PUT",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
@@ -47,7 +47,7 @@ export default async () => {
                     phone: phoneSpan.innerText
                 })
             });
-            if(response.ok) {
+            if (response.ok) {
                 MessageComponent("Usuário atualizado com sucesso!", true);
                 const userShowName = document.getElementById("user-info-show-account-page");
                 userShowName.innerText = "Olá " + nameSpan.innerText;
@@ -58,7 +58,7 @@ export default async () => {
             return;
         } catch (error) {
             return;
-        } 
+        }
     }))
 
     buttonSave.style.display = "none";
@@ -88,20 +88,20 @@ export default async () => {
     const nameEditIcon = document.createElement("img");
     nameEditIcon.classList.add("edit-icon-setting-page");
     nameEditIcon.src = "/assets/images/edit-icon.svg";
-    divIconName.appendChild(nameEditIcon);    
+    divIconName.appendChild(nameEditIcon);
 
     nameEditIcon.addEventListener("click", async () => {
         nameSpan.contentEditable = !nameSpan.isContentEditable;
         nameSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(nameSpan.isContentEditable){
+        if (nameSpan.isContentEditable) {
             nameEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             nameEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -136,19 +136,19 @@ export default async () => {
     usernameEditIcon.classList.add("edit-icon-setting-page");
     usernameEditIcon.src = "/assets/images/edit-icon.svg";
     divIconUsername.appendChild(usernameEditIcon);
-    
+
     usernameEditIcon.addEventListener("click", () => {
         usernameSpan.contentEditable = !usernameSpan.isContentEditable;
         usernameSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(usernameSpan.isContentEditable) {
+        if (usernameSpan.isContentEditable) {
             usernameEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             usernameEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -189,13 +189,13 @@ export default async () => {
         emailSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(emailSpan.isContentEditable){
+        if (emailSpan.isContentEditable) {
             emailEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             emailEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -211,7 +211,7 @@ export default async () => {
     const divInfoPassword = document.createElement("div");
     divInfoPassword.classList.add("user-info-text-setting-div");
     divPassword.appendChild(divInfoPassword);
-    
+
     const password = document.createElement("p");
     password.classList.add("user-info-text-setting-page");
     password.innerText = "Senha: ";
@@ -236,16 +236,16 @@ export default async () => {
         passwordSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(passwordSpan.isContentEditable){
+        if (passwordSpan.isContentEditable) {
             passwordEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             passwordEditIcon.src = "/assets/images/edit-icon.svg";
-            if(passwordSpan.value === undefined && passwordSpan.innerText !== "*********") {
+            if (passwordSpan.value === undefined && passwordSpan.innerText !== "*********") {
                 passwordSpan.value = passwordSpan.innerText;
             }
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -266,7 +266,7 @@ export default async () => {
     cpf.classList.add("user-info-text-setting-page");
     cpf.innerText = "CPF: ";
     divInfoCPF.appendChild(cpf);
-    
+
     const cpfSpan = document.createElement("span");
     cpfSpan.classList.add("user-info-span-setting-page");
     cpfSpan.innerText = userInfo.cpf;
@@ -286,13 +286,13 @@ export default async () => {
         cpfSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(cpfSpan.isContentEditable) {
+        if (cpfSpan.isContentEditable) {
             cpfEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             cpfEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -334,13 +334,13 @@ export default async () => {
         phoneSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(phoneSpan.isContentEditable) {
+        if (phoneSpan.isContentEditable) {
             phoneEditIcon.src = "/assets/images/save-icon.svg";
         } else {
             phoneEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
+        if (nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
             buttonSave.disabled = true;
         } else {
@@ -396,9 +396,9 @@ export default async () => {
     divActionModal.classList.add("action-modal-setting-page-div");
     modalContent.appendChild(divActionModal);
 
-    divActionModal.appendChild(ButtonComponent("Sim", "action-button-yes-setting-page", (async () =>{
-        try{
-            const response = await fetch ('/api/users/deleted', {
+    divActionModal.appendChild(ButtonComponent("Sim", "action-button-yes-setting-page", (async () => {
+        try {
+            const response = await fetch('/api/users/deleted', {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -408,24 +408,24 @@ export default async () => {
                 })
             });
 
-        if(response.ok){
-            try{
-                const logout = await fetch('/api/logout', {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-            } catch (error){
-                console.error("Erro ao fazer a requisição");
-                throw new error("Erro ao fazer a requisição!");
-            } finally {
-                router.navigate("/");
+            if (response.ok) {
+                try {
+                    const logout = await fetch('/api/logout', {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+                } catch (error) {
+                    console.error("Erro ao fazer a requisição");
+                    throw new error("Erro ao fazer a requisição!");
+                } finally {
+                    router.navigate("/");
+                }
+
             }
 
-         }
-                     
-        } catch(error){
+        } catch (error) {
             console.log("Erro ao excluir a conta");
             return;
         }
@@ -435,16 +435,16 @@ export default async () => {
         modalDiv.style.display = "none";
     })))
 
-    settingButtonDiv.appendChild(ButtonComponent("Excluir Conta", "button-erase-account-setting-page",(async () => {
-        modalDiv.style.display = "flex"; 
+    settingButtonDiv.appendChild(ButtonComponent("Excluir Conta", "button-erase-account-setting-page", (async () => {
+        modalDiv.style.display = "flex";
     })));
 
     return settingPageDiv;
 }
 
 async function getUserId() {
-    try{
-        const response = await fetch ('/api/login', {
+    try {
+        const response = await fetch('/api/login', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -458,8 +458,8 @@ async function getUserId() {
 }
 
 async function getUserInfo(userId) {
-    try{
-        const response = await fetch (`/api/users/${userId}`, {
+    try {
+        const response = await fetch(`/api/users/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -467,7 +467,7 @@ async function getUserInfo(userId) {
         });
         const userData = await response.json();
         return userData;
-    } catch(error) {
+    } catch (error) {
         return;
     }
 }

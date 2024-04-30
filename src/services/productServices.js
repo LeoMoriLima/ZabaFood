@@ -56,15 +56,15 @@ const updateProduct = async (id, name, value, url_img, stock, type_id, descripti
     }
 };
 
-const updateDeletedStatus = async (id) =>{
-    try{
+const updateDeletedStatus = async (id) => {
+    try {
         const product = await productRepository.getProduct(id);
-        if (!product){
-            throw new Error ("Produto não encontrado")
+        if (!product) {
+            throw new Error("Produto não encontrado")
         }
         await productRepository.updateDeletedStatus(id);
         return { success: true };
-    } catch (error){
+    } catch (error) {
         throw error;
     }
 }
@@ -97,7 +97,7 @@ const getProductByIntervalAndType = async (min, max, type) => {
 
         if (!productType) {
             throw new Error("Tipo de produto não encontrado")
-        }      
+        }
         const productTypeId = productType.id;
 
         const products = await productRepository.getProductByIntervalAndType(min, max, productTypeId);

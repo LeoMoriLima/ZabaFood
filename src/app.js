@@ -11,12 +11,12 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: './public/assets/uploads',
-  filename: (req, file, cb) =>{
+  filename: (req, file, cb) => {
     cb(null, file.originalname);
-}
+  }
 });
 
-const upload = multer({ storage: storage});
+const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(cookieParser());
@@ -26,22 +26,22 @@ const routes = require('./routes/routes.js');
 app.use('/api', routes);
 
 app.get('/api/logout', (req, res) => {
-	res.clearCookie('session_id', { path: '/' });
+  res.clearCookie('session_id', { path: '/' });
   return res.status(200).json({ success: true });
 });
 
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.post("/api/upload_file", upload.single("file"), uploadFile);
 
-function uploadFile (req, res) {
-	console.log(req.body);
+function uploadFile(req, res) {
+  console.log(req.body);
   console.log(req.file);
-  res.json( req.file );
+  res.json(req.file);
 }
 
 app.listen(port, () => {

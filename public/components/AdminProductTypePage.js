@@ -129,7 +129,7 @@ export default async () => {
                     })
                 })
                 divBodyProductType.innerHtml = ""
-                if(response.ok){
+                if (response.ok) {
                     MessageComponent("Categoria do produto criada com sucesso!", true);
                     name.value = "";
                     imageInput.value = "";
@@ -143,7 +143,7 @@ export default async () => {
                 }
             } catch (error) {
                 return;
-            } 
+            }
         } catch (error) {
             console.log(error);
             return;
@@ -365,11 +365,11 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                             if (updateResponse.ok) {
                                 modalContent.remove();
                                 modalProductType.style.display = "none";
-                                if(productTypeName.value){
+                                if (productTypeName.value) {
                                     pInfo.innerText = productTypeName.value;
                                 } else {
                                     pInfo.innerText = data.type;
-                                }                                
+                                }
                                 editIcon.style.pointerEvents = "auto";
                                 MessageComponent("Categoria do produto atualizada com sucesso!", true);
                             } else {

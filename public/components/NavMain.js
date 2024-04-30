@@ -52,8 +52,8 @@ export default async () => {
 
     // Pesquisa
 
-    divInput.addEventListener("keypress", function(e){
-        if(e.keyCode === 13){
+    divInput.addEventListener("keypress", function (e) {
+        if (e.keyCode === 13) {
             e.preventDefault();
             const searchTerm = document.getElementById("search-input").value.trim();
             const enconded = encodeURIComponent(searchTerm);

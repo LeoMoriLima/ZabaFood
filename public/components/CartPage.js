@@ -9,7 +9,7 @@ const discount = 0.92;
 export default async () => {
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("cp-main-div");
-    
+
     setTimeout(async () => {
         try {
             const userResponse = await fetch('/api/login', {
@@ -50,12 +50,12 @@ export default async () => {
 
             if (cartProductsInfo.length) {
                 cartProductsInfo.map(itemProduct => {
-                    const {cartProductId, product , quantity} = itemProduct;
-        
+                    const { cartProductId, product, quantity } = itemProduct;
+
                     const itemProductDiv = document.createElement("div");
                     itemProductDiv.classList.add("cp-item-product-div");
                     cartDiv.appendChild(itemProductDiv);
-        
+
                     const itemProductLeftDiv = document.createElement("div");
                     itemProductLeftDiv.classList.add("cp-item-product-left-div");
                     itemProductDiv.appendChild(itemProductLeftDiv);
@@ -83,7 +83,7 @@ export default async () => {
                     const productImgDiv = document.createElement("div");
                     productImgDiv.classList.add("cp-product-img-div");
                     itemProductLeftDiv.appendChild(productImgDiv);
-        
+
                     const productImg = document.createElement("img");
                     productImg.classList.add("cp-product-img");
                     productImg.src = product.url_img;
@@ -92,11 +92,11 @@ export default async () => {
                     });
                     productImgDiv.appendChild(productImg);
 
-        
+
                     const productInfoDiv = document.createElement("div");
                     productInfoDiv.classList.add("cp-product-info-div");
                     itemProductLeftDiv.appendChild(productInfoDiv);
-        
+
                     const productTitle = document.createElement("p");
                     productTitle.classList.add("cp-product-text");
                     productTitle.innerText = product.name;
@@ -104,7 +104,7 @@ export default async () => {
                         router.navigate(`/product/${product.id}`);
                     });
                     productInfoDiv.appendChild(productTitle);
-        
+
                     const productQuantityText = document.createElement("p");
                     productQuantityText.classList.add("cp-product-quantity-text");
                     productQuantityText.innerText = quantity > 1 ? `Quantidade: ${quantity} unidades` : `Quantidade: ${quantity} unidade`;
@@ -116,11 +116,11 @@ export default async () => {
                     const quantityInputDiv = document.createElement("div");
                     quantityInputDiv.classList.add("cp-quantity-input-div");
                     productInfoDiv.appendChild(quantityInputDiv);
-                    
+
                     const changeValue = async (button) => {
                         try {
                             const quantityInputValue = document.getElementById(`cp-product-quantity-input-${cartProductId}`).value;
-                        
+
                             button.disabled = true;
 
                             const response = await fetch(`/api/cart_product/${cartProductId}`, {
@@ -132,18 +132,18 @@ export default async () => {
                                     "quantity": quantityInputValue,
                                 })
                             });
-    
+
                             productQuantityText.innerText = quantityInputValue > 1 ? `Quantidade: ${quantityInputValue} unidades` : `Quantidade: ${quantityInputValue} unidade`;
-    
+
                             productValue.innerText = quantityInputValue > 2 ? `R$${(product.value * quantityInputValue * discount).toFixed(2).replace(".", ",")}` : `R$${(product.value * quantityInputValue).toFixed(2).replace(".", ",")}`;
-    
+
                             const newCartResponse = await fetch(`/api/cart/user/${userId}`, {
                                 method: "GET",
                                 headers: {
                                     "Content-Type": "application/json"
                                 }
                             });
-                
+
                             const newCartInfo = await newCartResponse.json();
                             subtotalTextDivRight.innerText = `R$${(newCartInfo.total).replace(".", ",")}`;
 
@@ -156,14 +156,14 @@ export default async () => {
 
                     const quantityInput = QuantityInput(product.stock, `cp-product-quantity-input-${cartProductId}`, quantity, changeValue, changeValue);
                     quantityInputDiv.appendChild(quantityInput);
-        
+
                     const itemProductRightDiv = document.createElement("div");
                     itemProductRightDiv.classList.add("cp-item-product-right-div");
                     itemProductDiv.appendChild(itemProductRightDiv);
-        
+
                     const productValue = document.createElement("p");
                     productValue.classList.add("cp-product-value");
-                    productValue.innerText = quantity > 2 ? `R$${(product.value * quantity * discount).toFixed(2).replace(".", ",")}` :`R$${(product.value * quantity).toFixed(2).replace(".", ",")}`;
+                    productValue.innerText = quantity > 2 ? `R$${(product.value * quantity * discount).toFixed(2).replace(".", ",")}` : `R$${(product.value * quantity).toFixed(2).replace(".", ",")}`;
                     itemProductRightDiv.appendChild(productValue);
                 });
             } else {
@@ -216,24 +216,32 @@ export default async () => {
             subtotalTextDivRight.innerText = `R$${(cartInfo.total).replace(".", ",")}`;
             subtotalTextDiv.appendChild(subtotalTextDivRight);
 
+            console.log("cartProductInfo:", cartProductsInfo);
+
             const closeCartBtn = btn("Fechar pedido", "cp-close-cart-btn", async () => {
                 let hasProductWithNoStock = false;
+
+                if (!cartProductsInfo.length) {
+                    MessageComponent("O carrinho está vazio.");
+                    return
+                }
+
                 cartProductsInfo.forEach(cartProduct => {
                     if (cartProduct.product.stock < cartProduct.quantity) {
                         MessageComponent(`Estoque de ${cartProduct.product.name} insuficiente`);
                         hasProductWithNoStock = true;
                     }
                 });
-                
+
                 if (!hasProductWithNoStock) {
                     router.navigate("/checkout");
                 }
             });
-            subtotalDiv.appendChild(closeCartBtn);   
+            subtotalDiv.appendChild(closeCartBtn);
         } catch (error) {
             console.error("Erro ao buscar o carrinho:", error);
         }
     }, 0);
-    
+
     return mainDiv;
 }

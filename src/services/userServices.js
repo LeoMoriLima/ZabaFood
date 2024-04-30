@@ -14,7 +14,7 @@ const getAllUsers = async () => {
 const getUser = async (id) => {
     try {
         const user = await userRepository.getUser(id);
-        if(!user){
+        if (!user) {
             throw new Error("Usuário não existente");
         }
         return user;
@@ -36,15 +36,15 @@ const createUser = async (username, user_type, name, email, password, cpf, phone
 const updateUser = async (id, username, name, email, password, cpf, phone) => {
     try {
         const user = await userRepository.getUser(id);
-        if(!user){
+        if (!user) {
             throw new Error("Usuário não existente");
-        }  
-        
+        }
+
         let hashedPassword;
 
-        if (password !== undefined){
+        if (password !== undefined) {
             const checkPassowrd = await comparePassword(password, user.password);
-            if(!checkPassowrd){
+            if (!checkPassowrd) {
                 hashedPassword = await hashPassword(password);
             } else {
                 hashedPassword = password;
@@ -60,14 +60,14 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
     }
 }
 
-const updateUserStatus = async (id, status) =>{
-    try{
+const updateUserStatus = async (id, status) => {
+    try {
         const user = await userRepository.getUser(id);
-        if(!user){
-            throw new Error ("Usuário não existente");
+        if (!user) {
+            throw new Error("Usuário não existente");
         }
         await userRepository.updateUserStatus(id, status);
-    } catch (error){
+    } catch (error) {
         throw error;
     }
 }
@@ -75,7 +75,7 @@ const updateUserStatus = async (id, status) =>{
 const updateUserCreditBalance = async (id, credit_balance) => {
     try {
         const user = await userRepository.getUser(id);
-        if(!user){
+        if (!user) {
             throw new Error("Usuário não existente");
         }
         await userRepository.updateUserCreditBalance(id, credit_balance);
@@ -87,7 +87,7 @@ const updateUserCreditBalance = async (id, credit_balance) => {
 const deleteUser = async (id) => {
     try {
         const user = await userRepository.getUser(id);
-        if(!user){
+        if (!user) {
             throw new Error("Usuário não existente");
         }
         await userRepository.deleteUser(id);

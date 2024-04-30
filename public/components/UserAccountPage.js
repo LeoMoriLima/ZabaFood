@@ -17,7 +17,7 @@ export default async () => {
     skeletonNavBar.classList.add("div-info-user-page");
     skeletonNavBar.id = "skeleton-user-nav-bar";
     leftMenuUserPage.appendChild(skeletonNavBar);
-    
+
     const loadingNavBar = LoadingComponent(3);
     skeletonNavBar.appendChild(loadingNavBar);
 
@@ -49,14 +49,14 @@ export default async () => {
         helloText.id = "user-info-show-account-page";
         helloText.innerText = "Olá, " + userData.name;
         divTextUserInfo.appendChild(helloText);
-    
+
         const creditText = document.createElement("p");
         creditText.classList.add("p-credit-text");
         const value = Number(userData.credit_balance);
         const formattedValue = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         creditText.innerText = "Saldo : " + formattedValue;
         divTextUserInfo.appendChild(creditText);
-    
+
         divInfoUserPage.appendChild(ButtonComponent("Adicionar crédito", "user-page-add-credit-button", () => {
             router.navigate("/payment");
         }));
@@ -79,7 +79,7 @@ export default async () => {
             orderContent.style.display = "none";
             settingContent.style.display = "none";
         });
-        
+
         aOrders.addEventListener("click", () => {
             aOrders.classList.add("nav-menu-user-page-selected");
             aSettings.classList.remove("nav-menu-user-page-selected");
@@ -88,15 +88,15 @@ export default async () => {
             addressContent.style.display = "none";
             settingContent.style.display = "none";
         });
-        
-        aSettings.addEventListener("click", () => { 
+
+        aSettings.addEventListener("click", () => {
             aSettings.classList.add("nav-menu-user-page-selected");
             aOrders.classList.remove("nav-menu-user-page-selected");
             aAddress.classList.remove("nav-menu-user-page-selected");
             settingContent.style.display = "flex";
             addressContent.style.display = "none";
             orderContent.style.display = "none";
-    })
+        })
     }, 0);
 
     const navMenuUserPage = document.createElement("nav");
@@ -133,7 +133,7 @@ export default async () => {
     aSettingsIcon.classList.add("a-icon-menu-user");
     aSettingsIcon.src = "/assets/images/settings-icon.svg";
     aSettings.appendChild(aSettingsIcon);
-  
+
     const settingsText = document.createElement("span");
     settingsText.innerText = "Configurações";
     aSettings.appendChild(settingsText);
@@ -160,9 +160,9 @@ export default async () => {
     return userPageDiv;
 }
 
-async function getUserId(){
-    try{
-        const response = await fetch ('/api/login', {
+async function getUserId() {
+    try {
+        const response = await fetch('/api/login', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -170,14 +170,14 @@ async function getUserId(){
         });
         const data = await response.json();
         return data.user.id;
-    } catch (error){
+    } catch (error) {
         return;
     }
 }
 
 async function getUserInfo(userId) {
-    try{
-        const response = await fetch (`/api/users/${userId}`, {
+    try {
+        const response = await fetch(`/api/users/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -185,7 +185,7 @@ async function getUserInfo(userId) {
         });
         const userData = await response.json();
         return userData;
-    } catch(error) {
+    } catch (error) {
         return;
     }
 }

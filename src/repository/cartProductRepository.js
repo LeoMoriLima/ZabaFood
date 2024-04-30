@@ -99,12 +99,13 @@ const updateCartProduct = async (id, cartId, quantity) => {
         const productTotalValue = quantity >= 3 ? cartProduct.rows[0].price_unity * quantity * discount : cartProduct.rows[0].price_unity * quantity;
 
         // Atualiza o valor total do produto na tabela de cart_product
-        await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3', [quantity, productTotalValue, id]);
+        const updatedCartProduct = await client.query('UPDATE cart_product SET quantity = $1, total_item = $2 WHERE id = $3 RETURNING *', [quantity, productTotalValue, id]);
 
         // Atualiza o carrinho com o novo total do produto
         await client.query('UPDATE cart SET total = total + $1 WHERE id = $2', [productTotalValue, cartId]);
 
         await client.query('COMMIT');
+        return updatedCartProduct.rows[0];
     } catch (error) {
         await client.query('ROLLBACK');
         console.log('Erro ao atualizar dados:', error);
@@ -130,8 +131,8 @@ const createNewCartProduct = async (cart_id, product_id, quantity) => {
         const totalItem = quantity > 2 ? product.rows[0].value * quantity * discount : product.rows[0].value * quantity;
 
         // Cria o registro na tabela cart_product
-        await client.query(
-            'INSERT INTO cart_product (cart_id, product_id, quantity, price_unity, total_item) VALUES ($1, $2, $3, $4, $5)',
+        const newCartProduct = await client.query(
+            'INSERT INTO cart_product (cart_id, product_id, quantity, price_unity, total_item) VALUES ($1, $2, $3, $4, $5) RETURNING *',
             [cart_id, product_id, quantity, productValue, totalItem]
         );
 
@@ -143,6 +144,7 @@ const createNewCartProduct = async (cart_id, product_id, quantity) => {
         await client.query('COMMIT');
 
         console.log("Dados inseridos com sucesso");
+        return newCartProduct.rows[0];
     } catch (error) {
         await client.query('ROLLBACK');
         console.log('Erro ao inserir dados:', error);

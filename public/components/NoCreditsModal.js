@@ -1,6 +1,6 @@
 import TextA from "./Text-a.js";
 
-export default async(removeOverlayCallback) => {
+export default async (removeOverlayCallback) => {
     const divModal = document.createElement("div");
     divModal.id = "div-modal-no-credits";
 
@@ -20,7 +20,7 @@ export default async(removeOverlayCallback) => {
         removeOverlayCallback();
     });
 
-    const addCredits = TextA("Adicionar mais?","none","a-add-credits-modal","/payment");
+    const addCredits = TextA("Adicionar mais?", "none", "a-add-credits-modal", "/payment");
     addCredits.addEventListener("click", () => {
         divModal.style.display = "none";
         removeOverlayCallback();

@@ -8,9 +8,9 @@ router.get("/search/:name", productController.getProductByName)
 router.get("/search/:name", productController.getProductByName);
 router.get("/:id", productController.getProduct);
 router.get("/", productController.getAllproduct);
-router.post("/",permissionVerify, productController.createProduct);
+router.post("/", permissionVerify, productController.createProduct);
 router.put("/status/:id", permissionVerify, productController.updateDeletedStatus);
-router.put("/:id",permissionVerify, productController.updateProduct);
-router.delete("/:id",permissionVerify, productController.deleteProduct);
+router.put("/:id", permissionVerify, productController.updateProduct);
+router.delete("/:id", permissionVerify, productController.deleteProduct);
 
 module.exports = router;

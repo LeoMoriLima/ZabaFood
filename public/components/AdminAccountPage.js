@@ -112,7 +112,7 @@ export default async () => {
         if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
-        
+
         adminProductTypeContent.style.display = "flex";
         adminAddProductContent.style.display = "none";
         adminOrderContent.style.display = "none";
@@ -122,8 +122,8 @@ export default async () => {
         aOrder.classList.remove("nav-menu-admin-page-selected");
     })
 
-    aOrder.addEventListener("click", () => { 
-        if (adminModifyProductContent){
+    aOrder.addEventListener("click", () => {
+        if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
         adminOrderContent.style.display = "flex";

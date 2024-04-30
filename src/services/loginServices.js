@@ -3,7 +3,7 @@ const { comparePassword } = require('../utils/comparePassword');
 const { SECRET_KEY } = require("../config");
 const loginRepository = require('../repository/loginRepository')
 
-const getUser = async (username) =>{
+const getUser = async (username) => {
     try {
         const user = await loginRepository.getUserByUsername(username);
         return user
@@ -12,21 +12,21 @@ const getUser = async (username) =>{
     }
 }
 
-const authenticateUser = async(username, password) =>{
-    try{
+const authenticateUser = async (username, password) => {
+    try {
         const user = await loginRepository.getUserByUsername(username)
-        if(user && (await comparePassword(password, user.password))){
-            const token = jwt.sign({ id: user.id , user_type: user.user_type, user_status: user.deleted}, SECRET_KEY, { expiresIn: 864000 });
-            if(user.deleted){
+        if (user && (await comparePassword(password, user.password))) {
+            const token = jwt.sign({ id: user.id, user_type: user.user_type, user_status: user.deleted }, SECRET_KEY, { expiresIn: 864000 });
+            if (user.deleted) {
                 return { auth: false, error: "Usuário inexistente!" };
             }
-            return{ auth: true, token };
+            return { auth: true, token };
         }
         return { auth: false, error: "Usuário e/ou senha inválidos" };
-    } catch (error){
+    } catch (error) {
         console.log(error);
         throw new Error("Erro ao autenticar usuário.");
-    } 
+    }
 };
 
 module.exports = {

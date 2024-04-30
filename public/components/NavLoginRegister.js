@@ -21,7 +21,7 @@ export default () => {
     const spanBack = document.createElement("span");
     spanBack.innerText = "Voltar";
     spanBack.classList.add("span-back");
-    backBtn.appendChild(spanBack); 
+    backBtn.appendChild(spanBack);
 
 
     const logoBtn = document.createElement("a");
@@ -32,7 +32,7 @@ export default () => {
     }
     logoBtn.classList.add('logo-btn');
     navHeaderLogin.appendChild(logoBtn);
-    
+
     const logoImg = document.createElement("img");
     logoImg.src = "/assets/images/logo-zabafood.svg";
     logoImg.classList.add('logo-img');

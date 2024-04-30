@@ -4,11 +4,11 @@ const { isUUID, isInt, isEmpty } = require('validator');
 const authenticate = async (req, res) => {
     const { username, password } = req.body;
     try {
-        if(isEmpty(username)){
+        if (isEmpty(username)) {
             return res.status(400).json({ error: "O usuário é obrigatório!" })
         }
 
-        if(isEmpty(password)){
+        if (isEmpty(password)) {
             return res.status(400).json({ error: "A senha é obrigatória!" })
         }
 
@@ -31,10 +31,10 @@ const authenticate = async (req, res) => {
 
 const checkLogin = async (req, res) => {
     try {
-        return res.status(200).json({ message: "Usuário autenticado", user: req.user});
+        return res.status(200).json({ message: "Usuário autenticado", user: req.user });
     } catch (error) {
         console.log(error.message);
-        return res.status(500).json({ error: "Erro no servidor"});
+        return res.status(500).json({ error: "Erro no servidor" });
     }
 }
 

@@ -16,6 +16,6 @@ export default (placeholder, type, id, imgName) => {
     imgInput.id = "img-" + id;
     imgInput.src = `/assets/images/${imgName}.svg`;
     divInput.appendChild(imgInput);
-    
+
     return divInput;
 }

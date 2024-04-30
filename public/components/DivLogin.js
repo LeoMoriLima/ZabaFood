@@ -14,8 +14,8 @@ export default () => {
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
 
-    divBackground.addEventListener("keypress", function(e) {
-        if(e.keyCode === 13) {
+    divBackground.addEventListener("keypress", function (e) {
+        if (e.keyCode === 13) {
             e.preventDefault();
             const userInput = document.getElementById("user-input").value;
             const passwordInput = document.getElementById("password-input").value;
@@ -33,7 +33,7 @@ export default () => {
 
         login(userInput, passwordInput);
     }))
-    
+
     entryCard.appendChild(text("Novo por aqui?", "text-1-register", "text-class"));
     entryCard.appendChild(textA("Clique aqui e crie sua conta!", "text-2-register", "text-class", "/register"));
 
@@ -56,7 +56,7 @@ async function login(userInput, passwordInput) {
 
         if (data.auth) {
             router.navigate("/");
-        } else{
+        } else {
             MessageComponent(data.error, false);
         }
 

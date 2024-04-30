@@ -7,7 +7,7 @@ import NotFound from "./NotFound.js";
 export default async (params) => {
     const filter = params ? params.filter : undefined;
     const term = params ? decodeURIComponent(params.term) : undefined;
-    
+
     try {
         let min = 1;
         let max = 12;

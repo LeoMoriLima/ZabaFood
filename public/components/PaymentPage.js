@@ -3,16 +3,16 @@ import router from "../js/routes.js";
 import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
-	try {
-		const mainDiv = document.createElement("div");
-		mainDiv.classList.add("pp-main-div");
+    try {
+        const mainDiv = document.createElement("div");
+        mainDiv.classList.add("pp-main-div");
 
         const leftDiv = document.createElement("div");
         leftDiv.classList.add("pp-left-div");
         mainDiv.appendChild(leftDiv);
 
         const methodsDiv = document.createElement("div");
-		methodsDiv.classList.add("pp-methods-div");
+        methodsDiv.classList.add("pp-methods-div");
         leftDiv.appendChild(methodsDiv);
 
         const methodsDivTitle = document.createElement("h1");
@@ -36,7 +36,7 @@ export default async () => {
         const creditCardCheckbox = document.createElement("input");
         creditCardCheckbox.classList.add("pp-credit-card-checkbox");
         creditCardCheckbox.setAttribute("type", "radio");
-        creditCardCheckbox.name = "paymentMethod"; 
+        creditCardCheckbox.name = "paymentMethod";
         creditcardDescriptionDiv.appendChild(creditCardCheckbox);
 
         const creditCardIcon = document.createElement("img");
@@ -65,7 +65,7 @@ export default async () => {
         const pixCheckbox = document.createElement("input");
         pixCheckbox.classList.add("pp-pix-checkbox");
         pixCheckbox.setAttribute("type", "radio");
-        pixCheckbox.name = "paymentMethod"; 
+        pixCheckbox.name = "paymentMethod";
         pixDescriptionDiv.appendChild(pixCheckbox);
 
         const pixIcon = document.createElement("img");
@@ -94,7 +94,7 @@ export default async () => {
         const paymentSlipCheckbox = document.createElement("input");
         paymentSlipCheckbox.classList.add("pp-payment-slip-checkbox");
         paymentSlipCheckbox.setAttribute("type", "radio");
-        paymentSlipCheckbox.name = "paymentMethod"; 
+        paymentSlipCheckbox.name = "paymentMethod";
         paymentSlipDescriptionDiv.appendChild(paymentSlipCheckbox);
 
         const paymentSlipIcon = document.createElement("img");
@@ -112,7 +112,7 @@ export default async () => {
         mainDiv.appendChild(rightDiv);
 
         const totalDiv = document.createElement("div");
-		totalDiv.classList.add("pp-total-div");
+        totalDiv.classList.add("pp-total-div");
         rightDiv.appendChild(totalDiv);
 
         const TotalDivTitle = document.createElement("h1");
@@ -154,7 +154,7 @@ export default async () => {
                 const data = await response.json();
 
                 MessageComponent("Crédito inserido com sucesso!", true);
-    
+
                 router.navigate("/pay-confirmation");
             }
         });
@@ -185,9 +185,9 @@ export default async () => {
             return checked;
         }
 
-		return mainDiv;
+        return mainDiv;
 
-	} catch (error) {
-		console.error("Erro ao buscar o carrinho:", error);
-	}
+    } catch (error) {
+        console.error("Erro ao buscar o carrinho:", error);
+    }
 }
