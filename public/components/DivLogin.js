@@ -1,4 +1,4 @@
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 import buttonGray from "./ButtonComponent.js";
 import text from "./Text.js";
 import textA from "./Text-a.js";
@@ -14,8 +14,8 @@ export default () => {
     entryCard.id = "entry-card";
     divBackground.appendChild(entryCard);
 
-    divBackground.addEventListener("keypress", function(e){
-        if(e.keyCode === 13){
+    divBackground.addEventListener("keypress", function(e) {
+        if(e.keyCode === 13) {
             e.preventDefault();
             const userInput = document.getElementById("user-input").value;
             const passwordInput = document.getElementById("password-input").value;
@@ -55,7 +55,7 @@ async function login(userInput, passwordInput) {
         const data = await response.json();
 
         if (data.auth) {
-            router.navigate("/")
+            router.navigate("/");
         } else{
             MessageComponent(data.error, false);
         }

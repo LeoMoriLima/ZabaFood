@@ -1,4 +1,5 @@
 import ButtonComponent from "./ButtonComponent.js";
+import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
 
 export default async () => {
@@ -12,7 +13,7 @@ export default async () => {
     const orderPageTitle = document.createElement("h1");
     orderPageTitle.innerText = "Pedidos";
     orderPageTitle.classList.add("order-page-title-admin");
-    orderPageTitleDiv.appendChild(orderPageTitle)
+    orderPageTitleDiv.appendChild(orderPageTitle);
 
     const generateOrders = async (min, max) => {
         try {
@@ -31,8 +32,8 @@ export default async () => {
                 orderPageDiv.appendChild(div);
 
                 const orderInfoDiv = document.createElement("div");
-                orderInfoDiv.classList.add("order-info-div-admin")
-                div.appendChild(orderInfoDiv)
+                orderInfoDiv.classList.add("order-info-div-admin");
+                div.appendChild(orderInfoDiv);
 
                 // div left
 
@@ -42,17 +43,17 @@ export default async () => {
 
                 const divId = document.createElement("div");
                 divId.classList.add("div-order-customer-admin");
-                divLeft.appendChild(divId)
+                divLeft.appendChild(divId);
 
                 const orderLabel = document.createElement("p");
-                orderLabel.classList.add("order-customer-label")
+                orderLabel.classList.add("order-customer-label");
                 orderLabel.innerText = "Nome do cliente";
-                divId.appendChild(orderLabel)
+                divId.appendChild(orderLabel);
 
                 const orderNumber = document.createElement("p");
                 const customerName = cart.name;
-                orderNumber.classList.add("order-customer-name")
-                orderNumber.innerText = customerName
+                orderNumber.classList.add("order-customer-name");
+                orderNumber.innerText = customerName;
                 divId.appendChild(orderNumber);
 
                 const divDate = document.createElement("div");
@@ -62,13 +63,13 @@ export default async () => {
                 const orderDateLabel = document.createElement("p");
                 orderDateLabel.innerText = "Data do pedido";
                 orderDateLabel.classList.add("order-date-label-admin");
-                divDate.appendChild(orderDateLabel)
+                divDate.appendChild(orderDateLabel);
 
                 const orderDate = new Date(cart.created_at);
                 const formatedDate = orderDate.toLocaleDateString('pt-BR');
 
                 const orderCreatedAt = document.createElement("p");
-                orderCreatedAt.classList.add("order-date-created-at-admin")
+                orderCreatedAt.classList.add("order-date-created-at-admin");
                 orderCreatedAt.innerText = formatedDate;
                 divDate.appendChild(orderCreatedAt);
 
@@ -92,7 +93,7 @@ export default async () => {
 
                 const infoOrderLabelStatus = document.createElement("p");
                 infoOrderLabelStatus.classList.add("info-order-label-address");
-                infoOrderLabelStatus.innerText = "Endereço"
+                infoOrderLabelStatus.innerText = "Endereço";
                 divInfo.appendChild(infoOrderLabelStatus);
 
                 const infoOrderStatus = document.createElement("p");
@@ -108,9 +109,9 @@ export default async () => {
                 orderInfoDiv.appendChild(actionDiv);
 
                 const actionTitle = document.createElement("p");
-                actionTitle.classList.add("action-title-admin")
+                actionTitle.classList.add("action-title-admin");
                 actionTitle.innerText = "Ações";
-                actionDiv.appendChild(actionTitle)
+                actionDiv.appendChild(actionTitle);
 
                 const trackShipping = document.createElement("p");
                 trackShipping.classList.add("track-shipping-admin");
@@ -120,7 +121,7 @@ export default async () => {
                 const arrowDown = document.createElement("img");
                 arrowDown.classList.add("order-arrow-down-admin");
                 arrowDown.src = "/assets/images/arrow-down-green.svg";
-                trackShipping.appendChild(arrowDown)
+                trackShipping.appendChild(arrowDown);
 
                 const divTrack = document.createElement("div");
                 divTrack.classList.add("div-track-admin");
@@ -130,7 +131,7 @@ export default async () => {
                 const trackStatus = document.createElement("h1");
                 trackStatus.classList.add("track-status-admin");
                 trackStatus.innerText = "Status do envio";
-                divTrack.appendChild(trackStatus)
+                divTrack.appendChild(trackStatus);
 
                 const statusCircleDiv = document.createElement("div");
                 statusCircleDiv.classList.add("status-circle-div-admin");
@@ -178,7 +179,7 @@ export default async () => {
                     statusText.innerText = "Aprovado";
                 }
 
-                let isTrackShippingOpen = false
+                let isTrackShippingOpen = false;
 
                 trackShipping.addEventListener("click", function () {
 
@@ -191,22 +192,22 @@ export default async () => {
                         divTrack.classList.toggle('show');
                     }
 
-                    isTrackShippingOpen = !isTrackShippingOpen
+                    isTrackShippingOpen = !isTrackShippingOpen;
                 })
 
                 const divDropArrow = document.createElement("div");
                 divDropArrow.classList.add("div-drop-arrow-admin");
                 actionDiv.appendChild(divDropArrow);
 
-                const dropArrowText = document.createElement("p")
-                dropArrowText.classList.add("drop-arrow-text-admin")
-                dropArrowText.innerText = "Exibir produtos"
-                divDropArrow.appendChild(dropArrowText)
+                const dropArrowText = document.createElement("p");
+                dropArrowText.classList.add("drop-arrow-text-admin");
+                dropArrowText.innerText = "Exibir produtos";
+                divDropArrow.appendChild(dropArrowText);
 
                 const dropArrow = document.createElement("img");
-                dropArrow.classList.add("drop-arrow-img-admin")
+                dropArrow.classList.add("drop-arrow-img-admin");
                 dropArrow.src = "/assets/images/arrow-down-green.svg";
-                divDropArrow.appendChild(dropArrow)
+                divDropArrow.appendChild(dropArrow);
 
                 const productCartResponse = await fetch(`/api/cart_product/order/${cart.id}`);
                 const productCartData = await productCartResponse.json();
@@ -221,7 +222,7 @@ export default async () => {
                 divDropArrow.addEventListener("click", async () => {
                     if (isDropdownOpen) {
                         divProducts.style.display = "none";
-                        divProducts.innerHTML = ""
+                        divProducts.innerHTML = "";
                         dropArrow.classList.remove('rotate');
                     } else {
                         divProducts.style.display = "flex";
@@ -229,9 +230,25 @@ export default async () => {
 
                         divProducts.classList.toggle('show');
 
+                        divProducts.style.height = "6rem";
+                        divProducts.style.width = "23.9rem";
+                        divProducts.style.justifyContent = "center";
+                        divProducts.style.alignItems = "center";
+
+                        const loadingComponent = LoadingComponent(5);
+                        loadingComponent.classList.add("ap-products-loading");
+                        divProducts.appendChild(loadingComponent);
+
                         productCartData.forEach(async (productCartItem) => {
                             const productResponse = await fetch(`/api/product/${productCartItem.product_id}`);
                             const productData = await productResponse.json();
+
+                            divProducts.style.height = "";
+                            divProducts.style.width = "";
+                            divProducts.style.justifyContent = "";
+                            divProducts.style.alignItems = "";
+
+                            loadingComponent.remove();
 
                             const imgDiv = document.createElement("div");
                             imgDiv.classList.add("order-img-div-admin");
@@ -252,12 +269,12 @@ export default async () => {
 
                             const productName = document.createElement("p");
                             productName.classList.add("order-product-name-admin");
-                            productName.innerText = productData.name
+                            productName.innerText = productData.name;
                             productInfoDiv.appendChild(productName);
 
                             const productValue = document.createElement("p");
                             productValue.classList.add("order-product-value-admin");
-                            productValue.innerText = "R$" + productData.value
+                            productValue.innerText = "R$" + productData.value;
                             productInfoDiv.appendChild(productValue);
 
                         });
@@ -268,8 +285,8 @@ export default async () => {
 
                 // button order div
 
-                const buttonDiv = document.createElement("div")
-                buttonDiv.classList.add("button-order-div-admin")
+                const buttonDiv = document.createElement("div");
+                buttonDiv.classList.add("button-order-div-admin");
                 orderInfoDiv.appendChild(buttonDiv);
 
                 if (cart.status === "approved") {
@@ -279,8 +296,8 @@ export default async () => {
                             button.innerText = ""
                             const simpleLoading = document.createElement("img");
                             simpleLoading.src = "/assets/images/simple-loading.svg";
-                            simpleLoading.classList.add("loading-animation")
-                            button.appendChild(simpleLoading)
+                            simpleLoading.classList.add("loading-animation");
+                            button.appendChild(simpleLoading);
 
                             const response = await fetch(`/api/cart/${cart.id}`, {
                                 method: "PUT",
@@ -292,48 +309,48 @@ export default async () => {
                                 })
                             });
 
-                            const data = await response.json()
+                            const data = await response.json();
 
                             if (data.error) {
-                                throw data.error
+                                throw data.error;
                             }
 
-                            button.classList.remove("light-green-button-order")
-                            button.classList.add("light-green-button-disabled")
-                            button.innerText = "Produto Enviado"
+                            button.classList.remove("light-green-button-order");
+                            button.classList.add("light-green-button-disabled");
+                            button.innerText = "Produto Enviado";
                             imgCircleProcessing.src = "/assets/images/circle-inactive-processing.svg";
                             imgCircleSended.src = "/assets/images/circle-active-sended.svg";
                             statusText.innerText = "Enviado";
                         } catch (error) {
-                            MessageComponent(`Erro ao atualizar status do carrinho`)
+                            MessageComponent(`Erro ao atualizar status do carrinho`);
                             console.log(error);
                         }
                     }))
                 } else {
-                    buttonDiv.appendChild(ButtonComponent("Produto enviado", "light-green-button-disabled"))
+                    buttonDiv.appendChild(ButtonComponent("Produto enviado", "light-green-button-disabled"));
                 }
 
             });
 
             if (cartData.length === 10) {
                 const loadMoreButton = ButtonComponent("Carregar mais", "button-load-more-admin", async (button) => {
-                    min += 10
-                    max += 10
-                    button.disabled = true
-                    button.innerText = ""
+                    min += 10;
+                    max += 10;
+                    button.disabled = true;
+                    button.innerText = "";
                     const simpleLoading = document.createElement("img");
                     simpleLoading.src = "/assets/images/simple-loading.svg";
-                    simpleLoading.classList.add("button-load-more-admin-loading")
-                    simpleLoading.classList.add("loading-animation")
-                    simpleLoading.style.width = "2rem"
-                    button.appendChild(simpleLoading)
+                    simpleLoading.classList.add("button-load-more-admin-loading");
+                    simpleLoading.classList.add("loading-animation");
+                    simpleLoading.style.width = "2rem";
+                    button.appendChild(simpleLoading);
 
-                    await generateOrders(min, max)
+                    await generateOrders(min, max);
 
                     button.remove();
                 })
 
-                orderPageDiv.appendChild(loadMoreButton)
+                orderPageDiv.appendChild(loadMoreButton);
             }
 
         } catch (error) {
@@ -342,7 +359,7 @@ export default async () => {
     }
 
     setTimeout(async () => {
-        await generateOrders(1, 10)
+        await generateOrders(1, 10);
     }, 0);
 
     return orderPageDiv;

@@ -1,58 +1,70 @@
-const { connectToDatabase } = require('../db/postgresql');
+const { pool } = require('../db/postgresql');
 
 const getCartById = async (id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'SELECT * FROM cart WHERE id = $1';
     try {
+        client = await pool.connect()
         const result = await client.query(query, [id]);
         return result.rows[0];
     } catch (error) {
         console.log('Erro ao encontrar o carrinho:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getAllCartByUserID = async (userId) => {
-    const client = await connectToDatabase();
+    let client;
     const query = "SELECT * FROM cart WHERE user_id = $1 AND cart.status <> 'pending' ORDER BY created_at DESC;";
     try {
+        client = await pool.connect()
         const result = await client.query(query, [userId]);
         return result.rows;
     } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getCartByUserID = async (userId) => {
-    const client = await connectToDatabase();
+    let client;
     const query = "SELECT * FROM cart WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1;";
     try {
+        client = await pool.connect()
         const result = await client.query(query, [userId]);
         return result.rows[0];
     } catch (error) {
         console.log("Erro ao selecionar dados:", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getAllCarts = async () => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'SELECT * FROM cart';
     try {
+        client = await pool.connect();
         const result = await client.query(query);
         return result.rows;
     } catch (error) {
         console.log('Erro ao encontrar os carrinhos', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
@@ -79,49 +91,59 @@ const getAllCartsByInterval = async (min, max) => {
         cart.created_at DESC 
     LIMIT $1 OFFSET $2;
 `;
-    const client = await connectToDatabase();
+    let client;
     try {
+        client = await pool.connect()
         const result = await client.query(query, [max - min + 1, min - 1]);
         return result.rows;
     } catch (error) {
         console.log('Erro ao encontrar os carrinhos por intervalo:', error);
         throw new Error('Erro ao encontrar os carrinhos por intervalo');
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const createNewCart = async (user_id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'INSERT INTO cart (user_id, total) VALUES ($1, 0)';
     try {
+        client = await pool.connect()
         await client.query(query, [user_id]);
         console.log('Carrinho criado com sucesso');
     } catch (error) {
         console.log('Erro ao criar carrinho:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const updateCartStatus = async (status, id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'UPDATE cart SET status = $1 WHERE id = $2';
     try {
+        client = await pool.connect();
         await client.query(query, [status, id]);
         console.log('Status do carrinho atualizado com sucesso!');
     } catch (error) {
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const updateCartApproved = async (id, address_id) => {
-    const client = await connectToDatabase();
+    let client;
     try {
+        client = await pool.connect();
         await client.query('BEGIN');
 
         const updatedCart = await client.query("UPDATE cart SET approved_at = NOW(), updated_at = NOW(), address_id = $2 WHERE id = $1 RETURNING *", [id, address_id]);
@@ -136,9 +158,8 @@ const updateCartApproved = async (id, address_id) => {
             const product = await client.query('SELECT * FROM product WHERE id = $1', [productId]);
             const stock = product.rows[0].stock;
             if (stock < quantity) {
-                throw new Error(`Estoque de ${product.name} insuficiente`);
+                throw new Error(`Estoque de ${product.rows[0].name} insuficiente`);
             }
-
 
             const updatedProduct = await client.query('UPDATE product SET stock = stock - $1 WHERE id = $2 RETURNING *', [quantity, productId]);
         }
@@ -148,35 +169,43 @@ const updateCartApproved = async (id, address_id) => {
         await client.query('ROLLBACK');
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const updateCartSended = async (id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'UPDATE cart SET sended_at = NOW(), updated_at = NOW() WHERE id = $1';
     try {
+        client = await pool.connect();
         await client.query(query, [id]);
         console.log('Status do pedido atualizado com sucesso!');
     } catch (error) {
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const updateCartDelivered = async (id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = 'UPDATE cart SET delivered_at = NOW(), updated_at = NOW() WHERE id = $1';
     try {
+        client = await pool.connect();
         await client.query(query, [id]);
         console.log('Status do pedido atualizado com sucesso!');
     } catch (error) {
         console.log('Erro ao atualizar status do carrinho:', error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 

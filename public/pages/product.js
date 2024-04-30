@@ -9,7 +9,7 @@ export default async (id) => {
   const page = document.createElement("div");
   page.appendChild(MessageContainer());
   page.appendChild(await HeaderMain());
-  page.appendChild(await ProductMain(id))
+  page.appendChild(await ProductMain(id));
   page.appendChild(FooterMain());
 
   return page;

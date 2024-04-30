@@ -1,8 +1,8 @@
 import FooterMain from "../components/FooterMain.js";
 import ProductBanner from "../components/ProductBanner.js";
 import HeaderMain from "../components/HeaderMain.js";
-import mainBanner from "../components/mainBanner.js";
-import Carousel from "../components/Carousel.js"
+import mainBanner from "../components/MainBanner.js";
+import Carousel from "../components/Carousel.js";
 import ImageLine from "../components/ImageLine.js";
 import MessageContainer from "../components/MessageContainer.js";
 

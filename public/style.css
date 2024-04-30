@@ -150,7 +150,7 @@ input[type=number] {
 .entry-card-register {
     gap: 0.6rem;
     justify-content: flex-start;
-    padding-top: 2rem;
+    padding-top: 3rem;
 }
 
 .div-input {
@@ -657,12 +657,17 @@ input[type=number] {
     font-family: var(--font-title);
     font-size: 0.8rem;
     text-decoration: none;
-    width: 100%;
+    width: 18vw;
 }
 
 #img-search {
     width: 80%;
     transform: scale(0.8);
+    transition: all ease-in-out 0.3s;
+}
+
+#img-search:hover {
+    transform: scale(0.9);
 }
 
 input:focus {
@@ -678,6 +683,58 @@ input:focus {
 .div-nav-main {
     width: 100vw;
 }
+
+#div-modal-category {
+    align-items: center;
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    z-index: 200;
+    width: 100%;
+}
+
+.list-category {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-category {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.div-category {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    transition: all ease-in-out 0.3s;
+}
+
+.div-category:hover {
+    transform: scale(1.05);
+}
+
+.element-list-category {
+    margin: 2%;
+}
+
+.text-category-modal {
+    color: var(--color-secundary);
+    font-family: var(--font-banner-product-title);
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
 #a-contact,
 #a-account {
     color: var(--color-secundary);
@@ -687,7 +744,7 @@ input:focus {
 }
 
 #a-account {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .account-div {
@@ -777,6 +834,7 @@ input:focus {
     gap: 0.5rem;
     height: 100%;
     justify-content: center;
+    margin-left: 1rem;
 }
 
 #discount-text {
@@ -896,7 +954,7 @@ input:focus {
     width: 100%;
     bottom: 6%;
     position: absolute;
-    z-index: -1;
+    pointer-events: none;
 }
 
 .div-footer-main {
@@ -922,6 +980,10 @@ input:focus {
     justify-content: center;
     padding-top: 1rem;
     width: 20%;
+}
+
+.left-footer-div {
+    margin-left: 5vw;
 }
 
 .left-footer-a {
@@ -985,7 +1047,7 @@ input:focus {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    min-width: 55rem;
+    min-width: 64rem;
 }
 
 .carousel-product-div {
@@ -1408,38 +1470,31 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10% 0;
     text-align: center;
+    height: 100%;
+}
+
+.delivery-div {
+    gap: 0.5rem;
 }
 
 .sign-div {
-    width: 15%;
+    width: 7rem;
 }
 
 .percentage-div {
-    width: 22%;
+    width: 9rem;
 }
 
 .card-div {
     gap: 0;
-    width: 18%;
+    width: 8rem;
 }
 
 .delivery-icon,
 .sign-icon,
-.percentage-icon,
-.card-icon {
-    margin-bottom: 5%;
-    width: 50%;
-}
-
-.sign-icon,
 .percentage-icon {
-    width: 15%;
-}
-
-.card-icon {
-    width: 30%;
+    margin-bottom: 5%;
 }
 
 /* Product page */
@@ -1568,6 +1623,12 @@ input:focus {
     height: 2rem;
     justify-content: center;
     width: 3.5vw;
+    transition: all ease-in-out 0.3s;
+}
+
+.quantity-button-math:hover {
+    background-color: var(--color-secundary);
+    color: var(--color-white);
 }
 
 .quantity-input {
@@ -1584,8 +1645,14 @@ input:focus {
 
 .quantity-button-math:disabled {
     border: solid var(--color-secundary) 1px;
+    background: transparent;
     color: var(--color-secundary);
     opacity: 0.8;
+}
+
+.quantity-button-math:disabled:hover {
+    background: transparent;
+    color: var(--color-secundary);
 }
 
 .product-button-div {
@@ -1741,6 +1808,7 @@ input:focus {
     font-weight: 400;
     margin-top: 1.5rem;
     padding: 0.5rem 2rem;
+    transition: all ease-in-out 0.3s;
 }
 
 .modal-cart-checkout-btn:hover {
@@ -1822,7 +1890,6 @@ input:focus {
     font-size: 0.9rem;
     font-weight: 700;
     height: 3rem;
-    margin-bottom: 2rem;
     transition: all ease-in-out 0.3s;
     width: 12rem;
 }
@@ -1836,8 +1903,12 @@ input:focus {
 }
 
 .exit-button-user-page {
-    bottom: 14%;
+    bottom: 10%;
     position: absolute;
+}
+
+.exit-button {
+    margin-bottom: 2rem;
 }
 
 .add-product-div {
@@ -1970,6 +2041,10 @@ input:focus {
     width: 75%;
 }
 
+.select-product-type:focus {
+    outline: none;
+}
+
 #div-input-admin-stock {
     border: none;
     width: 75%;
@@ -2028,6 +2103,10 @@ input:focus {
     width: 23rem;
     padding: 1rem 0.5rem;
     margin-left: 5vw;
+}
+
+.description-text-area:focus {
+    outline: none;
 }
 
 .description-text-area::placeholder {
@@ -2206,8 +2285,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 15rem;
     position: relative;
+    width: 15rem;
 }
 
 .nav-menu-user-page {
@@ -2227,7 +2306,7 @@ input:focus {
     font-family: var(--font-title);
     font-size: 0.8rem;
     gap: 1rem;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 1vh 1vh;
     transition: all ease-in-out 0.3s;
     width: 100%;
@@ -2715,7 +2794,8 @@ input:focus {
     cursor: pointer;
 }
 
-.cp-product-quantity-text {
+.cp-product-quantity-text,
+.cp-product-stock-text {
     cursor: pointer;
     font-size: 0.8rem;
     margin-top: 5%;
@@ -2794,6 +2874,7 @@ input:focus {
     font-weight: 600;
     padding: 5% 20%;
     width: 90%;
+    transition: all ease-in-out 0.3s;
 }
 
 .cp-close-cart-btn:hover {
@@ -2887,6 +2968,13 @@ input:focus {
     font-size: 1.3rem;
     font-style: normal;
     padding: 0.7rem 4.9rem;
+    transition: all ease-in-out 0.3s;
+}
+
+.button-load-more:hover {
+    background-color: var(--color-secundary);
+    border-color: var(--color-primary);
+    transform: scale(1.05)
 }
 
 /* Product Card Recommended */
@@ -2900,7 +2988,9 @@ input:focus {
 
 .product-card-recommended-div {
     display: flex;
+    flex-direction: row;
     gap: 2rem;
+    justify-content: space-between;
     margin: 5vw;
     width: 100%;
 }
@@ -3118,6 +3208,7 @@ input:focus {
     height: 2.5rem;
     padding: 0px 2rem;
     width: 12rem;
+    transition: all ease-in-out 0.3s;
 }
 
 .pp-close-cart-btn:hover {
@@ -3199,7 +3290,7 @@ input:focus {
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    height: 70%;
+    height: 80%;
     justify-content: space-around;
     width: 90%;
 }
@@ -3209,7 +3300,7 @@ input:focus {
     border-right: 2px solid var(--color-white);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1vh;
     height: 100%;
     padding: 1rem;
     width: 40%;
@@ -3230,10 +3321,6 @@ input:focus {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-}
-
-#input-postal-code {
-    padding-left: 0.83vw;
 }
 
 #img-city-input,
@@ -3266,6 +3353,7 @@ input:focus {
     font-family: var(--font-text);
     font-size: 0.8rem;
     text-indent: 0.5rem;
+    width: 100%;
 }
 
 #input-postal-code::placeholder,
@@ -3319,7 +3407,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 1vh;
-    height: 42vh;
+    height: 100%;
     overflow-y: auto;
     padding: 1rem;
     width: 60%;
@@ -3344,10 +3432,15 @@ input:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height: 25%;
+    height: 6rem;
     position: relative;
     text-align: left;
     width: 90%;
+    transition: all ease-in-out 0.3s;
+}
+
+.address-div:hover {
+    transform: scale(1.05);
 }
 
 .icon-address-img {
@@ -3498,6 +3591,7 @@ input:focus {
     background-color: var(--color-white);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 3vh;
     position: relative;
     width: 80%;
@@ -3513,13 +3607,13 @@ input:focus {
 }
 
 .main-setting-page-div {
+    align-items: center;
     background-color: var(--color-light-white);
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
-    height: 80%;
     text-align: center;
-    width: 90%;
+    width: 70%;
 }
 
 .left-setting-page-div {
@@ -3527,7 +3621,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem;
+    padding: 1rem;
+    width: 80%;
 }
 
 .h2-title-setting-page {
@@ -3535,15 +3630,15 @@ input:focus {
     font-family: var(--font-text);
     font-size: 1.4rem;
     font-weight: 500;
-    margin-bottom: 4vh;
+    margin-bottom: 2%;
     width: 100%;
 }
 
 .div-user-setting-page-info {
     display: flex;
     flex-direction: column;
-    gap: 1vh;
-    width: 60%;
+    gap: 1%;
+    width: 100%;
 }
 
 .user-info-setting-div {
@@ -3574,6 +3669,7 @@ input:focus {
     background-color: var(--color-white);
     border-radius: 5px;
     padding-right: 8vw;
+    outline: none;
 }
 
 .edit-icon-setting-page {
@@ -3590,9 +3686,9 @@ input:focus {
 .user-setting-button-div {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 1.5rem;
     justify-content: center;
-    margin-bottom: 1vh;
+    margin-bottom: 1%;
 }
 
 .user-setting-save-button {
@@ -3601,10 +3697,9 @@ input:focus {
     border-radius: 14px;
     color: var(--color-white);
     cursor: pointer;
-    font-size: 0.7rem;
-    height: 4vh;
+    font-size: 1rem;
+    padding: 0.5rem 3rem;
     transition: all ease-in-out 0.3s;
-    width: 10.5vw;
 }
 
 .user-setting-save-button-disabled {
@@ -3627,7 +3722,7 @@ input:focus {
     color: var(--color-white);
     cursor: pointer;
     font-size: 1rem;
-    padding: 0.5rem 2em;
+    padding: 0.5rem 1.7rem;
     transition: all ease-in-out 0.3s;
 }
 
@@ -3687,20 +3782,22 @@ input:focus {
     gap: 20px;
 }
 
-.action-button-yes-setting-page {
+.action-button-yes-setting-page,
+.action-button-no-setting-page {
     background-color: var(--color-primary);
     border: none;
     border-radius: 12px;
     color: var(--color-white);
     cursor: pointer;
     font-family: var(--font-text);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     height: 4.5vh;
     transition: all ease-in-out 0.3s;
     width: 7.5vw;
 }
 
-.action-button-yes-setting-page:hover {
+.action-button-yes-setting-page:hover,
+.action-button-no-setting-page:hover {
     background-color: var(--color-secundary);
     border: 1.12px solid var(--color-primary);
     color: var(--color-white);
@@ -3709,22 +3806,6 @@ input:focus {
 
 .action-button-no-setting-page {
     background-color: var(--color-emphasis);
-    border: none;
-    border-radius: 12px;
-    color: var(--color-white);
-    cursor: pointer;
-    font-family: var(--font-text);
-    font-size: 0.7rem;
-    height: 4.5vh;
-    transition: all ease-in-out 0.3s;
-    width: 7.5vw;
-}
-
-.action-button-no-setting-page:hover {
-    background-color: var(--color-secundary);
-    border: 1.12px solid var(--color-primary);
-    color: var(--color-white);
-    transform: scale(1.05)
 }
 
 /* Loading animation */
@@ -4025,6 +4106,10 @@ input:focus {
     padding: 0.5rem;
     font-size: 0.9rem;
     width: 100.4%;
+}
+
+.description-text-area-modal:focus {
+    outline: none;
 }
 
 .description-text-area-modal::placeholder {
@@ -5000,7 +5085,12 @@ input:focus {
     overflow-y: auto;
     position: absolute;
     z-index: 1;
-    width: 30vw;
+    width: 28vw;
+}
+
+.div-order-products-admin>.ap-products-loading,
+.div-order-products>.cp-products-loading {
+    transform: scale(0.8);
 }
 
 .button-order-div-admin {
@@ -5105,19 +5195,23 @@ input:focus {
 }
 
 @media only screen and (min-width: 1366px) {
+
+    /* Home - 1366 */
+
     .nav-bar-div {
         align-items: center;
         background-color: var(--color-secundary);
         display: flex;
         flex-direction: row;
+        gap: 65%;
         height: 1.6rem;
         justify-content: center;
         padding: 0 5%;
         width: 100%;
-        gap: 65%;
     }
 
     .nav-div-center {
+        align-items: center;
         background-color: var(--color-white);
         display: flex;
         flex-direction: row;
@@ -5126,25 +5220,25 @@ input:focus {
         justify-content: center;
         padding: 0 5%;
         width: 100%;
-        align-items: center;
     }
+
 
     .header-div-right {
         align-items: center;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         gap: 2rem;
         width: 37%;
     }
 
     .header-div-left {
-        display: flex;
-        height: 100%;
-        width: 36%;
         align-items: center;
-        justify-content: flex-start;
+        display: flex;
         gap: 3rem;
+        height: 100%;
+        justify-content: flex-start;
+        width: 36%;
     }
 
     .a-logo-img {
@@ -5155,8 +5249,12 @@ input:focus {
     }
 
     .logo-img-header {
-        height: 90%;
-        width: 8rem;
+        height: 100%;
+        width: 8.3rem;
+    }
+
+    .modal-cart-main-div {
+        right: 12%;
     }
 
     .carousel-container {
@@ -5166,6 +5264,16 @@ input:focus {
         justify-content: center;
         width: 70rem;
     }
+
+    .about-page-div {
+        min-height: 59.4vh;
+    }
+
+    .contact-page-div {
+        min-height: 57.3vh;
+    }
+
+    /* Product card - 1366px */
 
     .product-card {
         align-items: center;
@@ -5179,6 +5287,21 @@ input:focus {
         padding: 1rem;
         width: 15rem;
     }
+
+    /* products 1360px */
+
+    .products-main {
+        min-height: 69.9vh;
+    }
+
+    .line-category-template-filter {
+        object-fit: unset;
+        position: absolute;
+        right: -1.5rem;
+        width: 12rem;
+    }
+
+    /* Login and register - 1360px */
 
     .div-background,
     .div-background-register {
@@ -5198,7 +5321,113 @@ input:focus {
 
     .entry-card,
     .entry-card-register {
+        max-width: 45rem;
+        padding-top: 4rem;
         width: 40vw;
     }
 
+    .right-div-footer {
+        padding-right: 0;
+    }
+
+    .left-footer-div {
+        margin-left: 6vw;
+    }
+
+    /* Product Page - 1366 */
+    .main-product-div {
+        width: 85vw;
+    }
+
+    /* Admin Account Page - 1366 */
+
+    .admin-page-div {
+        height: 70vh;
+    }
+
+    .form-add-product-div {
+        height: 30%;
+    }
+
+    .all-products-div-modify-page {
+        min-height: 9rem;
+    }
+
+    .product-type-page-div {
+        width: 87%
+    }
+
+    .div-column-two {
+        margin-left: 0.5vw;
+    }
+
+    .modify-page-div {
+        width: 87%;
+    }
+
+    .all-products-image-div-modify {
+        width: 8rem;
+        height: 7rem;
+    }
+
+    .product-image-modify-page {
+        max-height: 7rem;
+        max-width: 8rem;
+    }
+
+    .product-modify-page-modal-content-div {
+        height: 73vh;
+    }
+
+    .circle-img-div-admin {
+        height: 5rem;
+        width: 5rem;
+    }
+    
+    .order-page-div-admin {
+        width: 81%;
+    }
+
+    /* User Account Page - 1366 */
+
+    .order-page-div {
+        width: 87.4%;
+    }
+
+    .address-page-div {
+        height: 100%;
+        width: 87.4%;
+    }
+
+    .setting-page-div {
+        width: 87.4%;
+    }
+
+    .main-setting-page-div {
+        max-width: 32vw;
+    }
+
+    .left-setting-page-div {
+        padding: 2rem;
+    }
+
+    .main-address-page-div {
+        height: 75%;
+    }
+
+    .right-address-page-div {
+        height: 100%;
+    }
+
+    /* Product Card Recommended */
+
+    .product-card-recommended-div {
+        width: 85%;
+    }
+
+    /* Product main description */
+
+    .product-main-description {
+        width: 85%;
+    }
 }

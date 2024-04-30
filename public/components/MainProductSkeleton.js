@@ -1,16 +1,16 @@
-import LoadingComponent from "./LoadingComponent.js"
+import LoadingComponent from "./LoadingComponent.js";
 
 export default (id) => {
     const skeletonDiv = document.createElement("div");
 
-    skeletonDiv.id = id
+    skeletonDiv.id = id;
 
     skeletonDiv.classList.add("product-main-card");
 
-    skeletonDiv.style.display = "flex"
-    skeletonDiv.style.justifyContent = "center"
-    skeletonDiv.style.alignItems= "center"
-    skeletonDiv.style.minHeight = "24rem"
+    skeletonDiv.style.display = "flex";
+    skeletonDiv.style.justifyContent = "center";
+    skeletonDiv.style.alignItems= "center";
+    skeletonDiv.style.minHeight = "24rem";
 
     skeletonDiv.appendChild(LoadingComponent(10));
 

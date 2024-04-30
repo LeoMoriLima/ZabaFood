@@ -1,7 +1,8 @@
 import ButtonComponent from "./ButtonComponent.js";
 import MessageComponent from "./MessageComponent.js";
+import router from "../js/routes.js";
 
-export default async () =>{
+export default async () => {
     const settingPageDiv = document.createElement("div");
     settingPageDiv.classList.add("setting-page-div");
 
@@ -30,7 +31,7 @@ export default async () =>{
     div.classList.add("div-user-setting-page-info");
     leftDiv.appendChild(div);
 
-    const buttonSave = ButtonComponent("Salvar", "user-setting-save-button", (async () =>{
+    const buttonSave = ButtonComponent("Salvar", "user-setting-save-button", (async () => {
         try{
             const response = await fetch ('/api/users', {
                 method: "PUT",
@@ -46,33 +47,33 @@ export default async () =>{
                     phone: phoneSpan.innerText
                 })
             });
-            if(response.ok){
-                MessageComponent("Usuário atualizado com sucesso!", true)
+            if(response.ok) {
+                MessageComponent("Usuário atualizado com sucesso!", true);
                 const userShowName = document.getElementById("user-info-show-account-page");
                 userShowName.innerText = "Olá " + nameSpan.innerText;
-                buttonSave.style.display = "none"
+                buttonSave.style.display = "none";
             } else {
-                MessageComponent("Erro ao atualizar usuário", false)
+                MessageComponent("Erro ao atualizar usuário", false);
             }
             return;
-        } catch (error){
+        } catch (error) {
             return;
         } 
     }))
 
-    buttonSave.style.display = "none"
+    buttonSave.style.display = "none";
 
     const divName = document.createElement("div");
-    divName.classList.add("user-info-setting-div")
+    divName.classList.add("user-info-setting-div");
     div.appendChild(divName);
 
     const divInfoName = document.createElement("div");
     divInfoName.classList.add("user-info-text-setting-div");
-    divName.appendChild(divInfoName)
+    divName.appendChild(divInfoName);
 
     const name = document.createElement("p");
     name.classList.add("user-info-text-setting-page");
-    name.innerText = "Nome Completo: "
+    name.innerText = "Nome Completo: ";
     divInfoName.appendChild(name);
 
     const nameSpan = document.createElement("span");
@@ -81,7 +82,7 @@ export default async () =>{
     divInfoName.appendChild(nameSpan);
 
     const divIconName = document.createElement("div");
-    divIconName.classList.add("user-info-icon-setting-div")
+    divIconName.classList.add("user-info-icon-setting-div");
     divName.appendChild(divIconName);
 
     const nameEditIcon = document.createElement("img");
@@ -89,37 +90,37 @@ export default async () =>{
     nameEditIcon.src = "/assets/images/edit-icon.svg";
     divIconName.appendChild(nameEditIcon);    
 
-    nameEditIcon.addEventListener("click", async () =>{
+    nameEditIcon.addEventListener("click", async () => {
         nameSpan.contentEditable = !nameSpan.isContentEditable;
         nameSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
         if(nameSpan.isContentEditable){
-            nameEditIcon.src = "/assets/images/save-icon.svg"
+            nameEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            nameEditIcon.src = "/assets/images/edit-icon.svg"
+            nameEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const divUsername = document.createElement("div");
-    divUsername.classList.add("user-info-setting-div")
+    divUsername.classList.add("user-info-setting-div");
     div.appendChild(divUsername);
 
     const divInfoUsername = document.createElement("div");
     divInfoUsername.classList.add("user-info-text-setting-div");
-    divUsername.appendChild(divInfoUsername)
+    divUsername.appendChild(divInfoUsername);
 
     const username = document.createElement("p");
     username.classList.add("user-info-text-setting-page");
-    username.innerText = "Usuário: "
+    username.innerText = "Usuário: ";
     divInfoUsername.appendChild(username);
 
     const usernameSpan = document.createElement("span");
@@ -128,7 +129,7 @@ export default async () =>{
     divInfoUsername.appendChild(usernameSpan);
 
     const divIconUsername = document.createElement("div");
-    divIconUsername.classList.add("user-info-icon-setting-div")
+    divIconUsername.classList.add("user-info-icon-setting-div");
     divUsername.appendChild(divIconUsername);
 
     const usernameEditIcon = document.createElement("img");
@@ -136,37 +137,37 @@ export default async () =>{
     usernameEditIcon.src = "/assets/images/edit-icon.svg";
     divIconUsername.appendChild(usernameEditIcon);
     
-    usernameEditIcon.addEventListener("click", () =>{
+    usernameEditIcon.addEventListener("click", () => {
         usernameSpan.contentEditable = !usernameSpan.isContentEditable;
         usernameSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(usernameSpan.isContentEditable){
-            usernameEditIcon.src = "/assets/images/save-icon.svg"
+        if(usernameSpan.isContentEditable) {
+            usernameEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            usernameEditIcon.src = "/assets/images/edit-icon.svg"
+            usernameEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const divEmail = document.createElement("div");
-    divEmail.classList.add("user-info-setting-div")
+    divEmail.classList.add("user-info-setting-div");
     div.appendChild(divEmail);
 
     const divInfoEmail = document.createElement("div");
     divInfoEmail.classList.add("user-info-text-setting-div");
-    divEmail.appendChild(divInfoEmail)
+    divEmail.appendChild(divInfoEmail);
 
     const email = document.createElement("p");
     email.classList.add("user-info-text-setting-page");
-    email.innerText = "Email: "
+    email.innerText = "Email: ";
     divInfoEmail.appendChild(email);
 
     const emailSpan = document.createElement("span");
@@ -175,7 +176,7 @@ export default async () =>{
     divInfoEmail.appendChild(emailSpan);
 
     const divIconEmail = document.createElement("div");
-    divIconEmail.classList.add("user-info-icon-setting-div")
+    divIconEmail.classList.add("user-info-icon-setting-div");
     divEmail.appendChild(divIconEmail);
 
     const emailEditIcon = document.createElement("img");
@@ -183,38 +184,38 @@ export default async () =>{
     emailEditIcon.src = "/assets/images/edit-icon.svg";
     divIconEmail.appendChild(emailEditIcon);
 
-    emailEditIcon.addEventListener("click", () =>{
+    emailEditIcon.addEventListener("click", () => {
         emailSpan.contentEditable = !emailSpan.isContentEditable;
         emailSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
         if(emailSpan.isContentEditable){
-            emailEditIcon.src = "/assets/images/save-icon.svg"
+            emailEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            emailEditIcon.src = "/assets/images/edit-icon.svg"
+            emailEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
         if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const divPassword = document.createElement("div");
-    divPassword.classList.add("user-info-setting-div")
+    divPassword.classList.add("user-info-setting-div");
     div.appendChild(divPassword);
 
     const divInfoPassword = document.createElement("div");
     divInfoPassword.classList.add("user-info-text-setting-div");
-    divPassword.appendChild(divInfoPassword)
+    divPassword.appendChild(divInfoPassword);
     
     const password = document.createElement("p");
     password.classList.add("user-info-text-setting-page");
-    password.innerText = "Senha: "
-    divInfoPassword.appendChild(password)
+    password.innerText = "Senha: ";
+    divInfoPassword.appendChild(password);
 
     const passwordSpan = document.createElement("span");
     passwordSpan.classList.add("user-info-span-setting-page");
@@ -222,7 +223,7 @@ export default async () =>{
     divInfoPassword.appendChild(passwordSpan);
 
     const divIconPassword = document.createElement("div");
-    divIconPassword.classList.add("user-info-icon-setting-div")
+    divIconPassword.classList.add("user-info-icon-setting-div");
     divPassword.appendChild(divIconPassword);
 
     const passwordEditIcon = document.createElement("img");
@@ -230,40 +231,40 @@ export default async () =>{
     passwordEditIcon.src = "/assets/images/edit-icon.svg";
     divIconPassword.appendChild(passwordEditIcon);
 
-    passwordEditIcon.addEventListener("click", () =>{
+    passwordEditIcon.addEventListener("click", () => {
         passwordSpan.contentEditable = !passwordSpan.isContentEditable;
         passwordSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
         if(passwordSpan.isContentEditable){
-            passwordEditIcon.src = "/assets/images/save-icon.svg"
+            passwordEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            passwordEditIcon.src = "/assets/images/edit-icon.svg"
-            if(passwordSpan.value === undefined && passwordSpan.innerText !== "*********"){
+            passwordEditIcon.src = "/assets/images/edit-icon.svg";
+            if(passwordSpan.value === undefined && passwordSpan.innerText !== "*********") {
                 passwordSpan.value = passwordSpan.innerText;
             }
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const divCPF = document.createElement("div");
-    divCPF.classList.add("user-info-setting-div")
+    divCPF.classList.add("user-info-setting-div");
     div.appendChild(divCPF);
 
     const divInfoCPF = document.createElement("div");
     divInfoCPF.classList.add("user-info-text-setting-div");
-    divCPF.appendChild(divInfoCPF)
+    divCPF.appendChild(divInfoCPF);
 
     const cpf = document.createElement("p");
     cpf.classList.add("user-info-text-setting-page");
-    cpf.innerText = "CPF: "
+    cpf.innerText = "CPF: ";
     divInfoCPF.appendChild(cpf);
     
     const cpfSpan = document.createElement("span");
@@ -272,7 +273,7 @@ export default async () =>{
     divInfoCPF.appendChild(cpfSpan);
 
     const divIconCPF = document.createElement("div");
-    divIconCPF.classList.add("user-info-icon-setting-div")
+    divIconCPF.classList.add("user-info-icon-setting-div");
     divCPF.appendChild(divIconCPF);
 
     const cpfEditIcon = document.createElement("img");
@@ -280,38 +281,38 @@ export default async () =>{
     cpfEditIcon.src = "/assets/images/edit-icon.svg";
     divIconCPF.appendChild(cpfEditIcon);
 
-    cpfEditIcon.addEventListener("click", () =>{
+    cpfEditIcon.addEventListener("click", () => {
         cpfSpan.contentEditable = !cpfSpan.isContentEditable;
         cpfSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(cpfSpan.isContentEditable){
-            cpfEditIcon.src = "/assets/images/save-icon.svg"
+        if(cpfSpan.isContentEditable) {
+            cpfEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            cpfEditIcon.src = "/assets/images/edit-icon.svg"
+            cpfEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const divPhone = document.createElement("div");
-    divPhone.classList.add("user-info-setting-div")
+    divPhone.classList.add("user-info-setting-div");
     div.appendChild(divPhone);
 
     const divInfoPhone = document.createElement("div");
     divInfoPhone.classList.add("user-info-text-setting-div");
-    divPhone.appendChild(divInfoPhone)
+    divPhone.appendChild(divInfoPhone);
 
     const phone = document.createElement("p");
     phone.classList.add("user-info-text-setting-page");
-    phone.innerText = "Telefone: "
-    phone.value = userInfo.phone
+    phone.innerText = "Telefone: ";
+    phone.value = userInfo.phone;
     divInfoPhone.appendChild(phone);
 
     const phoneSpan = document.createElement("span");
@@ -320,7 +321,7 @@ export default async () =>{
     divInfoPhone.appendChild(phoneSpan);
 
     const divIconPhone = document.createElement("div");
-    divIconPhone.classList.add("user-info-icon-setting-div")
+    divIconPhone.classList.add("user-info-icon-setting-div");
     divPhone.appendChild(divIconPhone);
 
     const phoneEditIcon = document.createElement("img");
@@ -328,29 +329,29 @@ export default async () =>{
     phoneEditIcon.src = "/assets/images/edit-icon.svg";
     divIconPhone.appendChild(phoneEditIcon);
 
-    phoneEditIcon.addEventListener("click", () =>{
+    phoneEditIcon.addEventListener("click", () => {
         phoneSpan.contentEditable = !phoneSpan.isContentEditable;
         phoneSpan.classList.toggle("edit-setting-page-mode");
         buttonSave.style.display = "block";
 
-        if(phoneSpan.isContentEditable){
-            phoneEditIcon.src = "/assets/images/save-icon.svg"
+        if(phoneSpan.isContentEditable) {
+            phoneEditIcon.src = "/assets/images/save-icon.svg";
         } else {
-            phoneEditIcon.src = "/assets/images/edit-icon.svg"
+            phoneEditIcon.src = "/assets/images/edit-icon.svg";
         }
 
-        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable){
+        if(nameSpan.isContentEditable || usernameSpan.isContentEditable || emailSpan.isContentEditable || passwordSpan.isContentEditable || cpfSpan.isContentEditable || phoneSpan.isContentEditable) {
             buttonSave.classList.add("user-setting-save-button-disabled");
-            buttonSave.disabled = true
+            buttonSave.disabled = true;
         } else {
             buttonSave.classList.remove("user-setting-save-button-disabled");
-            buttonSave.disabled = false
+            buttonSave.disabled = false;
         }
     })
 
     const notice = document.createElement("p");
     notice.classList.add("user-setting-page-notice");
-    notice.style.display = "none"
+    notice.style.display = "none";
     div.appendChild(notice);
 
     const settingButtonDiv = document.createElement("div");
@@ -364,15 +365,15 @@ export default async () =>{
     settingPageDiv.appendChild(modalDiv);
     modalDiv.style.display = "none";
 
-    modalDiv.addEventListener("click", () =>{
-        modalDiv.style.display = "none"
+    modalDiv.addEventListener("click", () => {
+        modalDiv.style.display = "none";
     })
 
     const modalContent = document.createElement("div");
     modalContent.classList.add("user-setting-page-modal-content-div");
     modalDiv.appendChild(modalContent);
 
-    modalContent.addEventListener("click", (event) =>{
+    modalContent.addEventListener("click", (event) => {
         event.stopPropagation();
     })
 
@@ -397,14 +398,19 @@ export default async () =>{
 
     divActionModal.appendChild(ButtonComponent("Sim", "action-button-yes-setting-page", (async () =>{
         try{
-            const response = await fetch ('/api/users', {
-                method: "DELETE",
+            const response = await fetch ('/api/users/deleted', {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                body: JSON.stringify({
+                    status: true
+                })
             });
+
+        if(response.ok){
             try{
-                const logout = await fetch('/logout', {
+                const logout = await fetch('/api/logout', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -416,13 +422,16 @@ export default async () =>{
             } finally {
                 router.navigate("/");
             }
+
+         }
+                     
         } catch(error){
             console.log("Erro ao excluir a conta");
             return;
         }
     })));
 
-    divActionModal.appendChild(ButtonComponent("Não", "action-button-no-setting-page", (() =>{
+    divActionModal.appendChild(ButtonComponent("Não", "action-button-no-setting-page", (() => {
         modalDiv.style.display = "none";
     })))
 
@@ -433,7 +442,7 @@ export default async () =>{
     return settingPageDiv;
 }
 
-async function getUserId(){
+async function getUserId() {
     try{
         const response = await fetch ('/api/login', {
             method: "GET",
@@ -443,12 +452,12 @@ async function getUserId(){
         });
         const data = await response.json();
         return data.user.id
-    } catch (error){
+    } catch (error) {
         return;
     }
 }
 
-async function getUserInfo(userId){
+async function getUserInfo(userId) {
     try{
         const response = await fetch (`/api/users/${userId}`, {
             method: "GET",
@@ -458,7 +467,7 @@ async function getUserInfo(userId){
         });
         const userData = await response.json();
         return userData;
-    } catch(error){
+    } catch(error) {
         return;
     }
 }

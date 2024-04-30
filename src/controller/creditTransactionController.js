@@ -1,4 +1,4 @@
-const creditTransactionService = require("../services/creditTransactionService.js");
+const creditTransactionService = require("../services/creditTransactionServices.js");
 const { isUUID, isInt, isEmpty } = require('validator');
 
 const getCreditTransactionById = async (req, res) => {
@@ -35,9 +35,11 @@ const getAllCreditTransactions = async (req, res) => {
 }
 
 const createCreditTransaction = async (req, res) => {
-    const { user_id, transaction_type, transaction_value } = req.body;
+    const { transaction_type, transaction_value } = req.body;
 	try {
         const userType = req.user.user_type;
+        const user_id = req.user.id;
+        
         if (userType !== "user" && userType !== "admin") {
             return res.status(403).json({ error: "Usuário sem permissão" });
         };

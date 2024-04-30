@@ -55,7 +55,7 @@ export default () => {
         termTitle.textContent = title;
     
         const termText = document.createElement("dd");
-        termText.classList.add("term-list-text")
+        termText.classList.add("term-list-text");
         termText.textContent = termsAndConditions[index];
     
         termsList.appendChild(termTitle);
@@ -63,7 +63,7 @@ export default () => {
     });
     
     termPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
-        router.navigate("/")
+        router.navigate("/");
     }));
 
     return termPageDiv;

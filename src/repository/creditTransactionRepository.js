@@ -1,37 +1,44 @@
-const { connectToDatabase } = require("../db/postgresql");
+const { pool } = require("../db/postgresql");
 
 const getCreditTransactionById = async (id) => {
-    const client = await connectToDatabase();
+    let client;
     const query = "SELECT * FROM credit_transaction WHERE id = $1";
     try {
+        client = await pool.connect();
         const result = await client.query(query, [id]);
         return result.rows[0];
     } catch (error) {
         console.log("Erro ao encontrar a transação:", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const getAllCreditTransactions = async () => {
-    const client = await connectToDatabase();
+    let client;
     const query = "SELECT * FROM credit_transaction";
     try {
+        client = await pool.connect();
         const result = await client.query(query);
         return result.rows;
     } catch (error) {
         console.log("Erro ao encontrar as transações", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 
 const createCreditTransaction = async (user_id, transaction_type, transaction_value) => {
-    const client = await connectToDatabase();
+    let client;
 
     try {
+        client = await pool.connect();
         await client.query('BEGIN');
 
         // Cria a transação de crédito
@@ -48,7 +55,9 @@ const createCreditTransaction = async (user_id, transaction_type, transaction_va
         console.log("Erro ao inserir dados:", error);
         throw error;
     } finally {
-        client.end();
+        if (client) {
+            client.release();
+        }
     }
 }
 

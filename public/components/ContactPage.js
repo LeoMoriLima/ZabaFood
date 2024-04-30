@@ -61,7 +61,7 @@ export default () => {
     instagramContactPageDiv.appendChild(instagramContactText);
 
     contactPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
-        router.navigate("/")
+        router.navigate("/");
     }));
 
     return contactPageDiv;

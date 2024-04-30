@@ -20,13 +20,12 @@ export default async () => {
     const adminAddProductContent = await AdminAddProductPage();
     adminAddProductContent.style.display = "flex";
 
-    let adminModifyProductContent //= await AdminModifyProductPage();
-   // adminModifyProductContent.style.display = "none";
+    let adminModifyProductContent;
 
     const adminProductTypeContent = await AdminProductTypePage();
-    adminProductTypeContent.style.display = "none"
+    adminProductTypeContent.style.display = "none";
 
-    const adminOrderContent = await AdminOrderPage()
+    const adminOrderContent = await AdminOrderPage();
     adminOrderContent.style.display = "none";
 
     const aAddProduct = document.createElement("a");
@@ -39,7 +38,7 @@ export default async () => {
     const addProductText = document.createElement("span");
     addProductText.innerText = "Adicionar produto";
     aAddProduct.appendChild(addProductText);
-    navMenuAdminPage.appendChild(aAddProduct);;
+    navMenuAdminPage.appendChild(aAddProduct);
 
     const aAllProduct = document.createElement("a");
     const aAllProductIcon = document.createElement("img");
@@ -54,7 +53,7 @@ export default async () => {
 
     const aAllProductType = document.createElement("a");
     const aAllProductTypeIcon = document.createElement("img");
-    aAllProductTypeIcon.src = "../assets/images/product-type-icon.svg";
+    aAllProductTypeIcon.src = "/assets/images/product-type-icon.svg";
     aAllProductTypeIcon.classList.add("a-icon-admin-account-page");
     aAllProductType.appendChild(aAllProductTypeIcon);
     const allProductTypeText = document.createElement("span");
@@ -66,7 +65,7 @@ export default async () => {
     const aOrder = document.createElement("a");
     const aOrderIcon = document.createElement("img");
     aOrderIcon.classList.add("a-icon-admin-account-page");
-    aOrderIcon.src = "../assets/images/notes-icon.svg";
+    aOrderIcon.src = "/assets/images/notes-icon.svg";
     aOrder.appendChild(aOrderIcon);
     const aOrderText = document.createElement("span");
     aOrderText.innerText = "Pedidos";
@@ -75,7 +74,7 @@ export default async () => {
     navMenuAdminPage.appendChild(aOrder);
 
     aAddProduct.addEventListener("click", () => {
-        if (adminModifyProductContent){
+        if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
         adminAddProductContent.style.display = "flex";
@@ -89,13 +88,14 @@ export default async () => {
 
     aAllProduct.addEventListener("click", async () => {
 
-        if (!adminModifyProductContent === ""){
+        if (!adminModifyProductContent === "") {
             adminModifyProductContent.remove();
         }
 
         if (aAllProduct.classList.contains("nav-menu-admin-page-selected")) {
             return;
         }
+
         adminModifyProductContent = await AdminModifyProductPage();
         adminPageDiv.appendChild(adminModifyProductContent);
         adminModifyProductContent.style.display = "flex";
@@ -109,9 +109,10 @@ export default async () => {
     })
 
     aAllProductType.addEventListener("click", () => {
-        if (adminModifyProductContent){
+        if (adminModifyProductContent) {
             adminModifyProductContent.remove();
         }
+        
         adminProductTypeContent.style.display = "flex";
         adminAddProductContent.style.display = "none";
         adminOrderContent.style.display = "none";
@@ -140,7 +141,7 @@ export default async () => {
 
     leftMenuAdminPage.appendChild(ButtonComponent("SAIR", 'exit-button', async () => {
         try {
-            const response = await fetch('/logout', {
+            const response = await fetch('/api/logout', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

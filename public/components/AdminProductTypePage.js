@@ -1,7 +1,7 @@
 import ButtonComponent from "./ButtonComponent.js";
 import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
-import inputEntry from "./inputEntry.js";
+import inputEntry from "./InputEntry.js";
 
 export default async () => {
     const productTypeDiv = document.createElement("div");
@@ -9,19 +9,19 @@ export default async () => {
 
     const h1ProductType = document.createElement("h1");
     h1ProductType.classList.add("h1-product-type-page");
-    h1ProductType.innerText = "Tipos de produtos"
+    h1ProductType.innerText = "Tipos de produtos";
     productTypeDiv.appendChild(h1ProductType);
 
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("product-type-main-div");
-    productTypeDiv.appendChild(mainDiv)
+    productTypeDiv.appendChild(mainDiv);
 
     const addProductTypeDiv = document.createElement("div");
     addProductTypeDiv.classList.add("add-product-type-div");
     mainDiv.appendChild(addProductTypeDiv);
 
     const h2AddProductType = document.createElement("h2");
-    h2AddProductType.innerText = "Adicionar novo tipo de produto"
+    h2AddProductType.innerText = "Adicionar novo tipo de produto";
     h2AddProductType.classList.add("h2-product-type-div");
     addProductTypeDiv.appendChild(h2AddProductType);
 
@@ -40,13 +40,13 @@ export default async () => {
     const pFile = document.createElement("p");
     pFile.innerText = "Ícone da categoria";
     pFile.classList.add("p-file-admin-product-type");
-    divImageText.appendChild(pFile)
+    divImageText.appendChild(pFile);
 
     const labelFile = document.createElement("label");
     labelFile.innerText = "Selecionar arquivo";
     labelFile.classList.add("label-file-product-type");
     labelFile.setAttribute("for", "input-admin-file-product-type");
-    divImageText.appendChild(labelFile)
+    divImageText.appendChild(labelFile);
 
     const imageInput = document.createElement("input");
     imageInput.type = "file";
@@ -74,7 +74,7 @@ export default async () => {
         };
     });
 
-    addProductTypeDiv.appendChild(inputEntry("Nome do produto", "text", "input-product-type-name", "none"))
+    addProductTypeDiv.appendChild(inputEntry("Nome do produto", "text", "input-product-type-name", "none"));
 
     const allProductTypeDiv = document.createElement("div");
     allProductTypeDiv.classList.add("all-product-type-page-div");
@@ -82,21 +82,21 @@ export default async () => {
 
     const divTopAllProductType = document.createElement("div");
     divTopAllProductType.classList.add("all-product-type-top");
-    allProductTypeDiv.appendChild(divTopAllProductType)
+    allProductTypeDiv.appendChild(divTopAllProductType);
 
     const pProductType = document.createElement("p");
     pProductType.classList.add("p-product-type-top");
-    pProductType.innerText = "Tipos de produtos"
+    pProductType.innerText = "Tipos de produtos";
     divTopAllProductType.appendChild(pProductType);
 
     const pEditProductType = document.createElement("p");
     pEditProductType.classList.add("p-product-type-top");
-    pEditProductType.innerText = "Editar"
+    pEditProductType.innerText = "Editar";
     divTopAllProductType.appendChild(pEditProductType);
 
     const pDeleteProductType = document.createElement("p");
     pDeleteProductType.classList.add("p-product-type-top");
-    pDeleteProductType.innerText = "Deletar"
+    pDeleteProductType.innerText = "Deletar";
     divTopAllProductType.appendChild(pDeleteProductType);
 
     const divBodyProductType = document.createElement("div");
@@ -107,10 +107,10 @@ export default async () => {
         const name = document.getElementById("input-product-type-name");
         const formData = new FormData();
         formData.append("name", name.value);
-        formData.append("file", imageInput.files[0])
+        formData.append("file", imageInput.files[0]);
         try {
 
-            const response = await fetch('/upload_file', {
+            const response = await fetch('/api/upload_file', {
                 method: 'POST',
                 body: formData,
             });
@@ -129,17 +129,21 @@ export default async () => {
                     })
                 })
                 divBodyProductType.innerHtml = ""
+                if(response.ok){
+                    MessageComponent("Categoria do produto criada com sucesso!", true);
+                    name.value = "";
+                    imageInput.value = "";
+                    imagePreview.innerHTML = "";
+                    setTimeout(async () => {
+                        const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
+                        divBodyProductType.appendChild(rightPage);
+                    }, 0);
+                } else {
+                    MessageComponent("Erro ao criar categoria de produto!", false);
+                }
             } catch (error) {
                 return;
-            } finally {
-                name.value = "";
-                imageInput.value = "";
-                imagePreview.innerHTML = "";
-                setTimeout(async () => {
-                    const rightPage = await createAllRightPage(divBodyProductType, productTypeDiv);
-                    divBodyProductType.appendChild(rightPage);
-                }, 0);
-            }
+            } 
         } catch (error) {
             console.log(error);
             return;
@@ -149,7 +153,7 @@ export default async () => {
     setTimeout(async () => {
         const skeletonDiv = document.createElement("div");
         skeletonDiv.classList.add("product-type-page-right-div");
-        skeletonDiv.id = `skeleton-product-type-div`
+        skeletonDiv.id = `skeleton-product-type-div`;
         divBodyProductType.appendChild(skeletonDiv);
 
         const loading = LoadingComponent(5);
@@ -168,7 +172,7 @@ export default async () => {
 async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
     const rightPageDiv = document.createElement("div");
-    rightPageDiv.classList.add("product-type-page-right-div")
+    rightPageDiv.classList.add("product-type-page-right-div");
 
 
     try {
@@ -205,12 +209,12 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
             const pInfo = document.createElement("p");
             pInfo.classList.add("p-product-type");
-            pInfo.innerText = type.type
+            pInfo.innerText = type.type;
             divColumnOne.appendChild(pInfo);
 
             const editIcon = document.createElement("img");
             editIcon.classList.add("table-product-type-icon");
-            editIcon.src = "../assets/images/edit-icon.svg";
+            editIcon.src = "/assets/images/edit-icon.svg";
             divColumnTwo.appendChild(editIcon);
 
             editIcon.addEventListener("click", async () => {
@@ -218,24 +222,24 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                     return
                 }
 
-                modalProductType.style.display = "flex"
+                modalProductType.style.display = "flex";
                 editIcon.style.pointerEvents = "none";
-                modalProductType.innerHTML = ""
+                modalProductType.innerHTML = "";
 
                 const modalContent = document.createElement("div");
                 modalContent.classList.add("modal-content-product-type");
-                modalProductType.appendChild(modalContent)
+                modalProductType.appendChild(modalContent);
 
                 const loading = LoadingComponent(5);
-                modalContent.appendChild(loading)
+                modalContent.appendChild(loading);
                 const data = await getProductType(type.id);
                 loading.remove();
 
-                modalProductType.onclick = () =>{
+                modalProductType.onclick = () => {
                     modalContent.remove();
                     modalProductType.style.display = "none";
                     editIcon.style.pointerEvents = "auto";
-                    modalProductType.innerHTML = ""
+                    modalProductType.innerHTML = "";
                     modalProductType.onclick = "";
                 }
 
@@ -246,7 +250,7 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                 const h2ModalProductType = document.createElement("h2");
                 h2ModalProductType.innerText = "Atualizar tipo de produto";
                 h2ModalProductType.classList.add("h2-product-type-div");
-                modalContent.appendChild(h2ModalProductType)
+                modalContent.appendChild(h2ModalProductType);
 
                 const divImageFileModal = document.createElement("div");
                 divImageFileModal.classList.add("div-image-file-product-type-modal");
@@ -263,13 +267,13 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                 const pFileModal = document.createElement("p");
                 pFileModal.innerText = "Ícone da categoria";
                 pFileModal.classList.add("p-file-admin-product-type");
-                divImageTextModal.appendChild(pFileModal)
+                divImageTextModal.appendChild(pFileModal);
 
                 const labelFileModal = document.createElement("label");
                 labelFileModal.innerText = "Selecionar arquivo";
                 labelFileModal.classList.add("label-file-product-type-modal");
                 labelFileModal.setAttribute("for", "input-admin-file-product-type-modal");
-                divImageTextModal.appendChild(labelFileModal)
+                divImageTextModal.appendChild(labelFileModal);
 
                 const imageInputModal = document.createElement("input");
                 imageInputModal.type = "file";
@@ -309,14 +313,14 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                     imgProductModal.remove();
                 }
 
-                modalContent.appendChild(inputEntry(type.type, "text", "input-product-type-modal-content", "none"))
+                modalContent.appendChild(inputEntry(data.type, "text", "input-product-type-modal-content", "none"));
 
                 const closeIcon = document.createElement("img");
                 closeIcon.classList.add("close-modify-modal-icon");
-                closeIcon.src = "../assets/images/close-icon.svg";
+                closeIcon.src = "/assets/images/close-icon.svg";
                 modalContent.appendChild(closeIcon);
 
-                closeIcon.onclick = () =>{
+                closeIcon.onclick = () => {
                     modalContent.remove();
                     modalProductType.style.display = "none";
                     editIcon.style.pointerEvents = "auto";
@@ -335,10 +339,10 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                         let image;
 
                         if (!imageInputModal.files[0]) {
-                            const src = product.url_img;
+                            const src = type.url_img;
                             image = src.split("/").pop();
                         } else {
-                            const response = await fetch("/upload_file", {
+                            const response = await fetch("/api/upload_file", {
                                 method: "POST",
                                 body: formData,
                             });
@@ -361,23 +365,28 @@ async function createAllRightPage(divBodyProductType, productTypeDiv) {
                             if (updateResponse.ok) {
                                 modalContent.remove();
                                 modalProductType.style.display = "none";
-                                pInfo.innerText = productTypeName.value
-                                MessageComponent("Categoria do produto atualizada com sucesso!", true)
+                                if(productTypeName.value){
+                                    pInfo.innerText = productTypeName.value;
+                                } else {
+                                    pInfo.innerText = data.type;
+                                }                                
+                                editIcon.style.pointerEvents = "auto";
+                                MessageComponent("Categoria do produto atualizada com sucesso!", true);
                             } else {
-                                MessageComponent("Erro ao atualizar a categoria do produto!", false)
+                                MessageComponent("Erro ao atualizar a categoria do produto!", false);
                             }
                         } catch (error) {
                             return;
                         }
                     } catch (error) {
-                        console.log(error)
+                        console.log(error);
                     }
                 })))
             })
 
             const deleteIcon = document.createElement("img");
             deleteIcon.classList.add("table-product-type-icon");
-            deleteIcon.src = "../assets/images/delete-icon.svg";
+            deleteIcon.src = "/assets/images/delete-icon.svg";
             divColumnThree.appendChild(deleteIcon);
 
             deleteIcon.addEventListener("click", async () => {
