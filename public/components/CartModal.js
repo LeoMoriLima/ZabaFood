@@ -2,6 +2,8 @@ import btn from "./ButtonComponent.js";
 import router from "../js/routes.js";
 import LoadingComponent from "./LoadingComponent.js";
 
+const discount = 0.92;
+
 export default async (displayconfig, userData) => {
 	const mainDiv = document.createElement("div");
 	mainDiv.classList.add("modal-cart-main-div");
@@ -79,7 +81,7 @@ const showCartProducts = async (mainDiv, userData) => {
 
 				const productValue = document.createElement("p");
 				productValue.classList.add("modal-cart-product-value");
-				productValue.innerText = `${quantity}x R$${product.value}`;
+				productValue.innerText = quantity > 2 ? `${quantity}x R$${parseFloat(product.value * discount).toFixed(2)}` : `${quantity}x R$${product.value}`;
 				productValue.addEventListener("click", () => {
 					router.navigate(`/product/${product.id}`);
 				})

@@ -89,11 +89,6 @@ export default async (id) => {
 		addBtnDiv.classList.add("add-btn-div");
 		mainDiv.appendChild(addBtnDiv);
 
-		const shopIcon = document.createElement("img");
-		shopIcon.src = "/assets/images/shop-icon.svg";
-		shopIcon.classList.add("shop-icon");
-		addBtnDiv.appendChild(shopIcon);
-
 		const addBtn = btn("Adicionar", "add-btn", async (button) => {
 			try {
 				const userResponse = await fetch('/api/login', {
@@ -114,6 +109,7 @@ export default async (id) => {
 				shopIcon.classList.add("loading-animation");
 				button.disabled = true;
 				button.innerText = "Adicionando";
+				button.appendChild(shopIcon);
 
 				const quantityValue = unitBtn.classList.contains("selected-btn") ? 1 : 3;
 
@@ -153,9 +149,11 @@ export default async (id) => {
 				shopIcon.classList.remove("loading-animation");
 				shopIcon.src = "/assets/images/check-icon.svg";
 				button.innerText = "Adicionado";
+				button.appendChild(shopIcon);
 				setTimeout(() => {
 					button.innerText = "Adicionar";
 					shopIcon.src = "/assets/images/shop-icon.svg";
+					button.appendChild(shopIcon);
 					button.disabled = false;
 				}, 1000);
 
@@ -172,6 +170,11 @@ export default async (id) => {
 			}
 		})
 		addBtnDiv.appendChild(addBtn);
+
+		const shopIcon = document.createElement("img");
+		shopIcon.src = "/assets/images/shop-icon.svg";
+		shopIcon.classList.add("shop-icon");
+		addBtn.appendChild(shopIcon);
 
 		return mainDiv;
 

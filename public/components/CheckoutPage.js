@@ -157,7 +157,7 @@ export default async () => {
 		const totalDivValue = document.createElement("p");
 		totalDivValue.classList.add("checkout-total-div-value");
 
-		totalDivValue.innerText = `R$ ${(cartTotal + freight).toFixed(2)}`;
+		totalDivValue.innerText = `R$ ${(cartTotal + freight).toFixed(2).replace(".", ",")}`;
 		totalDiv.appendChild(totalDivValue);
 
 		const payNowBtnDiv = document.createElement("div");

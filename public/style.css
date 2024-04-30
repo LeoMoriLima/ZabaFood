@@ -370,12 +370,17 @@ input[type=number] {
 }
 
 .add-btn {
+    align-items: center;
     background-color: transparent;
     border: none;
     color: var(--color-light-white);
     cursor: pointer;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
     font-family: var(--font-title);
     font-size: 1rem;
+    width: 100%;
 }
 
 .shop-icon {
@@ -1395,6 +1400,10 @@ input:focus {
     transition: all ease-in-out 0.3s;
 }
 
+.checkout-button-update-address {
+    margin-top: 2rem;
+}
+
 .checkout-button-search-postal-code:hover,
 .checkout-button-update-address:hover {
     background-color: var(--color-secundary);
@@ -1424,11 +1433,6 @@ input:focus {
     font-family: var(--font-text);
     font-size: 0.8rem;
     text-indent: 0.5rem;
-}
-
-.checkout-button-update-address:hover {
-    margin-top: 2rem;
-    transform: scale(1.02);
 }
 
 .div-main-banner {
