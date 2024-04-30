@@ -22,6 +22,10 @@ Administração de Produtos: Recursos de administração para gerenciar produtos
     <li>Nodemon: Utilitário que monitora alterações nos arquivos do projeto e reinicia automaticamente o servidor durante o desenvolvimento.</li>
     <li>Bcrypt: Biblioteca para Node.js que ajuda a criptografar senhas para armazenamento seguro no banco de dados.</li>
     <li>Cors: Middleware para o Express que permite controlar o acesso aos recursos da API a partir de diferentes origens.</li>
+    <li>Validator: Componente utilizado para garantir a integridade e validade dos dados, essencial para validar entradas de usuários e manter a consistência dos dados na aplicação.</li>
+    <li>Multer: Middleware utilizado para lidar com o upload de arquivos, fornecendo uma maneira conveniente de receber e armazenar arquivos enviados pelo usuário através de formulários web.</li>
+    <li>Dotenv: Pacote que facilita a configuração de variáveis de ambiente em aplicações.</li>
+    <li>nginx: Servidor web de alto desempenho utilizado para roteamento de tráfego, balanceamento de carga, cache de conteúdo estático e hospedagem de sites e aplicações web.</li>
 </ul>
 
 <h2>Instalação e Uso</h2>
@@ -53,16 +57,20 @@ Order Management: Functionality to place and manage orders.
 Product Administration: Admin features to manage products.</p>
 <h2>Technologies Used</h2>
 <ul>
-    <li>Node.js: Platform for running the backend of the application.</li>
+    <li>Node.js: Platform for executing the application's backend.</li>
     <li>Express: Web framework for Node.js, used to build API routes.</li>
     <li>PostgreSQL: Relational database for storing application data.</li>
     <li>HTML/CSS/JavaScript: Frontend for user interaction.</li>
     <li>Git/GitHub: Version control and source code hosting.</li>
     <li>JWT: Used for user authentication and session token generation.</li>
-    <li>Cookie-Parser: Express middleware that simplifies cookie management in web applications.</li>
+    <li>Cookie-Parser: Express middleware that facilitates cookie management in web applications.</li>
     <li>Nodemon: Utility that monitors changes in project files and automatically restarts the server during development.</li>
     <li>Bcrypt: Node.js library that helps encrypt passwords for secure storage in the database.</li>
     <li>Cors: Express middleware that allows controlling access to API resources from different origins.</li>
+    <li>Validator: Component used to ensure data integrity and validity, essential for validating user inputs and maintaining data consistency in the application.</li>
+    <li>Multer: Middleware used to handle file uploads, providing a convenient way to receive and store files submitted by users through web forms.</li>
+    <li>Dotenv: Package that facilitates the configuration of environment variables in applications.</li>
+    <li>nginx: High-performance web server used for traffic routing, load balancing, static content caching, and hosting websites and web applications.</li>
 </ul>
 <h2>Installation and Usage</h2>
 <ol>
