@@ -850,33 +850,93 @@ input:focus {
 
 .img-category {
     width: 100%;
+
 }
 
 .circle-category-template {
     align-items: center;
-    background-color: var(--color-light-white);
-    border-radius: 50%;
-    height: 5.5rem;
     justify-content: center;
     overflow: hidden;
     position: absolute;
-    top: 0.8rem;
-    width: 5.5rem;
+    top: -0.5rem;
+    left: -0.5rem;
 }
 
 .img-category-div {
-    align-items: center;
+    align-self: center;
     display: flex;
     flex-direction: column;
     height: 3rem;
     margin-bottom: 4rem;
     position: relative;
-    width: 10dvw;
+    width: 7rem;
+}
+
+#div-modal-category {
+    align-items: center;
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    z-index: 200;
+    width: 100%;
+}
+
+.list-category {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+@keyframes fadeInCategory {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.list-category li {
+    opacity: 0;
+    animation: fadeInCategory 0.5s ease forwards;
+    animation-delay: calc(0.1s * var(--index));
+}
+
+.img-category {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.div-category {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.div-category:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.text-category-modal {
+    color: var(--color-secundary);
+    font-family: var(--font-banner-product-title);
+    font-size: 1.2rem;
+    text-decoration: none;
 }
 
 .line-category-template {
     object-fit: unset;
-    width: 8rem;
+    width: 7rem;
 }
 
 /* Footer Main */
@@ -1189,6 +1249,10 @@ input:focus {
     width: 100%;
 }
 
+.checkout-freight-div-value-number{
+    display: flex;
+}
+
 .checkout-total-div {
     margin-top: 2rem;
 }
@@ -1196,6 +1260,15 @@ input:focus {
 .checkout-total-div-text,
 .checkout-total-div-value {
     color: var(--color-emphasis);
+}
+
+.checkout-freight-div-value-before{
+    color: var(--color-light-gray);
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: line-through;
+    margin-right: 0.3rem;
 }
 
 .checkout-pay-now-btn-div {
@@ -4598,9 +4671,42 @@ input:focus {
 .div-message-not-found-product {
     align-items: center;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: center;
     margin: 0;
+}
+
+.div-message-text-not-found{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-text);
+    font-size: 1.2rem;
+}
+
+.div-suggestions{
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.element-list-suggestion-not-found{
+    color: var(--color-secundary);
+    cursor: pointer;
+    font-family: var(--font-title);
+    margin: 1.2rem;
+    font-weight: 500;
+}
+
+.element-list-suggestion-not-found:hover{
+    text-decoration: underline;
+}
+
+.list-suggestions{
+    list-style: none;
 }
 
 .img-message-not-found-product {
@@ -4615,9 +4721,8 @@ input:focus {
     font-size: 3.5rem;
     font-weight: 500;
     justify-self: center;
-    margin-left: 2.5rem;
     text-align: center;
-    width: 40%;
+    width: 80%;
 }
 
 /* modal sem créditos */
@@ -4639,15 +4744,15 @@ input:focus {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
-    left: 32%;
+    width: 35%;
     height: 35%;
     justify-content: center;
     padding: 20px;
     position: fixed;
     top: 50%;
+    left: 33%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    width: 45%;
 }
 
 .div-text-no-credits {
