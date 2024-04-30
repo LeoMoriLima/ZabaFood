@@ -170,6 +170,8 @@ export default async () => {
                         imageInputModal.value = "";
                         divImageTextModal.appendChild(imageInputModal);
 
+                        selectProductType.value = info.type_id
+
                         imageInputModal.addEventListener("change", (event) => {
                             const file = event.target.files[0];
 
@@ -252,7 +254,7 @@ export default async () => {
                                     productInputStock.value = info.stock;
                                 }
 
-                                if (selectProductType.value === "1") {
+                                if (selectProductType.value === 1) {
                                     selectProductType.value = info.type_id;
                                 }
 
