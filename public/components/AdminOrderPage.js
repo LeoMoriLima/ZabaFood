@@ -2,6 +2,9 @@ import ButtonComponent from "./ButtonComponent.js";
 import LoadingComponent from "./LoadingComponent.js";
 import MessageComponent from "./MessageComponent.js";
 
+let isTrackShippingOpen = false; // Variável para controlar o estado do dropdown de acompanhar pedidos
+let isDropdownOpen = false; // Variável para controlar o estado do dropdown de produtos
+
 export default async () => {
     const orderPageDiv = document.createElement("div");
     orderPageDiv.classList.add("order-page-div-admin");
@@ -179,14 +182,16 @@ export default async () => {
                     statusText.innerText = "Aprovado";
                 }
 
-                let isTrackShippingOpen = false;
-
                 trackShipping.addEventListener("click", function () {
 
                     if (isTrackShippingOpen) {
                         divTrack.style.display = "none";
                         arrowDown.classList.remove('rotate');
                     } else {
+                        divProducts.style.display = "none";
+                        dropArrow.classList.remove('rotate');
+                        isDropdownOpen = false
+
                         divTrack.style.display = "flex";
                         arrowDown.classList.add('rotate');
                         divTrack.classList.toggle('show');
@@ -217,14 +222,14 @@ export default async () => {
                 divProducts.style.display = "none";
                 dropArrowText.appendChild(divProducts);
 
-                let isDropdownOpen = false; // Variável para controlar o estado do dropdown
-
                 divDropArrow.addEventListener("click", async () => {
                     if (isDropdownOpen) {
                         divProducts.style.display = "none";
                         divProducts.innerHTML = "";
                         dropArrow.classList.remove('rotate');
                     } else {
+                        divTrack.style.display = "none";
+                        
                         divProducts.style.display = "flex";
                         dropArrow.classList.add('rotate');
 

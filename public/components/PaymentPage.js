@@ -132,6 +132,12 @@ export default async () => {
         const creditInputDivTitle = document.createElement("input");
         creditInputDivTitle.classList.add("pp-credit-input");
         creditInputDivTitle.placeholder = "R$ xxx,xx";
+        creditInputDivTitle.type = "number";
+        creditInputDivTitle.addEventListener("input", (event) => {
+            let input = event.target.value;
+            input = input.replace(/\D/g, "");
+            event.target.value = input;
+        });
         totalTextDiv.appendChild(creditInputDivTitle);
 
         const closeCartBtn = btn("Fechar compra", "pp-close-cart-btn", async () => {
