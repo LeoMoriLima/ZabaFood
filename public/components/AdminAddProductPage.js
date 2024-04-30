@@ -2,7 +2,7 @@ import ButtonComponent from "./ButtonComponent.js";
 import inputEntry from "./InputEntry.js";
 import MessageComponent from "./MessageComponent.js";
 
-export default async () =>{
+export default async () => {
     const addProductDiv = document.createElement("div");
     addProductDiv.classList.add("add-product-div");
 
@@ -61,7 +61,7 @@ export default async () =>{
     const imageInput = document.createElement("input");
     imageInput.type = "file";
     imageInput.id = "input-admin-file";
-    divImageText.appendChild(imageInput);    
+    divImageText.appendChild(imageInput);
 
     const formAddProductDiv = document.createElement("div");
     formAddProductDiv.classList.add("form-add-product-div");
@@ -70,7 +70,7 @@ export default async () =>{
     imageInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
 
-        if(file){
+        if (file) {
             const reader = new FileReader();
 
             reader.onload = (e) => {
@@ -89,7 +89,7 @@ export default async () =>{
     });
 
     async function getAllProductType() {
-        try{
+        try {
             const response = await fetch('/api/product_type', {
                 method: "GET",
                 headers: {
@@ -105,12 +105,13 @@ export default async () =>{
                 option.value = type.id;
                 selectProductType.appendChild(option);
             })
-        } catch(error){
-        console.log(error);
-    }};
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     getAllProductType()
-    
+
     formAddProductDiv.appendChild(inputEntry("Nome do produto", "text", "input-admin-name", "none"));
     formAddProductDiv.appendChild(selectProductType);
     formAddProductDiv.appendChild(inputEntry("Quantidade em estoque", "number", "input-admin-stock", "none"));
@@ -120,7 +121,7 @@ export default async () =>{
     const buttonAdminPageDiv = document.createElement("div");
     buttonAdminPageDiv.classList.add("button-admin-page-div");
     addProductDiv.appendChild(buttonAdminPageDiv);
-    
+
     buttonAdminPageDiv.appendChild(ButtonComponent("Adicionar Produto", "button-admin-send", (async () => {
         const nameInput = document.getElementById("input-admin-name");
         const valueInput = document.getElementById("input-admin-value");
@@ -129,37 +130,37 @@ export default async () =>{
         const description = descriptionTextArea;
 
 
-        if(!imageInput.files[0]) {
+        if (!imageInput.files[0]) {
             MessageComponent("Por favor insira uma imagem", false);
             return;
         }
 
-        if(!nameInput.value) {
+        if (!nameInput.value) {
             MessageComponent("Por favor insira um nome", false);
             return;
         }
 
-        if(selectProductType.value === "1") {
+        if (selectProductType.value === "1") {
             MessageComponent("Por favor insira um tipo de produto", false);
             return;
         }
 
-        if(!stockInput.value) {
+        if (!stockInput.value) {
             MessageComponent("Por favor insira um valor de estoque", false);
             return;
         }
 
-        if(!valueInput.value) {
+        if (!valueInput.value) {
             MessageComponent("Por favor insira um valor", false);
             return;
         }
 
-        if(!description.value){
+        if (!description.value) {
             MessageComponent("Por favor insira uma descrição", false);
             return;
         }
 
-        await submitForm(nameInput, valueInput, stockInput, type, description, imageInput, imagePreview);    
+        await submitForm(nameInput, valueInput, stockInput, type, description, imageInput, imagePreview);
     })));
 
     async function submitForm(name, value, stock, type, description, file, imagePreview) {
@@ -172,23 +173,23 @@ export default async () =>{
                 body: formData,
             });
             const image = await response.json();
-            try{
+            try {
                 const response = await fetch('/api/product', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        "name" : name.value,
-                        "value" : value.value,
+                        "name": name.value,
+                        "value": value.value,
                         "url_img": `/assets/uploads/${image.filename}`,
                         "stock": stock.value,
                         "type_id": type.value,
-                        "description" : description.value,
+                        "description": description.value,
                     })
                 });
 
-                if(response.ok){
+                if (response.ok) {
                     MessageComponent("Produto adicionado com sucesso!", true);
                     name.value = "";
                     value.value = "";
@@ -202,9 +203,9 @@ export default async () =>{
                 }
 
                 const data = await response.json();
-            } catch(error){
+            } catch (error) {
                 console.error("Erro ao fazer a requisição");
-                throw new Error ("Erro ao fazer a requisição!");
+                throw new Error("Erro ao fazer a requisição!");
             }
         } catch (error) {
             console.log(error);

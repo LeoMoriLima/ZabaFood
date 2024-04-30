@@ -41,7 +41,7 @@ export default (max, id, currentValue = 1, onClickPlus, onClickMinus) => {
             input.value = value + 1;
         }
         toggleButtons();
-        
+
         if (onClickPlus) {
             onClickPlus(plusButton);
         }

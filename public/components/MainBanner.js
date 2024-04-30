@@ -70,6 +70,6 @@ export default () => {
     cardText.innerText = "RECARREGUE EM ATÉ 5X NO CARTÃO";
     cardText.classList.add("info-div-text");
     cardDiv.appendChild(cardText);
-    
+
     return divMainBanner;
 }

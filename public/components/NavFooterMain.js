@@ -3,7 +3,7 @@ import router from "../js/routes.js";
 export default () => {
     const footerMain = document.createElement("footer");
     footerMain.classList.add("footer-main");
-    
+
     const divFooterMain = document.createElement("div");
     divFooterMain.classList.add("div-footer-main");
     footerMain.appendChild(divFooterMain);
@@ -13,7 +13,7 @@ export default () => {
     divFooterMain.appendChild(leftFooterDiv);
 
     const aTerm = document.createElement("a");
-    aTerm.href="/terms";
+    aTerm.href = "/terms";
     aTerm.onclick = (e) => {
         e.preventDefault();
         router.navigate("/terms");
@@ -23,12 +23,12 @@ export default () => {
     leftFooterDiv.appendChild(aTerm);
 
     const aPolicy = document.createElement("a");
-    aPolicy.href="/policy";
+    aPolicy.href = "/policy";
     aPolicy.onclick = (e) => {
         e.preventDefault();
         router.navigate("/policy");
     }
-    aPolicy.innerText="Política de privacidade";
+    aPolicy.innerText = "Política de privacidade";
     aPolicy.classList.add("left-footer-a");
     leftFooterDiv.appendChild(aPolicy);
 
@@ -49,7 +49,7 @@ export default () => {
     const rightCenterFooterDiv = document.createElement("div");
     rightCenterFooterDiv.classList.add("right-center-footer-div");
     divFooterMain.appendChild(rightCenterFooterDiv);
-    
+
     const socialText = document.createElement("p");
     socialText.innerText = "Redes Sociais";
     rightCenterFooterDiv.appendChild(socialText);

@@ -20,7 +20,7 @@ export default async (id) => {
 			products.forEach(item => {
 				item.created_at = new Date(item.created_at);
 			});
-			
+
 			let newProduct = products.reduce((newProduct, item) => {
 				return item.created_at > newProduct.created_at ? item : newProduct;
 			}, { created_at: new Date(0) });

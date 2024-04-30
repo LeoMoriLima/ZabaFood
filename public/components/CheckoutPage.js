@@ -119,7 +119,7 @@ export default async () => {
 		freightDivValueNumber.classList.add("checkout-freight-div-value-number");
 		const freightDivValue = document.createElement("p");
 		freightDivValue.classList.add("checkout-freight-div-value");
-		if (cartTotal > 200){
+		if (cartTotal > 200) {
 			const freightBefore = freight;
 			freight = 0;
 			const freightDivValueBefore = document.createElement("p");
@@ -195,6 +195,12 @@ export default async () => {
 		const payCart = async (address) => {
 			if (user.credit_balance > (cartTotal + freight)) {
 				try {
+
+					if (cartTotal === 0) {
+						MessageComponent("O carrinho está vazio", false);
+						return
+					}
+
 					const response = await fetch(`/api/cart/${cartId}`, {
 						method: "PUT",
 						headers: {

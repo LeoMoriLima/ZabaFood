@@ -5,6 +5,7 @@ import MessageComponent from "./MessageComponent.js";
 
 export default async (product) => {
     try {
+        let ammountAdded = 0;
         const userData = await getUser();
         const product_type = await getType(product.type_id);
 
@@ -48,9 +49,9 @@ export default async (product) => {
         productValue.innerText = `R$ ${product.value}`;
         productPriceInfo.appendChild(productValue);
 
-        const productValueDivided = document.createElement("p");
-        productValueDivided.innerText = `em até 12x`;
-        productPriceInfo.appendChild(productValueDivided);
+        // const productValueDivided = document.createElement("p");
+        // productValueDivided.innerText = `8% de desconto a partir do 3º item`;
+        // productPriceInfo.appendChild(productValueDivided);
 
         // Quantity infos
         const productQuantityInfo = document.createElement("div");
@@ -189,7 +190,6 @@ const getCart = async (userId) => {
                 "Content-Type": "application/json"
             }
         });
-
         const data = await response.json();
         return data;
     } catch (error) {
@@ -212,7 +212,7 @@ const getUser = async () => {
     }
 }
 
-const addToCart = async (cartId, productId, quantity) => {
+const addToCart = async (cartId, productId, quantityInput, stock) => {
     try {
         const response = await fetch("/api/cart_product/", {
             method: "POST",
@@ -222,12 +222,13 @@ const addToCart = async (cartId, productId, quantity) => {
             body: JSON.stringify({
                 cart_id: cartId,
                 product_id: productId,
-                quantity: quantity,
+                quantity: quantityInput,
             })
         });
 
         const data = await response.json();
-
+        const input = document.getElementById("product-quantity-input")
+        input.value = 1
         const event = new CustomEvent("productAdded");
         window.dispatchEvent(event);
 

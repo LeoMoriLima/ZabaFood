@@ -74,13 +74,13 @@ export default async () => {
             const data = await response.json();
 
             if (response.ok) {
-            MessageComponent("Endereço criado com sucesso!", true);
-            inputState.value = "";
-            inputCity.value = "";
-            inputStreet.value = "";
-            inputNumber.value = "";
-            inputComplement.value = "";
-            inputPostalCode.value = "";                
+                MessageComponent("Endereço criado com sucesso!", true);
+                inputState.value = "";
+                inputCity.value = "";
+                inputStreet.value = "";
+                inputNumber.value = "";
+                inputComplement.value = "";
+                inputPostalCode.value = "";
             } else {
                 MessageComponent("Erro ao criar endereço!", false);
                 return;
@@ -89,8 +89,8 @@ export default async () => {
 
             return;
         } catch (error) {
-            return ;
-        } 
+            return;
+        }
     })));
 
     const rightDiv = document.createElement("div");
@@ -250,11 +250,11 @@ export default async () => {
                                 })
                             })
                             const responseData = await response.json();
-                            if(response.ok){
+                            if (response.ok) {
                                 MessageComponent("Endereço atualizado com sucesso!", true);
                                 setTimeout(() => {
                                     pageModalDiv.style.display = "none";
-    
+
                                 }, 2000);
                                 h3.innerText = modalInputStreet.value + "," + " " + modalInputNumber.value;
                                 pStateAndCity.innerText = modalInputCity.value + " " + "-" + " " + modalInputState.value;
@@ -265,7 +265,7 @@ export default async () => {
                             return responseData;
                         } catch (error) {
                             return;
-                        } 
+                        }
                     }
                     )));
                 });
@@ -285,7 +285,7 @@ export default async () => {
                         })
 
                         const deletedData = await response.json();
-                        if(response.ok){
+                        if (response.ok) {
                             MessageComponent("Endereço deletado com sucesso!", true);
                             div.remove();
                             div.style.display = "";

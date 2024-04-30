@@ -88,12 +88,12 @@ const updateProduct = async (id, name, value, url_img, stock, type_id, descripti
 const updateDeletedStatus = async (id) => {
     let client;
     const query = 'UPDATE product SET deleted = true WHERE id = $1';
-    try{
+    try {
         await client.query(query, [id]);
         console.log('Produto deletado com sucesso');
-    } catch (error){
+    } catch (error) {
         console.log('Erro ao deletar dados:', error);
-        throw new Error ('Erro ao deletar o produto');
+        throw new Error('Erro ao deletar o produto');
     } finally {
         if (client) {
             client.release();

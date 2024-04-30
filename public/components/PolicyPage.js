@@ -27,7 +27,7 @@ export default () => {
     policyPageText.innerText = "A ZabaFood valoriza a privacidade e a segurança dos dados de seus usuários. Esta Política de Privacidade descreve como coletamos, usamos e protegemos as informações pessoais que você nos fornece ao usar nossos serviços.";
     policyPageText.classList.add("policy-page-text");
     policyTextDiv.appendChild(policyPageText);
-    
+
     const policyList = document.createElement("dl");
     policyList.classList.add("policy-list");
     policyTextDiv.appendChild(policyList);
@@ -50,20 +50,20 @@ export default () => {
         "Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Recomendamos revisar esta página regularmente para estar ciente de quaisquer alterações.",
         "Se tiver dúvidas ou preocupações sobre nossa Política de Privacidade, entre em contato conosco pelo e-mail: privacidade@zabafood.com.",
     ];
-    
+
     policyTitles.forEach((title, index) => {
         const policyTitle = document.createElement("dt");
         policyTitle.classList.add("policy-list-title");
         policyTitle.textContent = title;
-    
+
         const policyText = document.createElement("dd");
         policyText.classList.add("policy-list-text")
         policyText.textContent = policyPolicy[index];
-    
+
         policyList.appendChild(policyTitle);
         policyList.appendChild(policyText);
     });
-    
+
     policyPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
         router.navigate("/");
     }));

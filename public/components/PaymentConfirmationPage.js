@@ -15,7 +15,7 @@ export default () => {
 	cardTextDiv.appendChild(orderConfirmationText);
 
 	const backToMainPageBtn = ButtonComponent("Voltar ao início", "pc-green-button", () => {
-        router.navigate("/");
+		router.navigate("/");
 	})
 	cardTextDiv.appendChild(backToMainPageBtn);
 

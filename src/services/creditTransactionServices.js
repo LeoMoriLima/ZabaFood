@@ -3,7 +3,7 @@ const creditTransactionRepository = require("../repository/creditTransactionRepo
 const getCreditTransactionById = async (id) => {
     try {
         const creditTransaction = await creditTransactionRepository.getCreditTransactionById(id);
-		if (!creditTransaction) {
+        if (!creditTransaction) {
             throw new Error("Transação não encontrada")
         }
         return creditTransaction;

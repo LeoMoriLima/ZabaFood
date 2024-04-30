@@ -83,11 +83,11 @@ const updateUser = async (id, username, name, email, password, cpf, phone) => {
 const updateUserStatus = async (id, status) => {
     const query = 'UPDATE users SET deleted = $1 WHERE id = $2';
     let client;
-    try{
+    try {
         client = await pool.connect();
         await client.query(query, [status, id]);
         console.log('Usuário excluído com sucesso');
-    } catch (error){
+    } catch (error) {
         console.log('Erro ao atualizar dados:', error);
         throw error;
     } finally {

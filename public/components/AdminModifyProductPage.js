@@ -33,14 +33,14 @@ export default async () => {
         skeletonDiv.appendChild(firstLoading);
 
     }
-    setTimeout(async () => {     
-        
+    setTimeout(async () => {
+
         const productData = await getAllProduct();
-        
+
         setTimeout(() => {
             for (let i = 0; i < 10; i++) {
                 const skeleton = document.querySelector(`#skeleton-${i}`);
-                if(skeleton) {
+                if (skeleton) {
                     skeleton.remove();
                 }
             }

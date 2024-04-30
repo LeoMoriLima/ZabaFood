@@ -4,13 +4,13 @@ export default async (term) => {
     const getAllProduct = async () => {
         let url = `/api/product`;
         const response = await fetch(url, {
-                method: "GET",
-                 headers: {
-                     "Content-Type": "application/json"
-                 }
-             });
-             const data = await response.json();
-             return data;
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
+        return data;
     }
 
     const textSuggestions = document.createElement("p");
@@ -18,7 +18,7 @@ export default async (term) => {
     const divSuggestions = document.createElement("div");
     const listSuggestions = document.createElement("ul");
     listSuggestions.classList.add("list-suggestions");
-  
+
     async function findSuggestions(term) {
         const products = await getAllProduct();
         let suggestions = [];
@@ -26,7 +26,7 @@ export default async (term) => {
             const words = normalizeText(product.name).split(' ');
             const wordsOriginal = product.name.split(' ');
             const firstWord = words[0];
-            if(firstWord === term){
+            if (firstWord === term) {
                 suggestions.push(wordsOriginal[0]);
             }
         })
@@ -51,7 +51,7 @@ export default async (term) => {
             elementList.appendChild(textSuggestion);
             listSuggestions.appendChild(elementList);
         });
-    
+
         divSuggestions.style.display = "block";
     } else {
         divSuggestions.style.display = "none";

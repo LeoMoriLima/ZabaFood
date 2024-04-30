@@ -60,7 +60,7 @@ const createProductType = async (req, res) => {
 
 const updateProductType = async (req, res) => {
     const { id } = req.params;
-    const { type, url_img} = req.body;
+    const { type, url_img } = req.body;
 
     try {
         const admin = req.user.user_type.includes("admin");

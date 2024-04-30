@@ -24,7 +24,7 @@ export default () => {
 
     const phoneContactIcon = document.createElement("img");
     phoneContactIcon.src = "/assets/images/phone-icon.svg";
-    phoneContactIcon.classList.add ("phone-contact-icon");
+    phoneContactIcon.classList.add("phone-contact-icon");
     phoneContactPageDiv.appendChild(phoneContactIcon);
 
     const phoneContactText = document.createElement("p");
@@ -38,7 +38,7 @@ export default () => {
 
     const emailContactIcon = document.createElement("img");
     emailContactIcon.src = "/assets/images/email-icon-green.svg";
-    emailContactIcon.classList.add ("email-contact-icon");
+    emailContactIcon.classList.add("email-contact-icon");
     emailContactPageDiv.appendChild(emailContactIcon);
 
     const emailContactText = document.createElement("p");
@@ -52,7 +52,7 @@ export default () => {
 
     const instagramContactIcon = document.createElement("img");
     instagramContactIcon.src = "/assets/images/insta-icon-green.svg";
-    instagramContactIcon.classList.add ("instagram-contact-icon");
+    instagramContactIcon.classList.add("instagram-contact-icon");
     instagramContactPageDiv.appendChild(instagramContactIcon);
 
     const instagramContactText = document.createElement("p");

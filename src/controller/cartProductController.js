@@ -93,8 +93,8 @@ const createCartProduct = async (req, res) => {
             return res.status(400).json({ error: "O quantidade deve ser um número!" });
         };
 
-        await cartProductServices.createCartProduct(cart_id, product_id, Number(quantity));
-        return res.status(201).json({ message: "Novo produto adicionado" });
+        const addedCartProduct = await cartProductServices.createCartProduct(cart_id, product_id, Number(quantity));
+        return res.status(201).json({ message: "Novo produto adicionado", cartProduct: addedCartProduct });
     } catch (error) {
         return res.status(500).json({ error: "Erro ao criar produto" });
     }

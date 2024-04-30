@@ -22,7 +22,7 @@ export default () => {
     termPageText.innerText = "Termos e Condições da ZabaFood";
     termPageText.classList.add("common-page-text");
     termTextDiv.appendChild(termPageText);
-    
+
     const termsList = document.createElement("dl");
     termsList.classList.add("term-list");
     termTextDiv.appendChild(termsList);
@@ -48,20 +48,20 @@ export default () => {
         "A ZabaFood reserva-se o direito de alterar estes Termos e Condições a qualquer momento. Recomendamos revisar periodicamente esta página para estar ciente de quaisquer atualizações.",
         "Se tiver dúvidas ou preocupações sobre nossos Termos e Condições, entre em contato conosco pelo e-mail: contato@zabafood.com.",
     ];
-    
+
     termsAndConditionsTitles.forEach((title, index) => {
         const termTitle = document.createElement("dt");
         termTitle.classList.add("term-list-title");
         termTitle.textContent = title;
-    
+
         const termText = document.createElement("dd");
         termText.classList.add("term-list-text");
         termText.textContent = termsAndConditions[index];
-    
+
         termsList.appendChild(termTitle);
         termsList.appendChild(termText);
     });
-    
+
     termPageDiv.appendChild(ButtonComponent("Voltar ao ínicio", "green-button", () => {
         router.navigate("/");
     }));
