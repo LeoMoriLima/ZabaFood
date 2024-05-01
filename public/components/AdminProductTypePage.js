@@ -171,6 +171,8 @@ export default async () => {
 
 async function createAllRightPage(divBodyProductType, productTypeDiv) {
 
+    divBodyProductType.innerHTML = "";
+
     const rightPageDiv = document.createElement("div");
     rightPageDiv.classList.add("product-type-page-right-div");
 

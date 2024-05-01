@@ -52,8 +52,6 @@ export default async () => {
 		addressDivText.innerText = "ENDEREÇO DE ENTREGA";
 		addressInfoDiv.appendChild(addressDivText);
 
-
-
 		const paymentDiv = document.createElement("div");
 		paymentDiv.classList.add("checkout-payment-div");
 		infoDiv.appendChild(paymentDiv);
@@ -193,12 +191,18 @@ export default async () => {
 		paymentMethodsDiv.appendChild(paymentMethodsIcons);
 
 		const payCart = async (address) => {
+
 			if (user.credit_balance > (cartTotal + freight)) {
 				try {
 
 					if (cartTotal === 0) {
 						MessageComponent("O carrinho está vazio", false);
-						return
+						return;
+					}
+
+					if(address.error){
+						MessageComponent("Crie um endereço para fazer um pedido!", false);
+						return;
 					}
 
 					const response = await fetch(`/api/cart/${cartId}`, {
@@ -253,7 +257,6 @@ export default async () => {
 				overlay.id = "overlay-no-credits";
 				document.body.appendChild(overlay);
 			}
-
 		}
 
 		const generateAddress = async (user_id, index) => {
@@ -275,6 +278,60 @@ export default async () => {
 			});
 
 			const address = await addressResponse.json();
+			
+			if (address.error) {
+				const noAddressMessageDiv = document.createElement("div");
+				noAddressMessageDiv.classList.add("no-address-message-div");
+				addressDiv.appendChild(noAddressMessageDiv);
+
+				const noAddressMessageText1 = document.createElement("p");
+				noAddressMessageText1.classList.add("no-address-message-p");
+				noAddressMessageText1.innerText = "Para concluir seu pedido, ";
+				noAddressMessageDiv.appendChild(noAddressMessageText1);
+
+				const noAddressMessageText2 = document.createElement("p");
+				noAddressMessageText2.classList.add("no-address-message-p-2");
+				noAddressMessageText2.innerText = "adicione um endereço.";
+				noAddressMessageText2.addEventListener("click", () => {
+					router.navigate("/myaccount");
+				})
+				noAddressMessageDiv.appendChild(noAddressMessageText2);
+			} else {
+				const addressLeftDiv = document.createElement("div");
+				addressLeftDiv.classList.add("checkout-address-left-div");
+				addressDiv.appendChild(addressLeftDiv);
+	
+				const iconDiv = document.createElement("div");
+				iconDiv.classList.add("checkout-point-icon-div");
+				addressLeftDiv.appendChild(iconDiv);
+	
+				const pointIcon = document.createElement("img");
+				pointIcon.classList.add("checkout-point-icon");
+				pointIcon.src = "/assets/images/point-icon.svg";
+				iconDiv.appendChild(pointIcon);
+	
+				const addressInfo = document.createElement("div");
+				addressInfo.classList.add("checkout-address-info");
+				addressLeftDiv.appendChild(addressInfo);
+	
+				const streetText = document.createElement("p");
+				streetText.classList.add("checkout-street-text");
+				streetText.id = "street-text-checkout"
+				streetText.innerText = (address.complement && address.number) ? `${address.street}, ${address.number} - Complemento: ${address.complement}` : (address.number ? `${address.street}, ${address.number}` : `${address.street}`);
+				addressInfo.appendChild(streetText);
+	
+				const cityStateText = document.createElement("p");
+				cityStateText.classList.add("checkout-city-state-text");
+				cityStateText.id = "city-state-text"
+				cityStateText.innerText = `${address.city} - ${address.state}`;
+				addressInfo.appendChild(cityStateText);
+	
+				const postalCodeText = document.createElement("p");
+				postalCodeText.classList.add("checkout-cep-text");
+				postalCodeText.id = "cep-text-checkout"
+				postalCodeText.innerText = `${address.postal_code}`;
+				addressInfo.appendChild(postalCodeText);
+			}
 
 			payNowBtn.onclick = () => payCart(address);
 
@@ -282,41 +339,6 @@ export default async () => {
 
 			loading.remove();
 			addressDiv.style = "";
-
-			const addressLeftDiv = document.createElement("div");
-			addressLeftDiv.classList.add("checkout-address-left-div");
-			addressDiv.appendChild(addressLeftDiv);
-
-			const iconDiv = document.createElement("div");
-			iconDiv.classList.add("checkout-point-icon-div");
-			addressLeftDiv.appendChild(iconDiv);
-
-			const pointIcon = document.createElement("img");
-			pointIcon.classList.add("checkout-point-icon");
-			pointIcon.src = "/assets/images/point-icon.svg";
-			iconDiv.appendChild(pointIcon);
-
-			const addressInfo = document.createElement("div");
-			addressInfo.classList.add("checkout-address-info");
-			addressLeftDiv.appendChild(addressInfo);
-
-			const streetText = document.createElement("p");
-			streetText.classList.add("checkout-street-text");
-			streetText.id = "street-text-checkout"
-			streetText.innerText = (address.complement && address.number) ? `${address.street}, ${address.number} - Complemento: ${address.complement}` : (address.number ? `${address.street}, ${address.number}` : `${address.street}`);
-			addressInfo.appendChild(streetText);
-
-			const cityStateText = document.createElement("p");
-			cityStateText.classList.add("checkout-city-state-text");
-			cityStateText.id = "city-state-text"
-			cityStateText.innerText = `${address.city} - ${address.state}`;
-			addressInfo.appendChild(cityStateText);
-
-			const postalCodeText = document.createElement("p");
-			postalCodeText.classList.add("checkout-cep-text");
-			postalCodeText.id = "cep-text-checkout"
-			postalCodeText.innerText = `${address.postal_code}`;
-			addressInfo.appendChild(postalCodeText);
 
 			const addressRightDiv = document.createElement("div");
 			addressRightDiv.classList.add("checkout-address-right-div");

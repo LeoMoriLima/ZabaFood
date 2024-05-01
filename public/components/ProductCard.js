@@ -181,5 +181,4 @@ export default async (id) => {
 	} catch (error) {
 		console.error("Erro ao fazer login:", error);
 	}
-
 }
