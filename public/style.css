@@ -1123,6 +1123,23 @@ input:focus {
     font-size: 0.8rem;
 }
 
+.no-address-message-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.no-address-message-p-2 {
+    color: var(--color-emphasis);
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.no-address-message-p-2:hover {
+    transform: scale(1.02);
+    transition: all ease-in-out 0.3s;
+}
+
 .adress-list-div-modal {
     display: flex;
     flex-direction: column;
@@ -1196,8 +1213,9 @@ input:focus {
 
 .checkout-insert-credit-text:hover {
     cursor: pointer;
-    transform-origin: left center;
-    transform: scale(1.05);
+    transform-origin: left;
+    transform: scale(1.02);
+    transition: all ease-in-out 0.3s;
 }
 
 .checkout-address-right-div {
@@ -3672,7 +3690,8 @@ input:focus {
 .edit-setting-page-mode {
     background-color: var(--color-white);
     border-radius: 5px;
-    padding-right: 8vw;
+    width: 10rem;
+    text-align: left;
     outline: none;
 }
 
@@ -5390,6 +5409,10 @@ input:focus {
     
     .order-page-div-admin {
         width: 81%;
+    }
+
+    .order-div-admin{
+        height: 10rem;
     }
 
     /* User Account Page - 1366 */

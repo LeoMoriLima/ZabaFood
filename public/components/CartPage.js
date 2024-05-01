@@ -132,6 +132,9 @@ export default async () => {
                                     "quantity": quantityInputValue,
                                 })
                             });
+                            
+                            const event = new CustomEvent("productAdded");
+                            window.dispatchEvent(event);
 
                             productQuantityText.innerText = quantityInputValue > 1 ? `Quantidade: ${quantityInputValue} unidades` : `Quantidade: ${quantityInputValue} unidade`;
 
@@ -216,17 +219,24 @@ export default async () => {
             subtotalTextDivRight.innerText = `R$${(cartInfo.total).replace(".", ",")}`;
             subtotalTextDiv.appendChild(subtotalTextDivRight);
 
-            console.log("cartProductInfo:", cartProductsInfo);
-
             const closeCartBtn = btn("Fechar pedido", "cp-close-cart-btn", async () => {
                 let hasProductWithNoStock = false;
 
-                if (!cartProductsInfo.length) {
+                const updatedCartProductsResponse = await fetch(`/api/cart_product/cart/${userId}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+    
+                const updatedCartProductsInfo = await updatedCartProductsResponse.json();
+
+                if (!updatedCartProductsInfo.length) {
                     MessageComponent("O carrinho está vazio.");
                     return
                 }
 
-                cartProductsInfo.forEach(cartProduct => {
+                updatedCartProductsInfo.forEach(cartProduct => {
                     if (cartProduct.product.stock < cartProduct.quantity) {
                         MessageComponent(`Estoque de ${cartProduct.product.name} insuficiente`);
                         hasProductWithNoStock = true;
