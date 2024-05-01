@@ -28,7 +28,7 @@ export default () => {
     phoneContactPageDiv.appendChild(phoneContactIcon);
 
     const phoneContactText = document.createElement("p");
-    phoneContactText.innerText = "(XX) XXXXX-XXXX";
+    phoneContactText.innerText = "(99) 99999-9999";
     phoneContactText.classList.add("contact-page-text");
     phoneContactPageDiv.appendChild(phoneContactText);
 
@@ -41,7 +41,8 @@ export default () => {
     emailContactIcon.classList.add("email-contact-icon");
     emailContactPageDiv.appendChild(emailContactIcon);
 
-    const emailContactText = document.createElement("p");
+    const emailContactText = document.createElement("a");
+    emailContactText.href = "mailto:contato@zabafood.com.br"
     emailContactText.innerText = "contato@zabafood.com.br";
     emailContactText.classList.add("contact-page-text");
     emailContactPageDiv.appendChild(emailContactText);
@@ -55,7 +56,8 @@ export default () => {
     instagramContactIcon.classList.add("instagram-contact-icon");
     instagramContactPageDiv.appendChild(instagramContactIcon);
 
-    const instagramContactText = document.createElement("p");
+    const instagramContactText = document.createElement("a");
+    instagramContactText.href = "https://www.instagram.com/zabafoodbr/"
     instagramContactText.innerText = "@zabafoodbr";
     instagramContactText.classList.add("contact-page-text");
     instagramContactPageDiv.appendChild(instagramContactText);

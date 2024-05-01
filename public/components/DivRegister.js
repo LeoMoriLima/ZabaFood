@@ -28,9 +28,25 @@ export default () => {
         const emailInput = document.getElementById("email-input").value;
         const cpfInput = document.getElementById("cpf-input").value;
         const phoneInput = document.getElementById("phone-input").value;
+        const specialCharsRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]+/;
 
         if (userInput.length < 4 || userInput.length > 50) {
             MessageComponent("O nome de usuário deve conter entre 4 e 50 caracteres!", false);
+            return;
+        }
+
+        if (specialCharsRegex.test(userInput)) {
+            MessageComponent("O registro não deve conter caracteres especiais!", false);
+            return;
+        }
+
+        if (nameInput.length < 3 || nameInput.length > 50) {
+            MessageComponent("Por favor insira um nome válido!", false);
+            return;
+        }
+
+        if (!emailRegex.test(emailInput)) {
+            MessageComponent("Por favor insira um email válido", false);
             return;
         }
 
@@ -39,23 +55,13 @@ export default () => {
             return;
         }
 
-        if (nameInput.length < 4 || nameInput.length > 50) {
-            MessageComponent("Nome inválido!", false);
-            return;
-        }
-
-        if (!emailRegex.test(emailInput)) {
-            MessageComponent("Email inválido!", false);
-            return;
-        }
-
         if (cpfInput.length < 11 || cpfInput.length > 18) {
-            MessageComponent("CPF inválido!", false);
+            MessageComponent("Por favor insira um CPF válido", false);
             return;
         }
 
         if (phoneInput.length < 10 || phoneInput.length > 11) {
-            MessageComponent("Número de telefone inválido!", false);
+            MessageComponent("Por favor insira um número de telefone válido", false);
             return;
         }
 
@@ -67,7 +73,6 @@ export default () => {
                 },
                 body: JSON.stringify({
                     username: userInput,
-                    user_type: "user",
                     name: nameInput,
                     email: emailInput,
                     password: passwordInput,

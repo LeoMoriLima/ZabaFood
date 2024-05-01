@@ -8,7 +8,6 @@ const cors = require("cors");
 const path = require('path');
 const multer = require('multer');
 
-
 const storage = multer.diskStorage({
   destination: './public/assets/uploads',
   filename: (req, file, cb) => {
@@ -18,7 +17,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.use(cors());
+// const corsOptions = {
+//   origin: 'https://108.61.49.221';
+// };
+
+//app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 

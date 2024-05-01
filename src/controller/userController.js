@@ -1,6 +1,7 @@
 const { isUUID, isLength } = require('validator');
 const userServices = require('../services/userServices');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const specialCharsRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]+/;
 
 const getAllUsers = async (req, res) => {
     try {
@@ -33,19 +34,20 @@ const getUser = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
-        const { username, user_type, name, email, password, cpf, phone } = req.body;
+        const { username, name, email, password, cpf, phone } = req.body;
+        const user_type = "user";
 
         if (!username) {
             throw new Error("O username é obrigatório");
         };
 
+        if (specialCharsRegex.test(username)) {
+            throw new Error("O username não pode conter caracteres especiais");
+        }
+
         if (!isLength(username, { min: 4, max: 30 })) {
             return res.status(400).json({ error: "O nome do usuário deve conter entre 4 a 30 caracteres!" })
         }
-
-        if (!user_type) {
-            throw new Error("O tipo de usuário é obrigatório");
-        };
 
         if (!name) {
             throw new Error("O nome é obrigatório");
