@@ -89,6 +89,7 @@ const updateDeletedStatus = async (id) => {
     let client;
     const query = 'UPDATE product SET deleted = true WHERE id = $1';
     try {
+        client = await pool.connect();
         await client.query(query, [id]);
         console.log('Produto deletado com sucesso');
     } catch (error) {
