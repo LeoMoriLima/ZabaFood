@@ -17,11 +17,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// const corsOptions = {
-//   origin: 'https://108.61.49.221';
-// };
+const corsOptions = {
+  origin: 'https://108.61.49.221'
+};
 
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -31,12 +31,6 @@ app.use('/api', routes);
 app.get('/api/logout', (req, res) => {
   res.clearCookie('session_id', { path: '/' });
   return res.status(200).json({ success: true });
-});
-
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.post("/api/upload_file", upload.single("file"), uploadFile);
