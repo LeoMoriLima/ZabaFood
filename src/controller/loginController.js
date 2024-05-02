@@ -11,7 +11,7 @@ const authenticate = async (req, res) => {
         if (isEmpty(password)) {
             return res.status(400).json({ error: "A senha é obrigatória!" })
         }
-
+        
         const user = await loginServices.getUser(username);
         if (!user) {
             return res.status(400).json({ error: 'Usuário e/ou senha inválidos!' });

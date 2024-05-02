@@ -11,6 +11,7 @@
     --color-brown: #A3742F;
     --font-title: "Montserrat Alternates", sans-serif;
     --font-text: "Roboto", sans-serif;
+    --font-footer: "Lato", sans-serif;
     --font-banner-product-title: "Shrikhand", serif;
     --sb-track-color: #F3F3F3;
     --sb-thumb-color: #475f30;
@@ -2945,6 +2946,7 @@ input:focus {
     flex-direction: column;
     gap: 2rem;
     padding: 2rem;
+    min-height: 63.1vh;
 }
 
 /* 
@@ -3074,7 +3076,7 @@ input:focus {
 /* PaymentPage.js */
 
 .payment-page #message-div {
-    bottom: 10rem;
+    bottom: 8rem;
 }
 
 .pp-main-div {
@@ -4598,7 +4600,7 @@ input:focus {
 /* Message component */
 
 #message-div {
-    bottom: 1rem;
+    bottom: 8rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;

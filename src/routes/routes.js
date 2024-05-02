@@ -8,7 +8,9 @@ const productTypeRoutes = require("./productTypeRoutes.js");
 const addressRoutes = require("./addressRoutes.js");
 const creditTransactionRoutes = require("./creditTransactionRoutes.js");
 const router = Router();
+const requestLogger = require('../middleware/requestLogger.js');
 
+router.use(requestLogger);
 router.use("/users", userRoutes);
 router.use("/login", loginRoutes);
 router.use("/product", productRoutes);
